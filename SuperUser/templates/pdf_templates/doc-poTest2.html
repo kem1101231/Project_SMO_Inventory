@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PO Template</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="assets/css/basic.css" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <style>
+<!--
+ /* Font Definitions */
+ @font-face
+    {font-family:"Cambria Math";
+    panose-1:2 4 5 3 5 4 6 3 2 4;
+    mso-font-charset:1;
+    mso-generic-font-family:roman;
+    mso-font-format:other;
+    mso-font-pitch:variable;
+    mso-font-signature:0 0 0 0 0 0;}
+@font-face
+    {font-family:Calibri;
+    panose-1:2 15 5 2 2 2 4 3 2 4;
+    mso-font-charset:0;
+    mso-generic-font-family:swiss;
+    mso-font-pitch:variable;
+    mso-font-signature:-536870145 1073786111 1 0 415 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+    {mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-parent:"";
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:8.0pt;
+    margin-left:0in;
+    line-height:107%;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+h1
+    {mso-style-priority:9;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-link:"Heading 1 Char";
+    mso-style-next:Normal;
+    margin-top:12.0pt;
+    margin-right:0in;
+    margin-bottom:0in;
+    margin-left:0in;
+    margin-bottom:.0001pt;
+    line-height:107%;
+    mso-pagination:widow-orphan lines-together;
+    page-break-after:avoid;
+    mso-outline-level:1;
+    font-size:16.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    color:#2E74B5;
+    mso-themecolor:accent1;
+    mso-themeshade:191;
+    mso-font-kerning:0pt;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;
+    font-weight:normal;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+    {mso-style-priority:10;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-link:"Title Char";
+    mso-style-next:Normal;
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:28.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    letter-spacing:-.5pt;
+    mso-font-kerning:14.0pt;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+    {mso-style-priority:10;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-link:"Title Char";
+    mso-style-next:Normal;
+    mso-style-type:export-only;
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:28.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    letter-spacing:-.5pt;
+    mso-font-kerning:14.0pt;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+    {mso-style-priority:10;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-link:"Title Char";
+    mso-style-next:Normal;
+    mso-style-type:export-only;
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:28.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    letter-spacing:-.5pt;
+    mso-font-kerning:14.0pt;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+    {mso-style-priority:10;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-link:"Title Char";
+    mso-style-next:Normal;
+    mso-style-type:export-only;
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:28.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    letter-spacing:-.5pt;
+    mso-font-kerning:14.0pt;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+    {mso-style-priority:1;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-parent:"";
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:8.0pt;
+    margin-left:.5in;
+    mso-add-space:auto;
+    line-height:107%;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:0in;
+    margin-left:.5in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    line-height:107%;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:0in;
+    margin-left:.5in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    line-height:107%;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:8.0pt;
+    margin-left:.5in;
+    mso-add-space:auto;
+    line-height:107%;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+span.TitleChar
+    {mso-style-name:"Title Char";
+    mso-style-priority:10;
+    mso-style-unhide:no;
+    mso-style-locked:yes;
+    mso-style-link:Title;
+    mso-ansi-font-size:28.0pt;
+    mso-bidi-font-size:28.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    letter-spacing:-.5pt;
+    mso-font-kerning:14.0pt;}
+span.Heading1Char
+    {mso-style-name:"Heading 1 Char";
+    mso-style-priority:9;
+    mso-style-unhide:no;
+    mso-style-locked:yes;
+    mso-style-link:"Heading 1";
+    mso-ansi-font-size:16.0pt;
+    mso-bidi-font-size:16.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    color:#2E74B5;
+    mso-themecolor:accent1;
+    mso-themeshade:191;}
+span.SpellE
+    {mso-style-name:"";
+    mso-spl-e:yes;}
+span.GramE
+    {mso-style-name:"";
+    mso-gram-e:yes;}
+.MsoChpDefault
+    {mso-style-type:export-only;
+    mso-default-props:yes;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+.MsoPapDefault
+    {mso-style-type:export-only;
+    margin-bottom:8.0pt;
+    line-height:107%;}
+@page WordSection1
+    {size:8.5in 13.0in;
+    margin:1.0in 1.0in 1.0in 1.0in;
+    mso-header-margin:.5in;
+    mso-footer-margin:.5in;
+    mso-paper-source:0;}
+div.WordSection1
+    {page:WordSection1;}
+ /* List Definitions */
+ @list l0
+    {mso-list-id:587151343;
+    mso-list-type:hybrid;
+    mso-list-template-ids:-1790409880 -1759576766 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:1.25in;
+    text-indent:-.25in;}
+@list l0:level2
+    {mso-level-number-format:alpha-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:1.75in;
+    text-indent:-.25in;}
+@list l0:level3
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    margin-left:2.25in;
+    text-indent:-9.0pt;}
+@list l0:level4
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:2.75in;
+    text-indent:-.25in;}
+@list l0:level5
+    {mso-level-number-format:alpha-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:3.25in;
+    text-indent:-.25in;}
+@list l0:level6
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    margin-left:3.75in;
+    text-indent:-9.0pt;}
+@list l0:level7
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:4.25in;
+    text-indent:-.25in;}
+@list l0:level8
+    {mso-level-number-format:alpha-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:4.75in;
+    text-indent:-.25in;}
+@list l0:level9
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    margin-left:5.25in;
+    text-indent:-9.0pt;}
+ol
+    {margin-bottom:0in;}
+ul
+    {margin-bottom:0in;}
+-->
+</style>
+</head>
+<body>
+
+                        
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" style="margin-bottom:0px;">
+                                    <thead>
+                                        <tr style="height:100px;">
+                                            <td colspan="4" style="">
+                                            <div style="width:100%;margin-top:5px;" class="text-center">
+                                            <span lang="EN-US" style="font-size:22.0pt;
+                                            font-weight: 570;
+                                            mso-bidi-font-size:11.0pt">PURCHASE ORDER<o:p></o:p></span>
+                                            </div>
+                                            <div style="width:100%;" class="text-center">
+                                            <span style="font-size:14.0pt;
+                                                mso-bidi-font-size:14.0pt;  font-weight:550;
+                                                        
+                                                        line-height:107%;">
+                                                MINDANAO STATE UNIVERSITY – GENERAL SANTOS CITY 
+                                            </span>
+                                            </div>
+                                            </td>
+                                        </tr>
+                                        <tr style="">
+                                            <td style="width:45px;height:25px;margin:0px;padding:0px; padding-left:5px;">
+                                            <span style="font-size:10.0pt; font-weight:500;
+                                                mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                    Supplier:
+                                            </span>
+                                            </td>
+                                            <td style="width:250px;height:25px;margin:0px;padding:0px; padding-left:5px;">
+                                            <span style="font-size:10.0pt; font-weight:500;
+                                                mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                    Supplier's very long name which is very tiresome to input
+                                            </span>
+                                            </td>
+                                            
+                                            
+                                            
+                                            <td style="width:50px ;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                                <span style="font-size:10.0pt; font-weight:500;
+                                                    mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                PO No.:</span>
+                                                </td>
+                                            <td style="width:70px ;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                                <span style="font-size:10.0pt; font-weight:500;
+                                                    mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                 0000-00</span>
+                                                </td>
+                                               
+                                           
+                                        </tr>
+                                        <tr>
+                                            <td style="width:45px;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                                <span style="font-size:10.0pt; font-weight:500;
+                                                    mso-bidi-font-size:10.0pt;line-height:107%;;">
+                                                Address:</span>
+                                                </td>
+
+                                            <td style="max-width:250px;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                                <div style="max-width:250px;">
+                                                    <span style="font-size:10.0pt; font-weight:500;
+                                                    mso-bidi-font-size:10.0pt;line-height:107%;;">
+                                                 Bagong Silang, Bagontapay, M'lang, Cotabato </span>
+
+                                                </div>
+                                            </td>    
+                                            
+                                            <td style="width:50px ;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                            <span style="font-size:10.0pt; font-weight:500;
+                                                mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                Date: 
+                                                </span>
+                                            </td>
+                                            <td style="width:70px ;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                            <span style="font-size:10.0pt; font-weight:500;
+                                                mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                Date: 
+                                                </span>
+                                            </td>
+                                          
+
+                                        </tr>
+                                        <tr>
+                                           <td style="width:45px;height:50px;margin:0px;padding:0px; padding-left:5px;">
+                                            <span style="font-size:10.0pt; font-weight:500;
+                                                mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                    TIN: 
+                                            </span>
+                                            </td>
+                                            <td  style="width:250px;height:50px;margin:0px;padding:0px; padding-left:5px;">
+                                            <span style="font-size:10.0pt; font-weight:500;
+                                                mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                   1234-1234-1234
+                                            </span>
+                                            </td>
+                                            
+                                            <td colspan="2" style="width:100px ;height:50px;margin:0px;padding:0px;padding-left:5px;">
+                                                <div class="text-center">
+                                                     <span style="font-size:10.0pt; font-weight:500;
+                                                    mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                Mode of Procurement: </span>
+
+                                                </div>
+                                                <div class="text-center">
+                                                     <span style="font-size:11.0pt; 
+                                                    mso-bidi-font-size:11.0pt;line-height:107%;">
+                                                Canvass </span>
+
+                                                </div>
+                                               
+                                                </td>
+                                           
+                                        </tr>
+                                         <tr>
+                                           <td colspan="4" style="width:100%;height:60px;margin:0px;padding:0px; padding-left:5px;">
+                                            <span style="font-size:10.0pt; font-weight:500;
+                                                mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                    Gentlemen:
+                                                <p class="MsoNormal" align="center" style="
+                                                    margin-bottom:10px;margin-top:10px;
+                                                    text-align:center;line-height:normal">
+                                                        <b style="mso-bidi-font-weight:300">
+                                                            <u>
+                                                                <span lang="EN-US" style="font-size:10.0pt;mso-bidi-font-size:10.0pt;font-weight:500;">
+                                                                    Please furnish
+                                                                    this office the following articles subject to the terms and conditions
+                                                                    contained herein:
+                                                                    <o:p>  
+                                                                    </o:p>
+                                                                </span>
+                                                            </u>
+                                                        </b>
+                                                </p>    
+
+                                            </span>
+                                            </td>
+                                            
+                                            
+                                           
+                                        </tr>
+
+
+
+                                    </thead>
+                                </table>
+                             
+                                         <table class="table table-striped table-bordered table-hover" style="margin-bottom:0px;">
+                                    <thead>
+                                        
+                                        <tr>
+                                            <td style="width:60px;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                                <span style="font-size:10.0pt; font-weight:500;
+                                                    mso-bidi-font-size:10.0pt;line-height:107%;;">
+                                                Place of Delivery: </span>
+                                                </td>
+                                            <td style="width:220px;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                                <span style="font-size:10.0pt; font-weight:500;
+                                                    mso-bidi-font-size:10.0pt;line-height:107%;;">
+                                                 </span>
+                                                </td>
+                                            
+                                            <td style="width:60px ;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                            <span style="font-size:10.0pt; font-weight:500;
+                                                mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                Delivery Term: 
+                                                </span>
+                                            </td>
+                                            <td style="width:70px ;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                            <span style="font-size:10.0pt; font-weight:500;
+                                                mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                 
+                                                </span>
+                                            </td>
+                                          
+
+                                        </tr><tr>
+                                            <td style="width:60px;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                                <span style="font-size:10.0pt; font-weight:500;
+                                                    mso-bidi-font-size:10.0pt;line-height:107%;;">
+                                                Date of Delivery: </span>
+                                                </td>
+                                                <td style="width:220px;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                                <span style="font-size:10.0pt; font-weight:500;
+                                                    mso-bidi-font-size:10.0pt;line-height:107%;;">
+                                                 </span>
+                                                </td>
+                                            
+                                            <td style="width:60px ;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                            <span style="font-size:10.0pt; font-weight:500;
+                                                mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                Payment Term: 
+                                                </span>
+                                            </td>
+                                          <td style="width:70px ;height:25px;margin:0px;padding:0px;padding-left:5px;">
+                                            <span style="font-size:10.0pt; font-weight:500;
+                                                mso-bidi-font-size:10.0pt;line-height:107%;">
+                                                Payment Term: 
+                                                </span>
+                                            </td>
+
+                                        </tr>
+
+
+                                        
+                                        
+
+                                    </thead>
+                                </table>
+
+                                
+                                <table  class="table table-striped table-bordered table-hover" style="margin-bottom:0px;">
+                                    <thead>
+                                        <tr>
+                                           <td style="width:40px;height:25px;margin:0px;padding:0px;" class="text-center">
+                                                <span style="font-size:12.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            font-weight: bold;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                            Item No. 
+                                                </span>
+                                            </td>
+                                            <td style="width:63px;height:25px;margin:0px;padding:0px;" class="text-center">
+                                                <span style="font-size:12.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            font-weight: bold;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                            QTY
+                                                </span>
+                                            </td>
+                                            <td style="width:50px;height:25px;margin:0px;padding:0px;" class="text-center">
+                                               <span style="font-size:12.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            font-weight: bold;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                            Unit
+                                                </span>
+                                            </td>
+                                            <td style="height:25px;margin:0px;padding:0px;padding-left:5px;" class="text-center">
+                                                <span style="font-size:12.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            font-weight: bold;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                            Description 
+                                                </span>
+                                            </td>
+                                         
+                                            <td style="width:90px;height:25px;margin:0px;padding:0px;" class="text-center">
+                                                <span style="font-size:12.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            font-weight: bold;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                        Unit Cost
+                                                    </span>
+                                            </td>
+                                            <td style="width:90px;height:25px;margin:0px;padding:0px;" class="text-center">
+                                            <span style="font-size:12.0pt;
+                                                mso-bidi-font-size:11.0pt;
+                                                        font-weight: bold;
+                                                        line-height:107%;
+                                                        font-family:&quot;Times New Roman&quot;,serif;
+                                            mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                        Amount 
+                                            </span>
+                                        </td>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td style="width:40px;height:25px;margin:0px;padding:0px;" class="text-center">
+                                            <span style="font-size:11.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                            # 
+                                                </span>
+                                            </td>
+                                            <td style="width:63px;height:25px;margin:0px;padding:0px;" class="text-center">
+                                                <span style="font-size:11.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                            ## 
+                                                </span>
+                                            </td>
+                                            <td style="width:50px;height:25px;margin:0px;padding:0px;" class="text-center">
+                                                <span style="font-size:11.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                            unit 
+                                                </span> 
+                                            </td>
+                                            <td style="height:25px;margin:0px;padding:0px;padding-left:5px;" class="text-center">
+
+                                                <span style="font-size:11.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                          Requested Item
+                                                </span>
+
+                                            </td>
+                                          
+                                            <td style="width:90px;height:25px;margin:0px;padding:0px;" class="text-center">
+                                                <span style="font-size:11.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                             0, 000.00 
+                                                </span>
+                                           
+                                            </td>
+                                            <td style="width:90px;height:25px;margin:0px;padding:0px;" class="text-center">
+                                            
+                                             <span style="font-size:11.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                             000, 000.00
+                                                </span>
+
+                                            </td>
+                                        </tr>
+                                        
+                                      
+                                        
+                                    </tbody>
+                                </table>
+                               
+                                 <table  class="table table-striped table-bordered table-hover" style="padding-bottom:0px;">
+                                       <thead>
+                                       <tr>
+                                           <td style="height:35px;margin:0px;padding:5px;">
+                                            <span style="font-size:12.0pt;
+                                                    mso-bidi-font-size:11.0pt;
+                                                            line-height:107%;
+                                                            font-family:&quot;Times New Roman&quot;,serif;
+                                                mso-fareast-font-family:&quot;Times New Roman&quot;">
+                                                             (Total Amount in Words)
+                                                </span>
+                                           </td>
+                                           
+                                       </tr>
+
+                                       
+                                       </thead>
+
+                                 </table>
+                                   <div class="panel-boby" style="margin:0px; padding:0px; margin-top:25px;">
+            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-indent:
+  .5in;line-height:normal"><span lang="EN-US">In case of failure to make the full
+  delivery within the time specified above, a penalty of one-tenth (1/10) of
+  one percent for every day of delay shall be imposed.</span></p>
+
+        </div>
+
+                           
+
+                            </div>
+                            
+                        </div>
+
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="assets/js/bootstrap.js"></script>
+     <!-- METISMENU SCRIPTS -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+</body>
+</html>

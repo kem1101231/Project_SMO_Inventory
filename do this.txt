@@ -1,0 +1,2 @@
+python manage.py migrate
+be sure to check the database config settings on the settings.py

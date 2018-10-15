@@ -1,0 +1,590 @@
+{% extends 'super_user/base.html' %}
+{% load humanize %}
+{% load staticfiles %}
+{% block content %}
+
+<style type="text/css">
+    
+            .tablescroll{
+            overflow-y:scroll;
+            height:1033px;
+            display:block;
+        }
+        
+        .tablescroll2{
+            
+            overflow-y:scroll;
+            height:235px;
+            display:block;
+        }
+        .divScroll{
+            
+            overflow-y:scroll;
+            height:450px;
+            display:block;
+        }
+
+</style>
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+          <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;
+                                     padding-bottom: 0px;
+                                     margin-top:55px;
+                                     display: none 
+                                     ">
+
+                                    
+                                    <div class="modal-header" style="padding:0px; border-radius: 20px;">
+                                        <div>
+                                            <button id="sentNotif" name="reqNumB" value="{{pageData1.0.0}}" type="submit" role="submit" class="btn btn-success" style="width: 120px; border-radius: 20px; outline:none;"><i class="icon-plus"></i> Add Office</button>
+                                        </div>
+                                    </div>
+                        
+            </div>
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body"  style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 30px;
+                 padding-top: 10px;
+                 padding-bottom: 15px;
+                 margin-top:75px; 
+                 margin-bottom: 20px;
+
+                ">
+                <div>
+                    
+                     Office Details
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #fff!important;">
+             
+                <div class="col-lg-7" style="padding:8px; padding-top: 0px;">
+                    <div class="panel panel-primary" style="border-radius: 0px;">
+                        <div class="panel-body" style="border-top:4px solid #428bca; font-size: 18px; padding-top: 20px;">
+                                <p><span id="idHold" value="{{pageData1.0.0}}">Office Basic Information</span> </p>
+                                <p style="margin: 0px; margin-top: 5px;  border-bottom:2px solid #428bca; width: 60%;"></p>
+                            </div>
+                          <div class="panel-body" style=" padding-left:10px;">
+                                      
+                                                            
+                                        <div class="panel col-lg-12 text-center" style="padding:0px;">
+                                            <div class = "panel item-img-div"  style="margin-bottom:0px; max-width: 100%; width: 100%;">
+                                                <img style="width: 170px; height: 170px;" src = "{% static 'assets/img/Msu.png' %}" class="img-circle">
+
+                                            </div>
+                                            <p style="margin-top: 20px; font-size: 18px; font-weight: bold">{{pageData1.0.1}}</p>
+                                            <p>
+                                                <div style="border-bottom: 1px solid #428bca;"></div>
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="col-lg-12" style="padding-left:0px;padding-right: 0px;"></div>
+                                        <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                                    <div class="col-lg-4 dataFont2 text-right" >
+                                                       Office ID Code:  
+                                                    </div>
+                                                    <div class="col-lg-8 dataFont1">
+                                                        {{pageData1.0.0}}
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%;">
+                                                    <div class="col-lg-4 dataFont2 text-right">
+                                                        Office Head:  
+                                                    </div>
+                                                    <div class="col-lg-8 dataFont1">
+                                                        {{pageData1.1.0.6}} {{pageData1.1.0.1}} {{pageData1.1.0.7}} {{pageData1.1.0.2}} {{pageData1.1.0.8}}
+
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%;">
+                                                    <div class="col-lg-4 dataFont2 text-right">
+                                                         
+                                                    </div>
+                                                    <div class="col-lg-8 dataFont1 text-right" style="padding-top: 20px; padding-right: 50px;">
+                                                        <button id="upHeadBTN" type="button" role="button" class="btn btn-sm btn-success" style="height: 25px; padding:2px; width: 150px; border-radius: 10px; outline: none">Update Head Personel</button> 
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="form-group" style="display: none">
+                                                <div style="padding-left: 2px;  width:100%;">
+                                                    <div class="col-lg-4 dataFont2 text-right">
+                                                         
+                                                    </div>
+                                                    <div class="col-lg-8 dataFont1">
+                                                        {{pageData1}} 
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                             
+                         </div>   
+                    </div>
+                <div class="col-lg-5" style="padding:8px; padding-top: 0px;">
+                    <div class="panel panel-primary" style="border-radius: 0px;">
+                        <div class="panel-body" style="border-top:4px solid #428bca; font-size: 18px; padding-top: 20px;">
+                                <p>Users under this office</p>
+                                <p style="margin: 0px; margin-top: 5px;  border-bottom:2px solid #428bca; width: 60%;"></p>
+                            </div>
+                             <div class="panel-body" style="margin:0px; padding:8px;">
+                                <div class="table-responsive">
+                                <table class="table table-hover" id="theOffTable">
+                                    
+                                    <tbody id="theTableList">
+                                    {% for x in pageData2 %}
+                                    <tr>
+                                        <td colspan="3">
+                                            <div class="col-lg-4 text-center" style="padding-top: 15px;">
+
+
+                                             <img style="width: 100px; height: 100px; border: 2px solid #ddd;"
+                                                 {% if x.0.9 == None %}
+                                                    src="{% static 'assets/img/user.jpeg' %}"
+                                                    {% else %}
+                                                    src="/media/{{x.0.9}}"
+                                                    {% endif %}
+                                                
+                                                class="img-circle" /></div>
+                                            <div class="col-lg-8" style="padding-right: 0px; padding-top: 20px;">
+                                            
+                                            <p style="font-weight: bold; font-size: 17px;">{{x.0.6}} {{x.0.1}} {{x.0.7}} {{x.0.2}} {{x.0.8}}</p>
+                                            <p>Designation</p>
+                                            <p>• Non-Requisitioner User</p>
+                                            <p>• Proc-Office User</p>
+                                            <p>
+
+
+                                                 {% if x.1.5 == True %}
+                                                    <label class="label label-success" style="border-radius: 15px;" ><i class="icon-ok"></i> Active</label> 
+                                                {% else %}
+                                                     <label class="label label-danger" style="border-radius: 15px;" ><i class="icon-remove"></i> Blocked</label> 
+                                                {% endif %}
+                                            </p>
+                                            <p class="text-right" style="margin-top: 30px; margin-bottom: 30px;">
+                                                <button value="{{x.0.0}}" id="upAccBTN" style="width: 40px; border-radius: 15px; outline: none;" class="btn btn-sm btn-success"><i class="icon-edit"></i></button>
+                                                <button value="{{x.0.0}}" id="transEmpBTN" style="width: 40px; border-radius: 15px; outline: none;" class="btn btn-sm btn-primary"><i class="icon-share-alt"></i></button>
+
+                                                {% if x.1.5 == True %}
+                                                   <button value="{{x.0.0}}" id="remBTN"  style="width: 40px; border-radius: 15px; outline: none;" class="btn btn-sm btn-danger"><i class="icon-remove"></i></button>
+                                                {% else %}
+                                                     <button value="{{x.0.0}}" id="remBTN"  style="width: 40px; border-radius: 15px; outline: none;" class="btn btn-sm btn-success"><i class="icon-ok"></i></button> 
+                                                {% endif %}
+                                                
+                                            </p>
+                                        </div>
+
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr><td colspan="3" style="display:none">{{x}}</td></tr>
+                                 
+                                    {% endfor %}
+                                        
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            </div>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>    
+
+        <!-- ========================================================================================================== -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Update the Head Personnel</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Name of Personnel: </label>
+                                                         <div class="col-lg-8">
+                                                        <input id="receiveoff" class="form-control" list="recOffList" />
+                                                        <datalist id="recOffList">
+                                                        </datalist>
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+                                        
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList2" type="submit" class="btn btn-success" >Update Information</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transEmpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Transfer personnel to another office</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Name of Office: </label>
+                                                         <div class="col-lg-8">
+                                                        <input id="receiveoffice" class="form-control" list="recOfficeList" />
+                                                        <datalist id="recOfficeList">
+                                                         
+                                                        </datalist>
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+                                        
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="transEmpModalBTN" type="submit" class="btn btn-success" >Update Information</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="upAccModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Update user access type</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="upAccDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Set Employee as: </label>
+                                                         <div class="col-lg-8">
+                                                            <p><button id="12" role="button" type="button"  style="width: 250px; border-radius: 20px; outline: none" class="btn-b btn btn-success">Approving Office Secretary</button></p>
+                                                            <p><button id="11"  role="button" type="button"  style="width: 250px; border-radius: 20px; outline: none" class="btn-b btn btn-success">O.C. Authorized Representative</button></p>
+                                                            <p><button id="2"  role="button" type="button"  style="width: 250px; border-radius: 20px; outline: none" class="btn-b btn btn-success">Procurement App User</button></p>
+                                                            
+                                                            <p><button id="31"  role="button" type="button"  style="width: 250px; border-radius: 20px; outline: none" class="btn-b btn btn-success">SMO Inventory Clerk</button></p>
+                                                            <p><button id="33"  role="button" type="button"  style="width: 250px; border-radius: 20px; outline: none" class="btn-b btn btn-success">SMO Receiving Officer</button></p>
+                                                            <p><button id="34" role="button" type="button"  style="width: 250px; border-radius: 20px; outline: none" class="btn-b btn btn-success">SMO Supply Manager</button></p>
+                                                            <p><button id="32"  role="button" type="button"  style="width: 250px; border-radius: 20px; outline: none" class="btn-b btn btn-success">SMO Accountability Mgr. </button></p>
+                                                            <p><button id="3"  role="button" type="button"  style="width: 250px; border-radius: 20px; outline: none" class="btn-b btn btn-success">SMO Records Officer</button></p>
+                                                            
+                                                            <p><button id="6" role="button" type="button" style="width: 250px; border-radius: 20px; outline: none" class="btn-b btn btn-success">Accounting App User</button></p>
+
+                                                            
+                                                </div>
+                                                    
+                                                </div>
+                                        
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="upAccModalBTN" type="submit" class="btn btn-success" >Update Information</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+
+                    </div>
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+  
+         
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+   
+    <div id="footer-sec">
+       &copy; Mindanao State University <i class=" buttom-header-right">Equipement Inventory </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/custom.js' %}"></script>
+
+    <script type="text/javascript">
+
+    var receiveoffID = '';        
+    var idToProc
+    var offIDtoTrans
+    var upAccdata 
+
+    $('#upHeadBTN').click(function() {
+        $('#updateModal').modal('toggle')
+    })
+
+    $('#upAccDiv').on('click','button', function () {
+        var id = this.id
+        upAccdata = id
+        $('.btn-b').attr('class', 'btn-b btn btn-default')
+        $('#'+id).attr('class','btn-b btn btn-success')
+    })
+
+    $('#theTableList').on('click', 'button', function() {
+        var id = this.id
+        var value = this.value
+
+        switch(id){
+            case 'upAccBTN':
+                idToProc = value
+                upAccdata = null
+                $('.btn-b').attr('class', 'btn-b btn btn-success')
+                $('#upAccModal').modal('toggle')
+                break
+
+            case 'transEmpBTN':
+                idToProc = value
+                setOfficeList();
+                $('#transEmpModal').modal('toggle')
+                break
+
+            case 'remBTN':
+                updateUserStatus(value)
+                break        
+        }
+    })
+   
+    function updateUserStatus(value) {
+         $.ajax({
+            type: 'POST',
+            url:'/system_admin/updateUserStatus/',
+            data:{
+                
+                'idnum':value,   
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+            },
+                success: function(response) {
+                       alert("Done")
+                       location.reload()
+                }
+        }); 
+    }
+
+    function setOfficeList() {
+         $.ajax({
+            type: 'POST',
+            url:'/system_admin/getAllOffices/',
+            data:{
+                   
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+            },
+                success: function(response) {
+                    
+                    document.getElementById('recOfficeList').innerHTML = ""
+
+                    for (var i  in response) {
+                        var data = response[i] 
+                         document.getElementById('recOfficeList').innerHTML += '<option id="'+i+'" value="'+data+'"></option >'
+                    }
+
+                }
+        }); 
+    }
+    
+    $('#receiveoffice').on('input', function (argument) {
+            
+            var val = this.value;
+            var idComplt = $('#recOfficeList option[value="'+ val +'"]').attr('id');
+          
+
+           offIDtoTrans = idComplt;
+        
+        })
+    $('#transEmpModalBTN').click(function (argument) {
+        
+        $.ajax({
+            type: 'POST',
+            url:'/system_admin/tranferuser/',
+            data:{
+                'idnum': idToProc,
+                'offid': offIDtoTrans,   
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+            },
+                success: function(response) {
+                   alert("Done")
+
+                }
+        }); 
+    })
+
+    $('#upAccModalBTN').click(function () {
+         $.ajax({
+            type: 'POST',
+            url:'/system_admin/updateUserType/',
+            data:{
+                'idnum':idToProc,
+                'accType':upAccdata,   
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+            },
+                success: function(response) {
+                    alert("Done")
+                }
+        });   
+    })
+
+     $('#receiveoff').keyup(function(e){
+        e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getEmployeeData/',
+                data:{
+                    
+                    'inputName': document.getElementById("receiveoff").value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("recOffList").innerHTML = ""
+                        
+                        for(var key in response) {
+                           
+                            var value = response[key];
+                            document.getElementById("recOffList").innerHTML += '<option id="'+key+'" value ="'+value['name']+'"/>'
+
+                        }
+
+                    }
+
+            });
+    });
+
+
+    $("#receiveoff").on('input', function () {
+       
+        var val = this.value;
+        var id = $('#recOffList option[value="' + val +'"]').attr('id');
+        
+        receiveoffID = id
+
+      }); 
+
+    $('#addList2').click(function() {
+           
+        $.ajax({
+            type: 'POST',
+            url:'/system_admin/updateOfficeHead/',
+            data:{
+                'idnum':receiveoffID,
+                'offid':$('#idHold').attr('value'),    
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+            },
+
+                success: function(response) {
+
+                       alert("Done")
+                }
+
+            }); 
+
+    })
+
+    </script>
+
+
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#off').attr('class','active-menu-super')
+            $('#userTop').attr('class', 'active-menu-top')
+            $('#userUL').attr('class','nav nav-second-level collapse in')
+            $('#title').html('Users')
+
+           
+             });
+    </script>
+
+{% endblock %}
+
+
+    

@@ -1,0 +1,919 @@
+{% extends 'approving_office/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+
+            <!--  ========================================================  
+
+
+                     <div>
+                       <span name="reqNum" id="reqNum">Create a Request for Quotation</span>
+
+                    </div>
+
+
+             -->
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:36px; 
+
+                ">
+            
+                    <div class="panel-body" style="padding-bottom: 20px;">
+                        <div class = "col-lg-4 text-right" style="">
+                          <img style="max-width: 142px;" src = "{% static 'assets/img/Msu.png' %}" class="img-circle">
+                        </div>
+                <div class="col-xs-8" style="padding-top: 50px">
+                <p style="font-size: 27px;"><span>Mindanao State University - PIIMS</span></p>
+                <p style="font-size: 18px;"> <span>Requests, </span>
+                    <span>Procurement, </span>
+                    <span>Inventory, </span>
+                    <span>Accountabilities</span>
+                </p>
+                    
+                
+                </div>
+
+                    </div>
+
+
+                 
+               </div>
+               </form>
+            
+            <div id="page-inner" style="margin-top:0px; background-color: #555!important;">
+             
+                <hr>
+            <div class="col-lg-12" >
+                
+
+
+            </div>
+                <div class="col-lg-8">
+
+                <div class="col-lg-4" style="padding-left:0px; padding-right:3px;">
+                             <div class="panel panel-primary ">
+                                    <div class="panel-heading"  style="font-size:15px;"> <i class="icon-reorder"></i> Received Requests</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:25px; padding-top:5px;">000,000,000</p>
+                                    <p class="text-right" style="font-size:16px; padding-top:5px;">Request</p>
+                                    
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#d9534f;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                <div class="col-lg-4" style="padding-left:0px; padding-right:3px;">
+                             <div class="panel panel-success" style="border-color: #5cb85c;">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #5cb85c; color:white;"> <i class="icon-ok"></i> Approved Requests</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:25px; padding-top:5px;">000,000,000</p>
+                                    <p class="text-right" style="font-size:16px; padding-top:5px;">Request</p>
+                                  
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#428bca;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                <div class="col-lg-4" style="padding-left:0px; padding-right:3px;">
+                             <div class="panel panel-primary" style="border-color: #a94442;" ><!-- -->
+                                    <div class="panel-heading"  style="font-size:15px;background-color: #a94442;color: white;  "> <i class="icon-exclamation-sign"></i> Pending Purchase Orders</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:25px; padding-top:5px;">000</p>
+                                    <p class="text-right" style="font-size:16px; padding-top:5px;"> Orders</p>
+                                    
+
+                                    </div>
+                                    <div style="display: none;" class="panel-footer"><span style="color:#5cb85c; "><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+
+
+                <div class="col-lg-12"  style="padding:0px; margin:0px; display:none;">
+                    
+                <div class="panel panel-default">
+                      <!--   <div class="panel-heading"> Request Statistics</div> -->
+                            
+                            <div class="panel-body" style="padding:0px;padding-top:20px; ">
+                                
+
+                       <div class="col-lg-4 col-md-4" style="">
+                        <div class="panel panel-info" style="margin-bottom:13px;">
+                            <div class="panel-heading" style="padding:7px;">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline; font-weight:bold;">Received PR</div>
+                                       <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">15,000</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="panel panel-success" style=" margin-bottom:13px;">
+                            <div class="panel-heading" style="padding:7px;">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-ok fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline; font-weight:bold;">Approved PR</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">10,000</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="panel panel-danger" style="">
+                            <div class="panel-heading" style="padding:7px;">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-exclamation-sign fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  style="display:inline; font-weight:bold;">Declined PR</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">2,000</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+
+
+                                
+                            </div>
+                        </div>
+                </div>
+                    <div class="col-lg-12" style="padding:0px; margin:0px;">
+                    <div class="panel panel-info">
+                         <div class="panel-heading">
+                             Ongoing Procurement Transaction
+                         </div> 
+                         <div class="panel-body" style="padding-right:0px;">
+                            <div class="table-responsive tablescroll2">
+                          <table id="myTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>PR no.</th>
+                                            <th class="text-center">Date Approved</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Status Date</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table">
+                                                <tr id = "{{x.1}}_tr">
+                                                    <td>000-00</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center">Status Word</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center"><button class="btn btn-xs btn-primary"><i class="icon-arrow-right"></i></button></td>
+                                                   
+                                                </tr>
+                                                <tr id = "{{x.1}}_tr">
+                                                    <td>000-00</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center">Status Word</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center"><button class="btn btn-xs btn-primary"><i class="icon-arrow-right"></i></button></td>
+                                                   
+                                                </tr><tr id = "{{x.1}}_tr">
+                                                    <td>000-00</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center">Status Word</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center"><button class="btn btn-xs btn-primary"><i class="icon-arrow-right"></i></button></td>
+                                                   
+                                                </tr><tr id = "{{x.1}}_tr">
+                                                    <td>000-00</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center">Status Word</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center"><button class="btn btn-xs btn-primary"><i class="icon-arrow-right"></i></button></td>
+                                                   
+                                                </tr><tr id = "{{x.1}}_tr">
+                                                    <td>000-00</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center">Status Word</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center"><button class="btn btn-xs btn-primary"><i class="icon-arrow-right"></i></button></td>
+                                                   
+                                                </tr><tr id = "{{x.1}}_tr">
+                                                    <td>000-00</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center">Status Word</td>
+                                                    <td class="text-center">00/00/0000</td>
+                                                    <td class="text-center"><button class="btn btn-xs btn-primary"><i class="icon-arrow-right"></i></button></td>
+                                                   
+                                                </tr>
+                                            
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                             
+                    </div>
+                     
+                </div>
+
+                  
+                   
+               
+
+                
+                </div>    
+              
+              
+             <div class="col-lg-4" style="padding-left:0px;">
+
+             <div class="col-lg-7" style="padding-left:3px; padding-right:0px; display: none;">
+                             <div class="panel panel-default ">
+                                    
+                                    <div class="panel-body" style="height:150px;">
+                                         <p style="margin-bottom:0px;">Total P.R. Received for this Quarter</p>
+                                    <p class="text-right" style="font-size:35px; padding-top:20px;">000,000</p>
+                                    <p class="text-right" >Requests</p>
+                                    <p ><span style="color:#5cb85c"><i class="icon-arrow-up"></i> 000.00%</span>
+                                    </p>
+
+                                    </div>
+                            </div>
+                </div>
+
+                 <div class="col-lg-5" style="padding-left:3px; padding-right:0px; float:right; display: none;">
+                 <div class="panel panel-default">
+                       <div class="panel-body" style="height:150px;">
+                                         <p style="margin-bottom:0px;">Pending For Approval </p>
+                                    <p id="theNumBadge" class="text-right" style="font-size:35px; padding-top:20px;">{{pageData1.0.0}}</p>
+                                    <p><span style="float:right">Requests</span></p>
+                                   
+                        </div> 
+                 </div>
+                 
+
+                 </div>
+
+
+               <div class="col-lg-12" style="padding-left:0px; padding-right:0px">
+                    
+                     <div class="panel panel-primary" style="">
+                        <div class="panel-heading">Pending Purchase Request</div>
+                        <div class="panel-body text-right" style="padding-top: 23px;">
+                        <p class="text-right" style="font-size:25px; padding-top:5px; padding-right: 20px;">{{pageData1.0.0}}</p>
+                        <p class="text-right" style="font-size:14px; padding-top:5px; padding-right: 20px;">Request that needs your attention </p>
+                         
+                        </div>
+                        
+                         <form id="thePendingField" action="" method="POST">{% csrf_token %}
+                              
+                                <div class="panel-body" style="padding-right:0px; padding-top: 0px;">
+                             <div class="table-responsive tablescroll" >
+                          <table class="table table-hover">
+                                   <tbody id="pendingPRTable" >
+                                   
+                                   </tbody>
+                                </table>
+                            </div>
+                         </div>  
+
+
+                         </form>
+                      
+                    </div>
+
+                    
+                </div>  
+                  <div class="col-lg-12" style="padding-left:0px; padding-right:0px; display: none">
+                    
+                     <div class="panel panel-default" style="">
+                        <div class="panel-heading">Pending Request</div>
+                        
+                         <form id="thePendingField" action="" method="POST">{% csrf_token %}
+                             
+                                <div class="panel-body" style="padding-right:0px;">
+                             <div class="table-responsive tablescroll" >
+                          <table class="table table-hover">
+                                   <tbody >
+                                     
+                                   </tbody>
+                                </table>
+                            </div>
+                         </div>  
+
+
+                         </form>
+                      
+                    </div>
+
+                    
+                </div>
+            
+                   
+
+                </div>
+<!--         
+
+            
+           
+
+-->
+          <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+                
+                       
+
+                            
+                  
+                </div>      
+
+                        </div>   
+    
+			
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+
+
+    <!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="newReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <form action="" method="POST">{% csrf_token %} 
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Enter reason of denial</h4>
+                                    </div>
+                                   
+                                    
+                                    <div class="modal-body">
+
+                                            <div class="checkbox" >
+                                                        <label>
+                                                            <div class="checker hover"><span><input checked id="chck1" class="uniform" type="checkbox" value="option1"></span></div>Select a Reason
+                                                        </label>
+                                             </div>
+                                             
+                                             <div>
+                                                <select id="selReason" class="form-control">
+                                                <option>On tight budget</option>
+                                                <option>Unreasonable request</option>
+                                                <option>Date interval of last the account is too near</option>
+                                            </select>
+
+                                             </div>
+                                             
+
+                                             <div class="checkbox">
+                                                        <label>
+                                                            <div class="checker hover"><span><input id="chck2" class="uniform" type="checkbox" value="option2"></span></div>Specify Reason
+                                                        </label>
+                                             </div>
+                                                    
+                                                    <div>
+                                                        <textarea id="reasonIn" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 100px;" disabled></textarea>
+                                                    </div>
+                                                
+                                      
+                                    </div>
+                                   
+                                      
+                                          <div class="modal-footer">
+                                            <button id="submitDecline" data-dismiss="modal" type="button" role="button" class="btn btn-success">Submit</button>
+                                    </div>
+
+                                        
+                                       
+                                     
+                                     
+                                    
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transCompAppr" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Update on Purchase Request Approval Status Complete</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">• You have successfully approved this request.</p>
+                                        <p style="margin-bottom:10px;">• The personnel or office responsible on task/s for the next part of the this transaction have been notified to proceed.</p>
+                                        <p style="margin-bottom:10px;">• You will be receiving notifications regarding on the developement of this transaction.</p>
+                                           
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transCompDecl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Update on Purchase Request Approval Status Complete</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">• You have purposely declined this request.</p>
+                                        <p style="margin-bottom:10px;">• The requesting personnel of this request will be notified regarding the denial of this request together with the it's reason.</p> 
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotifDecl" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transCompApprConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Confirm Request Approval</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">Are you sure you want to approve this request?</p>
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                            <button id="apprReqBtn" data-dismiss="modal" type="submit" class="btn btn-success"><i class="icon-ok"></i> Yes</button>
+                                            <button data-dismiss="modal" type="submit" class="btn btn-danger"><i class="icon-remove"></i> No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+
+
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec" >
+      &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+   <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+   
+    <script type="text/javascript">
+        
+        $('#home').attr('class', 'active-menu-approv')
+        document.documentElement.scrollTop = 0; 
+    
+    </script>
+
+    <script type="text/javascript">
+        
+        
+        $(document).ready(function() {
+           
+            loadPendingTable()
+            
+
+            setInterval(function(){
+                
+                loadPendingTable(); // this will run after every 5 seconds
+            
+            }, 30000);
+        });
+
+        function genHTMLCode(value, key) {
+              
+
+                  var tr = '<tr id="'+value['reqnum']+'_tr">';
+                                       tr  +=   '<td>'
+                                         tr  +=   '<div>'
+                                         tr  +=   '<div class="col-lg-2" style="padding-left: 0px;"><button class="btn btn-lg btn-circle btn-warning"><i class="icon-shopping-cart"></i></button></div>'
+                                         tr  +=   '<div class="col-lg-10" style="padding-left: 3px; padding-right: 0px;">'
+                                            tr  +=   '<div class="panel-heading" style="padding: 0px; "> <p style="font-size: 15px; font-weight: bold; margin-bottom: 3px; text-decoration: underline;">'+value['empName']+'</p>'
+                                           tr  +=   '<p style="font-size: 12px;">'+value['office']+'</p>'
+                                           tr  +=   '</div>'
+                                          
+                                           tr  +=   '<p class="separator"></p>'
+                                             tr  +=   '<div class="form-group">'
+                                                tr  +=   '<div style="width:100%; ">'
+                                                    tr  +=   '<div class=" col-lg-5" style="padding: 0px; font-size: 13px;">'
+                                                      tr  +=   '  Date Created:  '
+                                                    tr  +=   '</div>'
+                                                    tr  +=   '<div class="col-lg-6" style="padding: 0px; font-size: 14px;">'
+                                                     tr  +=   ''+value['date']+''
+                                                    tr  +=   '</div>'
+                                                tr  +=   '</div> '
+                                            tr  +=   '</div>'
+                                              tr  +=   '<div class="form-group">'
+                                                tr  +=   '<div style="width:100%; ">'
+                                                    tr  +=   '<div class=" col-lg-5" style="padding: 0px; font-size: 13px; padding-bottom: 10px;">'
+                                                       tr  +=   ' Total Cost:  '
+                                                   tr  +=   ' </div>'
+                                                    tr  +=   '<div class="col-lg-6" style="padding: 0px; font-size: 14px; padding-bottom: 10px;">'
+                                                      tr  +=   ''+value['cost']+''
+                                                    tr  +=   '</div>'
+                                                tr  +=   '</div> '
+                                            tr  +=   '</div>'
+                                           tr  +=   '<p style="font-size: 13px; margin-bottom: 3px; margin-top: 8px;">Purpose:</p>'
+                                           tr  +=   '<p style="font-size: 13px; text-indent: 15px;">'+value['purpose']+'</p>'
+
+                                           tr  +=   '<div class="col-lg-12 text-right" style="margin-top: 10px;"><button id="'+value['reqnum']+'_details" value="'+value['reqnum']+'" class="btn btn-xs btn-primary" role="button" type="button"><i class="icon-reorder"></i> View Details</button></div>'
+                                         tr  +=   '</div>'
+                                        tr  +=   '</div>'
+                                       tr  +=   '</td> '
+                                     tr  +=   '</tr>'
+
+             /* var tr = '<tr id="'+value['reqnum']+'_tr">';
+                                    
+
+                                    tr  +=   '<td id="gg" style="padding:0px; margin:0px;">';
+
+                                 tr  +=  '<div class="panel panel-success" style="padding:0px; margin:0px;  margin-bottom:15px; ">';
+                                    tr  +=   '<div class="panel-heading" style="padding:8px;">';
+                                                      
+                                    tr  += '<div  style="">'
+                                    tr  +=   ''+value['office']+''
+                                    tr  += '</div>'
+                                                        
+                                                   
+                                                  tr  += '</div>'
+                                                 tr  +=  '<div class="panel-body" style="padding-left:0px; padding-right:0px">'
+                                                     tr  +=  '<div class="col-lg-12" style="padding: 0px; margin:0px; padding-bottom:10px;">'
+                                                          tr  += '<div class="col-lg-5" style="margin-left:12px;">'
+                                                           tr  +=    'Date Created:'
+                                                         tr  +=  '</div>'
+                                                         tr  +=  '<div class="col-lg-6" style="">'
+                                                          tr  +=  ''+value['date']+''
+                                                         tr  +=  '</div>'
+                                                     tr  +=  '</div>'
+                                                    tr  +=  '<div class="col-lg-12" style="padding: 0px; margin:0px;  padding-bottom:20px;">'
+                                                          tr  += '<div class="col-lg-5" style="margin-left:12px;">'
+                                                             tr  +=   'Total Cost:'
+                                                          tr  +=  '</div>'
+                                                         tr  +=   '<div class="col-lg-6" style="">'
+                                                            tr  +=   ''+value['cost']+''
+                                                         tr  +=   '</div>'
+                                                    tr  +=  '</div>'
+                                                    tr  +=  '<div class="form-group" >'
+                                                       tr  +=  '<div style="width:100%;">'
+                                                            tr  += '<div class="col-lg-5" style="margin-left:12px;">'
+                                                               tr  +=  'Purpose:  '
+                                                          tr  +=   '</div>'
+                                                           tr  +=  '<div class="col-lg-6" style="">'
+                                                              tr  +=       ''+value['purpose']+''
+                                                         tr  +=  '</div>'
+                                                        tr +=  '</div> '
+                                                    tr += '</div> '
+                                                    
+
+                                                   tr  += '</div> '
+                                                  tr += '<div class="panel-footer" style="right:0">'
+                                                      tr +=     '<div class="panel-body header-right">'
+                                                         tr +=         '<button id="'+value['reqnum']+'_approve" value="'+value['reqnum']+'"  class="btn btn-xs btn-success" style="margin-right:5px;"  role="button" type="button"><i class="icon-ok"></i> Approve</button>'
+                                                         tr  +=        '<button id="'+value['reqnum']+'_decline" value="'+value['reqnum']+'" class="btn btn-xs btn-danger"  role="button" type="button"><i class="icon-remove"></i> Decline</button>'
+                                                                  
+                                                       tr  +=    '</div>  <button id="'+value['reqnum']+'_details" value="'+value['reqnum']+'" class="btn btn-xs btn-primary" role="button" type="button"><i class="icon-reorder"></i> View Details</button>'
+                                                 tr +=   '</div>'
+
+
+                                             tr +=  '</div>'
+                                                  
+                                             tr +=   '</td>'
+                                             tr += '</tr>' */
+
+                 return tr;                            
+        }
+
+        function loadPendingTable() {
+            
+            var userType = '{{pageData1.0.1}}';
+            
+            var urlToAjax = '';
+
+            if (userType === 'vcaf') {
+                urlToAjax = '/approving_officer/getPendingInitPR/'
+            } else {
+                urlToAjax ='/approving_officer/getPendingPR/'
+            }
+
+
+
+            $.ajax({
+
+                    type: 'POST',
+                    url: urlToAjax,
+                    
+                    data:{
+
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+
+                        $('#theNumBadge').html(response['numOfPending'])
+
+                        document.getElementById("pendingPRTable").innerHTML = "";
+                        
+                        var t = '';
+                        
+                        for(var key in response) {
+
+                            if (key != 'numOfPending') {
+                                
+                                var value = response[key];
+
+                                    var tr = genHTMLCode(value, key)
+                                            
+                                    t += tr;
+                            }
+
+                           
+                       
+                        }
+
+                         var thenumOfReq = response['numOfPending'] 
+                         var theEndofList = ''
+
+                         if (thenumOfReq === 0) {
+                            theEndofList = 'No Pending Request at the Moment'
+                         } else {
+                            theEndofList = 'End of List '
+                         }
+
+                         var tr = '<tr id="'+key+'_tr">';
+                                    
+
+                                     tr  +=   '<td style="padding:0px; margin:0px;">';
+
+                                    tr  +=  '<div class="panel" style="padding:0px; margin:0px;  margin-bottom:15px; ">';
+                                    tr  +=   '<div class="panel-heading" style="padding:8px;">';
+                                                      
+                                    tr  += '<div class="text-center" style="font-weight:bold;">'
+                                    tr  +=   '****** '+theEndofList+' ********'
+                                    tr  += '</div>'
+                                                        
+                                                   
+                                                  tr  += '</div>'
+                                       
+                                                   tr  += '</div> '
+                                              
+                                             tr +=  '</div>'
+                                             tr +=   '</td>'
+                                             tr += '</tr>'
+                                            
+                                            t += tr;
+
+                         document.getElementById("pendingPRTable").innerHTML = t;
+                    }
+
+            });
+        }
+
+    $('#pendingPRTable').on('click', 'button', function (e) {
+            var id = this.id
+            var value = $(this).val();
+            
+            if (id === value+'_details') {
+                $.ajax({
+                type: 'POST',
+                url:'/approving_officer/displayPendingPRDetailsFromIndex/',
+                data:{
+                    
+                    'reqNum': value,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function() {
+                        window.location.href = '/approving_officer/pending_request/pr_details'
+                    }
+
+            });
+
+            }
+            if (id === value+'_approve') {
+            
+                $.ajax({
+                    type: 'POST',
+                    url:'/approving_officer/setPRCookie/',
+                    data:{
+                        
+                        'reqNum': value,
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                    },
+
+                        success:function() {
+
+                            $('#transCompApprConf').modal('toggle');
+                        }
+
+                });
+
+            }
+             if (id === value+'_decline') {
+
+                $.ajax({
+                    type: 'POST',
+                    url:'/approving_officer/setPRCookie/',
+                    data:{
+                        
+                        'reqNum': value,
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                    },
+
+                        success:function() {
+
+                            $('#newReg').modal('toggle');
+                        }
+
+                });
+
+            }
+
+        })
+
+    
+    </script>
+
+
+
+    <script type="text/javascript">    
+
+
+  
+            
+            var decision = '';
+            var reasonRef = 'select';
+            var reason = '';
+            var currentpr = ''
+
+
+    $('#submitDecline').on('click', function (e) {
+            if (reasonRef === 'select') {
+                reason = $('#selReason').val();
+            }else{
+                reason = $('#reasonIn').val();
+            }
+            $.ajax({
+                type: 'POST',
+                url:'/approving_officer/declinePR/',
+                data:{
+                    
+                    'reason': reason,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function() {
+
+                        $('#transCompDecl').modal('toggle');
+                    }
+
+            });
+
+    });
+
+    $('#approveButton').click(function (e) {
+        $('#transCompApprConf').modal('toggle');
+    })
+    $('#sentNotif').click(function (e) {
+
+        loadPendingTable()
+    })
+      $('#sentNotifDecl').click(function (e) {
+        loadPendingTable()
+    })
+
+
+
+    $('#apprReqBtn').click(function (e) {
+        e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url:'/approving_officer/decidePR/',
+                data:{
+                    
+                    'decision': 'approve',
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function() {
+
+                        $('#transCompAppr').modal('toggle');
+
+                    }
+
+            });
+    })
+    
+
+    $('#chck1').click(function(e) {
+        reasonRef = 'select';
+       $('#chck2').removeAttr('checked')
+       $('#reasonIn').attr('disabled', '')
+       $('#selReason').removeAttr('disabled')
+    });
+
+    $('#chck2').click(function(e) {
+        reasonRef = 'define';
+       $('#chck1').removeAttr('checked')
+       $('#selReason').attr('disabled', '')
+       $('#reasonIn').removeAttr('disabled')
+    });
+            
+
+    </script>
+
+
+{% endblock %}
+

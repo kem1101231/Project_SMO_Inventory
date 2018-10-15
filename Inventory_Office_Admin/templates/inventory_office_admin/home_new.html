@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supply Management Office</title>
+    {% load staticfiles %}
+   <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-inven.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <link href="{% static 'assets/css/wizard/jquery.steps.css' %}" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+
+    <style type="text/css">
+        
+                 .tablescroll{
+   overflow-y:scroll;
+    height:480px;
+   display:block;
+        }
+             .tablescroll2{
+   overflow-y:scroll;
+    height:348px;
+   display:block;
+        }
+          .tablescroll3{
+   overflow-y:scroll;
+    height:560px;
+   display:block;
+        }
+
+    </style>
+    
+</head>
+<body>
+
+        <div id="wrapper">
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" 
+                    style="
+                        margin-bottom: 0px;
+                          ">
+           
+           <div  class="navbar-header navbar-brand"></div>
+
+           <ul class="nav navbar-right top-nav" 
+                        style="
+                        margin-right: 50px;
+                        ">
+                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                    
+                    <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body " style="margin-left:95px;">
+                                        <h5 class="media-heading">
+                                            <strong>Tasks</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+
+                    {% if taskNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No task to process at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}    
+                    
+                    {% for x in taskDetails %}
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                     {% endfor %}   
+
+
+                    </ul>
+                </li>    
+                
+                <li class="dropdown">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body" style="margin-left:75px;">
+                                        <h5 class="media-heading">
+                                            <strong>Notifications</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unread notification at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}
+
+                       {% for x in notifDetails %}
+
+                       <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                       {% endfor %}
+                        
+
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="width:220px;">
+                        <li>
+                            <a href="/inventory_office/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/inventory_office/equipement"><i class="fa fa-fw fa-qrcode"></i> Equipment Inventory</a>
+                        </li>
+                        <li>
+                            <a href="/inventory_office/inventory"><i class="fa fa-fw icon-paper-clip" style="margin-left:4px;margin-right:4px;"></i> Supplies Inventory</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/inventory_office/receive/"><i class="fa fa-fw fa-truck"></i> Received Items</a>
+                        </li>
+                        <li>
+                            <a href="/inventory_office/accounts"><i class="fa fa-fw fa-group"></i> Employee Acct. Items</a>
+                        </li> 
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw icon-desktop" style="margin-left:4px;margin-right:4px;"></i> Switch User-Type</a>
+                        </li>                       
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa fa-fw icon-signout" style="margin-left:4px;margin-right:4px;"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             <ul id="searchFieldSmall" class="nav navbar-right top-nav col-lg-5" style="margin-right:80px; margin-left:auto;">
+                        
+                <div>
+
+
+                    <form action="/inventory_office/search/" method="post">{% csrf_token %}
+                    
+                        <div class="form-group input-group"  style="padding:0px; padding-top:10px; margin:0px;">
+                          
+                           <input name="search_input" type="text" autofocus class="form-control input-sm" placeholder="Search for Inventory Information">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-primary btn-sm" type="submit" name="search_button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                  
+                    </form>
+                
+                </div>
+            </ul>
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        <div class="user-img-div">
+
+                            <a href="/inventory_office/profile"><img src="{% static 'assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="/inventory_office/profile" class = "inner-text">{{lname}}, {{fname}}</a>
+                            <br />
+                                <small>{{dept}} - {{designation}}</small>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+                    <li>
+                        <a  class="active-menu-inven"   href="/inventory_office"><i class="fa fa-home "></i>Home</a>
+                    </li>
+                    <li>
+                        <a href="/inventory_office/profile"><i class="fa fa-user "></i>Profile </a>
+                        
+                    </li>
+                    <li>
+                        <a href="/inventory_office/items"><i class="icon-list"></i>Items</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a  href="#"><i class="icon-book "></i>Inventory<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/equipement"><i class="icon-qrcode"></i>Equipment</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/inventory"><i class="icon-paper-clip"></i>Supplies</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a  href="#"><i class="icon-truck "></i>Received Items<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/add_receive"><i class="icon-plus"></i>New Items</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/receive"><i class="icon-tags"></i>View All Received</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a  href="#"><i class="icon-group"></i>Employees' Acct. Items<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/add_accounts"><i class="icon-plus"></i>Create PAR</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/accounts"><i class="icon-list-alt"></i>View All Accounts</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a  href="#"><i class="icon-bar-chart"></i>Reports<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/physical_count"><i class="icon-list-alt"></i>PCP</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/waste_material"><i class="icon-trash"></i>WMI</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+          
+                </ul>
+            </div>
+
+</div>
+        </nav>
+
+        <div id="page-wrapper">
+           
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:20px; 
+                 
+
+                ">
+               </div>
+             
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                
+                <div class="col-lg-6">
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Supply Inventory Item Status
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                              <div class="table-responsive">
+                          <table id="myTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Quantity</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table">
+                                                <tr id = "{{x.1}}_tr">
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center"><label class="label label-success">On Stock</label></td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                                <tr id = "{{x.1}}_tr">
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center"><label class="label label-success">On Stock</label></td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                               
+                                               <tr id = "{{x.1}}_tr">
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center"><label class="label label-success">On Stock</label></td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                               <tr id = "{{x.1}}_tr">
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center"><label class="label label-success">On Stock</label></td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                               
+
+
+                                               
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Supply Inventory <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Most Included Items on P.R. and R.I.S.
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                                <div class="table-responsive">
+                          <table id="myTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Description</th>
+                                            <th class="text-center">Hits</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table">
+                                                <tr id = "{{x.1}}_tr">
+                                                    <td>00</td>
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                                    <tr id = "{{x.1}}_tr">
+                                                    <td>00</td>
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                                    <tr id = "{{x.1}}_tr">
+                                                    <td>00</td>
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                                    <tr id = "{{x.1}}_tr">
+                                                    <td>00</td>
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                               
+
+                                               
+                                               
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Item List <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Up-coming Deliveries to Receive
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                            
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Complete List of RIS <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Up-coming Deliveries to Receive
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                            
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Complete List of RIS <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="col-lg-6" style="padding-left: 0px;">
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">
+                            
+                            <div class="header-right" style="display:inline;">
+                                <span id="theNumBadge" class="badge badge-danger" style="font-size:15px; ">00</span>
+                            </div>
+                            <div style="font-size:16px; font-weight: bold;">
+                               <i class="icon-spinner"></i> Pending Requisition and Issuance Slips
+                            </div>
+                             
+                         </div> 
+
+                            <div class="panel-body" style="height:532px;">
+                                   <div class="table-responsive tablescroll" >
+                          <table class="table table-hover">
+                                   <tbody id="pendingPRTable" >
+                                        
+                                       
+                                               <tr id="'+value['reqnum']+'_tr">
+                                            <td id="gg" style="padding:0px; margin:0px;">
+                                                <div class="panel panel-success" style="padding:0px; margin:0px;  margin-bottom:15px; ">
+                                                    <div class="panel-heading" style="padding:8px;">
+                                                      
+                                                        <div  style="font-weight:bold;">Requesting Office Complete Name </div>
+                                                        </div>
+                                                        <div class="panel-body" style="padding-left:0px; padding-right:0px">
+                                                        <div class="col-lg-12" style="margin-bottom: 10px;">
+                                                        <div class="col-lg-4">Date Created:</div>
+                                                        <div class="col-lg-8" style="font-weight:bold;">00-00-0000</div>
+                                                     </div>
+                                                     <div class="col-lg-12" style="margin-bottom: 10px;">
+                                                        <div class="col-lg-4">Paticular Items:</div>
+                                                        <div class="col-lg-8" style="font-weight:bold;">00</div>
+                                                     </div>
+                                                     <div class="col-lg-12" >
+                                                        <div class="col-lg-4">Purpose:</div>
+                                                        <div class="col-lg-8" style="font-weight:bold;">Purpose of the Request Paragrraph</div>
+                                                     </div>
+                                                   
+
+                                                   </div>
+                                                  <div class="panel-footer text-right" style="right:0">
+                                                       <button id="'+value['reqnum']+'_details" value="'+value['reqnum']+'" class="btn btn-xs btn-primary" role="button" type="button"><i class="icon-reorder"></i> View Details</button>
+                                                 </div>
+
+
+                                             </div>
+                                                  
+                                             </td>
+                                             </tr>
+                                             <tr>
+                                             <td>
+                                                  <div class="col-lg-12 text-center" style="font-weight: bold;">
+                                                     **** End of List ****
+
+                                                 </div>
+                                             </td>
+                                                
+
+                                             </tr>
+                                        
+
+                                   </tbody>
+                                </table>
+                            </div>
+                            </div>
+                            
+                                <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Complete List of RIS <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                            
+                        </div>
+
+                    </div>
+                      <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Up-coming Deliveries to Receive
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                            
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Complete List of RIS <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+                      <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Up-coming Deliveries to Receive
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                            
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Complete List of RIS <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+                    
+                </div>
+              
+                        
+                    
+
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+        <!-- /. NAV SIDE  -->
+        
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+<div id="footer-sec">
+       &copy; Mindanao State University - General Santos City  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/js/wizard/modernizr-2.6.2.min.js' %}"></script>
+    <script src="{% static 'assets/js/wizard/jquery.cookie-1.3.1.js' %}"></script>
+    <script src="{% static 'assets/js/wizard/jquery.steps-addReceive.js' %}"></script>
+
+
+</body>
+</html>
+
+
+
+   
+

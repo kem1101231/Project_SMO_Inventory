@@ -1,0 +1,517 @@
+﻿{% extends 'procurement/base.html' %}
+{% load staticfiles %}
+{% load humanize %}
+{% block content %}
+        
+        <!-- /. NAV SIDE  -->
+         <div id="page-wrapper">
+         <form id="decide" action="/procurement_office/numtheReq/" method="POST">{% csrf_token %}
+            <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-top:0px;
+                                     margin-top:52px;
+                                     margin-bottom:0px;
+                                     padding-bottom: 0px;
+                                     padding-right:20px;
+                                     margin-bottom: 0px;
+                                    ">
+
+                                        
+                     <div >
+                                <button class="btn btn-success" role ="button" aria-disabled="true" id="approveButton" name="approveButton" value="{{pageData1.0.1}}"><i class="icon-ok"></i> Approved Doc. Received</button>
+                            
+                      </div>
+                       
+                       
+                                    </div>
+
+           </form>
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Purchase Request Details and Status Timeline</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #555!important;">
+             
+                <hr>
+                <div class="col-lg-12" style="">
+                         <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="padding:0px;padding-top:20px;padding-bottom:10px;">
+                                
+
+                        <div class="panel-default" > 
+               <form id="statusBar" action="" method="post">{% csrf_token %}
+                   <div class="container">
+                   <ul class="progressbar2">
+
+                   {% if dictData1.status == 'approval' %}
+                    <li class="active">Create Request</li>
+                    <li class="pending" id="appr">Approval</li>
+                    <li id="canv">Canvass</li>
+                    <li id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Received</li>
+                    {% endif %}
+                   
+                   {% if dictData1.status == 'declinedpr' %}
+                    <li class="active">Create Request</li>
+                    <li class="error" id="appr">Approval</li>
+                    <li id="canv">Canvass</li>
+                    <li id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Received</li>
+                    {% endif %}
+                   
+                   {% if dictData1.status == 'quotation' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="pending" id="canv">Canvass</li>
+                    <li id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Received</li> 
+                   {% endif %}
+                   
+                   {% if dictData1.status == 'abstract' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="pending" id="canv">Canvass</li>
+                    <li id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Received</li>
+                    {% endif %}
+                    
+                    {% if dictData1.status == 'abstract_sel' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="pending" id="canv">Canvass</li>
+                    <li id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Received</li>
+                    {% endif %}
+
+                    {% if dictData1.status == 'po_prep' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="pending" id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Received</li>
+                    {% endif %}
+                    {% if dictData1.status == 'po_read' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="pending" id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Received</li>
+                    {% endif %}
+                    {% if dictData1.status == 'po_deny' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="error" id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Received</li>
+                    {% endif %}
+                    {% if dictData1.status == 'po_serve' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="active" id="proc">Procurement</li>
+                    <li class="pending" id="deli">Delivery</li>
+                    <li id="itemR">Item Received</li>
+                    {% endif %}
+                    {% if dictData1.status == 'iar_delcomp' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="active" id="proc">Procurement</li>
+                    <li class="active" id="deli">Delivery</li>
+                    <li id="itemR">Item Received</li>
+                    {% endif %}
+                    {% if dictData1.status == 'iar_delmiss' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="active" id="proc">Procurement</li>
+                    <li class="pending" id="deli">Delivery</li>
+                    <li id="itemR">Item Received</li>
+                    {% endif %}
+                    {% if dictData1.status == 'par_comp' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="active" id="proc">Procurement</li>
+                    <li class="active" id="deli">Delivery</li>
+                    <li class="active" id="itemR">Item Received</li>
+                    {% endif %}
+                   
+                    <li class="active">Pre-Canvass</li>
+                    <li class="active" id="appr">Canvass</li>
+                    <li class="active" id="canv">Selection</li>
+                    <li class="active" id="proc">P.O. Preperation</li>
+                    <li class="active" id="deli">P.O. Approval</li>
+                    <li class="pending" id="itemR">P.O. Service</li>
+                   
+                   
+                </ul>
+
+               </div>
+
+
+               </form>
+               <hr style="margin-bottom: 10px;">
+               <div style="margin-top:10px">
+                   <label style="width:100%;" class="text-center">Status Information</label>
+               </div>
+
+                </div>
+
+                                
+                            </div>
+                        </div>
+                </div>
+
+                <div class="col-lg-6" style="">
+                         <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Basic Information</h3>
+                            </div><!-- -->
+                            <div class="panel-body" style="height:  padding-left:20px;">
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                       P.R. number:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-8" >
+                                        Not yet Set
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                     
+                                    </div>
+                                    <div class="dataFont1 col-lg-8" >
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Date of Request:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-8" >
+                                        Month dd, YYYY
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Date Approved:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-8" >
+                                        Month dd, YYYY
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                          
+                                    </div>
+                                    <div class="dataFont1 col-lg-8" >
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                           
+
+                            
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Req. Personnel:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-8" >Juan Dela Cruz
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Office:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-8" >College of Business Administration and Accountancy    
+                                    </div>
+                                </div> 
+
+                            </div>
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Purpose:
+                                    </div>
+                                    <div class="dataFont1 col-lg-8" >
+                                        For the Office of Juan Dela Cruz
+                                    </div>
+                                </div> 
+                            </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style=" padding-left:0px;">
+                         <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Task Title</h3>
+
+                            </div>
+                            <div class="panel-body" style="  padding-left:20px;">
+                            
+
+                            <!-- start
+                            <div style="display:none;">
+                                 <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Quotation No.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >000-00
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        No. of Suppliers:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >00
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Abstract No.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >000-00
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                       Selection Status:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" ><label class="label label-success">Processed</label>
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                       Generated P.O.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >000-00
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            </div>
+                            end -->
+                            
+                            
+                                <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Quotation No.:
+
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" ><input type="text" name="quoNumF" id="quoNumF" class="form-control" />
+                                    </div>
+                                </div> 
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date Prepared:
+
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" ><input type="text" name="quoNumF" id="quoNumF" class="form-control" />
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="dataFont1 col-lg-12 text-right" ><button class="btn btn-sm btn-success"><i class="icon-ok"></i> 
+                                     Req. for Quotation Prepared</button>
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+
+                  
+                
+                <div class="col-lg-12" style="display: inline;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Purchase Order Items</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead style="background-color: #777; color: white">
+                                        <tr>
+                                            <th class="text-center" style="width:90px;">Item No.</th>
+                                            <th>Requested Item Description</th>
+                                            <th class="text-right" >Quantity</th>
+                                            <th class="text-center" >Unit</th>
+                                            <th class="text-right"  >Unit Cost</th>
+                                            <th class="text-right"  >Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in pageData2 %}
+                                        <tr>
+                                       <td class="text-center">{{x.1}}</td> 
+                                       <td>{{x.4}}</td>
+                                       <td class="text-right">{{x.2}}</td>    
+                                       <td class="text-center">{{x.3}}</td>
+                                       <td class="text-right">{{x.5|intcomma}}</td>
+                                       <td class="text-right">{{x.6|intcomma}}</td>
+
+                                    </tr>
+                                   
+                                    {% endfor %}
+
+
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                                
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                    <div class="panel-body">
+
+                    <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                       <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px; padding-top:0px;">
+                                                                
+                      <div style="display: inline; font-weight: 400;  font-size: 14px;">
+                           Estimated Total Cost: 
+                    </div>
+                                                                
+                        <div class="panel panel-default" style="display: inline; font-size: 18px;  font-weight: 400; padding:10px;">
+                             00,000 {{pageData4.0.0}}
+                        </div>
+                    
+                    </div> 
+
+               </div>
+
+                 </div></div>
+                        
+                    </div>
+                </div>
+               
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/custom.js' %}"></script>
+    
+   <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#pr').attr('class', 'active-menu-proc')
+        $('#proTop').attr('class', 'active-menu-top')
+        $('#proUL').attr('class','nav nav-second-level collapse in')
+    })
+
+    </script>
+
+{% endblock %}

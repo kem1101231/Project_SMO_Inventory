@@ -1,0 +1,718 @@
+{% extends 'inventory_office/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+           <div id="page-wrapper">
+
+            <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-top:10px;
+                                     margin-top:40px;
+                                     margin-bottom:0px;
+                                     padding-bottom: 0px;
+                                     padding-right:20px;
+                                     display:none;
+                                     ">
+
+                      <form action="" method="post">{% csrf_token %}
+                           <div >
+                                <button class="btn btn-success" type="button" role ="button" aria-disabled="true" id="approveButton" name="approveButton" value="{{pageData1.0.0}}" style="margin-right:6px;"  data-toggle="modal"  data-target="#editReg"><i class="icon-ok"></i> Save Delivery Information</button>
+                                
+                      </div>
+
+                      </form>                  
+                    
+                       
+                       
+            </div>
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Create a Property Acceptance Receipt</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                
+                <div id="displayDiv">
+                        <div class="col-lg-12" >
+                                     <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                        
+                                              <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px;">
+                                                                
+                        <div style="display: inline; font-weight: 400;  font-size: 18px;">
+                            Number: 
+                        </div>
+                                                                
+                        <div id="poNumDiv" value="0" class="panel panel-default" style="display: inline; font-size: 25px;  font-weight: 400; padding:10px;"><span id="parNum_span" value="{{pageData1.0.0}}"></span> {{pageData1.0.0}}
+                         </div>
+                        
+                     </div> 
+
+               </div>
+
+
+                                        <div>
+                                            <h3 class="panel-title"> Property Acceptance Reciept Information</h3>
+                                        </div>
+                                            
+                                        </div>
+                                          <div class="panel panel-body">
+                                                <form class="form-horizontal" action="" method="POST">{% csrf_token %}
+
+                                                <div class="form-group">
+                                                    <label for="text1" class="control-label col-lg-4">IAR No: </label>
+
+                                                    <div class="col-lg-5">
+                                                        <input type="text" id="iarnum_field"  class="form-control" autofocus>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="text1" class="control-label col-lg-4">Receiving Personnel: </label>
+
+                                                    <div class="col-lg-5">
+                                                        <input type="text" id="receiveoff" list="recOffList"  class="form-control" >
+                                                        <datalist id="recOffList">
+                                                        </datalist>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                            </div>
+                                    </div>
+                                </div>
+
+                     <div class="col-lg-12" >
+                                     <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Include Items</h3>
+                                        </div>
+                                         <div class="panel-body">
+                                              <div class="panel panel-body " style="margin:0px; padding:0px;">
+                    
+                    <div id="left" class="col-lg-6" style="margin:0px; padding:0px; ">
+                        <div class="panel panel-body" style="
+                                    margin-bottom: 0px;
+                                    padding-left: 2px;
+                                    font-size: 16px;
+                                    padding-top: 0px;
+                                    padding-bottom: 10px;">
+
+                            <div>
+                                Available Items for Account
+                            </div>
+                        </div>
+                        <div class="panel panel-default" style="margin-right:20px;">
+                            <div class="table-responsive" >
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th class="text-center">Available</th>
+                                            <th class="text-center col-lg-3">Quantity to Acct.</th>
+                                            <th class="text-center"> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="avTable">
+                                    
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                  <div class="header-right" style="padding-right: 20px; padding-top:10px;">
+                                 <button id="saveSelection" class="btn btn-success" type= "button" role ="button" aria-disabled="true" style="visibility:hidden;"><i class="icon-ok"></i> Save Selection</button> 
+                  </div> 
+
+               </div> 
+                        
+
+                    </div>
+                    <div id="right" class="col-lg-6" style="margin:0px; padding:0px;">
+                        <div id="right-head" class="panel panel-body" style="
+                                    margin-bottom: 0px;
+                                    padding-left: 2px;
+                                    font-size: 16px;
+                                    padding-top: 0px;
+                                    padding-bottom: 10px;
+                                    ">
+
+                            <div>
+                                Items to Account
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr id="toPARItemsTableHead">
+                                            <th>Description</th>
+                                            <th class="text-right">Unit Cost</th>
+                                            <th class="text-right">Quantity</th>
+                                            <th class="text-right">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="toPARItemsTable">
+                                        
+
+                                   
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div> 
+
+                        <div class="form-group" style="margin-top:30px;">
+                  <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px;">
+                                                                
+                        <div style="display: inline; font-weight: 400;  font-size: 14px;">
+                             Total Amount: 
+                        </div>
+                                                                
+                        <div id="totaltoPAR" value="0" class="panel panel-default" style="display: inline; font-size: 18px;  font-weight: 400; padding:10px;">₱ 0.00
+                         </div>
+                     </div> 
+
+               </div>  
+
+               </div>
+                    </div>
+                    
+                </div> 
+                                        </div>
+                                    </div>
+                                </div>  
+
+
+
+                </div>
+              
+               <div class="col-lg-12" >
+                                     <div class="panel panel-default">
+                                         <div class="panel-body" >
+                                     <div style="float:right;
+                                     right:0;">
+                                        
+                                           <button id="savePar" class="btn btn-success" type= "submit" role ="submit" aria-disabled="true"><i class="icon-ok"></i> Create Prop. Acc. Receipt</button>
+                                     </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                  
+                </div>  
+
+                </div>
+
+<!--  ==================================================================================================================== -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transComp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Items' Transfer to Account Complete</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">The Items was successfully added to the PAR into the account of the receiving personnel</p>
+                                        <p style="margin-bottom:10px;">The receiving personel will be notified about the transfer of items into his/her account</p>  
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transComp2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-spinner"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Generating Reciept Document</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">The system is currently requesting for the document of this transaction</p>
+                                        <p style="margin-bottom:10px;">Please do not close this modal until the dowload starts</p>
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif2" data-dismiss="modal" type="submit" class="btn btn-info">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+<div id="footer-sec">
+       &copy; Mindanao State University - General Santos City</i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.spinner.js' %}"></script>
+     <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript">
+       
+    var avItemsArray = {};
+    var toPARItems = {};
+    var total = 0
+
+    var receiveoffID = ''
+
+        $('#iarnum_field').keyup(function() {
+            
+            if (document.getElementById("iarnum_field").value.length == 6) {
+                $.ajax({
+                    type: 'POST',
+                    url:'/inventory_office/getAvailableItems/',
+                    data:{
+                    
+                        'iarNum': document.getElementById("iarnum_field").value,
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+
+                        document.getElementById("avTable").innerHTML = "";
+                        
+                        for(var key in response) {
+                            var value = response[key];
+                            
+                            var t = '';
+                                var tr = '<tr id="'+value['itemnum']+'_row">';
+                                    tr += '<td>'+value['descrip']+'</td>';
+                                    tr += '<td class="text-center" id="'+value['itemnum']+'_av" value="'+value['quantity']+'">'+value['quantity']+'</td>';
+                                    tr += '<td class="text-center" id="'+value['itemnum']+'_act">';
+                                    
+                                    tr += '<div id="spin" class="input-group spinner" data-trigger="spinner" style="width:80%; height:5px;">';
+                                    tr += '<input id="'+value['itemnum']+'_add" type="text" class="form-control text-center" value="1" data-rule="quantity">';
+                                    tr += '<div class="input-group-addon" id="thesppiner">';
+                                    tr += ' <a id="up" value="'+value['itemnum']+'" href="javascript:;" class="spin-up" data-spin="up"><i class="fa fa-caret-up"></i></a>';
+                                    tr += ' <a id="down" value="'+value['itemnum']+'" href="javascript:;" class="spin-down" data-spin="down"><i class="fa fa-caret-down"></i></a>';
+                                    tr += '</div>';
+                                    tr += '</div>';
+                                    
+                                    //tr += '<input  id="'+value['itemnum']+'_add" style="width:60%"></input>';
+                                    tr +='</td>';
+                                    tr += '<td class="text-center" id="'+value['compid']+'_act">';
+                                    tr += '<button id="'+value['itemnum']+'_addbtn" value="'+value['itemnum']+'" class="btn btn-xs btn-success" type="button" role= "button" aria-disabled="true"><i class="icon-plus"></i></button>';
+                                    tr +='</td>';
+                                    tr += "</tr>";
+                                    t += tr;
+                        
+                        document.getElementById("avTable").innerHTML += t;
+
+                        avItemsArray[value['itemnum']] = {'descrip':value['descrip'], 'quantity':value['quantity'], 'price':value['unitprice']
+
+                    }
+            
+                        }
+                    }  
+            });
+
+            
+            }
+        });
+          
+
+        $('#saveSelection').click(function() {
+              
+              $('#left').remove()
+              $('#right-head').remove()
+              $('#right').attr('class','')
+              
+              document.getElementById("toPARItemsTableHead").innerHTML += '<th class="text-center">Property Number</th><th class="text-center">Action</th>';
+
+              $('.tdToRemove').each(function() {
+                
+                $(this).remove()
+              });
+              
+            $('.theRow').each(function() {
+                
+                var id = this.id
+                var value = $(this).attr('value')
+                
+                var td = '<td class="text-center"><input class="text-center"  id="'+value+'_propField" style="width:40%"></input></td>';
+                    td += '<td class="text-center">';
+                    td += '<button id = "'+value+'_saveProp" value="'+value+'" class="btn btn-xs btn-info" role= "button" aria-disabled="true"><i class="icon-save"></i> Save</button>';
+                    td +='</td>';
+                
+
+                document.getElementById(id).innerHTML += td; 
+                
+              });
+
+          });  
+
+          $('#avTable').on('click', 'a', function() {
+                
+                var id = this.id
+                var value = $(this).attr('value')
+
+                var inputValue = parseInt($('#'+value+'_add').val());
+                var maxValue = parseInt($('#'+value+'_av').attr('value'));
+                
+                if (id == 'up') {
+                        var out = inputValue + 1;
+                        if (out > maxValue) {
+                            $(this).attr('disable');
+                        } else {
+                        $('#'+value+'_add').val(""+out);
+                        }
+                } else {
+                        
+                        var out = inputValue - 1;
+                        if (out < 0) {
+                            $(this).attr('disable');
+                        } else {
+                            $('#'+value+'_add').val(""+out);
+                        }  
+                }
+
+            });
+
+          $('#toPARItemsTable').on('click', 'button', function () {
+              
+              var id = this.id
+              var value = $(this).val()
+
+              var propNum = parseInt($('#'+value+'_propField').val());
+
+              var theList =  toPARItems[value]
+              var quan = parseInt(theList['quantity']);
+
+              var nextNum = quan + propNum;
+
+              theList['invnum'] = propNum;
+
+              $(this).attr('class', 'btn btn-xs btn-success');
+              $(this).html('<i class="icon-ok"></i> Saved')
+
+              $('.theRow').each(function() {
+                
+                   var theRowValue = $(this).attr('value')
+                   
+                   var theList2 =  toPARItems[theRowValue]
+                   var quan2 = parseInt(theList2['quantity']);
+
+                   if (theRowValue != value) {
+                       
+                       $('#'+theRowValue+'_propField').val(nextNum);
+                       
+                       theList2['invnum'] = nextNum;
+
+                        nextNum = quan2 + nextNum;
+
+                       $('#'+theRowValue+'_saveProp').attr('class', 'btn btn-xs btn-success');
+                       $('#'+theRowValue+'_saveProp').html('<i class="icon-ok"></i> Saved');
+
+                   }
+              });
+
+
+          });
+
+
+          $('#toPARItemsTable').on('click', 'input', function () {
+              
+              var id = this.id
+              var value = $(this).val()
+
+              $('#'+id).keyup(function (e) {
+                  
+                  var propNum = parseInt($('#'+id).val());
+                  var theList =  toPARItems[value]
+                  var quan = parseInt(theList['quantity']);
+
+                  var nextNum = quan + propNum;
+
+                  theList['invnum'] = propNum;
+
+                  $(this).attr('class', 'btn btn-xs btn-success');
+                  $(this).html('<i class="icon-ok"></i>')
+
+                  $('.theRow').each(function() {
+                    
+                       var theRowValue = $(this).attr('value')
+                       
+                       var theList2 =  toPARItems[theRowValue]
+                       var quan2 = parseInt(theList2['quantity']);
+
+                       if (theRowValue != value) {
+                           
+                           $('#'+theRowValue+'_propField').val(nextNum);
+                           
+                           theList2['invnum'] = nextNum;
+
+                            nextNum = quan2 + nextNum;
+
+                           $('#'+theRowValue+'_saveProp').attr('class', 'btn btn-xs btn-success');
+                           $('#'+theRowValue+'_saveProp').html('<i class="icon-ok"></i> Saved');
+
+                       }
+                  });
+
+
+              })
+             
+              
+ /*
+              
+              */
+
+          });
+
+          
+
+         $('#avTable').on('click', 'button', function() {
+                   
+                   var id = this.id;
+                   var value = $(this).val();
+                   
+                   var dataToTable = avItemsArray[value];
+                   var inputData = $('#'+value+'_add').val();
+                   var amountToTable = inputData * dataToTable['price'];
+
+                    var t = '';
+                                var tr = '<tr class = "theRow" id="'+value+'_row" value ="'+value+'">';
+                                    tr += '<td>'+dataToTable['descrip']+'</td>';
+                                    tr += '<td class="text-right"> ₱ '+comaSegregator(""+dataToTable['price'])+'</td>';
+                                    tr += '<td class="text-right">'+comaSegregator(inputData)+' </td>';
+                                    tr += '<td class="text-right"> ₱ '+comaSegregator(""+amountToTable)+' </td>';
+                                    tr += '<td class="tdToRemove text-center" id="'+value+'_act">';
+                                    tr += '<button id="'+value+'_remove" value="'+value+'" class="btn btn-xs btn-danger" type="button" role= "button" aria-disabled="true"><i class="icon-minus"></i></button>';
+                                    tr +='</td>';
+                                    tr += "</tr>";
+                                    t += tr;
+                        
+                    document.getElementById("toPARItemsTable").innerHTML += t;
+
+                    total = total + amountToTable;
+                    strTotal = ""+total   
+                    document.getElementById("totaltoPAR").innerHTML = "₱ "+comaSegregator(strTotal);
+
+                    maxValue = parseInt($('#'+value+'_av').attr('value'));
+                    remValue = maxValue - inputData
+                    $('#'+value+'_av').attr('value', remValue);
+                    $('#'+value+'_av').html(remValue);
+
+                    $('#'+value+'_add').val(1)
+                    
+                    toPARItems[value] = {'descrip':dataToTable['descrip'], 'price':dataToTable['price'], 'quantity':inputData, 'amount':amountToTable};
+
+
+
+                $('#saveSelection').removeAttr('style');
+
+               }); 
+
+
+
+      $('#sentNotif2').click(function () {
+       
+       $('#transComp').modal('toggle')
+   
+   })
+
+
+    $('#sentNotif').click(function () {
+       
+       $('#transComp').modal('toggle')
+       window.location.reload();
+   
+   })
+
+        $('#savePar').click(function(e){
+            
+            e.preventDefault();
+            
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/addToAcct/',
+                data:{
+                    
+                    'toPARItems': JSON.stringify(toPARItems),
+                    'byid': receiveoffID,
+                    'iarNum': $('#iarnum_field').val(),
+                    'parNum':$('#parNum_span').attr('value'),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                },
+
+                    success: function(response) {
+                        
+                        $('#transComp2').modal('toggle')
+                        window.location.href = "/inventory_office/generatePARDocument/";
+                    }
+
+            });
+
+
+    });
+
+    $('#receiveoff').keyup(function(e){
+        e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getEmployeeData/',
+                data:{
+                    
+                    'inputName': document.getElementById("receiveoff").value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("recOffList").innerHTML = ""
+                        
+                        for(var key in response) {
+                           
+                            var value = response[key];
+                            document.getElementById("recOffList").innerHTML += '<option id="'+key+'" value ="'+value['name']+'"/>'
+
+                        }
+
+                    }
+
+            });
+    });
+
+
+    $("#receiveoff").on('input', function () {
+       
+        var val = this.value;
+        var id = $('#recOffList option[value="' + val +'"]').attr('id');
+        
+        receiveoffID = id
+
+      }); 
+
+
+         
+        function comaSegregator(input){
+
+        var output = ""
+        var indexCheck = 1
+        
+        for (var i = input.length - 1; i >= 0; i--) {
+            
+            if (indexCheck%3 == 0) {
+
+                if (i == 0) {
+                     output = input[i] + output;
+                    indexCheck = indexCheck + 1;
+
+                } else {
+                     output = ", " + input[i] + output;
+                    indexCheck = indexCheck + 1;
+                }
+                   
+            } else {
+                output = input[i] + output;
+                indexCheck = indexCheck + 1;
+            }
+        }
+
+        return(output)
+    }
+
+        function zeroFiller(input) {
+            var inLenght = input.lenght()
+        }
+
+
+    </script>
+
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#new_par').attr('class','active-menu-inven')
+            $('#acctTop').attr('class', 'active-menu-top')
+            $('#theAcctUL').attr('class','nav nav-second-level collapse in')
+            
+            $('#title').html('Create New PAR')
+
+           
+             });
+    </script>
+
+{% endblock %}
+
+
+

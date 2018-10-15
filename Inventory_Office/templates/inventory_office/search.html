@@ -1,0 +1,573 @@
+{% extends baseSource %}
+{% load staticfiles %}
+{% load humanize %}
+{% block content %}
+       
+        <div id="page-wrapper">
+            <div id="page-inner">
+
+                <hr>
+                <div style=" margin-left:30px; font-weight: 450;  font-size: 22px; padding-bottom:20px;">
+                       <i class="icon-search"></i> Search Results
+                </div>
+
+                            
+
+                        {% if pageData1.0 == None %}
+                        {%if pageData1.1 == 'No'%}
+                        <div class="text-center" style="width:100%;">
+                            
+                            <button class="btn btn-circle btn-danger" disabled="" style="margin-right: 10px;"><i class="icon-remove"></i></button> Please fill the text field above to find something.
+
+
+                        </div>
+
+                        {% else %}
+                        <div class="text-center" style="width:100%;">
+                            
+                            <button class="btn btn-circle btn-danger" disabled="" style="margin-right: 10px;"><i class="icon-remove"></i></button> No Found Match on any Saved Information
+
+
+                        </div>
+
+                        {% endif %}
+
+                         
+
+                       {% else %}
+
+                       
+                            {% for x in pageData1 %}
+                                
+                                {%  if x.0 == 'pr' %}
+
+                        <div class="col-lg-7 col-centered">
+                            <div class="panel panel-default" style="border: 1px solid #fff">
+                                <div class="panel-body">
+                                    <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-shopping-cart"></i></button></div></div>
+                                    <div class="col-lg-10" style="padding-left:0px;">
+                                        <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;"><a href="/inventory_office/pr/{{x.6}}/details/">Purchase Request</a> </div>
+                                        <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Request Number:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px; font-weight: bold">{{x.1}}</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Status:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.2}}</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Requisitioner:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.3.6}} {{x.3.1}} {{x.3.7}} {{x.3.2}} {{x.3.8}} </div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Office:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.4.1}}</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Purpose:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.5}}</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Request Value:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.7|floatformat|intcomma}}</div>
+                                       </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+
+                                                  
+
+                                                {% endif %}
+                                                {% if x.0 == 'po' %}
+  
+                        <div class="col-lg-7 col-centered">
+                            <div class="panel panel-default" style="border: 1px solid #fff">
+                                <div class="panel-body">
+                                    <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-shopping-cart"></i></button></div></div>
+                                    <div class="col-lg-10" style="padding-left:0px;">
+                                        <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;">Purchase Order</div>
+                                        <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Order Number:</div> 
+
+                                              <div class="col-lg-7" style="padding-left: 0px;">
+                                                  <p style="padding-left: 0px; padding-right: 0px; font-weight: bold; margin: 0px;">000-00</p>
+                                                  <p style="padding-left: 0px; padding-right: 0px; margin-top: 5px; font-size: 11px;">A non-MSU-GSC prepared Purchase Order</p>
+                                              </div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Status:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;"><p> Approved</p><p>Decenber 00, 0000</p> </div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Delivery term:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000 Days</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">P.R. Reference:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.1}}</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Recipient:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">
+                                                Supplier Name
+                                        </div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">P.O. Value:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">
+                                                000,000,000
+                                        </div>
+                                       </div>
+                                       
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         
+                                                {% endif %}
+                                                {% if x.0 == 'rq' %}
+
+                                                 <div class="col-lg-7 col-centered">
+                            <div class="panel panel-default" style="border: 1px solid #fff">
+                                <div class="panel-body">
+                                    <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-file"></i></button></div></div>
+                                    <div class="col-lg-10" style="padding-left:0px;">
+                                        <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;">Request for Quotation</div>
+                                        <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Quotation Number:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px; font-weight: bold">{{x.1}}</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Status:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">Approved</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">P.R. Reference:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.4}}</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Recipients :</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">
+                                            {% if x.2.0 == None %}
+                                                Canvass Is Still On Going
+
+                                            {% else %}
+
+                                              {% for xx in x.2 %}
+                                              <p>● {{xx.1}}</p>
+                                              {% endfor %}
+                                              
+                                            {% endif %}
+
+                                        </div>
+                                       </div>
+                                       
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                                                {% endif %}
+                                                {% if x.0 == 'ac' %}
+                                                <div class="col-lg-7 col-centered">
+                            <div class="panel panel-default" style="border: 1px solid #fff">
+                                <div class="panel-body">
+                                    <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-file"></i></button></div></div>
+                                    <div class="col-lg-10" style="padding-left:0px;">
+                                        <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;">Abstract of Canvass/Bids</div>
+                                        <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Abstract Number:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px; font-weight: bold">000-00</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Status:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">Approved</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">R.Q. Reference:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000-00</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Selected Supplier:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">
+                                                Supplier Name
+                                        </div>
+                                       </div>
+                                       
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                                                {% endif %}
+                                                {% if x.0 == 'equi' %}
+                                                    <div class="col-lg-7 col-centered">
+                                                            <div class="panel panel-default" style="border: 1px solid #fff">
+                                                                <div class="panel-body">
+                                                                    <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-truck"></i></button></div></div>
+                                                                    <div class="col-lg-10" style="padding-left:0px;">
+                                                                        <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;">{{x.2}} (Equipment)</div>
+                                                                        
+
+                                                                       <div class="panel-body" style="padding-top: 0px;">
+                                                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Qty on Account:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000,000</div>
+                                                                       </div>
+                                                                       <div class="panel-body" style="padding-top: 0px;">
+                                                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Qty Cost Value:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000,000,000</div>
+                                                                       </div>
+                                                                       
+                                                                       <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                                                       </div>
+                                                                       <div class="panel-body" style="padding-top: 0px;">
+                                                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Description:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">
+                                                                            <p>●　Member's Complete Name</p>
+                                                                            <p>●　Member's Complete Name</p>
+                                                                            <p>●　Member's Complete Name</p>
+                                                                            <p>●　Member's Complete Name</p>
+                                                                            <p>●　Member's Complete Name</p>
+                                                                        </div>
+                                                                       </div>
+                                                                       <div class="panel-body" style="padding-top: 0px;">
+                                                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Brand:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">
+                                                                            Brand Name
+                                                                        </div>
+                                                                       </div>
+                                                                      
+                                                                      <div class="panel-body" style="padding-top: 0px;">
+                                                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Model:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">
+                                                                            Model Name
+                                                                        </div>
+                                                                       </div>
+                                                                      
+                                                                      
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                {% endif %}
+                                                {% if x.0 == 'supply' %}
+                                                      <div class="col-lg-7 col-centered">
+                                                        <div class="panel panel-default" style="border: 1px solid #fff">
+                                                            <div class="panel-body">
+                                                                <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-truck"></i></button></div></div>
+                                                                <div class="col-lg-10" style="padding-left:0px;">
+                                                                    <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;">
+                                                                      <a href="/inventory_office/supply/{{x.3}}/details/">{{x.1}} </a> (Supply)
+                                                                    
+
+                                                                  </div>
+                                                                    
+
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Status:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.2.0}}</div>
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Available Qty.:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.2.1|floatformat|intcomma}}</div>
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Qty on Request:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.2.2|floatformat|intcomma}}</div>
+                                                                   </div>
+                                                                   
+                                                                   <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Description:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">
+                                                                        {{x.1}}
+                                                                    </div>
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Avg. Requested:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">
+                                                                        000,000 per R.I.S.
+                                                                    </div>
+                                                                   </div>
+                                                               
+                                                                  
+                                                                  
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                {% endif %}
+                                                {% if x.0 == 'name' %}
+                                                    <div class="col-lg-7 col-centered">
+                                                        <div class="panel panel-default" style="border: 1px solid #fff">
+                                                            <div class="panel-body">
+                                                                <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-truck"></i></button></div></div>
+                                                                <div class="col-lg-10" style="padding-left:0px;">
+                                                                    <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;">{{x.1}}  {{x.2}}</div>
+                                                                    
+
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Account Worth:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.5}}</div>
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Item Count:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000,000</div>
+                                                                   </div>
+                                                                   
+                                                                   <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Office:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.4}}</div>
+                                                                   </div>
+                                                                  
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                                {% if x.0 == 'supplier' %}
+
+                            <div class="col-lg-7 col-centered">
+                            <div class="panel panel-default" style="border: 1px solid #fff">
+                                <div class="panel-body">
+                                    <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-shopping-cart"></i></button></div></div>
+                                    <div class="col-lg-10" style="padding-left:0px;">
+                                        <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;">{{x.1}}</div>
+                                        <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Address:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px; ">{{x.2}}</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Representative:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.3}}</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">No. of Deliveries Done:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.4}}</div>
+                                       </div>
+                                      
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                   
+
+                                                {% endif %}
+                                                {% if x.0 == 'iar' %}
+                                                      <div class="col-lg-7 col-centered">
+                                                        <div class="panel panel-default" style="border: 1px solid #fff">
+                                                            <div class="panel-body">
+                                                                <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-truck"></i></button></div></div>
+                                                                <div class="col-lg-10" style="padding-left:0px;">
+                                                                    <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;"><a href="/inventory_office/receive/po/{{x.7.1}}/{{x.7.0}}/details/">Inspection and Acceptance Report</a> </div>
+                                                                    <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Report Number:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px; font-weight: bold">{{x.6}}</div>
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Remarks:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;"><p style="margin:0px;">{{x.5}}</p></div>
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Delivery Date:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">Month 00, 0000</div>
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Delivery Value:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000,000,000</div>
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                                                   </div>
+                                                                    <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Supplier:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">Supplier Name</div>
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">P.O. Reference:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000-00</div>
+                                                                   </div>
+                                                                   <div class="panel-body" style="padding-top: 0px;">
+                                                                       <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">P.R. Reference:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000-00</div>
+                                                                   </div>
+                                                                   
+                                                                   
+                                                                   
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                                              
+                                                {% endif %}
+
+                                                {% if x.0 == 'par' %}
+
+                                                 
+                                                         <div class="col-lg-7 col-centered">
+                                                                <div class="panel panel-default" style="border: 1px solid #fff">
+                                                                    <div class="panel-body">
+                                                                        <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-truck"></i></button></div></div>
+                                                                        <div class="col-lg-10" style="padding-left:0px;">
+                                                                            <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;">Property Acceptance Receipt</div>
+                                                                            <div class="panel-body" style="padding-top: 0px;">
+                                                                               <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Document Number:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px; font-weight: bold">{{x.4}}</div>
+                                                                           </div>
+                                                                           <div class="panel-body" style="padding-top: 0px;">
+                                                                               <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Released Date:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.2}}</div>
+                                                                           </div>
+                                                                           <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                                                           </div>
+                                                                           <div class="panel-body" style="padding-top: 0px;">
+                                                                               <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">End User:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.1.0.6}} {{x.1.0.1}} {{x.1.0.7}} {{x.1.0.2}} {{x.1.0.8}}</div>
+                                                                           </div>
+                                                                           <div class="panel-body" style="padding-top: 0px;">
+                                                                               <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Office:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.1.1.1}}</div>
+                                                                           </div>
+                                                                           <div class="panel-body" style="padding-top: 0px;">
+                                                                               <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Receive Date:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">{{x.3}}</div>
+                                                                           </div>
+                                                                           <div class="panel-body" style="padding-top: 0px;">
+                                                                               <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Account Value:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000,000,000</div>
+                                                                           </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                {% endif %}
+                                                {% if x.0 == 'ris' %}
+
+                                                   <div class="col-lg-7 col-centered">
+                            <div class="panel panel-default" style="border: 1px solid #fff">
+                                <div class="panel-body">
+                                    <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-truck"></i></button></div></div>
+                                    <div class="col-lg-10" style="padding-left:0px;">
+                                        <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;">Requisition and Issuance Slip</div>
+                                        <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Document Number:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px; font-weight: bold">000-00</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Released Date:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">Month 00, 0000</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">End User:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">Kudelia Aina Bernstien</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Office:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">The Office Very Long Name Mendokuse</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Receive Date:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">Month 00, 0000</div>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          
+                                                {% endif %}
+                                                {% if x.0 == 'wmr' %}
+                                                <div class="col-lg-7 col-centered">
+                            <div class="panel panel-default" style="border: 1px solid #fff">
+                                <div class="panel-body">
+                                    <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-truck"></i></button></div></div>
+                                    <div class="col-lg-10" style="padding-left:0px;">
+                                        <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;">Waste Material Report</div>
+                                        <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Document Number:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px; font-weight: bold">000-00</div>
+                                       </div>
+
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">P.A.R. Reference:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000-00</div>
+                                       </div>
+                                       
+                                       <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">End User:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">Kudelia Aina Bernstien</div>
+                                       </div>
+                                       <div class="panel-body" style="padding-top: 0px;">
+                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Office:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">The Office Very Long Name Mendokuse</div>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                {% endif %}
+                                                {% if x.0 == 'office' %}
+                                                     <div class="col-lg-7 col-centered">
+                                                            <div class="panel panel-default" style="border: 1px solid #fff">
+                                                                <div class="panel-body">
+                                                                    <div class="col-lg-2"><div class="panel-body" style="padding:0px; padding-top: 2px;"><button class="btn btn-circle btn-success"><i class="icon-truck"></i></button></div></div>
+                                                                    <div class="col-lg-10" style="padding-left:0px;">
+                                                                        <div class="panel-body" style="font-size: 18px; padding-left: 0px; font-weight:600;">Office Very Long Name Mendokuse</div>
+                                                                        
+
+                                                                       <div class="panel-body" style="padding-top: 0px;">
+                                                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Account Worth:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000,000</div>
+                                                                       </div>
+                                                                       <div class="panel-body" style="padding-top: 0px;">
+                                                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Item Count:</div><div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">000,000,000</div>
+                                                                       </div>
+                                                                       
+                                                                       <div class="panel-body" style="padding-top: 0px; border-top: 1px solid #111">
+                                                                       </div>
+                                                                       <div class="panel-body" style="padding-top: 0px;">
+                                                                           <div class="col-lg-5" style="padding-left: 0px; padding-right: 0px;">Members:</div> <div class="col-lg-7" style="padding-left: 0px; padding-right: 0px;">
+                                                                            <p>●　Member's Complete Name</p>
+                                                                            <p>●　Member's Complete Name</p>
+                                                                            <p>●　Member's Complete Name</p>
+                                                                            <p>●　Member's Complete Name</p>
+                                                                            <p>●　Member's Complete Name</p>
+                                                                        </div>
+                                                                       </div>
+                                                                      
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                           
+
+
+                                                {% endif %}
+
+
+                                                {% endfor %}
+
+                                                   
+
+
+                    {% endif %}
+
+
+				
+                <!-- /. ROW  -->
+    
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+                    </div>
+
+
+                </div>
+
+                
+			
+            </div>
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec" >
+      &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+   <script>
+        $(document).ready(function () {
+
+            $('#home').attr('class','{{cssActiveMenu}}')
+            $('#title').html('Search Information')
+           
+             });
+    </script>
+
+{% endblock %}
+

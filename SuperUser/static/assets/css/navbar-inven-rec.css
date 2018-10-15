@@ -1,0 +1,28 @@
+.user-img-div {
+   
+    min-height: 170px;
+    padding: 20px;
+    padding-left: 13px;
+    padding-top: 12px;
+	background-image: url("img/gg8-inven-rec.png");
+	
+}
+    
+    .user-brg-img img{
+
+    }
+    
+    .user-img-div img {
+        max-height: 50px;
+    }
+
+    .user-img-div .inner-text {
+		
+        text-align: left;
+        position: relative;
+        color: #fff;
+        font-weight: 400;
+        line-height: 20px;
+		font-size: 14px;
+		
+    }

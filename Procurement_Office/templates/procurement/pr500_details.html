@@ -1,0 +1,1666 @@
+{% extends 'procurement/base.html' %}
+{% load staticfiles %}
+{% load humanize %}
+{% block content %}
+        
+        <!-- /. NAV SIDE  -->
+         <div id="page-wrapper">
+          
+
+          {% if pageData1.1.19 != None %}
+
+            <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-top:0px;
+                                     margin-top:52px;
+                                     margin-bottom:0px;
+                                     padding-bottom: 0px;
+                                     padding-right:20px;
+                                     margin-bottom: 0px;
+                                    ">
+
+                                        
+                     <div >
+
+                                <button id="newTimelineBTN" class="btn btn-success" role ="button" aria-disabled="true" value="{{pageData1.0.1}}"><i class="icon-ok"></i> Create New Timeline</button>
+                            
+                      </div>
+                       
+                       
+                                    </div>
+
+                                              
+          {% endif %}
+
+
+
+            
+
+           
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData2.0.0}}">Purchase Request Details and Status Timeline</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ccc!important;">
+             
+                <hr>
+                 
+                <div class="col-lg-6" style="">
+                <div class="col-lg-12" style="padding-right: 0px; padding-left: 0px;">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                        {% if pageData1.0.1 == None %}
+                        <span style="font-size: 18px; font-weight: bold;">Purchase Request still waiting for numbering</span> 
+
+                        {% else %}
+                        <span style="font-size: 15px; padding-right: 10px;">Purchase Request Number:</span> <span style="font-size: 25px; font-weight: bold;"> 
+
+                        {{pageData1.0.1}}
+                        {% if pageData2.0.1 != None %}
+                          <span style="font-size: 15px;">{{pageData2.0.1}}</span>
+                        {% endif %}
+
+                      </span> 
+                        {% endif %}
+                       </div>
+                    </div>
+                </div>
+                <div class="col-lg-12" style="padding-right: 0px; padding-left: 0px; 
+                {% if pageData1.1.20 != None %}
+                       display:none;
+                       {% endif %}">
+                 <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Request Information</h3>
+                            </div><!-- -->
+                            <div class="panel-body" style="height:  padding-left:20px;">
+                            
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Prepared:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {{pageData1.0.5}}
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Total Cost:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        000,000,000
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Received:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {% if pageData1.0.1 == None %}
+                                        Document not yet received
+                                        {% else %}
+                                          {{pageData1.4.10}}
+                                        {% endif %}
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            </div>
+                        </div>
+                </div>
+                <div class="col-lg-12" style="display:none;">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      {{pageData1.1}}
+                    </div>
+                  </div>
+                </div>
+                 <div class="col-lg-12" style="padding-left: 0px;  padding-right: 0px;">
+                          <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Status Timeline</h3>
+                            </div>
+                            <div class="panel-body" style="  padding-left:20px;">
+                            
+                              <!-- --> 
+                                <div class="col-lg-12" style="padding:0px; padding-top: 20px;">
+                                <div class="col-lg-1" style="padding-left:0px; padding-right: 10px;">
+                                  <button class="btn btn-success btn-circle" style="border-radius: 20px;"><i class="icon-star" "></i></button>
+                                  <div class="text-center ">•</div> 
+                                        <div class="text-center ">•</div> 
+                                        <div class="text-center ">•</div> 
+                                        <div class="text-center ">•</div> 
+                                        <div class="text-center ">•</div> 
+                                        <div class="text-center ">•</div> 
+                                        <div class="text-center ">•</div> 
+                                        <div class="text-center ">•</div> 
+                                        <div class="text-center ">•</div> 
+                                        <div class="text-center ">•</div> 
+                                        <div class="text-center ">•</div> 
+                                </div>
+                                <div class="col-lg-10" style="padding-left: 15px; padding-top: 12px;">
+                                  <p style="font-size: 18px;margin-bottom: 20px;"><strong>Transaction Phase</strong> </p>
+                                    <p style="text-indent: 20px; margin-top: 20px;">
+                                           This part of the div indicates the description of the conducted transaction mostly on a format of a paragraph.
+                                    </p> 
+                                     <div class="panel-body" style="padding:0px; margin-bottom:15px; margin-top: 30px;">
+                                       
+                                            <div class="col-lg-5">Date Conducted:</div>
+                                           <div class="col-lg-7" style="font-weight: bold;">
+                                              Month 00, 0000
+                                           </div>
+                                      
+                                      </div> 
+                                       <div class="panel-body" style="padding:0px; margin-bottom:15px;">
+                                       
+                                            <div class="col-lg-5">Conducted By:</div>
+                                           <div class="col-lg-7" style="font-weight: bold;">
+                                              Facilitating Office of Conducting Personnel
+                                           </div>
+                                      
+                                      </div> 
+                                      <div class="panel-body" style="padding:0px; margin-bottom:15px; display: none">
+                                       
+                                            <div class="col-lg-5">Participated By:</div>
+                                           <div class="col-lg-7" style="font-weight: bold;">
+                                              <p>• Participant One</p>
+                                              <p>• Participant One</p>
+                                              <p>• Participant One</p>
+                                              <p>• Participant One</p>
+                                              <p>• Participant One</p>
+                                           </div>
+                                      
+                                      </div> 
+
+                                </div>
+                              </div>
+
+                              <!-- --> 
+                             
+
+                              <!-- -->  
+                            </div>
+                        </div>
+
+                    </div>    
+
+                   
+                    </div>
+                    <div class="col-lg-6" style=" padding-left:0px;">
+                       <div class="col-lg-12" style="padding-right: 0px; padding-left: 0px;
+                       {% if pageData1.1.20 == None %}
+                       display:none;
+                       {% endif %}
+                       ">
+                 <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Date Information</h3>
+                            </div><!-- -->
+                            <div class="panel-body" style="height:  padding-left:20px;">
+                            
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Prepared:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {{pageData1.0.5}}
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Approved:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {{pageData1.0.11}}
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Received:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {% if pageData1.0.1 == None %}
+                                        Document not yet received
+                                        {% else %}
+                                          {{pageData1.4.10}}
+                                        {% endif %}
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            </div>
+                        </div>
+                </div>
+
+
+                       <div class="col-lg-12" style="padding-right: 0px; padding-left: 0px;">
+                 <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Request Origin</h3>
+                            </div><!-- -->
+                            <div class="panel-body" style="height: 206px; padding-left:20px;">
+                            
+                            
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Personnel:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >{{pageData1.2.6}} {{pageData1.2.1}} {{pageData1.2.7}} {{pageData1.2.2}} {{pageData1.2.8}}
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Office:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >{{pageData1.3.0}}  
+                                    </div>
+                                </div> 
+
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                          
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Purpose:
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {{pageData1.0.2}}
+                                    </div>
+                                </div> 
+                            </div>
+                                
+                            </div>
+                        </div>
+                </div>
+
+
+                     <div class="col-lg-12" style="padding-left: 0px;  padding-right: 0px; 
+                     {% if pageData1.1.20 != None %}
+                       display:none;
+                       {% endif %}
+
+                       ">
+                     <div class="panel panel-primary">
+                         <div class="panel-heading"><h3 class="panel-title">Request's Currently Conducted Transaction</h3></div>
+                         <div class="panel-body">
+                       
+                          
+                            {% if pageData1.1.1 == None %}
+                                  
+                                  <div class="col-lg-12" style="padding-bottom: 5px; font-weight: bold; padding-top: 0px;" id="phaDisplay">
+                                  P.R. Numbering Phase
+                                  </div>
+                                  <div class="col-lg-12" style="padding-bottom: 35px;" id="descDisplay">
+                                  Set the Number for this P.R. document
+                                  </div>
+                                  <div class="col-lg-12" id="theDisplay">
+                                  <form class="form-horizontal">
+
+                                  <div class="form-group" style="margin-bottom:10px;">
+                                                      <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">P.R. Number: </label>
+                                              
+                                                      <div class="col-lg-8">
+                                                          <input id="prNumF" class="form-control" autofocus="" />
+                                                      </div>
+                                                  </div>
+                                   <div class="form-group" style="margin-bottom:10px; display: none;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Date: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="prNumF" class="form-control" autofocus="" />
+                                                    </div>
+                                                </div>
+
+                                   <div class="col-lg-12 text-right" style="padding-top: 20px; padding-right: 0px;">
+
+                                    <button role="button" type="button" class="btn btn-success" id="setPRNumBTN">Set P.R. Number</button>
+                                  </div>   
+                                   </form>  
+                                   </div>        
+                             
+                             {% endif %}
+
+                                 <div class="col-lg-12" style="padding-bottom: 5px; font-weight: bold; padding-top: 0px;" id="phaDisplay">
+                                 Update Current Undegoing Phase
+                                  </div>
+                                  <div class="col-lg-12" style="padding-bottom: 35px; text-indent: 20px;" id="descDisplay">
+                                  Update to what was the latest transaction conducted in order to acquire the requested items.
+                                  </div>
+                                  <div class="col-lg-12" id="theDisplay">
+                                  <form class="form-horizontal">
+
+                                  <div class="form-group" style="margin-bottom:10px;">
+                                                      <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Phase Description: </label>
+                                              
+                                                      <div class="col-lg-8">
+                                                          <input id="prNumF" class="form-control" autofocus="" />
+                                                      </div>
+                                                  </div>
+                                   <div class="form-group" style="margin-bottom:10px;">
+                                                      <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Details: </label>
+                                              
+                                                      <div class="col-lg-8">
+                                                          <textarea id="autosize" value="{{pageData1.0.2}}" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 110px;" placeholder="Breifly describe the curent phase to what is the goal of conducting it and how is it done."></textarea>  
+                                                      </div>
+                                                  </div>
+                                    <div class="form-group" style="margin-bottom:10px;">
+                                                      <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Date Conducted: </label>
+                                              
+                                                      <div class="col-lg-8">
+                                                          <input id="prNumF" class="form-control theDateInput" autofocus="" />
+                                                      </div>
+                                                  </div>
+                                    <div class="form-group" style="margin-bottom:10px;">
+                                                      <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Conducted by: </label>
+                                              
+                                                      <div class="col-lg-8">
+                                                          <input id="prNumF" class="form-control" placeholder="Conducting Personel or Office" autofocus="" />
+                                                      </div>
+                                                  </div>  
+                                    <div class="form-group" style="margin-bottom:10px;display: none">
+                                                      <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;"></label>
+                                              
+                                                      <div class="col-lg-8">
+                                                               <div class="checkbox">
+                                                                    <label>
+                                                                        <div class="checker hover"><span><input id="chck" class="uniform" type="checkbox" value="option2"></span></div> The Transaction had other Participants
+                                                                    </label>
+                                                         </div>      
+                                                      </div>
+                                                  </div>  
+
+                                    <div class="form-group" style="margin-bottom:10px;display: none">
+                                                      <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Participants: </label>
+                                              
+                                                      <div class="col-lg-8">
+                                                          <input id="prNumF" class="form-control" autofocus="" />
+                                                      </div>
+                                                  </div>                                                        
+                                  
+
+                                   <div class="col-lg-12 text-right" style="padding-top: 20px; padding-right: 0px; border-top: 2px solid #555; padding-top: 10px; margin-top: 30px;">
+
+                                    <button role="button" type="button" class="btn btn-success" id="setPRNumBTN">Add Phase/Transaction</button>
+                                  </div>   
+                                   </form>  
+                                   </div>   
+                             
+                             {% if pageData1.1.1 != None and pageData1.1.3 == None %}
+                                  
+                                  <div class="col-lg-12" style="padding-bottom: 5px; font-weight: bold; padding-top: 0px;" id="phaDisplay">
+                                  Pre-Canvass Phase
+                                  </div>
+                                  <div class="col-lg-12" style="padding-bottom: 35px;" id="descDisplay">
+                                  Indicate the Request for Quotation Number used to canvass the request's items
+                                  </div>
+                                  <div class="col-lg-12" id="theDisplay">
+                                  <form class="form-horizontal">
+
+                                  <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Quotation Number: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="rqNumF" class="form-control" autofocus="" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Date Prepared: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="rqdateF" class="form-control theDateInput" autofocus="" />
+                                                    </div>
+                                                </div>
+                                                
+                                              
+
+                                   <div class="col-lg-12 text-right" style="padding-top: 20px; padding-right: 0px; padding-left:0px;">
+                                    <a href="/procurement_office/add_quotation/" style="float:left;">
+                                      <button role="button" type="button" class="btn btn-info" >Create R.Q. Document</button>
+                                    </a>
+                                    <button class="btn btn-success" id="setRQNumBTN" type="button" role="button">Set Quotation Information</button>
+                                  </div> 
+                                   </form>
+                                   </div>            
+                             
+                             {% endif %}
+
+                             {% if pageData1.1.3 != None and pageData1.1.6 == None %}
+                                  
+                                  <div class="col-lg-12" style="padding-bottom: 5px; font-weight: bold; padding-top: 0px;" id="phaDisplay">
+                                  Canvass Phase
+                                  </div>
+                                  <div class="col-lg-12" style="padding-bottom: 35px;" id="descDisplay">
+                                  <p>Indicate the date the canvass started and the date the documents where collected from all the participating bidders.</p>
+                                   
+                                  </div>
+                                  <div class="col-lg-12" id="theDisplay">
+                                  <form class="form-horizontal">
+                                    <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Canvass Start: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="rqstartdateF" class="form-control theDateInput" autofocus="" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Date Collected: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="rqenddateF" class="form-control theDateInput" autofocus="" />
+                                                    </div>
+                                   
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;display: none;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Participated By: </label>
+                                            
+                                                    <div class="col-lg-5">
+                                                        <input id="biddNumF" class="form-control" autofocus="" />
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">bidders</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px; margin-top: 15px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Bidders: </label>
+                                            
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-2 text-right" style="padding-top: 7px;"></label>
+                                            
+                                                    <div class="col-lg-10" style="margin-top: 8px;">
+                                                       
+                                                       <div class="table-responsive">
+                                                                <table id="myTable" class="table table-hover" style="margin-bottom: 0px;">
+                                                                     <thead>
+                                                                       <th colspan="2" style="border-top: 2px solid #555; height: 3px; padding:0px;"></th>
+                                                                     </thead> 
+                                                                    <tbody id="suppTable">
+
+                                                                    </tbody>
+                                                                </table>
+                                                                <button class="btn btn-sm btn-success" type="button" role="button" style="border-radius: 15px;outline: none" data-toggle="modal"  data-target="#addSupplierModal">Add Bidder</button>
+                                                            </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                          
+                                   <div class="col-lg-12 text-right" style="padding-top: 20px;"><button class="btn btn-success" id="updateRQBTN" type="button" role="button">Update Information</button></div>  
+                                   </form>
+                                   </div>           
+                             
+                             {% endif %}
+
+                              {% if pageData1.1.6 != None and pageData1.1.10 == None %}
+                                  
+                                  <div class="col-lg-12" style="padding-bottom: 5px; font-weight: bold; padding-top: 0px;" id="phaDisplay">
+                                  Bids Selection Phase
+                                  </div>
+                                  <div class="col-lg-12" style="padding-bottom: 35px;" id="descDisplay">
+                                  <p>Indicate the Abtract number that was prepared from the collected bids information.</p>
+                                  <p>Update on whether the winning bids was already choosen.</p>
+                                   
+                                  </div>
+                                  <div class="col-lg-12" id="theDisplay">
+                                  <form class="form-horizontal">
+                                    <div class="form-group" style="margin-bottom:10px;">
+
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Abtract Number: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                          {% if pageData1.1.8 != None%}
+                                                              {% if pageData1.1.9 == None %}
+                                                                <div style="margin-top:10px;">
+                                                          <span>{{pageData1.1.8}}</span></div>
+                                                          <input style="display: none;" id="abcnumF" class="form-control" autofocus="" value="{{pageData1.1.8}}" />
+                                                              {% else %}
+                                                                <div style="margin-top:10px;">
+                                                          <span>{{pageData1.1.8}}</span></div>
+                                                          <input style="display: none;" id="abcnumF" class="form-control" autofocus="" />
+                                                              {% endif %}
+                                                          
+                                                          {% else %}
+                                                          <input id="abcnumF" class="form-control" autofocus="" />
+                                                          {% endif %}
+                                                        
+                                                          
+                                                    </div>
+                                                </div>
+                                  <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Date Released: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                         {% if pageData1.1.9 != None%}
+                                                         <div style="margin-top:10px;">
+                                                          <span>{{pageData1.1.9}}</span></div>
+                                                          <input style="display: none;" id="abcreldateF" class="form-control theDateInput" autofocus="" />
+                                                          {% else %}
+                                                         <input id="abcreldateF" class="form-control theDateInput" autofocus="" />
+                                                          {% endif %}
+                                                        
+                                                    </div>
+                                                </div>
+
+                                  <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Date Returned: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        
+                                                        {% if pageData1.1.9 != None%}
+                                                           <input id="abcretdateF" class="form-control theDateInput" autofocus="" />
+                                                          {% else %}
+
+                                                            {% if pageData1.1.8 == None %}
+                                                              <div style="margin-top:10px;">
+                                                            <input id="abcretdateF" style="display: none" class="form-control theDateInput" autofocus="" />
+                                                            <span >Abstract is not prepared yet</span>
+                                                          </div>
+                                                            {% else %}
+                                                            <div style="margin-top:10px;">
+                                                            <input id="abcretdateF" style="display: none" class="form-control theDateInput" autofocus="" />
+                                                            <span >Abstract hasn't been released yet</span>
+                                                          </div>
+                                                            {% endif %}
+                                                          
+                                                         
+                                                          {% endif %}
+                                                       
+                                                    </div>
+                                                </div>              
+                                                
+                                                
+
+                                   <div class="col-lg-12 text-right" style="padding:0px; padding-top: 20px; ">
+                                    {% if pageData1.1.8 == None %}
+                                      <a href="/procurement_office/add_abstract/" style="float:left;">
+                                         <button class="btn btn-info" type="button" role="button">Create Abstract Document</button>
+                                      </a>
+                                    {% endif %}
+                                    <button class="btn btn-success" id="saveABCBTN" type="button" role="button">Save Abstract Information</button>
+
+                                  </div> 
+                                   </form>
+                                   </div>            
+                             
+                             {% endif %}
+                              {% if pageData1.1.11 != None and pageData1.1.12 == None %}
+                                  
+                                  <div class="col-lg-12" style="padding-bottom: 5px; font-weight: bold; padding-top: 0px;" id="phaDisplay">
+                                  Purchase Order Preperation Phase
+                                  </div>
+                                  <div class="col-lg-12" style="padding-bottom: 35px;" id="descDisplay">
+                                  <p>Indicate the P.O. number that was prepared from the selected bids information.</p>
+                                   
+                                  </div>
+                                  <div class="col-lg-12" id="theDisplay">
+                                  <form class="form-horizontal">
+
+
+                                     <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">P.O. Number: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="ponumF" class="form-control" autofocus="" />
+                                                    </div>
+                                                </div>
+
+
+                                           <div id="addPODiv">
+                                             
+
+                                           </div>     
+ 
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;"> </label>
+                                                    <div class="col-lg-8">
+                                                      
+                                                    <button id="addNewPONumBTN" style="border-radius: 20px; outline: none; "  class="btn btn-success" type="button" role="button">
+                                                        <i class="fa fa-plus "></i>
+                                                    </button>
+                                                
+                                                    </div>
+                                                </div>        
+
+                                  
+
+                                  <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Date Released: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="posignreldateF"  class="form-control theDateInput" autofocus="" />
+                                                    </div>
+                                                </div>              
+                                          
+
+                                   <div class="col-lg-12 text-right" style="padding-top: 20px;"><button class="btn btn-success" id="addPOBTN" type="button" role="button">Save P.O. Information</button></div> 
+                                   </form>
+                                   </div>   
+                             
+                             {% endif %}
+                              {% if pageData1.1.13 != None and pageData1.1.15 == None %}
+                                  
+                                  <div class="col-lg-12" style="padding-bottom: 5px; font-weight: bold; padding-top: 0px;" id="phaDisplay">
+                                  Purchase Order Approval Decission Phase
+                                  </div>
+                                  <div class="col-lg-12" style="padding-bottom: 35px;" id="descDisplay">
+                                  <p>Update the P.O. informaton on what decission was made regarding on its approval</p>
+                                   
+                                  </div>
+                                  <div class="col-lg-12" id="theDisplay">
+                                  <form class="form-horizontal">
+                                    <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">P.O. Number: </label>
+                                            
+                                                    <div class="col-lg-8" style="padding-top:7px;">
+                                                        <span style="font-size: 18px; font-weight: bold;">{% if pageData1.1.23 != None %}
+                                              {% for xx in pageData1.1.23 %}
+                                              <p style="padding-bottom:0px; margin-bottom: 6px;">• {{xx.1}}</p>
+                                              {% endfor %}
+                                             {% else %}
+                                              {{pageData1.1.23}}
+                                             {% endif %}</span>
+                                                    </div>
+                                                </div>
+                                   <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;"></label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <span style="font-size: 18px; font-weight: bold;"></span>
+                                                    </div>
+                                                </div>
+                                   <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;"> </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <span style="font-size: 18px; font-weight: bold;"></span>
+                                                    </div>
+                                                </div>                          
+                                  <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Approval Decission: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <button id="apprPOBTN" class="btn btn-success btn-sm" type="button" role="button" style="width: 90px; border-radius: 13px;">Approved</button>
+                                                        <button id="declPOBTN" class="btn btn-danger btn-sm" type="button" role="button" style="width: 90px; border-radius: 13px;">Decline</button>
+                                                    </div>
+                                                </div>
+
+                                  <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Date Decided: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="posignretdateF" class="form-control theDateInput" autofocus="" />
+                                                    </div>
+                                                </div>              
+                                                
+                                                
+
+                                   <div class="col-lg-12 text-right" style="padding-top: 20px;"><button class="btn btn-success" id="updatePOAppBTN" type="button" role="button">Update P.O. Information</button>
+                                   </div>    
+                                   </form>
+                                   </div>         
+                             
+                             {% endif %}
+
+                             {% if pageData1.1.15 != None and pageData1.1.18 == None %}
+                                  
+                                  <div class="col-lg-12" style="padding-bottom: 5px; font-weight: bold; padding-top: 0px;" id="phaDisplay">
+                                  Service of Purchase Order Phase
+                                  </div>
+                                  <div class="col-lg-12" style="padding-bottom: 35px;" id="descDisplay">
+                                  <p>Update the P.O. informaton regarding the serving of the P.O. to the winning bidder</p>
+                                   
+                                  </div>
+                                  <div class="col-lg-12" id="theDisplay">
+                                  <form class="form-horizontal">
+                                    <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">P.O. Number/s: </label>
+                                                    <div class="col-lg-8">
+                                                    
+                                                    {% if pageData1.1.23 != None %}
+                                                      {% for xx in pageData1.1.23 %}
+                                                        <p>
+                                                          <input id="abcnumF" disabled="" value="{{xx.1}}" class="form-control" autofocus="" />
+                                                        </p>
+                                                      {% endfor %}
+
+                                                    {% else %}
+                                                      
+                                                          <input id="abcnumF" disabled="" value="{{pageData1.1.12}}" class="form-control" autofocus="" />
+                                                     
+                                                    {% endif %}
+                                                     </div>
+                                                </div>
+
+                                  <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Served Date: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                      {% if pageData1.1.23 != None %}
+                                                      {% for xx in pageData1.1.23 %}
+                                                        <p style="margin-bottom: 0px;">
+                                                          <input id="poservdateF_{{xx.1}}" class="form-control theDateInput poservdateF" autofocus="" />
+                                                        </p>
+                                                        <p style="margin-top: 0px; font-size: 10px; ">Serve date for P.O.: <span style="font-size: 12px;">{{xx.1}}</span></p>
+                                                      {% endfor %}
+                                                        <p style="margin-bottom: 10px; "></p>
+                                                    
+
+                                                    {% else %}
+                                                      
+                                                           <input id="poservdateF" class="form-control theDateInput poservdateF" autofocus="" />
+                                                     
+                                                    {% endif %}
+
+
+                                                      
+                                                    </div>
+                                                </div>
+                                  
+                                  <div class="form-group" style="margin-top: {% if pageData1.1.23 != None %}30{% else %}10{% endif %}px;margin-bottom: 10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Supplier's Name: </label>
+                                            
+                                                    <div class="col-lg-8" id="suppNameDiv">
+                                                      {% if pageData1.1.23 != None %}
+                                                    
+
+                                                      {% for xx in pageData1.1.23 %}
+                                                        <p style="margin-bottom: 0px;">
+                                                          <input id="suppNameF_{{xx.1}}"  class="form-control suppNameF" role="submit" type="text" list="compSeacrhList_{{xx.1}}" autofocus>
+                                                        <datalist id="compSeacrhList_{{xx.1}}">
+                                                        </datalist>
+                                                        <span id="errorde"></span>
+                                                        </p>
+                                                        <p style="margin-top: 0px; font-size: 10px; ">Supplier for P.O.:  <span style="font-size: 12px;">{{xx.1}}</span></p>
+                                                      {% endfor %}
+                                                      <p style="margin-bottom: 30px; "></p>
+
+                                                    {% else %}
+                                                        <input id="suppNameF" class="form-control suppNameF" role="submit" type="text" list="compSeacrhList" autofocus>
+                                                          <datalist id="compSeacrhList">
+                                                          </datalist>
+                                                          <span id="errorde"></span>
+                                                    {% endif %}
+                                                        
+                                                       
+                                                    </div>
+                                                </div>
+
+                                  <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Exp. Delivery Date: </label>
+                                                    
+                                                    <div class="col-lg-8">
+
+                                                        {% if pageData1.1.23 != None %}
+                                                      {% for xx in pageData1.1.23 %}
+                                                        <p style="margin-bottom: 0px;">
+                                                          <input id="expdeldateF_{{xx.1}}" class="form-control theDateInput expdeldateF" autofocus="" />
+                                                        </p>
+                                                        <p style="margin-top: 0px; font-size: 10px; ">Delivery date for P.O.: <span style="font-size: 12px;">{{xx.1}}</span></p>
+                                                      {% endfor %}
+                                                        <p style="margin-bottom: 10px; "></p>
+                                                    {% else %}
+                                                        <input id="expdeldateF" class="form-control theDateInput expdeldateF" autofocus="" />
+                                                    {% endif %}
+
+                                                        
+                                                    
+                                                    </div>
+                                                </div>              
+                                                
+                                                
+
+                                   <div class="col-lg-12 text-right" style="padding-top: 20px;"><button class="btn btn-success" id="updatePOSerBTN" type="button" role="button">Update P.O. Information</button></div> 
+                                   </form>
+                                   </div>            
+                             
+                             {% endif %}
+
+                                            
+                             </div>
+                             
+                             
+
+
+                             
+                         </div>
+                         <div id="displayAddPO">
+                              <div class="panel panel-default">
+                                <div class="panel-body text-right">
+                                  <button class="btn btn-primary">B.A.C. Process Complete</button> 
+                                </div>
+                              </div>
+                          </div> 
+                          
+                     </div>
+                     </div>   
+                      
+
+                        
+                
+              
+                
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="addPrNumModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Set the P.R. number of the document</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                       <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">P.R. Number: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="prNumF" class="form-control" autofocus="" />
+                                                    </div>
+                                                </div>
+                                        
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="exclaNotif" data-dismiss="modal" type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="updateRQModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Update information about Request for Quotation and its status</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                       <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Quotation Number: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="prNumF" class="form-control" autofocus="" />
+                                                    </div>
+                                                </div>
+                                        
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="exclaNotif" data-dismiss="modal" type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="addSupplierModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Add supplier information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Company Name: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip" class="form-control" role="submit" type="text" list="compSeacrhList" autofocus>
+                                                        <datalist id="compSeacrhList">
+                                                        </datalist>
+                                                        <span id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Address: </label>
+                                                        
+                                                    <div class="col-lg-8">
+                                                        <input id="unit" class="form-control" />
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addListSupp" type="submit" class="btn btn-success" >Add to List</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+                </div>    
+
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/custom.js' %}"></script>
+    
+   <script type="text/javascript">
+            
+
+    $(document).ready(function () {
+        $('#pr').attr('class', 'active-menu-proc')
+        $('#proTop').attr('class', 'active-menu-top')
+        $('#proUL').attr('class','nav nav-second-level collapse in')
+    })
+
+    </script>
+    <script type="text/javascript">
+    $('#approveButton').click(function (e) {
+           
+           $('#addPrNumModal').modal('toggle')
+        })
+        $('#updateStatBTN').click(function (e) {
+            $('#updateRQModal').modal('toggle')
+            
+        })
+
+ 
+
+    $('#setPRNumBTN').click(function (e) {
+    
+      $.ajax({
+                type: 'POST',
+                url:'/procurement_office/numPR/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    'prNumInput': $('#prNumF').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        alert('Done')
+                        location.reload()
+                     
+                    }
+
+            });
+    }) 
+    
+    $('#setRQNumBTN').click(function (e) {
+     
+      $.ajax({
+                type: 'POST',
+                url:'/procurement_office/updateQuotNum/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    'rqNumInput': $('#rqNumF').val(),
+                    'rqDate': $('#rqdateF').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        alert('Done')
+                        location.reload()
+                     
+                    }
+
+            });
+    }) 
+    
+    $('#updateRQBTN').click(function (e) {
+      
+      $.ajax({
+                type: 'POST',
+                url:'/procurement_office/updateQuotInfo/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    'rqDateStart': $('#rqstartdateF').val(),
+                    'rqDateColl': $('#rqenddateF').val(),
+                    'bidNum': $('#biddNumF').val(),
+                    'bidList': JSON.stringify(theArraySupp),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        alert('Done')
+                        location.reload()
+                     
+                    }
+
+            });
+    }) 
+    
+
+    $('#saveABCBTN').click(function (e) {
+     
+      $.ajax({
+                type: 'POST',
+                url:'/procurement_office/addABCInfo/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    'abcnum': $('#abcnumF').val(),
+                    //{% if pageData1.1.8 == None%}
+                      'dFlag': 'true',
+                    //{% else %}
+                      'dFlag': 'false',
+                    //{% endif %}
+                    'abcreldate': $('#abcreldateF').val(),
+                    'abcretdate': $('#abcretdateF').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        alert('Done')
+                        location.reload()
+                     
+                    }
+
+            });
+    }) 
+
+    var numOfPO = 1
+
+    $('#addPOBTN').click(function (e) {
+     var ponums;
+     
+        if (numOfPO == 1) {
+                 ponums = document.getElementById("ponumF").value;
+
+        } 
+        else {
+          
+          ponums = document.getElementById("ponumF").value;
+          
+          for (var i = 1; i < numOfPO; i++) {
+             
+              if ($('#'+i.toString()+'_ponumF').val() != null) {
+                        ponums += '$'
+                        ponums += $('#'+i.toString()+'_ponumF').val();
+              } 
+           }
+        }
+         
+            
+      $.ajax({
+                type: 'POST',
+                url:'/procurement_office/addPOData/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    'ponum': ponums,
+                    'porelsigndate': $('#posignreldateF').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        alert('Done')
+                        location.reload()
+                     
+                    }
+
+            });
+    });
+
+    var newPONum = 1
+    
+    $('#addNewPOBTN').click(function (e){
+       
+        var htmlScript = '<div id="newPODiv_'+newPONum.toString()+'" class="col-lg-12" style="padding: 0px;">'
+            htmlScript += '<div class="panel panel-default">'
+            htmlScript += '<div class="panel-heading text-right">'
+            htmlScript += '<button class="btn btn-sm btn-default" style="border-radius:15px;"><i style="color:#d43f3a" class="icon-remove"></i></button>'
+            htmlScript += '</div>'
+            htmlScript += '<div class="panel-body">'
+            htmlScript += '<div class="col-lg-12" style="padding-bottom: 5px; font-weight: bold; padding-top: 0px;" id="phaDisplay">'
+            htmlScript += '        Purchase Order Preperation Phase'
+            htmlScript += '</div>'
+            htmlScript += ' <div class="col-lg-12" style="padding-bottom: 35px;" id="descDisplay">'
+            htmlScript += '<p>Indicate the P.O. number that was prepared from the selected bids information.</p>'
+                                   
+            htmlScript += '</div>'
+            htmlScript += '<div class="col-lg-12" id="theDisplay">'
+            htmlScript += '<form class="form-horizontal">'
+            htmlScript += '<div class="form-group" style="margin-bottom:10px;">'
+            htmlScript += '              <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">P.O. Number: </label>'
+                                            
+            htmlScript += '      <div class="col-lg-8">'
+            htmlScript += '          <input id="ponumF" class="form-control" autofocus="" />'
+            htmlScript += '     </div>'
+            htmlScript += '   </div>'
+
+                                  
+
+            htmlScript += '  <div class="form-group" style="margin-bottom:10px;">'
+            htmlScript += '       <label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;">Date Released: </label>'
+                                            
+            htmlScript += ' <div class="col-lg-8">'
+            htmlScript += '         <input id="posignreldateF"  class="form-control" autofocus="" />'
+            htmlScript += '  </div>'
+            htmlScript += '</div>'
+                                          
+
+            htmlScript += '<div class="col-lg-12 text-right" style="padding-top: 20px;"><button class="btn btn-success" id="addPOBTN_'+newPONum.toString()+'" type="button" role="button">Save P.O. Information</button></div> '
+            htmlScript += '</form>'
+            htmlScript += '</div> '
+            htmlScript += '</div> '
+            htmlScript += '</div> '
+
+            newPONum++;
+
+            document.getElementById('displayAddPO').innerHTML += htmlScript
+    }) 
+
+
+    /*
+  
+    */
+
+    
+
+    $('#addNewPONumBTN').click(function () {
+
+      var ponums1 = '';
+      
+      for (var i = 1; i < numOfPO; i++) {
+             
+              if ($('#'+i.toString()+'_ponumF').val() != null) {
+                        ponums1 += '_'
+                        ponums1 += $('#'+i.toString()+'_ponumF').val();
+              } 
+           }
+      
+      
+
+      var html = '<div id="'+numOfPO+'_addPODiv" class="form-group" style="margin-bottom:10px;">'
+          html +=     '<label for="text1" class="control-label col-lg-4 text-right" style="padding-top: 7px;"> </label>'
+          html +=      '<div class="col-lg-8">'
+          html +=           '<div class="form-group input-group"  style="padding:0px; margin:0px;">'
+          html +=               '<input id="'+numOfPO+'_ponumF" type="text" autofocus class="form-control input"  style="border-right: 1px solid #fff;">'
+          
+          html +=                 '<span class="input-group-btn">'
+          html +=                   '<button style="color:#a94442; border-left: 1px solid #fff; background-color: #fff;" class="btn btn-default" type="button" role="button" id="'+numOfPO+'_addPODivBTN">'
+          
+          html +=                     '<i class="fa fa-remove "></i>'
+          html +=                   '</button>'
+          html +=                 '</span>'
+          html +=             '</div>'
+          html +=         '</div>'
+          html +='</div>'
+
+          document.getElementById('addPODiv').innerHTML += html
+
+      var ponumsArr = ponums1.split('_')    
+      
+      for (var i = 1; i < numOfPO; i++) {
+          
+          var index = i
+          document.getElementById(index.toString()+'_ponumF').value = ponumsArr[i]
+      } 
+
+
+          numOfPO++;
+
+
+    })
+
+    $('#addPODiv').on('click', 'button', function (e) {
+        //alert(this.id) 
+
+        var id = this.id
+        var idArr = id.split('_')
+
+        $('#'+idArr[0]+'_addPODiv').remove()
+       //numOfDesc = numOfDesc - 1
+    })
+
+    $('#displayAddPO').on('click', 'button', function (e) {
+         
+    })
+    
+    var appStatusSel = null;
+    var poservdate = ''
+    var suppName = ''
+    var expdeldate = ''
+
+    function getSuppName() {
+
+         $('.poservdateF').each(function() {
+                var grade =  $(this).val();
+                if (poservdate == '') {
+                  poservdate = grade
+                }
+                else{
+                  poservdate += '$'+grade
+                }
+                
+            });
+       $('.suppNameF').each(function() {
+                var grade =  $(this).val();
+                if (suppName == '') {
+                  suppName = grade
+                }
+                else{
+                  suppName += '$'+grade
+                }
+                
+            });
+        $('.expdeldateF').each(function() {
+                var grade =  $(this).val();
+                if (expdeldate == '') {
+                  expdeldate = grade
+                }
+                else{
+                   expdeldate  += '$'+grade
+                }
+            });
+    }
+
+    $('#updatePOAppBTN').click(function (e) {
+     
+      $.ajax({
+                type: 'POST',
+                url:'/procurement_office/updatePOAppData/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    'appstatus': appStatusSel,
+                    'poretsigndate': $('#posignretdateF').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        alert('Done')
+                        location.reload()
+                     
+                    }
+
+            });
+    }); 
+    
+      $('#apprPOBTN').click(function (e) {
+      
+          $('#declPOBTN').attr('style','width: 90px; border-radius: 13px; color: #ac2925;background-color: white; border-color: #ac2925;')
+         $('#apprPOBTN').attr('style','width: 90px; border-radius: 13px;');
+          appStatusSel = true;
+
+    });
+    
+    $('#declPOBTN').click(function (e) {
+
+          $('#apprPOBTN').attr('style','width: 90px; border-radius: 13px; color: #398439;background-color: white; border-color: #398439;')
+          $('#declPOBTN').attr('style','width: 90px; border-radius: 13px;');
+          appStatusSel = false;
+          
+    });
+
+    $('#suppNameDiv').on('focusin', 'input', function(e) {
+
+          
+          var id = this.id
+          var list = $('#'+this.id).attr('list')
+
+         
+          $('#'+this.id).keyup(function(e){
+              e.preventDefault();
+                 
+                  $.ajax({
+                      type: 'POST',
+                      url:'/procurement_office/findComp/',
+                      data:{
+                          
+                          'compName': document.getElementById(id).value,
+                           csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                         
+                      },
+
+                          success: function(response) {
+
+                           
+                              for(var key in response) {
+                                  var value = response[key];
+                                  document.getElementById(list).innerHTML += '<option value ="'+value+'"/>'
+                              }
+                          }
+
+                  });
+          });
+
+    })
+
+    $('#suppNameF').keyup(function(e){
+        e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/findComp/',
+                data:{
+                    
+                    'compName': document.getElementById("suppNameF").value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                     
+                        for(var key in response) {
+                            var value = response[key];
+                            document.getElementById("compSeacrhList").innerHTML += '<option value ="'+value+'"/>'
+                        }
+                    }
+
+            });
+    });
+    $('#updatePOSerBTN').click(function (e) {
+        getSuppName()
+
+      $.ajax({
+                type: 'POST',
+                url:'/procurement_office/updatePOSerData/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    'poserdate': poservdate,
+                    'expdeldate': expdeldate,
+                    'supplier': suppName,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        alert('Done')
+                        location.reload()
+                     
+                    }
+
+            });
+    }); 
+    
+    $('.theDateInput').focusin(function () {
+        $('.theDateInput').datepicker({
+                    format: "yyyy-mm-dd"
+                }); 
+    });
+
+
+    $('#newTimelineBTN').click(function (argument) {
+          
+
+
+          $.ajax({
+                type: 'POST',
+                url:'/procurement_office/createNewTimeline/',
+                data:{
+                    
+                    'reqnum': '{{pageData1.0.0}}',
+                    'prnum': '{{pageData1.0.1}}',
+                    'prnumdate': '2018-01-01',
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        alert("added")
+                     
+                    }
+
+            });
+    })
+
+    $(document).ready(function () {
+                
+      
+                
+                var someDate = new Date();
+
+                var dateToDisplay = someDate.getFullYear()+ '-' + 
+                                    setSingleDigitToDouble(someDate.getMonth()+1)+ '-' + 
+                                   setSingleDigitToDouble(someDate.getDate());
+                 
+        
+                $('.theDateInput').val(dateToDisplay);
+
+                
+            
+            });
+
+          function setSingleDigitToDouble(input) {
+            
+            
+            var outputData = "" + input;
+            
+            
+            if (outputData.length === 1) {
+                outputData = "0"+input;
+            }
+
+            return outputData;
+
+         }
+    </script>
+    
+
+    <script type="text/javascript">
+
+      var theArraySupp = {};
+      var theArrayIndex = 1;
+
+    
+    var inn = 0  
+    $('#descrip').keyup(function(e){
+
+        e.preventDefault();
+           //alert(inn)
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/findComp/',
+                data:{
+                    
+                    'compName': document.getElementById("descrip").value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        console.log(response)
+                        //document.getElementById("price").value = ""
+                        document.getElementById("unit").value = ""
+                        //document.getElementById("quantity").value = ""
+                        //document.getElementById("email").value = ""
+                        document.getElementById("compSeacrhList").innerHTML = ""
+                        
+                        for(var key in response) {
+                            var value = response[key];
+                            document.getElementById("compSeacrhList").innerHTML += '<option value ="'+value+'"/>'
+                        }
+                    }
+
+            });
+
+            //inn++;
+    });
+
+
+
+    $("#descrip").on('input', function () {
+        var val = this.value;
+               
+        if($('#compSeacrhList option').filter(function(){
+            return this.value === val;        
+            }).length) {
+                
+
+                  $.ajax({
+                  type: 'POST',
+                  url:'/procurement_office/getSupplierDetails/',
+                  data:{
+                      'compName': this.value,
+                       csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                     
+                  },
+
+                      success: function(response) {
+
+                          //document.getElementById("price").value = response.address
+                          document.getElementById("unit").value = response.address
+                         
+                      }
+
+              });
+
+            //send ajax request  
+        //alert(this.value);
+    }
+});
+
+
+    $('#addListSupp').click(function (argument) {
+          var compName = $('#descrip').val()
+          var addrs = $('#unit').val()
+          //alert($('#unit').val())
+
+          theArraySupp[parseInt(theArrayIndex)] = {'1':compName,'2':addrs};
+          $('#biddNumF').val(''+theArrayIndex)
+          theArrayIndex = theArrayIndex + 1
+
+          var tr = '<tr id="'+theArrayIndex+'_tr">'
+              tr +=     '<td><button disabled="" class="btn btn-xs" style="border-radius:15px; color: #000; background-color: #fff; border: 3px solid #000; font-weight: bold; width: 15px; height: 15px "></button> </td>'
+              tr +=     '<td>'
+              tr +=         '<div>'
+              tr +=           '<p style="font-size: 15px; font-weight: bold; padding-bottom: 0px;">'+compName+'</p>'
+              tr +=           '<p style="font-size: 12px; margin-top: 0px; margin-bottom: 0px;">'+addrs+'</p>'
+              tr +=           '<p class="text-right" style="margin: 0px;"><button id="'+theArrayIndex+'_edt" class="btn btn-xs btn-success" style="margin-right: 8px;border-radius: 15px; width: 27px; height: 27px;"><i class="icon-edit"></i></button><button id="'+theArrayIndex+'_rmv" class="btn btn-xs btn-danger"  style="border-radius: 15px; width: 27px; height: 27px;"><i class="icon-remove"></i></button></p>'
+              tr +=         '</div>'
+              tr +=     '</td>'
+              tr += '</tr>'
+
+          document.getElementById('suppTable').innerHTML += tr
+
+          $('#descrip').val('')
+          $('#unit').val('')
+          
+          $('#addSupplierModal').modal('toggle')
+          console.log(theArraySupp)
+
+
+
+    })
+
+    </script>
+
+{% endblock %}

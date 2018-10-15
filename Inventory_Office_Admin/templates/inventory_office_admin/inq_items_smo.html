@@ -1,0 +1,758 @@
+{% extends 'requisitioner/base.html' %}
+
+{% load staticfiles %}
+{% block content %}   
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                       <span name="reqNum" id="reqNum">Inquire Items Available for Requisition</span>
+
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+            
+        
+
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Items for Requisition</h3>
+                            </div>
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                         
+                                 <div class="panel-body" style="
+                                 padding:0px;
+                                 ">
+
+                            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel panel-default">
+                            <div class="table-responsive">
+                          <table id="myTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table">
+                                        
+                                    </tbody>
+                                </table>
+                                
+                                <button class="btn btn-sm btn-success" role= "button" aria-disabled="true" data-toggle="modal"  data-target="#inqModal"><i class="icon-plus"></i> Add New Item</button>
+                            </div>
+
+
+                        </div>
+                        <div class="header-right">
+                            
+                        <div class="form-group">
+               </div>  
+
+
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                                
+                            </div>
+                           
+                        </div>
+
+                        </div>
+
+                    
+
+                    </div> 
+     
+                        </div>
+                        </div>
+                            </div>
+
+                              <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                           
+                            <div class="panel-body">
+                           
+      <div class="form-group">
+                    <label for="autosize" class="control-label col-lg-4" style=" font-size: 17px;">The Purpose of the Request:</label>
+
+                    <div class="col-lg-6" >
+                            {% if pageData1.0 != None %}
+                                  <textarea id="autosize" value="{{pageData1.0.2}}" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 100px;">{{pageData1.0.2}}</textarea>      
+                            
+                            {% else %}
+                                <textarea id="autosize" placeholder="Enter a short paragraph about the details of your purpose of inquiring these items" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 100px;"></textarea>
+                                        
+                            {% endif %}
+                        
+                    </div>
+
+                </div>
+                           
+                        </div>
+                        </div>
+                              <div class="panel panel-default">
+                           
+                            <div class="panel-body">
+                 <form id="addForm" action="" method="POST">{% csrf_token %}
+                       <div class="form-group">
+                 
+                  <div class="header-right" style="padding-right: 40px;">
+                         <button id="viewD" role="button" type="button" class="btn btn-info" role ="button" aria-disabled="true"><i class="icon-file"></i> View Document</button>
+                         <button id="send" class="btn btn-success" role= "submit" aria-disabled="true"><i class="icon-upload"></i> Send Request</button>
+                   </div> 
+
+               </div>
+                       
+
+
+                 </form>          
+              
+                        </div>
+                        </div>
+                            </div>          
+
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+        <!-- -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="inqModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Enter the Descritpion of the Item to Inquire</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip" list="descripList" class="form-control" autofocus>
+                                                        <datalist id="descripList">
+                                                        </datalist>
+                                                        <span for="descrip" id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Status: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                     
+                                                        <div id="theStatusDiv" class="panel panel-info" style="margin:0px;">
+                                                            <div class="panel-heading">
+                                                                <div class="row">
+                                                                    <div class="col-xs-1">
+                                                                        <i id="statusIcon" class="fa icon-spinner fa-1x"></i>
+                                                                    </div>
+                                                                    <div class="col-xs-9">
+                                                                        <div id="statusMsg" style="display:inline;">Checking</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                    
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Available By: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input disabled="" id="price" class="form-control" value="" />
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;display:none">
+                                                    <label for="text1" class="control-label col-lg-4">Available By: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input disabled="" id="unit" class="form-control" value="" />
+                                                    </div>
+                                                    
+                                                </div>
+                                        
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Quantity to Request: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="quantity" class="form-control" />
+                                                    </div>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList" type="submit" class="btn btn-success" >Add to List</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="editReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> New Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip2" class="form-control" autofocus>
+                                                        <span  id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Unit: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="unit2" class="form-control" />
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                            
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price2" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Quantity: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="quantity2" class="form-control" />
+                                                        <span id="errorqu"></span>
+                                                    </div>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList2" type="submit" class="btn btn-success" >Update List</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="errorReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Form was not filled completely.</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">It is either that no Items were added or the purpose was not indicated .</p>
+                                        <p style="margin-bottom:10px;">Please provide all the informations ask before sending this request.</p>   
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList2" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transComp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Request Saved and Sent.</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">Your request was sent and now currently waiting for approval</p>
+                                        <p style="margin-bottom:10px;">You will be notified as soon as your request's approval is decided</p>   
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+            <!-- Put code here -->
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    <script type="text/javascript">
+       
+       var total = 0
+       var theArray = {}
+       var theArrayIndex = 0       
+       var prevTotal = 0;
+
+       var itemIDData = ''
+       var descrip = ''
+       var unit = ''
+       var quantity = ''
+       var price = ''
+      
+      $('#addList').click(function() {
+            
+            descrip = $('#descrip').val();
+            quantity = $('#quantity').val();
+            unit = $('#unit').val();
+            price = $('#price').val();
+
+
+            if (price == '') {
+
+
+            }
+
+            else{
+                    var t = ''
+                    var tr = '<tr id = "'+theArrayIndex+'_tr">';
+                             tr += '<td>'+descrip+'</td>';
+                             tr += '<td class="text-center">'+capitalizeFirstLetter(unit)+'</td>';
+                             tr += '<td class="text-center">'+comaSegregator(quantity)+'</td>';
+                             tr += '<td class="text-center">';
+                             tr += '<button id = "'+theArrayIndex+'_editRow" value="'+theArrayIndex+'" data-toggle="modal"  data-target="#editReg" class="btn btn-xs btn-success" role= "button" aria-disabled="true"><i class="icon-edit"></i></button>';
+                             tr += ' <button id = "'+theArrayIndex+'_removeRow" value="'+theArrayIndex+'" class="btn btn-xs btn-danger" role= "submit" aria-disabled="true"><i class="icon-remove"></i></button>';
+                             tr +='</td>';
+                             tr += "</tr>";
+                             t += tr;
+                    
+                    
+                    document.getElementById("table").innerHTML += t;
+
+                    theArray[theArrayIndex] = {'1':descrip, '2':unit, '3':quantity};
+                    
+                    theArrayIndex = theArrayIndex + 1;
+            }
+
+
+            
+             
+            document.getElementById("descrip").value = "";
+            document.getElementById("unit").value = "";
+            document.getElementById("quantity").value = "";
+
+            $("#theStatusDiv").attr('class', 'panel panel-info')
+            $("#statusIcon").attr('class', 'icon-spinner')
+            $("#statusMsg").html('Checking')
+            $("#price").val('');
+            $('#unit').val('');
+            $('#descrip').val();
+
+            $("#addList").attr('class', 'btn btn-success')
+            $("#addList").html('Add to List')
+
+            $('#inqModal').modal('toggle');
+
+
+      });
+
+
+     $('#myTable').on('click','button', function (e) {
+        var id = this.id;
+        var value = document.getElementById(id).value
+        var theArrayData = theArray[value]
+        prevTotal = theArrayData['3']*theArrayData['4'];
+        
+        if (id === value+'_removeRow') {
+            
+            
+            $(this).closest ('tr').remove ();
+
+            delete theArray[value];
+
+        } else {
+
+            
+            
+            document.getElementById("descrip2").value = theArrayData['1'];
+            document.getElementById("unit2").value = theArrayData['2'];
+            document.getElementById("price2").value = theArrayData['3'];
+            document.getElementById("quantity2").value = theArrayData['4'];
+            
+            $('#addList2').val(value);
+        
+        }
+
+    });
+
+
+    $('#descrip').keyup(function(e) {
+
+            if ($('#descrip').val() == '') {
+
+            $("#theStatusDiv").attr('class', 'panel panel-info')
+            $("#statusIcon").attr('class', 'icon-spinner')
+            $("#statusMsg").html('Checking')
+
+            }
+            else{
+
+
+
+            e.preventDefault();
+
+            
+            $.ajax({
+                type: 'POST',
+                url:'/requisitioner/findSupplyItems/',
+                data:{
+                    
+                    'descripData': $('#descrip').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        
+                        document.getElementById("descripList").innerHTML = "";
+
+                        if (response == "No Match") {
+                            $("#theStatusDiv").attr('class', 'panel panel-danger')
+                            $("#statusIcon").attr('class', 'icon-exclamation')
+                            $("#statusMsg").html("SMO doesn't have this item")
+                            $("#price").val('')
+
+                            $("#addList").attr('class', 'btn btn-primary')
+                            $("#addList").html('Ok')
+                        }
+                        else{
+                            
+                            $('#classifDiv').attr('style', 'display:none')
+                            for(var key in response) {
+                               
+                                var value = response[key];
+                                document.getElementById("descripList").innerHTML += '<option id="'+key+'" value ="'+value['name']+'"/>'
+
+                            }
+
+
+                        }    
+                        
+                     
+                    }
+
+            });
+
+            }    
+
+       })
+
+
+
+    $("#descrip").on('input', function () {
+       
+        var val = this.value;
+        var id = $('#descripList option[value="' + val +'"]').attr('id');
+         itemIDData = id
+
+            $.ajax({
+                type: 'POST',
+                url:'/requisitioner/getSupplyAvailability/',
+                data:{
+                    
+                    'suppItemID': id,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        
+                        
+                        if (response['quantity'] == 'None') {
+                            $("#theStatusDiv").attr('class', 'panel panel-danger')
+                            $("#statusIcon").attr('class', 'icon-remove')
+                            $("#statusMsg").html('No inv. item match to your input')
+                            $("#price").val('')
+                            $("#addList").attr('class', 'btn btn-primary')
+                            $("#addList").html('Ok')
+                        }
+                        else{
+
+                            if (response['quantity'] == 0) {
+
+                                $("#theStatusDiv").attr('class', 'panel panel-danger')
+                                $("#statusIcon").attr('class', 'icon-remove')
+                                $("#statusMsg").html('Out of Stock')
+                                $("#price").val('')
+                                $("#addList").attr('class', 'btn btn-primary')
+                                $("#addList").html('Ok')
+                            }
+                            else{
+
+                                $("#theStatusDiv").attr('class', 'panel panel-success')
+                                $("#statusIcon").attr('class', 'icon-ok')
+                                $("#statusMsg").html('Available')
+
+                                $("#price").val(response['quantity'] +' '+response['unit'] )
+                                $('#unit').val(response['unit'])
+
+                                $("#addList").attr('class', 'btn btn-success')
+                                $("#addList").html('Add to List')
+                            }
+                           
+                        }
+                     
+                    }
+
+            });
+      }); 
+
+
+    
+    document.getElementById("send").onclick = function() {
+            var purpose = document.getElementById("autosize").value;
+
+            if (purpose == ""|| theArrayIndex  == 0) {
+                    $('#errorReg').modal('toggle');
+                    //alert("Form was not filled completely Either no Items added or indicated purpose")
+                    return false;
+            } else {
+
+                    return true;
+            }
+    }    
+
+    //document.getElementById("removeRow").onclick = function () {
+       // var row = document.getElementById("removeRow").value;
+        //deleteRow(row);
+   // };
+
+    //document.getElementById("send").onclick = function() {
+       // alert("GGWP");
+   // }
+
+   $('#price').keypress(function(event){
+
+       if(event.which != 8 && isNaN(String.fromCharCode(event.which))){
+            document.getElementById("errorpr").innerHTML = "Non-number input is not allowed" 
+           event.preventDefault(); //stop character from entering input
+       }
+       else{
+        document.getElementById("errorpr").innerHTML = ""
+        $('#price').removeAttr("style") 
+       }
+
+   });
+
+   $('#quantity').keypress(function(event){
+
+       if(event.which != 8 && isNaN(String.fromCharCode(event.which))){
+            document.getElementById("errorqu").innerHTML = "Non-number input is not allowed" 
+           event.preventDefault(); //stop character from entering input
+       }
+       else{
+        document.getElementById("errorqu").innerHTML = "" 
+       }
+
+   });
+
+   $('#sentNotif').click(function () {
+       
+       $('#transComp').modal('toggle')
+       window.location.href = "/requisitioner/ris/";
+   
+   })
+
+    $(document).on('submit', '#addForm', function(e){
+            
+            e.preventDefault();
+            
+            
+            $.ajax({
+                type: 'POST',
+                url:'/requisitioner/addris/',
+                data:{
+                    
+                    theMatrix: JSON.stringify(theArray),
+                    purpose: $('#autosize').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function() {
+                        $('#transComp').modal('toggle')
+                        
+                    }
+
+            });
+
+
+    });
+
+    function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+        function comaSegregator(input){
+
+        var output = ""
+        var indexCheck = 1
+        for (var i = input.length - 1; i >= 0; i--) {
+            
+            if (indexCheck%3 == 0) {
+
+                if (i == 0) {
+                     output = input[i] + output;
+                    indexCheck = indexCheck + 1;
+
+                } else {
+                     output = ", " + input[i] + output;
+                    indexCheck = indexCheck + 1;
+                }
+                   
+            } else {
+                output = input[i] + output;
+                indexCheck = indexCheck + 1;
+            }
+        }
+
+        return(output)
+    }
+
+
+
+
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            
+            $('#risTop').attr('class', 'active-menu-top theAsTop');
+            $('#risUL').attr('class', 'nav nav-second-level theUL collapse in');
+            $('#inquire').attr('class', 'active-menu-requi theAs');
+       
+        })
+       
+        
+    </script>
+{% endblock %}
+

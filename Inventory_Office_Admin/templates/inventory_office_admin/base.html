@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="title">Supply Management Office</title>
+    {% load staticfiles %}
+   <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-inven.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/main_progress.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'assets/css/aScript.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <link href="{% static 'assets/css/wizard/jquery.steps.css' %}" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+    
+    <link href="{% static 'assets/plugins/morris/morris-0.4.3.min.css' %}" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-spinner.css' %}">
+
+    <style type="text/css">
+        
+        
+                .tablescroll{
+                   overflow-y:scroll;
+                    height:480px;
+                   display:block;
+                        }
+                .tablescroll2{
+                   overflow-y:scroll;
+                    height:348px;
+                   display:block;
+                        }
+                .tablescroll3{
+                   overflow-y:scroll;
+                    height:560px;
+                   display:block;
+        }
+
+
+    </style>
+    <style type="text/css">
+        
+        .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont3{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+        
+         }
+
+         .dataFont4{
+            
+            font-weight: 450;  
+            font-size: 15px;
+         }
+                 .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px; 
+            margin-bottom:2px;
+
+        }
+
+            /* Style The Dropdown Button */
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #f1f1f1}
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+    </style>
+    
+</head>
+<body>
+
+        <div id="wrapper">
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" 
+                    style="
+                        margin-bottom: 0px;
+                          ">
+           
+           <div  class="navbar-header navbar-brand"></div>
+
+           <ul class="nav navbar-right top-nav" 
+                        style="
+                        margin-right: 50px;
+                        ">
+                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul id="theTaskULtoHover" class="dropdown-menu message-dropdown">
+                    
+                    <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body " style="margin-left:95px;">
+                                        <h5 class="media-heading">
+                                            <strong>Tasks</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+
+                    {% if taskNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No task to process at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}    
+                    
+                    {% for x in taskDetails %}
+                        
+                        <li class="message-preview" id="{{x.0}}_li" value="{{x.0}}">
+                            
+
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> {{x.6}} at {{x.7}}</p>
+                                        <p style="margin-bottom:5px;">
+                                           {% if x.3 == ''%}
+                                            {{x.3}}
+                                           {% else %}
+                                           • {{x.3}}
+                                           {% endif %}
+                                            
+                                        </p>      
+                                        <p>
+                                        {% if x.4 == ''%}
+                                            {{x.4}}
+                                        {% else %}
+                                           • {{x.4}}
+                                        {% endif %}
+                                        </p>
+                                    </div>
+                                    <form action="/inventory_office_admin/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                     {% endfor %}   
+
+
+                    </ul>
+                </li>    
+                
+                <li class="dropdown">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul id="theNotifULtoHover"  class="dropdown-menu message-dropdown">
+                        
+                        <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body" style="margin-left:75px;">
+                                        <h5 class="media-heading">
+                                            <strong>Notifications</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unread notification at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}
+
+                       {% for x in notifDetails %}
+
+                       <li class="message-preview" id="{{x.0}}_li" value="{{x.0}}">
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i>  {{x.6}} at {{x.7}}</p>
+                                         <p style="margin-bottom:5px;">
+                                           {% if x.3 == ''%}
+                                            {{x.3}}
+                                           {% else %}
+                                           • {{x.3}}
+                                           {% endif %}
+                                            
+                                        </p>      
+                                        <p>
+                                        {% if x.4 == ''%}
+                                            {{x.4}}
+                                        {% else %}
+                                           • {{x.4}}
+                                        {% endif %}
+                                        </p>
+                                    </div>
+                                    <form action="/inventory_office_admin/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                    {% endfor %} 
+                       
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="width:220px;">
+                        <li>
+                            <a href="/inventory_office/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/inventory_office/equipement"><i class="fa fa-fw fa-qrcode"></i> Equipment Inventory</a>
+                        </li>
+                        <li>
+                            <a href="/inventory_office/inventory"><i class="fa fa-fw icon-paper-clip" style="margin-left:4px;margin-right:4px;"></i> Supplies Inventory</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/inventory_office/receive/"><i class="fa fa-fw fa-truck"></i> Received Items</a>
+                        </li>
+                        <li>
+                            <a href="/inventory_office/accounts"><i class="fa fa-fw fa-group"></i> Employee Acct. Items</a>
+                        </li> 
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw icon-desktop" style="margin-left:4px;margin-right:4px;"></i> Switch User-Type</a>
+                        </li>                       
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa fa-fw icon-signout" style="margin-left:4px;margin-right:4px;"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             <ul id="searchFieldSmall" class="nav navbar-right top-nav col-lg-4" style="margin-right:110px; margin-left:auto;">
+                        
+                <div>
+
+
+                    <form action="/inventory_office/search/" method="post">{% csrf_token %}
+                    
+                        <div class="form-group input-group"  style="padding:0px; padding-top:10px; margin:0px;">
+                          
+                           <input name="search_input" type="text" autofocus class="form-control input-sm" placeholder="Search for Inventory Information">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-primary btn-sm" type="submit" name="search_button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                  
+                    </form>
+                
+                </div>
+            </ul>
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        <div class="user-img-div">
+
+                            <a href="/inventory_office/profile"><img src="{% static 'assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="/inventory_office/profile" class = "inner-text">{{name}}</a>
+                            <br />
+                                <p style="padding: 0px; margin: 0px; font-size: 11px;">{{designation}}</p>
+                                <p  style="padding: 0px; margin: 0px; font-size: 11px;">{{dept}}</p>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+                     <li>
+                        <a   class="theAs"   href="/requisitioner"><i ></i>Requisitioner <span style="float:right;padding-top: 3px;" class="icon-signout"></span></a>
+                    </li>
+                    <li>
+                        <a id="home"  class="theAs"   href="/inventory_office_admin"><i class="fa fa-home "></i>Dashboard</a>
+                    </li>
+                    
+                     <li>
+                        <a id="inquire"    href="/inventory_office_admin/ris/"><i class="fa fa-question "></i>Item Inquiries (RIS)</a>
+                    </li>
+                    <li>
+                        <a id="reftop"  class="theTopAs" href="#"><i class="icon-folder-close"></i>Reference Docs<span class="fa arrow"></span></a>
+                         <ul id="theRefUL" class="nav nav-second-level">
+                            <li>
+                                <a id="pr" class="theAs"   href="/inventory_office_admin/pr/"><i class="icon-file"></i>Purchase Req.</a>
+                            </li>
+                            <li>
+                                <a id="rqac" class="theAs"   href="/inventory_office_admin/quotations/"><i class="icon-file"></i>Quotations</a>
+                            </li>
+                            <li>
+                                <a id="po" class="theAs"   href="/inventory_office_admin/po/"><i class="icon-file"></i>Purchase Orders</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a id="inventoryTop"  class="theTopAs" href="#"><i class="icon-book "></i>Inventory<span class="fa arrow"></span></a>
+                         <ul id="theInvenUL" class="nav nav-second-level theULs">
+                         <li>
+                                <a id="items" class="theAs"   href="/inventory_office_admin/items"><i class="icon-list"></i>Items</a>
+                                
+                            </li>
+                            <li>
+                                <a id="equipment" class="theAs"   href="/inventory_office_admin/equipement"><i class="icon-qrcode"></i>Equipment</a>
+                            </li>
+                            <li>
+                                <a id="supply" class="theAs"   href="/inventory_office_admin/inventory"><i class="icon-paper-clip"></i>Supplies</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                     
+                    
+                    <li>
+                        <a id="acctTop" class="theTopAs"  href="#"><i class="icon-print"></i>Transactions<span class="fa arrow"></span></a>
+                         <ul id="theAcctUL" id="acctTop" class="nav nav-second-level theULs">
+                            <li>
+                                <a id="all_items" class="theAs"   href="/inventory_office_admin/receive"><i class="icon-truck"></i>Deliveries</a>
+                            </li>
+                            <li>
+                                <a id="par" class="theAs"   href="/inventory_office_admin/accounts"><i class="icon-list-alt"></i>Prop. Acc. Rec.</a>
+                            </li>
+                            <li>
+                                <a id="wmr" class="theAs"   href="/inventory_office_admin/wmr"><i class="icon-trash"></i>Waste Ins. Req.</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a id="office"   href="/inventory_office_admin/offices"><i class="icon-building"></i>Offices</a>
+                        
+                    </li>
+                     
+          
+                </ul>
+            </div>
+
+</div>
+        </nav>
+            {% block content %}
+
+
+
+            {% endblock %}
+     <script type="text/javascript">
+         
+     $('#theTaskULtoHover').on('hover', 'li', function (argument) {
+         console.log(this.id)
+     });
+
+     $('#theNotifULtoHover').on('click', 'li', function (argument) {
+         console.log(this.id)
+     });
+
+     var id = ''
+     
+     $('.message-preview').mousemove(function(evt){
+                
+                
+                
+                if (this.id != '') {
+
+                    console.log("the ID " + id +" dsds")
+                   
+                    if (id != this.id) {
+
+                        id = this.id    
+                        
+                        var value = $(this).attr('value')
+                        console.log(value);
+                        
+                        $.ajax({
+                            type: 'POST',
+                            url:'/inventory_office/checkNotification/',
+                            data:{
+                            
+                                'notifNum': value,
+                                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                           
+                            },
+
+                            success: function(response) {
+                                    
+                                } 
+                        }); 
+
+                        
+                    
+                    }
+
+                    
+                }
+                // console.log(this.id)
+        });
+
+     </script>
+</body>
+</html>
+
+
+
+   
+

@@ -1,0 +1,93 @@
+body {
+    font-family: 'Alegreya Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+  width: 100%;
+  margin: 0px; 
+}
+.progressbar2 {
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+}
+.progressbar2 li {
+  list-style-type: none;
+  width: 16%;
+  float: left;
+  font-size: 12px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  color: #7d7d7d;
+}
+
+.progressbar2 li:before {
+  width: 30px;
+  height: 30px;
+  content: counter(step);
+  counter-increment: step;
+  line-height: 30px;
+  border: 2px solid #7d7d7d;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.progressbar2 li:after {
+  width: 100%;
+  height: 2px;
+  content: '';
+  position: absolute;
+  background-color: #7d7d7d;
+  top: 15px;
+  left: -50%;
+  z-index: -1;
+}
+.progressbar2 li:first-child:after {
+  content: none;
+}
+.progressbar2 li.error {
+  color: red;
+}
+.progressbar2 li.error:before {
+  border-color: #ff0000;
+}
+.progressbar2 li.error + li:after {
+  background-color: #ff0000;
+}
+
+.progressbar2 li.pending {
+  color: #f0ad4e;
+}
+.progressbar2 li.pending:before {
+  border-color: #f0ad4e;
+}
+.progressbar2 li.pending + li:after {
+  background-color: #f0ad4e;
+}
+
+.progressbar2 li.active {
+  color: green;
+}
+.progressbar2 li.active:before {
+  border-color: #55b776;
+}
+.progressbar2 li.active + li:after {
+  background-color: #55b776;
+}
+
+.progressbar2 li.hover {
+  color: #428bca;
+}
+.progressbar2 li.hover:before {
+  border-color: #428bca;
+}
+.progressbar2 li.hover + li:after {
+  background-color: #428bca;
+
+

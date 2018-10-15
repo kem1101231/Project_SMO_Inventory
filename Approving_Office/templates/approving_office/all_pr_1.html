@@ -1,0 +1,283 @@
+﻿{% extends 'approving_office/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+         
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                    
+                     Purchase Requests 1
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 <div class="col-lg-12" style="display:none">
+                 <div class="panel panel-default">
+                     
+                 <div class="panel-body">
+                     <div class="col-lg-3 text-center" >
+                         
+                         <div style="padding-bottom:10px; font-size:17px;">Total Request Received</div>
+                         <div><button class="btn btn-lg  btn-primary" style="background-color:white; color:#357ebd; font-weight:bold; border-radius:23px;">0000</button></div>
+
+                     </div>
+                     <div class="col-lg-3 text-center" >
+                         
+                         <div style="padding-bottom:10px; font-size:17px;">Currently Pending</div>
+                         <div><button class="btn btn-lg btn-warning" style="background-color:white; color:#eea236; font-weight:bold; border-radius:23px;">0000</button></div>
+
+                     </div>
+                     <div class="col-lg-3 text-center" >
+                         
+                         <div style="padding-bottom:10px; font-size:17px;">Total Approved Requests</div>
+                         <div><button class="btn  btn-lg btn-success" style="background-color:white; color:#4cae4c; font-weight:bold; border-radius:23px;">0000</button></div>
+
+                     </div>
+                     
+                     <div class="col-lg-3 text-center" >
+                         
+                         <div style="padding-bottom:10px; font-size:17px;">Total Declined Requests</div>
+                         <div><button class="btn btn-lg btn-danger" style="background-color:white; color:#d43f3a; font-weight:bold; border-radius:23px;">0000</button></div>
+
+                     </div>
+                 </div>
+
+                 </div>
+                     
+
+
+                 </div>
+                <div class="col-lg-12" style="">
+                         <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="padding:0px;padding-top:20px; ">
+                                
+
+                       <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-1x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Total</div>
+                                       <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.0}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-ok"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Approved</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.1}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa  icon-spinner"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Pending</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.2}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-exclamation-sign"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  style="display:inline;">Denied</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.3}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+
+                <div class="col-lg-6" style="display:none">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Most Included Items on Purchase Requests</div>
+                        <div class="panel-body">
+                            
+                        </div>
+
+                    </div>
+                </div>  
+
+                <div class="col-lg-6" style="padding-left:0px; display:none;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Offices with Most Approved Requests</div>
+                        <div class="panel-body">
+                            
+                        </div>
+
+                    </div>
+                </div>     
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-body" style="padding-bottom:0px;">
+                                  <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:0px;">
+                                  
+                                    <div class="form-group input-group" style="padding:0px;margin:0px;">
+                               
+                                                <input type="text" class="form-control input-sm" placeholder="Search for Office Name" >
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default btn-sm " type="button">
+                                                            <i class="fa fa-search "></i>
+                                                        </button>
+                                                    </span>
+                                                </div> 
+
+
+                                    </div>
+                             </div>
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Office</th>
+                                            <th class="text-center" style="width:110px;">Pending </th>
+                                            <th class="text-center" style="width:120px;">Approved</th>
+                                            <th class="text-center" style="width:110px;">Declined</th>
+                                            <th class="text-center" >Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for x in pageData1 %}
+
+                                       
+                                        <tr>
+                                            <td> {{x.1}} </td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/approving_officer/prListDetails/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details</button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                       {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>
+
+
+               <!-- ====================================================================================== -->     
+
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; 2016 Mindanao State University - General Santos City 
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'approving_office/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'approving_office/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'approving_office/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'approving_office/assets/js/custom.js' %}"></script>
+
+    
+
+{% endblock %}
+

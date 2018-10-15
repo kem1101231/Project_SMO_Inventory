@@ -1,0 +1,155 @@
+﻿{% extends 'procurement/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+         <div id="page-wrapper">
+            <div id="page-inner" style="
+            margin-bottom: 0px;
+            ">
+
+            <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                                        
+                       
+                        <div class="btn-group">
+                                       <a data-toggle="dropdown" class="btn btn-success"><i class="icon-plus"></i> New Supplier Information</a>       
+                         </div>
+
+                </div>
+
+               <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                ">
+                <div>
+                    
+                     Recorded Suppliers' Information
+                </div>
+                  <hr> 
+               </div>
+
+               <div class="panel new-panel-ds"
+                        style="
+                        margin-bottom: 0px;
+                             ">
+                
+                                <div id="wrap" style="position:relative;">
+                            <div id="wrap" style="position:relative;">
+                            <div id="left" class ="panel"
+                                style="
+                                    
+                                    height: 625px;
+                                 
+                                ">
+                                 <div class="panel-body" style="
+                                 padding-top:0px;
+                                 padding-left: 0px;
+                                 padding-right: 0px;
+                                 ">
+
+                            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel">
+                            
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                           
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>Representative</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            {% for x in pageData1 %}
+                                                <tr style="display: none">
+                                                    <td colspan="4">{{x}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{x.1}}</td>
+                                                    <td>{{x.2}}</td>
+                                                    <td>{{x.3}}</td>
+                                                    <td class="text-center">
+                                                       
+                                                       <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                                   
+                                                    </td>
+                                                </tr>
+
+                                            {% endfor %}
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                            </div>
+
+                        </div>
+
+                    </div> 
+  </div>
+
+                    </div> 
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <div id="footer-sec">
+       &copy; Mindanao State University <i class=" buttom-header-right">Equipement Inventory </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/plugins/morris/raphael-2.1.0.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/morris/morris.js' %}"></script>
+
+   
+   <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#suppliers').attr('class', 'active-menu-proc')
+        $('#theT').html('Suppliers')
+    })
+
+    </script>
+
+{% endblock %}

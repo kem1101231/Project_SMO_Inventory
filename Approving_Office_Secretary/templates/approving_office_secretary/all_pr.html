@@ -1,0 +1,303 @@
+﻿{% extends baseSource %}
+{% load staticfiles %}
+{% block content %}
+        <div id="page-wrapper">
+
+
+
+            <!--  ========================================================   -->
+            <!--  ========================================================  
+
+              <div style="   
+                                     display:inline;
+                                     padding: 0px;
+                                     margin: 0px;
+                                     margin-top: 51px;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                        
+                        <div class="btn-group">
+                                        <a data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="icon-bar-chart"></i> Generates Inventory Reports<span style="margin-left:5px;" class="caret"></span></a>
+                                        <ul class="dropdown-menu message-dropdown" style="right:0;">
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#" ><i class="icon-list-alt" style="margin-left:4px;margin-right:6px;"></i> Physical Count of Property</a>
+                                            </li>
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#"><i class="icon-trash" style="margin-left:4px;margin-right:10px;"></i> Waste Material Report</a>
+                                            </li>
+
+
+                                        </ul>
+                         </div>
+                </div> -->
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:48px; 
+
+                ">
+                <div>
+                    
+                    Purchase Requests
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="padding-bottom:0px;">  
+                            <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                                <div class="form-group input-group" style="padding:0px;margin:0px;">
+                           
+                                            <input type="text" class="form-control input-sm" placeholder="Find PR" >
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default btn-sm " type="button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div> 
+
+
+                                </div>
+                            </div>
+                            <div class="panel-body" style=" padding-right: 0px; padding-top:10px;">
+                            
+
+                            <div class="panel">
+                            <!-- 
+                          
+ -->
+                               <div class="panel-body" style="padding-top:0px;">
+                           
+                            <div class="table-responsive">
+                                <table  class="table table-hover table-bordered">
+                                    <thead style="background: #333; color: white;">
+                                        <tr>
+                                           
+                                            <th style="width:280px;">Requesting Office</th>
+                                            <th style="width:280px;">Purpose</th>
+                                            <th class="text-center" style="width:150px;">Date Prepared</th>
+                                            <th class="text-center" style="width:120px;">Doc. Status</th>
+                                            <th class="text-center" style="width:120px;">Action Taken</th>
+                                            <th class="text-center" style="width:95px;">Details</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableList">
+                                    {% for x in pageData1 %}
+                                        <tr style="display: none">
+                                            <td colspan="6">
+                                                {% for xx in x %}
+                                                    <p>{{xx}}</p>
+                                                {% endfor %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{x.3.2.1}}</td>
+                                            <td>{{x.0.2}}</td>
+                                            <td class="text-center">{{x.0.5}}</td>
+                                            <td class="text-center">
+                                            {% if pageData2.0.0 == 'vcaf' %}
+                                                {% if x.1.2 == None %}
+                                                <button class="btn btn-sm btn-warning" id="recBTN_{{x.0.0}}" value="{{x.0.0}}" style="border-radius: 15px; outline: none;">Receive</button></td>
+                                                 
+                                                {% else %}
+
+                                                    {% if x.1.3 != None %}
+                                                    <button class="btn btn-sm btn-primary" style="border-color: #285e8e; color: #285e8e; background: white;">Released</button></td>
+                                                    {% else %}
+                                                    <button class="btn btn-sm" style="border-color: #449d44; color: #449d44; background: white;" >Received</button></td>
+                                                    {% endif %}    
+
+                                                {% endif%}
+                                            {% else %}
+                                            {% if x.1.5 == None %}
+                                                 <button class="btn btn-sm btn-warning" id="recBTN_{{x.0.0}}" value="{{x.0.0}}" style="border-radius: 15px; outline: none;">Received</button></td>
+                                                {% else %}
+
+                                                    {% if x.1.7 != None %}
+                                                    <button class="btn btn-sm btn-primary" style="border-color: #285e8e; color: #285e8e; background: white;">Released</button></td>
+                                                    {% else %}
+                                                    <button class="btn btn-sm" style="border-color: #449d44; color: #449d44; background: white;">Received</button></td>
+                                                    {% endif %}    
+
+                                                {% endif%}
+
+                                            {% endif %}
+
+                                          <td class="text-center">
+                                              {% if pageData2.0.0 == 'vcaf' %}
+                                                    {% if x.1.1 == None %}
+                                                        <button class="btn btn-sm" style="border-color: #d58512; color: #d58512; background: white;" disabled="">No Action Yet</button>
+                                                    {% else %}
+                                                        {% if x.0.7 == True %}
+                                                            <button class="btn btn-sm" style="border-color: #398439; color: #398439; background: white; width: 90px;" disabled=""><i class="icon-ok"></i> Approved</button>
+                                                                    
+                                                        {% else %}
+                                                             {% if x.0.7 == False %}
+                                                             <button class="btn btn-sm " style="border-color: #d43f3a; color: #d43f3a; background: white; width: 90px;" disabled=""><i class="icon-remove"></i> Denied</button>
+                                                              {% else %}
+                                                                <button class="btn btn-sm" style="border-color: #d58512; color: #d58512; background: white;" disabled="">No Action Yet</button>
+                                                               {% endif %}         
+                                                            
+
+                                                        {% endif %}
+                                                    {% endif %}
+
+                                                   
+                                              {% else %}
+
+                                                  {% if x.1.3 == None %}
+                                                            <button class="btn btn-sm" style="border-color: #d58512; color: #d58512; background: white;" disabled="">No Action Yet</button>
+                                                        {% else %}
+                                                            {% if x.0.8 == True %}
+                                                                <button class="btn btn-sm" style="border-color: #398439; color: #398439; background: white; width: 90px;" disabled=""><i class="icon-ok"></i> Approved</button>
+                                                                        
+                                                            {% else %}
+                                                                 {% if x.0.8 == False %}
+                                                                 <button class="btn btn-sm " style="border-color: #d43f3a; color: #d43f3a; background: white; width: 90px;" disabled=""><i class="icon-remove"></i> Denied</button>
+                                                                  {% else %}
+                                                                    <button class="btn btn-sm" style="border-color: #d58512; color: #d58512; background: white;" disabled="">No Action Yet</button>
+                                                                   {% endif %}         
+                                                                
+
+                                                            {% endif %}
+                                                        {% endif %}
+
+                                              {% endif %}
+                                            </td>
+                                           
+                                            <td class="text-center">
+                                              <a href="/approving_officer_representative/pr/{{x.4.0}}/details"><button name ="offDetails" value="{{x.0}}" class="btn btn-sm btn-primary" role ="submit" aria-disabled="true"><i class="icon-circle-arrow-right"></i></button></a>
+                                               
+                                            </td>
+                                        </tr>
+
+                                    {% endfor %}
+                                        
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>
+                
+                <div>
+
+
+                <!-- /. ROW  -->
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>
+        <!-- /. NAV SIDE  -->
+      
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/custom.js' %}"></script>
+
+    <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#pr').attr('class', 'active-menu-approv')
+        $('#proTop').attr('class', 'active-menu-top')
+        $('#proUL').attr('class','nav nav-second-level collapse in')
+    })
+
+    </script>
+    <script type="text/javascript">
+
+            $('#tableList').on('click', 'button', function (e) {
+
+
+                var id = this.id
+                var refid = id.split('_')
+                if (refid[0] == 'recBTN') {
+                    e.preventDefault();
+                 
+
+                $.ajax({
+                        type: 'POST',
+                        url:'/approving_officer_representative/update_location/',
+                        data:{
+                            
+                            'prRef': $('#'+id).val(),
+                            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                    },
+
+                            success:function(response) {
+                                $('#'+id).attr('class', 'btn btn-sm')
+                                $('#'+id).attr('style', 'border-color: #449d44; color: #449d44; background: white;')
+                               
+                        } 
+
+                });
+                }
+                
+            })
+            
+
+    </script>
+
+{% endblock %}

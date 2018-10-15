@@ -1,0 +1,244 @@
+﻿{% extends 'inventory_office/base.html' %}
+{% load staticfiles %}
+{% block content %}
+           
+
+        
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner" style="
+            margin-bottom: 0px;
+            ">
+            <form id="decide" action="/procurement_office/numtheReq/" method="POST">{% csrf_token %}
+            <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-top:0px;
+                                     margin-top:0px;
+                                     margin-bottom:0px;
+                                     padding-bottom: 0px;
+                                     padding-right:20px;
+                                    ">
+
+                                        
+                     <div >
+                                <button class="btn btn-info" role ="button" aria-disabled="true" id="approveButton" name="approveButton" value="{{pageData1.0.1}}"><i class="icon-ok"></i> Create Request For Quotation</button>
+                            
+                      </div>
+                       
+                       
+                                    </div>
+
+           </form>
+            <form>{% csrf_token %}
+            <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                ">
+
+                <div>
+                    Request Details
+                </div>
+                  <hr>
+
+
+               </div>
+
+                
+                
+                    
+
+                <div class="form-group">
+                    <div style="padding-left: 2px;">
+                        <div style="display: inline; font-weight: 450;  font-size: 15px;">
+                            Date of Request: 
+                        </div>
+                        <div style="display: inline; font-size: 17px;  font-weight: 580; padding:10px;">
+                            {{pageData1.0.5}}
+                        </div>
+                    </div> 
+                </div>
+                <div class="form-group">
+                    <div style="padding-left: 2px;">
+                        <div style="display: inline; font-weight: 450;  font-size: 15px;">
+                            Requesting Personnel: 
+                        </div>
+                        <div style="display: inline; font-size: 17px;  font-weight: 580; padding:10px;">
+                            {{pageData3.0.2}}, {{pageData3.0.1}}
+                        </div>
+                    </div> 
+                </div> 
+                <div class="form-group">
+                    <div style="padding-left: 2px;">
+                        <div style="display: inline; font-weight: 450;  font-size: 15px;">
+                            Department: 
+                        </div>
+                        <div style="display: inline; font-size: 17px;  font-weight: 580; padding:10px;">
+                            {{pageData3.0.4}} - {{pageData3.0.3}}
+                        </div>
+                    </div> 
+                </div> 
+                <div class="form-group">
+                    <div style="padding-left: 2px;">
+                        <div style="display: inline; font-weight: 450;  font-size: 15px;">
+                            Purpose: 
+                        </div>
+                        <div style="display: inline; font-size: 17px;  font-weight: 580; padding:10px;">
+                            {{pageData1.0.2}}
+                        </div>
+                    </div> 
+                </div>     
+                <div class="form-group">
+                
+                <hr>
+
+                <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                       <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px; padding-top:0px;">
+                                                                
+                      <div style="display: inline; font-weight: 400;  font-size: 14px;">
+                           Estimated Total Cost: 
+                    </div>
+                                                                
+                        <div class="panel panel-default" style="display: inline; font-size: 18px;  font-weight: 400; padding:10px;">
+                             {{pageData4.0.0}}
+                        </div>
+                    
+                    </div> 
+
+               </div>
+
+                 </div>
+                <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 18px;
+                 padding-bottom: 10px;
+                 padding-top: 0px;
+                ">
+                <div>
+                    Items on Request
+                </div>
+               </div>
+
+                
+                    <div id="wrap" style="position:relative;">
+                            <div id="wrap" style="position:relative;">
+                            <div id="left" class ="panel"
+                                style="
+                                    height: 150px;
+                                ">
+                                 <div class="panel-default" style="
+                                 padding-top:0px;
+                                 padding-left: 0px;
+                                 padding-right: 0px;
+                                 ">
+
+                            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                        <div class="panel">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center">Unit Cost</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for x in pageData2 %}
+                                        <tr>
+                                            <td>{{x.2}}</td>
+                                            <td class="text-center">{{x.3}}</td>
+                                            <td class="text-center">{{x.4}}</td>
+                                            <td class="text-center">{{x.5}}</td>
+                                            <td class="text-center">{{x.6}}</td>
+                                            
+                                        </tr>
+                                        
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                                </div>
+
+                            </div>
+                           
+                        </div>
+
+                        </div>
+
+                    
+
+                    </div> 
+
+                    <div class="header-right" style="padding-right: 20px; padding-top:20px;">
+                     
+                    <button class="btn btn-info" role ="button" aria-disabled="true"><i class="icon-arrow-up"></i> Back to Top</button>
+                  </div>
+
+                </form>
+                 
+                    </div>
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/custom.js' %}"></script>
+    
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#rqac').attr('class','active-menu-inven')
+            $('#reftop').attr('class', 'active-menu-top')
+            $('#theRefUL').attr('class','nav nav-second-level collapse in')
+            
+            $('#title').html('Quotations Details')
+
+           
+             });
+    </script>
+
+{% endblock %}

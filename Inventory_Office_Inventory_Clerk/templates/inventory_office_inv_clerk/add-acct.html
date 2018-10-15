@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create PAR</title>
+    {% load staticfiles %}
+   <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-inven.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'assets/plugins/daterangepicker/daterangepicker-bs3.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/plugins/datepicker/css/datepicker.css' %}" />
+
+    <link href="{% static 'assets/css/wizard/jquery.steps.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-spinner.css' %}">
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" />
+
+    
+</head>
+<body>
+    <div id="wrapper">
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" 
+                    style="
+                        margin-bottom: 0px;
+                          ">
+           
+           <div  class="navbar-header navbar-brand"></div>
+
+           <ul class="nav navbar-right top-nav" 
+                        style="
+                        margin-right: 50px;
+                        ">
+                
+              <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                    
+                    <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body " style="margin-left:95px;">
+                                        <h5 class="media-heading">
+                                            <strong>Tasks</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+
+                    {% if taskNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No task to process at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}    
+                    
+                    {% for x in taskDetails %}
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                     {% endfor %}   
+
+
+                    </ul>
+                </li>    
+                
+                <li class="dropdown">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body" style="margin-left:75px;">
+                                        <h5 class="media-heading">
+                                            <strong>Notifications</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unread notification at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}
+
+                       {% for x in notifDetails %}
+
+                       <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                       {% endfor %}
+                        
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="width:220px;">
+                        <li>
+                            <a href="/inventory_office/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/inventory_office/equipement"><i class="fa fa-fw fa-qrcode"></i> Equipment Inventory</a>
+                        </li>
+                        <li>
+                            <a href="/inventory_office/inventory"><i class="fa fa-fw icon-paper-clip" style="margin-left:4px;margin-right:4px;"></i> Supplies Inventory</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/inventory_office/receive/"><i class="fa fa-fw fa-truck"></i> Received Items</a>
+                        </li>
+                        <li>
+                            <a href="/inventory_office/accounts"><i class="fa fa-fw fa-group"></i> Employee Acct. Items</a>
+                        </li> 
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw icon-desktop" style="margin-left:4px;margin-right:4px;"></i> Switch User-Type</a>
+                        </li>                       
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa fa-fw icon-signout" style="margin-left:4px;margin-right:4px;"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                      <div class="user-img-div">
+
+                            <a href="/requisitioner/profile"><img src="{% static 'assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="/requisitioner/profile" class = "inner-text">{{lname}}, {{fname}}</a>
+                            <br />
+                                <small>{{dept}} - {{designation}}</small>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+
+                 <li>
+                        <a href="/inventory_office"><i class="fa fa-home "></i>Home</a>
+                    </li>
+                    <li>
+                        <a href="/inventory_office/profile"><i class="fa fa-user "></i>Profile </a>
+                        
+                    </li>
+                    <li>
+                        <a  href="#"><i class="icon-book "></i>Inventory<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/equipement"><i class="icon-qrcode"></i>Equipment</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/inventory"><i class="icon-paper-clip"></i>Supplies</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a  href="#"><i class="icon-truck "></i>Received Items<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/add_receive"><i class="icon-plus"></i>New Items</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/receive"><i class="icon-tags"></i>View All Received</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a  href="#"><i class="icon-group"></i>Employees' Acct. Items<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level collapse in">
+                            <li>
+                                <a class="active-menu-inven" href="/inventory_office/add_accounts"><i class="icon-plus"></i>Create PAR</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/accounts"><i class="icon-list-alt"></i>View All Accounts</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a  href="#"><i class="icon-bar-chart"></i>Reports<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/physical_count"><i class="icon-list-alt"></i>PCP</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/waste_material"><i class="icon-trash"></i>WMI</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+</div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+           <div id="page-wrapper">
+
+            <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-top:10px;
+                                     margin-top:40px;
+                                     margin-bottom:0px;
+                                     padding-bottom: 0px;
+                                     padding-right:20px;
+                                     display:none;
+                                     ">
+
+                      <form action="" method="post">{% csrf_token %}
+                           <div >
+                                <button class="btn btn-success" type="button" role ="button" aria-disabled="true" id="approveButton" name="approveButton" value="{{pageData1.0.0}}" style="margin-right:6px;"  data-toggle="modal"  data-target="#editReg"><i class="icon-ok"></i> Save Delivery Information</button>
+                                
+                      </div>
+
+                      </form>                  
+                    
+                       
+                       
+            </div>
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Create a Property Acceptance Receipt</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                
+                <div id="displayDiv">
+                        <div class="col-lg-12" >
+                                     <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                        
+                                              <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px;">
+                                                                
+                        <div style="display: inline; font-weight: 400;  font-size: 18px;">
+                            Number: 
+                        </div>
+                                                                
+                        <div id="poNumDiv" value="0" class="panel panel-default" style="display: inline; font-size: 25px;  font-weight: 400; padding:10px;"><span id="parNum_span" value="{{pageData1.0.0}}"></span> {{pageData1.0.0}}
+                         </div>
+                        
+                     </div> 
+
+               </div>
+
+
+                                        <div>
+                                            <h3 class="panel-title"> Property Acceptance Reciept Information</h3>
+                                        </div>
+                                            
+                                        </div>
+                                          <div class="panel panel-body">
+                                                <form class="form-horizontal" action="" method="POST">{% csrf_token %}
+
+                                                <div class="form-group">
+                                                    <label for="text1" class="control-label col-lg-4">IAR No: </label>
+
+                                                    <div class="col-lg-5">
+                                                        <input type="text" id="iarnum_field"  class="form-control" autofocus>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="text1" class="control-label col-lg-4">Receiving Personnel: </label>
+
+                                                    <div class="col-lg-5">
+                                                        <input type="text" id="receiveoff" list="recOffList"  class="form-control" >
+                                                        <datalist id="recOffList">
+                                                        </datalist>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                            </div>
+                                    </div>
+                                </div>
+
+                     <div class="col-lg-12" >
+                                     <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Include Items</h3>
+                                        </div>
+                                         <div class="panel-body">
+                                              <div class="panel panel-body " style="margin:0px; padding:0px;">
+                    
+                    <div id="left" class="col-lg-6" style="margin:0px; padding:0px; ">
+                        <div class="panel panel-body" style="
+                                    margin-bottom: 0px;
+                                    padding-left: 2px;
+                                    font-size: 16px;
+                                    padding-top: 0px;
+                                    padding-bottom: 10px;">
+
+                            <div>
+                                Available Items for Account
+                            </div>
+                        </div>
+                        <div class="panel panel-default" style="margin-right:20px;">
+                            <div class="table-responsive" >
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th class="text-center">Available</th>
+                                            <th class="text-center col-lg-3">Quantity to Acct.</th>
+                                            <th class="text-center"> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="avTable">
+                                    
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                  <div class="header-right" style="padding-right: 20px; padding-top:10px;">
+                                 <button id="saveSelection" class="btn btn-success" type= "button" role ="button" aria-disabled="true" style="visibility:hidden;"><i class="icon-ok"></i> Save Selection</button> 
+                  </div> 
+
+               </div> 
+                        
+
+                    </div>
+                    <div id="right" class="col-lg-6" style="margin:0px; padding:0px;">
+                        <div id="right-head" class="panel panel-body" style="
+                                    margin-bottom: 0px;
+                                    padding-left: 2px;
+                                    font-size: 16px;
+                                    padding-top: 0px;
+                                    padding-bottom: 10px;
+                                    ">
+
+                            <div>
+                                Items to Account
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr id="toPARItemsTableHead">
+                                            <th>Description</th>
+                                            <th class="text-right">Unit Cost</th>
+                                            <th class="text-right">Quantity</th>
+                                            <th class="text-right">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="toPARItemsTable">
+                                        
+
+                                   
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div> 
+
+                        <div class="form-group" style="margin-top:30px;">
+                  <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px;">
+                                                                
+                        <div style="display: inline; font-weight: 400;  font-size: 14px;">
+                             Total Amount: 
+                        </div>
+                                                                
+                        <div id="totaltoPAR" value="0" class="panel panel-default" style="display: inline; font-size: 18px;  font-weight: 400; padding:10px;">₱ 0.00
+                         </div>
+                     </div> 
+
+               </div>  
+
+               </div>
+                    </div>
+                    
+                </div> 
+                                        </div>
+                                    </div>
+                                </div>  
+
+
+
+                </div>
+              
+               <div class="col-lg-12" >
+                                     <div class="panel panel-default">
+                                         <div class="panel-body" >
+                                     <div style="float:right;
+                                     right:0;">
+                                        
+                                           <button id="savePar" class="btn btn-success" type= "submit" role ="submit" aria-disabled="true"><i class="icon-ok"></i> Create Prop. Acc. Receipt</button>
+                                     </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                  
+                </div>  
+
+                </div>
+
+<!--  ==================================================================================================================== -->
+
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+<div id="footer-sec">
+       &copy; Mindanao State University - General Santos City</i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.spinner.js' %}"></script>
+     <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript">
+       
+    var avItemsArray = {};
+    var toPARItems = {};
+    var total = 0
+
+    var receiveoffID = ''
+
+        $('#iarnum_field').keyup(function() {
+            
+            if (document.getElementById("iarnum_field").value.length == 6) {
+                $.ajax({
+                    type: 'POST',
+                    url:'/inventory_office/getAvailableItems/',
+                    data:{
+                    
+                        'iarNum': document.getElementById("iarnum_field").value,
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+
+                        document.getElementById("avTable").innerHTML = "";
+                        
+                        for(var key in response) {
+                            var value = response[key];
+                            
+                            var t = '';
+                                var tr = '<tr id="'+value['itemnum']+'_row">';
+                                    tr += '<td>'+value['descrip']+'</td>';
+                                    tr += '<td class="text-center" id="'+value['itemnum']+'_av" value="'+value['quantity']+'">'+value['quantity']+'</td>';
+                                    tr += '<td class="text-center" id="'+value['itemnum']+'_act">';
+                                    
+                                    tr += '<div id="spin" class="input-group spinner" data-trigger="spinner" style="width:80%; height:5px;">';
+                                    tr += '<input id="'+value['itemnum']+'_add" type="text" class="form-control text-center" value="1" data-rule="quantity">';
+                                    tr += '<div class="input-group-addon" id="thesppiner">';
+                                    tr += ' <a id="up" value="'+value['itemnum']+'" href="javascript:;" class="spin-up" data-spin="up"><i class="fa fa-caret-up"></i></a>';
+                                    tr += ' <a id="down" value="'+value['itemnum']+'" href="javascript:;" class="spin-down" data-spin="down"><i class="fa fa-caret-down"></i></a>';
+                                    tr += '</div>';
+                                    tr += '</div>';
+                                    
+                                    //tr += '<input  id="'+value['itemnum']+'_add" style="width:60%"></input>';
+                                    tr +='</td>';
+                                    tr += '<td class="text-center" id="'+value['compid']+'_act">';
+                                    tr += '<button id="'+value['itemnum']+'_addbtn" value="'+value['itemnum']+'" class="btn btn-xs btn-success" type="button" role= "button" aria-disabled="true"><i class="icon-plus"></i></button>';
+                                    tr +='</td>';
+                                    tr += "</tr>";
+                                    t += tr;
+                        
+                        document.getElementById("avTable").innerHTML += t;
+
+                        avItemsArray[value['itemnum']] = {'descrip':value['descrip'], 'quantity':value['quantity'], 'price':value['unitprice']
+
+                    }
+            
+                        }
+                    }  
+            });
+
+            
+            }
+        });
+          
+
+        $('#saveSelection').click(function() {
+              
+              $('#left').remove()
+              $('#right-head').remove()
+              $('#right').attr('class','')
+              
+              document.getElementById("toPARItemsTableHead").innerHTML += '<th class="text-center">Property Number</th><th class="text-center">Action</th>';
+
+              $('.tdToRemove').each(function() {
+                
+                $(this).remove()
+              });
+              
+            $('.theRow').each(function() {
+                
+                var id = this.id
+                var value = $(this).attr('value')
+                
+                var td = '<td class="text-center"><input class="text-center"  id="'+value+'_propField" style="width:40%"></input></td>';
+                    td += '<td class="text-center">';
+                    td += '<button id = "'+value+'_saveProp" value="'+value+'" class="btn btn-xs btn-info" role= "button" aria-disabled="true"><i class="icon-save"></i> Save</button>';
+                    td +='</td>';
+                
+
+                document.getElementById(id).innerHTML += td; 
+                
+              });
+
+          });  
+
+          $('#avTable').on('click', 'a', function() {
+                
+                var id = this.id
+                var value = $(this).attr('value')
+
+                var inputValue = parseInt($('#'+value+'_add').val());
+                var maxValue = parseInt($('#'+value+'_av').attr('value'));
+                
+                if (id == 'up') {
+                        var out = inputValue + 1;
+                        if (out > maxValue) {
+                            $(this).attr('disable');
+                        } else {
+                        $('#'+value+'_add').val(""+out);
+                        }
+                } else {
+                        
+                        var out = inputValue - 1;
+                        if (out < 0) {
+                            $(this).attr('disable');
+                        } else {
+                            $('#'+value+'_add').val(""+out);
+                        }  
+                }
+
+                //$('#saveSelection').removeAttr('style');
+
+            });
+
+          $('#toPARItemsTable').on('click', 'button', function () {
+              
+              var id = this.id
+              var value = $(this).val()
+
+              var propNum = parseInt($('#'+value+'_propField').val());
+
+              var theList =  toPARItems[value]
+              var quan = parseInt(theList['quantity']);
+
+              var nextNum = quan + propNum;
+
+              theList['invnum'] = propNum;
+
+              $(this).attr('class', 'btn btn-xs btn-success');
+              $(this).html('<i class="icon-ok"></i>')
+
+              $('.theRow').each(function() {
+                
+                   var theRowValue = $(this).attr('value')
+                   
+                   var theList2 =  toPARItems[theRowValue]
+                   var quan2 = parseInt(theList2['quantity']);
+
+                   if (theRowValue != value) {
+                       
+                       $('#'+theRowValue+'_propField').val(nextNum);
+                       
+                       theList2['invnum'] = nextNum;
+
+                        nextNum = quan2 + nextNum;
+
+                       $('#'+theRowValue+'_saveProp').attr('class', 'btn btn-xs btn-success');
+                       $('#'+theRowValue+'_saveProp').html('<i class="icon-ok"></i> Saved');
+
+                   }
+              });
+
+
+          });
+
+
+          $('#toPARItemsTable').on('click', 'input', function () {
+              
+              var id = this.id
+              var value = $(this).val()
+              alert(id)
+
+              $('#'+id).keyup(function (e) {
+                  
+                  var propNum = parseInt($('#'+id).val());
+                  var theList =  toPARItems[value]
+                  var quan = parseInt(theList['quantity']);
+
+                  var nextNum = quan + propNum;
+
+                  theList['invnum'] = propNum;
+
+                  $(this).attr('class', 'btn btn-xs btn-success');
+                  $(this).html('<i class="icon-ok"></i>')
+
+                  $('.theRow').each(function() {
+                    
+                       var theRowValue = $(this).attr('value')
+                       
+                       var theList2 =  toPARItems[theRowValue]
+                       var quan2 = parseInt(theList2['quantity']);
+
+                       if (theRowValue != value) {
+                           
+                           $('#'+theRowValue+'_propField').val(nextNum);
+                           
+                           theList2['invnum'] = nextNum;
+
+                            nextNum = quan2 + nextNum;
+
+                           $('#'+theRowValue+'_saveProp').attr('class', 'btn btn-xs btn-success');
+                           $('#'+theRowValue+'_saveProp').html('<i class="icon-ok"></i> Saved');
+
+                       }
+                  });
+
+
+              })
+             
+              
+ /*
+              
+              */
+
+          });
+
+          
+
+         $('#avTable').on('click', 'button', function() {
+                   
+                   var id = this.id;
+                   var value = $(this).val();
+                   
+                   var dataToTable = avItemsArray[value];
+                   var inputData = $('#'+value+'_add').val();
+                   var amountToTable = inputData * dataToTable['price'];
+
+                    var t = '';
+                                var tr = '<tr class = "theRow" id="'+value+'_row" value ="'+value+'">';
+                                    tr += '<td>'+dataToTable['descrip']+'</td>';
+                                    tr += '<td class="text-right"> ₱ '+comaSegregator(""+dataToTable['price'])+'</td>';
+                                    tr += '<td class="text-right">'+comaSegregator(inputData)+' </td>';
+                                    tr += '<td class="text-right"> ₱ '+comaSegregator(""+amountToTable)+' </td>';
+                                    tr += '<td class="tdToRemove text-center" id="'+value+'_act">';
+                                    tr += '<button id="'+value+'_remove" value="'+value+'" class="btn btn-xs btn-danger" type="button" role= "button" aria-disabled="true"><i class="icon-minus"></i></button>';
+                                    tr +='</td>';
+                                    tr += "</tr>";
+                                    t += tr;
+                        
+                    document.getElementById("toPARItemsTable").innerHTML += t;
+
+                    total = total + amountToTable;
+                    strTotal = ""+total   
+                    document.getElementById("totaltoPAR").innerHTML = "₱ "+comaSegregator(strTotal);
+
+                    maxValue = parseInt($('#'+value+'_av').attr('value'));
+                    remValue = maxValue - inputData
+                    $('#'+value+'_av').attr('value', remValue);
+                    $('#'+value+'_av').html(remValue);
+
+                    $('#'+value+'_add').val(1)
+                    
+                    toPARItems[value] = {'descrip':dataToTable['descrip'], 'price':dataToTable['price'], 'quantity':inputData, 'amount':amountToTable};
+
+
+
+                $('#saveSelection').removeAttr('style');
+
+               }); 
+
+
+        $('#savePar').click(function(e){
+            
+            e.preventDefault();
+            
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/addToAcct/',
+                data:{
+                    
+                    'toPARItems': JSON.stringify(toPARItems),
+                    'byid': receiveoffID,
+                    'iarNum': $('#iarnum_field').val(),
+                    'parNum':$('#parNum_span').attr('value'),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                },
+
+                    success: function(response) {
+                        alert("Transaction Complete");
+                        //window.location.href = "/requisitioner/pr/";
+                    }
+
+            });
+
+
+    });
+
+    $('#receiveoff').keyup(function(e){
+        e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getEmployeeData/',
+                data:{
+                    
+                    'inputName': document.getElementById("receiveoff").value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("recOffList").innerHTML = ""
+                        
+                        for(var key in response) {
+                           
+                            var value = response[key];
+                            document.getElementById("recOffList").innerHTML += '<option id="'+key+'" value ="'+value['name']+'"/>'
+
+                        }
+
+                    }
+
+            });
+    });
+
+
+    $("#receiveoff").on('input', function () {
+       
+        var val = this.value;
+        var id = $('#recOffList option[value="' + val +'"]').attr('id');
+        
+        receiveoffID = id
+
+      }); 
+
+
+         
+        function comaSegregator(input){
+
+        var output = ""
+        var indexCheck = 1
+        
+        for (var i = input.length - 1; i >= 0; i--) {
+            
+            if (indexCheck%3 == 0) {
+
+                if (i == 0) {
+                     output = input[i] + output;
+                    indexCheck = indexCheck + 1;
+
+                } else {
+                     output = ", " + input[i] + output;
+                    indexCheck = indexCheck + 1;
+                }
+                   
+            } else {
+                output = input[i] + output;
+                indexCheck = indexCheck + 1;
+            }
+        }
+
+        return(output)
+    }
+
+        function zeroFiller(input) {
+            var inLenght = input.lenght()
+        }
+
+
+    </script>
+
+</body>
+</html>
+
+
+
+

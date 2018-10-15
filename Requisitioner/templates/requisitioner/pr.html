@@ -1,0 +1,501 @@
+{% extends 'requisitioner/base.html' %}
+
+
+{% load humanize %}
+
+{% load staticfiles %}
+{% block content %}
+        <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+         
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                    
+                     Purchase Requests
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #888!important;">
+            
+                <hr>
+                 
+
+                        <div class="col-lg-3" style=" padding-right:10px;">
+                             <div class="panel panel-primary ">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #428bca; color:white; height: 39px; padding-left: 10px; padding-top: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #428bca; border-color: #428bca; background-color: white;">  <i class="icon-shopping-cart"></i></button> Total Requests</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.0 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.0|floatformat|intcomma}}
+                                        {% endif %}</p>
+                                    
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#d9534f;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                <div class="col-lg-3" style="padding-left:0px; padding-right:10px;">
+                             <div class="panel panel-success" style="border-color: #5cb85c;">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #5cb85c; color:white; height: 39px; padding-left: 10px; padding-top: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #5cb85c; border-color: #5cb85c; background-color: white;">  <i class="icon-ok"></i></button> Approved</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.1 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.1|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+                                  
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#428bca;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                <div class="col-lg-3" style="padding-left:0px; padding-right:10px;">
+                             <div class="panel panel-warning" style="border-color: #bf964e">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #bf964e; color:white; height: 39px; padding-left: 10px; padding-top: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #bf964e; border-color: #bf964e; background-color: white;">  <i class="icon-spinner"></i></button>  Pending</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.2 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.2|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+                                    
+
+                                    </div>
+                                    <div style="display: none;" class="panel-footer"><span style="color:#5cb85c; "><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                  <div class="col-lg-3" style="padding-left:0px;">
+                             <div class="panel panel-warning" style="border-color: #a94442">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #a94442; color:white; height: 39px; padding-left: 10px; padding-top: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #a94442; border-color: #a94442; background-color: white;">  <i class="icon-remove"></i></button> Denied</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.3 == None %}
+                                         0
+                                        {% else %}
+                                         {{pageData2.0.3|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+
+                                    </div>
+                                    <div style="display: none;" class="panel-footer"><span style="color:#5cb85c; "><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+
+    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body">
+                            <div class="panel">
+                            <div class="panel-body col-lg-3 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                            <div class="form-group input-group" style="padding:0px;margin:0px;">
+                       
+                                        <input id="searchInput" type="text" class="form-control input-sm" placeholder="Search for Information" >
+                                            <span class="input-group-btn">
+                                                <button id="findSearch" class="btn btn-default btn-sm " type="button">
+                                                    <i class="fa fa-search "></i>
+                                                </button>
+                                            </span>
+                                        </div> 
+
+
+                            </div>
+                          
+
+                            <div class="panel-default" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered" id="dataTables-example">
+                                    <thead style="background-color: #555; color: white;">
+                                        <tr >
+                                            <th>Date Created</th>
+                                            <th style="width:420px;">Purpose</th>
+                                            <th class="text-right">Total Cost</th>
+                                            <th class="text-right">Status</th>
+                                            <th class="text-center">PR Number</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="theT">
+
+                                        {% for x in pageData1 %}
+                                        <tr class="odd gradeX">
+                                            
+                                            
+                                            <td>{{x.0.5}}</td>
+                                            <td>{{x.0.2}}</td>
+                                            <td class="text-right">₱ 
+                                            {{x.3.0|floatformat|intcomma}}
+                                            </td>
+                                            <td class="text-right">
+                                            {% if x.0.6 == True %}    
+                                            {% if x.0.8 == None and x.0.7 != False %}
+                                                <label class="label label-warning">Pending</label>
+                                            {% endif %}
+                                            {% if x.0.8 == True %}
+                                                <label class="label label-success">Approved</label>
+                                            {% endif %}
+                                            {% if x.0.7 == False %}
+                                                <label class="label label-danger">Declined</label>
+                                            {% endif %}
+                                            {% if x.0.8 == False %}
+                                                <label class="label label-danger">Declined</label>
+                                            {% endif %}
+
+                                            {% else %}
+                                                {% if x.0.6 == None  %}
+                                                <label class="label label-primary">On Hold</label>
+                                                {% else %}
+                                                <label class="label label-danger">Canceled</label>
+                                                {% endif %}
+                                            {% endif %}
+                                            </td>
+                                            <td class="text-center">
+                                            {% if x.0.1 == None %}
+                                                ---
+                                                
+                                            {% endif %}    
+                                            {% if x.0.1 != None %}
+                                                {{x.0.1}}
+                                            {% endif %}
+                                            </td>
+                                            <td class="text-center">
+                                               
+                                                {% if x.0.6 == True %}
+                                                    {% if x.0.7 == None %}
+                                                  
+                                                    <button id="holdCancelBTN_{{x.0.0}}" class="btn btn-sm btn-danger" role= "button" type="button" aria-disabled="true" style="border-radius: 15px;outline: none"><i class="icon-remove" ></i></button>
+                                                    {% endif %}
+                                                    {% if x.0.7 != None %}
+                                                    <a href="/requisitioner/create_pr_from_ex_pr/{{x.4.0}}/"><button name="detailsButton" class="btn btn-sm btn-success" role= "submit" aria-disabled="true" value="{{x.0.0}}" style="border-radius: 15px;outline: none"><i class="icon-edit"></i></button></a>
+                                                    
+                                                   
+                                                    {% endif %}
+                                                {% else %}
+                                                    <button id="resumeBTN_{{x.0.0}}" class="btn btn-sm btn-success" role= "button" type="button" aria-disabled="true" style="border-radius: 15px;outline: none"><i class="icon-ok" ></i></button>
+                                                {% endif %}
+
+                                                    {% if x.0.6 == None %}
+                                                         <a href="/requisitioner/create_pr_from_ex_pr/{{x.4.0}}/"><button name="detailsButton" class="btn btn-sm btn-info" role= "submit" aria-disabled="true" value="{{x.0.0}}" style="border-radius: 15px;outline: none"><i class="icon-edit"></i></button></a>
+                                                    {% else %}
+                                                        <a href="/requisitioner/pr/{{x.4.0}}/details">  <button name="detailsButton" class="btn btn-sm btn-primary" role= "submit" aria-disabled="true" style="border-radius: 15px; outline: none"><i class="icon-reorder"></i></button>
+                                          
+                                                    </a>
+                                                    {% endif %}
+                                                 
+                                                   
+                                                  
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+               <!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="holdCancelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <button id="newRegClose2" type="submit" style="float: right; color: #d43f3a; border-color: #d43f3a; background: white; border-radius: 20px;" class="btn btn-sm btn-danger"  data-dismiss="modal"  ><i class="icon-remove"></i></button>
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Delay the Request</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">It seems you want to delay the request for some reason</p>
+                                        <p style="margin-bottom:30px;"></p>
+                                        <p style="margin-bottom:10px; font-weight: bold">HOLD </p> <p style="margin-bottom:10px;">Holding your request will remove it from the que of request list held by the approving officer but will enable you to update it (you may add or remove some item/s in or out of the request or update the purpose). You may remove the hold status and this request will be added back to the que.</p>
+                                        <p style="margin-bottom:10px; font-weight: bold">CANCEL</p>
+                                        <p style="margin-bottom:30px;">Canceling request will remove this request from the que of request list held by the approving officer and will not be available for update.</p>
+                                        <p style="margin-bottom:30px;">You will be given a month to decide whether if you still want to resume the request. If the given time expires without resuming it, the request will be permanently removed from your list of P.R. and will no longer be accessible.</p>
+                                         <p style="margin-bottom:10px;">Please indicate the delay you would wish to do?</p>
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                         <button id="holdBTN"  type="submit" class="btn btn-primary" style="width: 110px; border-radius: 15px; outline: none">Hold</button>
+                                            <button id="cancelBTN"  type="submit" class="btn btn-danger" style="width: 110px; border-radius: 15px; outline: none">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+ <!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Please confirm your choice</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">Do you wish to <span id="holdMSG"></span> the request?</p>
+                                        
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                         <button id="conYESBTN" type="button" class="btn btn-success" style="width: 110px; border-radius: 15px; outline: none">YES</button>
+                                            <button id="noYESBTN" data-dismiss="modal" type="submit" class="btn btn-danger" style="width: 110px; border-radius: 15px; outline: none">NO</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+ <!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transCompModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Activity Update Complete</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">You have successfully updated the request's status</p>
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                         
+                                            <button id="compBTN" data-dismiss="modal" type="submit" class="btn btn-primary" style="width: 110px; border-radius: 15px; outline: none">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    
+    <script src="{% static 'requisitioner/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/custom.js' %}"></script>
+    
+    <script type="text/javascript">
+     
+     var reqnum = ''
+     var decision = false
+        
+        $('#theT').on('click','button', function () {
+            var id  = this.id
+            var idArr = id.split('_')
+            if (idArr[0] == 'holdCancelBTN') {
+                reqnum = idArr[1]
+                $('#holdCancelModal').modal('toggle')
+            }
+            if (idArr[0] == 'resumeBTN') {
+                reqnum = idArr[1]
+                $('#holdMSG').html('resume')
+                decision = true
+                $('#confirmModal').modal('toggle')
+            }
+            
+        })
+        $('#holdBTN').click(function (argument) {
+            $('#holdMSG').html('hold')
+            
+            decision = null
+            $('#confirmModal').modal('toggle')
+        })
+
+        $('#cancelBTN').click(function (argument) {
+            $('#holdMSG').html('cancel')
+            
+            decision = false
+            $('#confirmModal').modal('toggle')
+        })
+
+        $('#conYESBTN').click(function (argument) {
+              $.ajax({
+                type: 'POST',
+                url:'/requisitioner/holdCancelPR/',
+                data:{
+                    
+                    
+                    'reqnum': reqnum,
+                    'decicion': decision,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                      
+                        $('#confirmModal').modal('toggle')
+                       $('#transCompModal').modal('toggle') 
+                        
+                    }
+
+            });
+        })
+        $('#compBTN').click(function () {
+            location.reload()
+        })
+
+
+        $('#findSearch').click(function () {
+            findFromTable()
+        })
+
+        $('#searchInput').keyup(function () {
+            findFromTable()
+        })
+
+        function findFromTable() {
+          
+          var input, filter, table, tr, td, i;
+          
+          input = document.getElementById("searchInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("theT");
+          
+          tr = table.getElementsByTagName("tr");
+          
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            td1 = tr[i].getElementsByTagName("td")[1];
+            td2 = tr[i].getElementsByTagName("td")[4];
+            if (td||td1||td2) {
+              if (td.innerHTML.toUpperCase().indexOf(filter) > -1||td1.innerHTML.toUpperCase().indexOf(filter) > -1||td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+
+    </script>
+       <script type="text/javascript">
+
+        $(document).ready(function () {
+           
+           
+            $('#prTop').attr('class', 'active-menu-top theAsTop');
+            $('#prUL').attr('class', 'nav nav-second-level theUL collapse in');
+            $('#pr').attr('class', 'active-menu-requi theAs');  
+       
+        })
+       
+        
+    </script>
+
+{% endblock %}

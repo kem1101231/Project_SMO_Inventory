@@ -1,0 +1,443 @@
+{% extends baseSource %}
+{% load staticfiles %}
+{% load humanize %}
+{% block content %}
+        
+        <!-- /. NAV SIDE  -->
+         <div id="page-wrapper">
+         <form id="decide" action="/procurement_office/numtheReq/" method="POST">{% csrf_token %}
+            <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-top:0px;
+                                     margin-top:52px;
+                                     margin-bottom:0px;
+                                     padding-bottom: 0px;
+                                     padding-right:20px;
+                                     margin-bottom: 0px;
+                                    ">
+
+                                        
+                     <div >
+                                <button class="btn btn-success" role ="button" aria-disabled="true" id="approveButton" name="approveButton" value="{{pageData1.0.1}}"><i class="icon-ok"></i> Approved Doc. Received</button>
+                            
+                      </div>
+                       
+                       
+                                    </div>
+
+           </form>
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Purchase Request Details and Status Timeline</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 
+                <div class="col-lg-6" style="">
+                <div class="col-lg-12" style="padding-right: 0px; padding-left: 0px;">
+                    <div class="panel panel-default">
+                        <div class="panel-body"><span style="font-size: 15px; padding-right: 10px;">Purchase Request Number:</span> <span style="font-size: 25px; font-weight: bold;"> 000-00</span> </div>
+                    </div>
+                </div>
+                <div class="col-lg-12" style="padding-right: 0px; padding-left: 0px;">
+                 <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Date Information</h3>
+                            </div><!-- -->
+                            <div class="panel-body" style="height:  padding-left:20px;">
+                            
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Prepared:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        Month dd, YYYY
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Approved:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        Month dd, YYYY
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Received:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        Month dd, YYYY
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            </div>
+                        </div>
+                </div>
+                <div class="col-lg-12" style="padding-right: 0px; padding-left: 0px;">
+                 <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Request Origin</h3>
+                            </div><!-- -->
+                            <div class="panel-body" style="height:  padding-left:20px;">
+                            
+                            
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Personnel:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >Juan Dela Cruz
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Office:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >Office of Juan Dela Cruz    
+                                    </div>
+                                </div> 
+
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                          
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-4" >
+                                        Purpose:
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        For the Office of Juan Dela Cruz
+                                    </div>
+                                </div> 
+                            </div>
+                                
+                            </div>
+                        </div>
+                </div>
+                        
+                    </div>
+                    <div class="col-lg-6" style=" padding-left:0px;">
+                     <div class="col-lg-12" style="padding-left: 0px;  padding-right: 0px;">
+                     <div class="panel panel-default">
+                         <div class="panel-heading"><h3 class="panel-title">Request's Current Status on Procurement Office</h3></div>
+                         <div class="panel-body">
+                             <div class="col-lg-8">
+                             The Current Phase
+                             </div>
+                             <div class="col-lg-4 text-right"><button class="btn btn-success">Update</button></div>
+                         </div>
+                     </div>
+                     </div>   
+                    <div class="col-lg-12" style="padding-left: 0px;  padding-right: 0px;">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Status Timeline</h3>
+                            </div>
+                            <div class="panel-body" style="  padding-left:20px;">
+                            
+                              <!-- --> 
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-success btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-tag"></i></div>
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="padding-top: 10px; font-size: 18px;">
+                                            <strong>Pre-Canvass Phase</strong>
+                                        </h5>
+                                       
+                                        <p style="padding-bottom:10px;">
+                                           <div class="col-lg-4">Quotation No.:</div>
+                                           <div class="col-lg-8" style="font-weight: bold;">000-00</div>
+                                        </p>      
+                                        <p style="padding-top:20px;">
+                                        <div class="col-lg-4">Date Prepared:</div>
+                                           <div class="col-lg-8">Month dd, YYYY</div>
+                                        </p>
+                                    </div>
+                                    
+
+                                </div>
+
+                              <!-- --> 
+                               <!-- --> 
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-success btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-search"></i></div>
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="padding-top: 10px; font-size: 18px;">
+                                            <strong>Canvass Phase</strong>
+                                        </h5>
+                                       
+                                        <p style="padding-bottom:10px;">
+                                           <div class="col-lg-4">Date Started:</div>
+                                           <div class="col-lg-8">Month dd, YYYY</div>
+                                        </p>      
+                                        <p style="padding-top:20px;">
+                                        <div class="col-lg-4">No. of Bidders:</div>
+                                           <div class="col-lg-8">000</div>
+                                        </p>
+                                        <p style="padding-top:20px;">
+                                        <div class="col-lg-4">Date Collected:</div>
+                                           <div class="col-lg-8">Month dd, YYYY</div>
+                                        </p>
+                                    </div>
+                                    
+
+                                </div>
+
+                              <!-- --> <!-- --> 
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-success btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-edit"></i></div>
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div>  
+
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="padding-top: 10px; font-size: 18px;">
+                                            <strong>Bid Selection Phase</strong>
+                                        </h5>
+                                       
+                                        <p style="padding-bottom:10px;">
+                                           <div class="col-lg-5">Abstract No.:</div>
+                                           <div class="col-lg-7" style="font-weight: bold;">000-00</div>
+                                        </p>      
+                                        <p style="padding-top:20px;">
+                                        <div class="col-lg-5">Date Released:</div>
+                                           <div class="col-lg-7">Month dd, YYYY</div>
+                                        </p>
+                                        <p style="padding-top:20px;">
+                                        <div class="col-lg-5">Selection Status:</div>
+                                           <div class="col-lg-7">Waiting for Selection</div>
+                                        </p>
+                                        <p style="padding-top:20px;">
+                                        <div class="col-lg-5">Date Received:</div>
+                                           <div class="col-lg-7">Month dd, YYYY</div>
+                                        </p>
+                                    </div>
+                                    
+
+                                </div>
+
+                              <!-- --> <!-- --> 
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-success btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-file"></i></div>
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="padding-top: 10px; font-size: 18px;">
+                                            <strong>P.O. Preperation Phase</strong>
+                                        </h5>
+                                       
+                                          <p style="padding-bottom:10px;">
+                                           <div class="col-lg-5">Pur. Order No.:</div>
+                                           <div class="col-lg-7" style="font-weight: bold;">000-00</div>
+                                        </p>      
+                                        <p style="padding-top:20px;">
+                                        <div class="col-lg-5">Released for Signing:</div>
+                                           <div class="col-lg-7">No</div>
+                                        </p>
+                                        <p style="padding-top:20px;">
+                                        <div class="col-lg-5">Date Released:</div>
+                                           <div class="col-lg-7">Month dd, YYYY</div>
+                                        </p>
+                                    </div>
+                                    
+
+                                </div>
+
+                              <!-- --> <!-- --> 
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-success btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-legal"></i></div>
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                        <div class="text-center">•</div> 
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="padding-top: 10px; font-size: 18px;">
+                                            <strong>P.O. Approval Phase</strong>
+                                        </h5>
+                                       
+                                        <p style="margin-bottom:5px;">
+                                         <p style="padding-bottom:10px;">
+                                           <div class="col-lg-5">Approval Decission:</div>
+                                           <div class="col-lg-7" style="font-weight: bold;">Approved</div>
+                                        </p>      
+                                        
+                                        <p style="padding-top:20px;">
+                                        <div class="col-lg-5">Date Received:</div>
+                                           <div class="col-lg-7">Month dd, YYYY</div>
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+
+                              <!-- --> <!-- --> 
+                                <div class="media"  style="margin-bottom:30px;">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-success btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-truck"></i></div>
+
+                                    </span>  
+                                    <div class="media-body" >
+                                        <h5 class="media-heading" style="padding-top: 10px; font-size: 18px;">
+                                            <strong>P.O. Service Phase</strong>
+                                        </h5>
+                                      
+                                        <p style="padding-top:20px;">
+                                        <div class="col-lg-5">Date Served:</div>
+                                           <div class="col-lg-7">Month dd, YYYY</div>
+                                        </p>
+                                        <p style="padding-top:20px;">
+                                        <div class="col-lg-5">Expected Delivery By:</div>
+                                           <div class="col-lg-7">Month dd, YYYY</div>
+                                        </p>
+                                    </div>
+                                    
+
+                                </div>
+
+                              <!-- -->  
+                            </div>
+                        </div>
+
+                    </div>    
+
+
+                       
+                    </div>
+
+                  
+                
+              
+                
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/custom.js' %}"></script>
+    
+   <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#pr').attr('class', 'active-menu-proc')
+        $('#proTop').attr('class', 'active-menu-top')
+        $('#proUL').attr('class','nav nav-second-level collapse in')
+    })
+
+    </script>
+
+{% endblock %}

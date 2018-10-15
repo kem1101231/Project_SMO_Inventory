@@ -1,0 +1,81 @@
+{% extends 'requisitioner/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+				
+				<div class= "header-right">
+                
+				</div>
+			
+			{%load staticfiles%}
+                <div class = "text-center" style="padding-top: 80px;">
+					<img style="max-width: 180px; max-height: 180px;" src = "{% static 'assets/img/Msu.png' %}" class="img-circle">
+
+				</div>
+                <div class="text-center" style="padding-top: 15px;">
+                    <p style="font-size: 18px;">Mindanao State University - PIIMS</p>
+                    <p style="font-size: 13px;">Requests, Procurement, Inventory, Accountabilities</p>
+                </div>
+				<div >
+                <form action="/requisitioner/search/" method="post">{% csrf_token %}
+				<div class=" col-centered test" style="width: 600px;">
+					<div class="form-group input-group">
+                      
+                       <input name="search_input" type="text" autofocus class="form-control " placeholder="Search for Inventory Information">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary " type="submit" role="submit" name="search_button"  >
+                                                    <i class="fa fa-search "></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                </div>
+                </form>
+				</div>
+				
+                <!-- /. ROW  -->
+                
+                    </div>
+                </div>
+
+
+
+                 
+            </div>
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+   <div id="footer-sec" >
+      &copy; Mindanao State University
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+   
+
+    <script type="text/javascript">
+       
+        $(document).ready(function () {
+               
+            $('#home').attr('class', 'active-menu-requi');
+       
+        })
+       
+        
+    </script>
+			
+{% endblock %}
+

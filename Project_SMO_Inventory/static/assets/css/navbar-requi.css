@@ -1,0 +1,28 @@
+.user-img-div {
+   
+    min-height: 140px;
+    padding: 20px;
+    padding-left: 13px;
+    padding-top: 17px;
+	background-image: url("img/gg8-requi.png");
+	
+}
+    
+    .user-brg-img img{
+
+    }
+    
+    .user-img-div img {
+        max-height: 60px;
+    }
+
+    .user-img-div .inner-text {
+		
+        text-align: left;
+        position: relative;
+        color: #fff;
+        font-weight: 500;
+        line-height: 20px;
+		font-size: 15.5px;
+		
+    }

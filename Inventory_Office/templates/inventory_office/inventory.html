@@ -1,0 +1,747 @@
+{% extends baseSource %}
+{% load humanize %}
+{% load staticfiles %}
+{% block content %}
+<style type="text/css">
+    
+            .tablescroll{
+            overflow-y:scroll;
+            height:1033px;
+            display:block;
+        }
+        
+        .tablescroll2{
+            
+            overflow-y:scroll;
+            height:235px;
+            display:block;
+        }
+        .divScroll{
+            
+            overflow-y:scroll;
+            height:450px;
+            display:block;
+        }
+
+</style>
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+    
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 30px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:75px; 
+                 margin-bottom: 30px;
+
+                ">
+                <div>
+                    
+                     Supplies Inventory
+                </div>
+                 
+               </div>
+               </form>
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #fff!important; ">
+             
+                
+                <div style="display:none">
+                       <div class="col-lg-3" style=" padding-right:10px;">
+                             <div class="panel panel-primary ">
+                                    <div class="panel-heading"  style="font-size:15px;"> <i class="icon-list"></i> Total Item Qty.</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.0 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.0|floatformat|intcomma}}
+                                        {% endif %}</p>
+                                    
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#d9534f;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                <div class="col-lg-3" style="padding-left:0px; padding-right:10px;">
+                             <div class="panel panel-success" style="border-color: #5cb85c;">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #5cb85c; color:white;"> <i class="icon-money"></i> Total Item Cost</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.1 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.1|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+                                  
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#428bca;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                <div class="col-lg-3" style="padding-left:0px; padding-right:10px;">
+                             <div class="panel panel-warning" style="border-color: #5cb85c">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #5cb85c; color: white;"> <i class="icon-ok"></i> Qty on Account</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.2 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.2|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+                                    
+
+                                    </div>
+                                    <div style="display: none;" class="panel-footer"><span style="color:#5cb85c; "><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                  <div class="col-lg-3" style="padding-left:0px;">
+                             <div class="panel panel-warning" style="border-color: #a94442">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #a94442; color: white;"> <i class="icon-trash"></i> Qty Returned as Waste</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.3 == None %}
+                                         0
+                                        {% else %}
+                                         {{pageData2.0.3|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+
+                                    </div>
+                                    <div style="display: none;" class="panel-footer"><span style="color:#5cb85c; "><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+
+
+                </div>
+                
+
+                <div>
+                   
+                    <div class="col-lg-3" style="padding: 8px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555;">
+                        <div class="panel-body" style="height: 100px; background-color: #479aaf !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #056c82; height: 100%; margin: 0px">
+                                <i style="font-size: 45px; padding-top: 28px; color: #fff;" class="fa fa-calendar"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Current Quarter</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 19px; font-weight: bold;" >
+                                    {{pageData3.0.1.0}} Quarter
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;" >{{pageData3.0.1.2}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-3" style="padding: 8px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555;">
+                        <div class="panel-body" style="height: 100px; background-color: #777 !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #555; height: 100%; margin: 0px">
+                                <i style="font-size: 45px; padding-top: 28px; color: #fff;" class="fa fa-shopping-cart"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Item Acquired Date</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 19px; font-weight: bold;" >
+                                    Jan. 01, 2018
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;" >3 months ago</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-3" style="padding: 8px; display: none">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555;">
+                        <div class="panel-body" style="height: 100px; background-color: #00a65a !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #1a755b; height: 100%; margin: 0px">
+                                <i style="font-size: 45px; padding-top: 28px; color: #fff;" class="fa fa-shopping-cart"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Item Acquired Date</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 19px; font-weight: bold;" >Jan. 01, 2018</p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;" >3 months ago</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <!-- yellow #d2983c icon #a97b00 -->
+                    <div class="col-lg-3" style="padding: 8px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555;">
+                        <div class="panel-body" style="height: 100px; background-color: #00a65a !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #1a755b; height: 100%; margin: 0px">
+                                <i style="font-size: 45px; padding-top: 28px; color: #fff;" class="fa fa-question"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Items Availability</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 19px; font-weight: bold;" >
+                                    Available
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;">No Delepeted Items</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <a href="/inventory_office/ris/">
+                    <div class="col-lg-3" style="padding: 8px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555;">
+                        <div class="panel-body" style="height: 100px; background-color: #a94442 !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #841614; height: 100%; margin: 0px">
+                                <i style="font-size: 45px; padding-top: 28px; color: #fff;" class="fa fa-file"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Current Requests</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 22px; font-weight: bold;" >
+                                        {{pageData3.3.0}}
+                                        </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;">Uncatered R.I.S.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    </a>
+
+                </div>
+                 
+               
+
+                    
+                  <div class="col-lg-12" style="padding:8px; padding-top: 0px;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-primary" style="border-radius: 0px;">
+                            <div class="panel-body" style="border-top:4px solid #428bca; font-size: 21px; padding-top: 20px;">
+                                <p>List of Items with its Current Status Information</p>
+                                <p style="margin: 0px; margin-top: 5px; margin-bottom: 25px;  border-bottom:2px solid #428bca; width: 60%;"></p>
+                                <p style="margin-bottom: 0px;">
+                                    <div class="panel-body col-lg-8"> <button class="btn btn-sm btn-success" style="width: 150px; border-radius: 15px; outline:none" aria-disabled="true" data-toggle="modal"  data-target="#updateModal"><i class="icon-ok"></i> Add Item</button></div>
+                                   
+                                    <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                            <div class="form-group input-group" style="padding:0px;margin:0px;">
+                       
+                                <input type="text" class="form-control input-sm" placeholder="Search for an Item" id="searchInput" >
+                                    <span class="input-group-btn">
+                                        <button id="findSearch" class="btn btn-info btn-sm " type="button">
+                                            <i class="fa fa-search "></i>
+                                    </button>
+                                </span>
+                            </div> 
+
+
+                            </div></p>
+                                
+                                
+
+                             </div>
+
+                            <div class="panel-body" style="padding-bottom:0px; padding-top: 0px;">
+
+                            <div class="panel">
+                          
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive" style="">
+                            <table class="table table-hover ">
+                                    <thead>
+                                        <tr style=" background: #eee">
+                                            <th >Description</th>
+                                            
+                                            <th class="text-center" style="width:120px;">Status</th>
+                                            <th class="text-center" style="width:120px;">Available Quantity</th>
+                                            <th class="text-center" style="width:120px;">Qty. Being Requested</th>
+                                            <th class="text-center" style="width:120px;">Quantity on Request</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center" style="width:80px;">Action</th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody id="theListTable">
+                                       
+                                    {% for x in pageData4 %}
+                                        <tr>
+                                           <td>{{x.0.1}}</td>
+                                           <td class="text-center">
+                                            <button disabled="" class="btn btn-sm" style="background-color: #fff; border: 2px solid {{x.3.4}}; color: {{x.3.4}}">{{x.3.1}}</button>
+                                           </td>
+                                           <td class="text-center">{{x.0.5|floatformat|intcomma}}</td>
+                                            <td class="text-center">{{x.1.8|floatformat|intcomma}}</td>
+                                            <td class="text-center">0000</td>
+                                            <td class="text-center">{{x.0.3}}</td>
+                                            <td class="text-center">
+                                           <a href="/inventory_office/supply/{{x.4.0}}/details/"><button style="border-radius: 15px; outline: none" class="btn btn-sm btn-primary"><i class="icon-arrow-right"></i></button></a>
+                                            </td>
+                                        </tr>
+
+
+                                    {% endfor %}
+                                    
+                                   
+                                   
+                                    </tbody>
+                                        
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>    
+
+        <!-- ========================================================================================================== -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Add Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip2" class="form-control" autofocus>
+                                                        <span for="descrip2" id="errorde"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Unit: </label>
+                                                        
+                                                    <div class="col-lg-8">
+                                                        <input id="unit2" class="form-control" list="compSeacrhList" />
+                                                        <datalist id="compSeacrhList">
+                                                        <option>Unit</option>
+                                                        <option>Piece</option>
+                                                        <option>Bundle</option>
+                                                        <option>Strip</option>
+                                                        <option>Pair</option>
+                                                        <option>Gram</option>
+                                                        <option>Kilogram</option>
+                                                        <option>Ounce</option>
+                                                        <option>Meter</option>
+                                                        <option>Inch</option>
+                                                        <option>Foot</option>
+                                                        <option>Brd. Feet</option>
+                                                        <option>Cu. Feet</option>
+                                                        <option>Cu. Meter</option>
+                                                        <option>Litre</option>
+                                                        <option>Load</option>
+                                                        <option>Bottle</option>
+                                                        <option>Case</option>
+                                                        <option>Vial</option>
+                                                        <option>Sheet</option>
+                                                        <option>Peso</option>
+                                                        </datalist>
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price2" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Quantity: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="quantity2" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList2" type="submit" class="btn btn-success" >update Inventory</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+                    </div>
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+
+          <!--  <div id="page-wrapper">
+
+
+
+            ========================================================   -->
+            <!--  ========================================================  
+
+              <div style="   
+                                     display:inline;
+                                     padding: 0px;
+                                     margin: 0px;
+                                     margin-top: 51px;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                        
+                        <div class="btn-group">
+                                        <a data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="icon-bar-chart"></i> Generates Inventory Reports<span style="margin-left:5px;" class="caret"></span></a>
+                                        <ul class="dropdown-menu message-dropdown" style="right:0;">
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#" ><i class="icon-list-alt" style="margin-left:4px;margin-right:6px;"></i> Physical Count of Property</a>
+                                            </li>
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#"><i class="icon-trash" style="margin-left:4px;margin-right:10px;"></i> Waste Material Report</a>
+                                            </li>
+
+
+                                        </ul>
+                         </div>
+                </div> 
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:48px; 
+
+                ">
+                <div>
+                    
+                    Supplies' Inventory and RIS List
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                    
+                        
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Requisition and Issuance Slips
+                            </div>
+                            <div class="panel-body" style="padding-bottom:0px;">  
+                            <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                                <div class="form-group input-group" style="padding:0px;margin:0px;">
+                           
+                                            <input type="text" class="form-control input-sm" placeholder="Find RIS" >
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default btn-sm " type="button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div> 
+
+
+                                </div>
+                            </div>
+                            <div class="panel-body" style=" padding-right: 0px; padding-top:0px;">
+                            
+
+                            <div class="panel">
+                          
+                          
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive tablescroll2" style="">
+                              <table class="table table-hover">
+                                    <thead>
+                                         <tr>
+                                            <th class="text-center" style="width:120px;background-color: #d6e9c6;">No.</th>
+                                            <th style="width:420px;">Requesting Office</th>
+                                            <th class="text-center" style="width:110px;">Status</th>
+                                            <th class="text-center"  style="width:110px;">Release Status</th>
+                                            <th class="text-center"  style="width:110px;">Action</th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody id="theRISListTable">
+
+                                      </tbody>  
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+              
+                </div>
+                
+              
+
+
+                <!-- /. ROW  
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+           ========================================================  
+
+
+
+                    </div>-->
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+   
+    <div id="footer-sec">
+       &copy; Mindanao State University <i class=" buttom-header-right">Equipement Inventory </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/custom.js' %}"></script>
+
+    <script type="text/javascript">
+        
+
+    $(document).ready(function(){
+        displayRISList();
+    
+    });
+
+        function displayRISList() {
+            
+       
+                $.ajax({
+                    type: 'POST',
+                    url:'/inventory_office/getRIS/',
+                    data:{
+                    
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+
+                        document.getElementById("theRISListTable").innerHTML = "";
+                        
+                        var t = ''    
+                            for(var key in response) {
+                                var value = response[key];
+                                var tr = '<tr>'
+                                    if (value['risNum'] === null ) {
+                                        tr+=   '<td class="text-center" >---</td>'
+                                    }else{
+                                        tr+=   '<td class="text-center" style="background-color: #eff3eb;">'+value['risNum']+'</td>'
+                                    }
+                                    
+                                    tr+=  '<td>'+value['reqOff']+'</td>'
+                                    if (value['status'] === true) {
+                                        tr+=  '<td class="text-center"><label class="label label-success">Approved</label></td>'
+                                    }
+                                    if (value['status'] === null) {
+                                        tr+=  '<td class="text-center"><label class="label label-warning">Pending</label></td>'
+                                    }
+
+                                    if (value['status'] === false) {
+                                        tr+=  '<td class="text-center"><label class="label label-danger">Denied</label></td>'
+                                    }
+                                    if (value['relStatus'] === true) {
+                                        tr+=  '<td class="text-center"><label class="label label-success">Released</label></td>'
+                                    }
+                                    if (value['relStatus'] === null && value['status'] === null) {
+                                        tr+=  '<td class="text-center"><label class="label label-warning">Pending</label></td>'
+                                    }
+                                    if (value['relStatus'] === null && value['status'] === true) {
+                                        tr+=  '<td class="text-center"><label class="label label-warning">Waiting</label></td>'
+                                    }
+
+                                    tr+=   '<td class="text-center">'
+                                    tr+= '<form id="theDetails" method="POST" action="/inventory_office/displayRISDetails/">'
+                                    tr+="{% csrf_token %}"
+                                    tr+= '<div>'
+                                     tr+=  '<button id="slipNumButton" name="slipNumButton" class="btn btn-xs '
+                                     tr+=  'btn-primary" type="submit" role="submit" value="'+key+'">Details <i class="icon-arrow-right"></i></button>'
+                                    tr+= '</div>'
+                                    tr+= '</form>'
+                                  
+
+                                     tr+= '</td>'
+                                     tr+=  '</tr>'
+                                 t +=tr
+                        }
+                    
+                    document.getElementById("theRISListTable").innerHTML += t;
+                    
+                    }
+
+                }); 
+
+            }
+
+        $('#addList2').click(function (argument) {
+             
+             $.ajax({
+                    type: 'POST',
+                    url:'/inventory_office/addSupplyItem/',
+                    data:{
+                        
+                        'description' :$('#descrip2').val(),
+                        'unit' : $('#unit2').val(),
+                        'price' : $('#price2').val(),
+                        'quantity' : $('#quantity2').val(),
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+                        location.reload()
+                        
+                    }
+
+                }); 
+        });    
+
+
+
+        $('#findSearch').click(function () {
+            findFromTable()
+        })
+
+        $('#searchInput').keyup(function () {
+            findFromTable()
+        })
+
+        function findFromTable() {
+          
+          var input, filter, table, tr, td, i;
+          
+          input = document.getElementById("searchInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("theListTable");
+          
+          tr = table.getElementsByTagName("tr");
+          
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            td1 = tr[i].getElementsByTagName("td")[2];
+            td2 = tr[i].getElementsByTagName("td")[3];
+            if (td||td1||td2) {
+              if (td.innerHTML.toUpperCase().indexOf(filter) > -1||td1.innerHTML.toUpperCase().indexOf(filter) > -1||td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+
+    </script>
+
+
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#supply').attr('class','{{cssActiveMenu}}')
+            $('#inventoryTop').attr('class', 'active-menu-top')
+            $('#theInvenUL').attr('class','nav nav-second-level collapse in')
+            $('#title').html('Supplies')
+
+           
+             });
+    </script>
+
+{% endblock %}
+
+
+    

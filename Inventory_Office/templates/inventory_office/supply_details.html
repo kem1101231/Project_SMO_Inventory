@@ -1,0 +1,512 @@
+{% extends baseSource %}
+{% load staticfiles %}
+{% load humanize %}
+{% block content %}
+    <style type="text/css">
+        
+        .test25{
+
+            max-width: 180px;
+            min-height: 180px;
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px; 
+            margin-bottom:2px;
+         }
+
+         .item-img-div {
+   
+    min-height: 140px;
+}
+    
+    .item-brg-img img{
+
+    }
+    
+    .item-img-div img {
+        max-height: 150px;
+    }
+
+    .item-img-div .inner-text {
+        
+        text-align: left;
+        position: relative;
+        color: #fff;
+        font-weight: 500;
+        line-height: 20px;
+        font-size: 15.5px;
+        
+    }
+
+        .tablescroll{
+            overflow-y:scroll;
+            height:1033px;
+            display:block;
+        }
+        
+        .tablescroll2{
+            
+            overflow-y:scroll;
+            height:550px;
+            display:block;
+        }
+        .divScroll{
+            
+            overflow-y:scroll;
+            height:450px;
+            display:block;
+        }
+
+    </style>
+
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 30px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:75px; 
+                 margin-bottom: 20px; 
+                 
+
+                ">
+                <div style="padding-bottom: 15px;">
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}" style="font-size: 28px;"></span><span name="reqNum" id="reqNum" value="{{pageData1.0.0}}" style="font-weight: 500; font-size: 30px;">Supply Item Details</span>
+                 
+                </div>
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #fff!important;">
+             
+                     <div class="col-lg-6" style="padding:8px; padding-top: 0px;">
+                    <div class="panel panel-primary" style="border-radius: 0px;">
+                             <div class="panel-body" style="border-top:4px solid #428bca; font-size: 18px; padding-top: 20px; padding-bottom: 9px;">
+                                <p>Basic Information</p>
+                                <p style="margin: 0px; margin-top: 5px;  border-bottom:2px solid #428bca; width: 60%;"></p>
+                            </div>
+                            <div class="panel-body" style=" padding-left:10px; padding-top: 0px; height: 164px;">
+                                      
+                                                            
+                                        <div class="panel col-lg-12 text-center" style="padding:0px; display: none">
+                                            <div class = "panel panel-info item-img-div"  style="margin-bottom:0px; max-width: 100%; width: 100%;">
+                                                <img src = "{% static 'assets/img/portfolio-img8.jpg' %}">          
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-12" style="padding-left:0px;padding-right: 0px;"></div>
+                                        <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                                    <div class="col-lg-4 dataFont2 "  style="padding-left: 25px;">
+                                                       Description:  
+                                                    </div>
+                                                    <div class="col-lg-8 dataFont1">
+                                                        {{pageData1.0.1}}
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                          
+                                          <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                                    <div class="col-lg-4 dataFont2 " style="padding-left: 25px;" >
+                                                        Unit:  
+                                                    </div>
+                                                    <div class="col-lg-8 dataFont1">
+                                                         {{pageData1.0.3}}
+                                                    </div>
+                                                </div> 
+                                            </div> 
+
+                                            <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%;">
+                                                    <div class="col-lg-4 dataFont2 " style="padding-left: 25px;">
+                                                        Unit Price:  
+                                                    </div>
+                                                    <div class="col-lg-8 dataFont1">
+                                                        ₱  {{pageData1.1.5|floatformat|intcomma}}
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="form-group" style="display: none">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-4 dataFont2 " style="padding-left: 25px;">
+                                                     Latest Update: 
+                                                </div>
+                                                <div class="col-lg-8 dataFont1"  >
+                                                    April 14, 2017
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        </div>
+                                      
+                            </div>  
+
+                        </div> 
+                       
+                  <div class="col-lg-6" style="padding:0px">
+                    <div class="col-lg-6" style="padding: 8px;padding-top:0px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555;">
+                        <div class="panel-body" style="height: 100px; background-color: #479aaf !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #056c82; height: 100%; margin: 0px">
+                                <i style="font-size: 45px; padding-top: 28px; color: #fff;" class="fa fa-star"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Rank</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 22px; font-weight: bold;" >
+                                    
+                                         {{pageData1.2.0|floatformat|intcomma}}
+                                        
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;">Commonly on Request</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                
+                <div class="col-lg-6" style="padding: 8px;padding-top:0px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555;">
+                        <div class="panel-body" style="height: 100px; background-color: #d2983c !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #a97b00; height: 100%; margin: 0px">
+                                <i style="font-size: 45px; padding-top: 28px; color: #fff;" class="fa fa-file"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Currently Requested</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 22px; font-weight: bold;" >{% if pageData1.1.8 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData1.1.8|floatformat|intcomma}}
+                                        {% endif %}</p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;">Qty. Included on R.I.S.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div class="col-lg-6" style="padding: 8px;padding-top:0px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555;">
+                        <div class="panel-body" style="height: 100px; background-color: 
+                                    {% if pageData1.3.0 == 'High' or pageData1.3.0 == 'Medium' %}
+                                        #00a65a
+                                    {% endif %}
+                                    {% if pageData1.3.0 == 'Low' %}
+                                        #d2983c
+                                    {% endif %}
+                                    {% if pageData1.3.0 == 'Very Low' or pageData1.3.0 == 'Zero' %}
+                                        #a94442
+                                    {% endif %}
+
+
+                         !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: 
+                                    {% if pageData1.3.0 == 'High' or pageData1.3.0 == 'Medium' %}
+                                        #1a755b
+                                    {% endif %}
+                                    {% if pageData1.3.0 == 'Low' %}
+                                        #a97b00
+                                    {% endif %}
+                                    {% if pageData1.3.0 == 'Very Low' or pageData1.3.0 == 'Zero' %}
+                                        #841614
+                                    {% endif %}
+
+                                ; height: 100%; margin: 0px">
+                                <i style="font-size: 45px; padding-top: 28px; color: #fff;" class="fa fa-question"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Items Availability</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 19px; font-weight: bold;" >
+                                    {{pageData1.3.1}}
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;">{{pageData1.3.2}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-6" style="padding: 8px;padding-top:0px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555;">
+                        <div class="panel-body" style="height: 100px; background-color:
+                                    {% if pageData1.3.0 == 'High' or pageData1.3.0 == 'Medium' %}
+                                        #00a65a
+                                    {% endif %}
+                                    {% if pageData1.3.0 == 'Low' %}
+                                        #d2983c
+                                    {% endif %}
+                                    {% if pageData1.3.0 == 'Very Low' or pageData1.3.0 == 'Zero' %}
+                                        #a94442
+                                    {% endif %}!important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: 
+                                    {% if pageData1.3.0 == 'High' or pageData1.3.0 == 'Medium' %}
+                                        #1a755b
+                                    {% endif %}
+                                    {% if pageData1.3.0 == 'Low' %}
+                                        #a97b00
+                                    {% endif %}
+                                    {% if pageData1.3.0 == 'Very Low' or pageData1.3.0 == 'Zero' %}
+                                        #841614
+                                    {% endif %}
+; height: 100%; margin: 0px">
+                                <i style="font-size: 45px; padding-top: 28px; color: #fff;" class="fa fa-search"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Available Quantity</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 22px; font-weight: bold;" >{{pageData1.0.5|floatformat|intcomma}}</p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;" >{{pageData1.0.3}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    
+
+
+                </div>
+
+
+               
+                   
+                
+                <div class="col-lg-12" style="padding: 8px; padding-top: 0px;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-primary" style="border-radius: 0px;">
+                             <div class="panel-body" style="border-top:4px solid #428bca; font-size: 18px; padding-top: 20px;">
+                                <p>Status on Office's Consumtion of this Item for this Quarter</p>
+                                <p style="margin: 0px; margin-top: 5px; margin-bottom: 0px;  border-bottom:2px solid #428bca; width:80%;"></p>
+                            </div>
+                            
+                                <div class="panel-body" style="margin:0px; padding:8px;">
+                                <div class="table-responsive">
+                                <table class="table table-hover" id="theOffTable">
+                                    <thead>
+                                        <tr style="background-color: #eee;">
+                                            <th>Office Name</th>
+                                            <th class="text-center" style="width:150px;">Average Claimed Quantity</th>
+                                            <th class="text-center" style="width:150px;">Claimed Quantity</th>
+                                            <th class="text-center" style="width:150px;">Percentage of Qty. to Inventory</th>
+                                            <th class="text-center" style="width:150px;">Latest Claim</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in pageData4 %}
+                                    <tr id="{{x.0}}" class="tr_class">
+                                            <td>{{x.0.1}}</td>
+                                            <td class="text-center">{{x.1.0.6|floatformat|intcomma}}</td>
+                                            <td class="text-center">{{x.1.0.0|floatformat|intcomma}}</td>
+                                            <td class="text-center">{{x.1.0.4|floatformat|intcomma}}%</td>
+                                            <td class="text-center">Mon. dd, YYYY</td>
+                                           
+                                        </tr>
+                                      
+
+                                    {% endfor %}
+                                        
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            </div>
+
+                        
+
+                            
+                                
+
+                           
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <div id="footer-sec">
+       &copy; Mindanao State University - General Santos City  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/plugins/morris/raphael-2.1.0.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/morris/morris.js' %}"></script>
+
+    <script type="text/javascript">
+        
+
+        Morris.Bar({
+        element: 'morris-bar-chart',
+        data: [{
+            device: 'January',
+            geekbench: 6
+        }, {
+            device: 'February',
+            geekbench: 4
+        }, {
+            device: 'March',
+            geekbench: 8
+        }, {
+            device: 'April',
+            geekbench: 2
+        }, {
+            device: 'May',
+            geekbench: 3
+        }, {
+            device: 'June',
+            geekbench: 12
+        }, {
+            device: 'July',
+            geekbench: 8
+        }],
+        xkey: 'device',
+        ykeys: ['geekbench'],
+        labels: ['Quantity Purchased'],
+        barRatio: 0.4,
+        xLabelAngle: 35,
+        hideHover: 'auto',
+        resize: true
+    });
+
+        Morris.Bar({
+        element: 'morris-bar-chart2',
+        data: [{
+            device: 'CNSM',
+            geekbench: 60
+        }, {
+            device: 'CSSH',
+            geekbench: 56
+        }, {
+            device: 'COA',
+            geekbench: 52
+        }, {
+            device: 'SMO',
+            geekbench: 48
+        }, {
+            device: 'VCAF',
+            geekbench: 45
+        }, {
+            device: 'COEd',
+            geekbench: 42
+        }, {
+            device: 'COBA/A',
+            geekbench: 35
+        }, {
+            device: 'COE',
+            geekbench: 28
+        }, {
+            device: 'COL',
+            geekbench: 22
+        }, {
+            device: 'GradS',
+            geekbench: 20
+        }],
+        xkey: 'device',
+        ykeys: ['geekbench'],
+        labels: ['Quantity ON Account'],
+        barRatio: 0.4,
+        xLabelAngle: 35,
+        hideHover: 'auto',
+        resize: true
+    });
+
+
+
+
+    </script>
+    <script type="text/javascript">
+        
+    /*$('#theOffTable').on('click', 'td', function (e) {
+        
+        var id = this.id;
+        var tdid = $(this).closest('tr').attr('id')
+        var btnID = $('#'+tdid).find('#'+tdid+'_button').attr('id')
+
+        $('.tr_class').attr('style', 'background-color:white; color:black; cursor:pointer;')
+        $('.btn_class').attr('class', 'btn_class btn btn-primary btn-xs')
+        $('.btn_class').html('<i class="icon-arrow-right"></i>')
+       
+        $('#'+tdid).attr('style', 'background-color:#dff0d8; cursor:pointer;')
+        
+        $('#'+btnID).attr('class', 'btn_class btn btn-success btn-xs')
+        $('#'+btnID).html('<i class="icon-reorder"></i>')
+
+    })*/
+
+    </script>
+
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#supply').attr('class','{{cssActiveMenu}}')
+            $('#inventoryTop').attr('class', 'active-menu-top')
+            $('#theInvenUL').attr('class','nav nav-second-level collapse in')
+            $('#title').html('Supplies')
+
+           
+             });
+    </script>
+
+{% endblock %}
+

@@ -1,0 +1,645 @@
+{% extends baseSource %}
+{% load staticfiles %}
+{% load humanize %}
+{% block content %}
+        <div id="page-wrapper">
+
+
+            <!--  ========================================================  
+
+
+                     <div>
+                       <span name="reqNum" id="reqNum">Create a Request for Quotation</span>
+
+                    </div>
+
+
+             -->
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                padding:0px;
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:55px; 
+
+                ">
+            
+                <div class="panel-body" style="padding-bottom: 20px; padding-right: 0px; padding-left: 8px;">
+                    <span style="font-size: 30px;"> Dashboard</span>
+                
+                   
+      
+                       
+
+                </div>
+               </div>
+               </form>
+            
+            <div id="page-inner" style="margin-top:0px; background-color: #fff!important;">
+             
+            <div class="col-lg-12"  style="padding:0px; display: none">
+                <div class="col-lg-3" style="padding:8px;">
+                   <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555; margin-bottom: 8px;">
+                        <div class="panel-body" style="height: 86px; background-color: #479aaf !important; padding: 0px;">
+                            <div class="col-lg-3 text-center" style="padding: 0px; background-color: #056c82; height: 100%; margin: 0px">
+                                <i style="font-size: 25px; padding-top: 28px; color: #fff;" class="fa fa-truck"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px; font-size: 12px; margin-top: 6px;">Upcoming Deliveries</p>
+                                <p style="margin: 6px; margin-top: 3px; margin-bottom: 0px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 0px; margin-top: 8px; font-size: 19px; font-weight: bold;" >
+                                    00
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 11px;" >Deliveries</p>
+                            </div>
+
+                        </div>
+                    </div> 
+                </div>
+                <div class="col-lg-3" style="padding:8px;">
+                  <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555; margin-bottom: 8px;">
+                        <div class="panel-body" style="height: 86px; background-color: #00a65a !important; padding: 0px;">
+                            <div class="col-lg-3 text-center" style="padding: 0px; background-color: #1a755b; height: 100%; margin: 0px">
+                                <i style="font-size: 25px; padding-top: 28px; color: #fff;" class="fa fa-truck"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px; font-size: 12px; margin-top: 6px;">Upcoming Deliveries</p>
+                                <p style="margin: 6px; margin-top: 3px; margin-bottom: 0px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 0px; margin-top: 8px; font-size: 19px; font-weight: bold;" >
+                                    00
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 11px;" >Deliveries</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3" style="padding:8px;">
+                  <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555; margin-bottom: 8px;">
+                        <div class="panel-body" style="height: 86px; background-color: #a94442 !important; padding: 0px;">
+                            <div class="col-lg-3 text-center" style="padding: 0px; background-color: #841614; height: 100%; margin: 0px">
+                                <i style="font-size: 25px; padding-top: 28px; color: #fff;" class="fa fa-truck"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px; font-size: 12px; margin-top: 6px;">Upcoming Deliveries</p>
+                                <p style="margin: 6px; margin-top: 3px; margin-bottom: 0px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 0px; margin-top: 8px; font-size: 19px; font-weight: bold;" >
+                                    00
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 11px;" >Deliveries</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3" style="padding:8px;">
+                  <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555; margin-bottom: 8px;">
+                        <div class="panel-body" style="height: 86px; background-color: #a94442 !important; padding: 0px;">
+                            <div class="col-lg-3 text-center" style="padding: 0px; background-color: #841614; height: 100%; margin: 0px">
+                                <i style="font-size: 25px; padding-top: 28px; color: #fff;" class="fa fa-truck"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px; font-size: 12px; margin-top: 6px;">Upcoming Deliveries</p>
+                                <p style="margin: 6px; margin-top: 3px; margin-bottom: 0px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 0px; margin-top: 8px; font-size: 19px; font-weight: bold;" >
+                                    00
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 11px;" >Deliveries</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                
+
+
+            </div>
+              <div class="col-lg-12"  style="padding:0px;">
+                <div class="col-lg-7" style="padding:8px;">
+                    <div class="panel panel-primary" style="border-radius: 0px; border: 2px solid #056c82">
+                         <div class="panel-body" style="border-top:4px solid #428bca; font-size: 20px; padding-top: 20px;">
+                                <p>Supply Inventory</p>
+                                <p style="margin: 0px; margin-top: 5px; margin-bottom: 25px;  border-bottom:2px solid #428bca; width: 60%;"></p>
+                                <p style="margin-bottom: 0px;">
+                                    <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                            <div class="form-group input-group" style="padding:0px;margin:0px;">
+                       
+                                <input type="text" class="form-control input-sm" placeholder="Search for an Item" id="searchInput" s>
+                                    <span class="input-group-btn">
+                                        <button id="findSearch" class="btn btn-info btn-sm " type="button">
+                                            <i class="fa fa-search "></i>
+                                    </button>
+                                </span>
+                            </div> 
+
+
+                            </div></p>
+                                
+                                
+
+                             </div>
+                        <div class="panel-body" style="padding-top: 0px;">
+                             
+                              <div class="table-responsive tablescroll" style="">
+                            <table class="table table-hover ">
+                                    <thead>
+                                        <tr style=" background: #eee">
+                                            <th >Description</th>
+                                            
+                                            <th class="text-center" style="width:100px;">Status</th>
+                                            <th class="text-center" style="width:110px;">Available Quantity</th>
+                                             <th class="text-center" style="width:110px;">Qty Being Requested</th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+                                 
+                                       
+                                    {% for x in pageData1.0 %}
+                                        <tr style="display:none">
+                                            <td colspan="7">{{x}}</td>
+                                        </tr>
+                                        <tr>
+                                           <td>
+                                            <a href="/inventory_office/supply/{{x.4.0}}/details/">
+                                           {{x.0.1}}
+                                             </a>
+                                            </td>
+                                           <td class="text-center">
+                                            <button disabled="" class="btn btn-sm" style="background-color: #fff; border: 2px solid {{x.3.4}}; color: {{x.3.4}}">{{x.3.1}}</button>
+                                           </td>
+                                           <td class="text-center">{{x.0.5|floatformat|intcomma}}</td>
+                                            <td class="text-center">{{x.1.8|floatformat|intcomma}}</td>
+                                            
+                                        </tr>
+
+
+                                    {% endfor %}
+                                    
+                                   
+                                   
+                                    </tbody>
+                                        
+                                </table>
+                            </div>
+                          
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-5" style="padding: 0px;">
+                  <div class="col-lg-6 text-center" style="padding-left: 40px;">
+                    <p> <button class="btn btn-lg btn-success" style="width: 80px; height: 80px; font-size: 35px; border-radius: 50px; font-weight: bold; outline: none">
+                      1
+                    </button></p>
+                    <p style="font-size: 15px; margin:0px; font-weight: bold">Upcoming</p> 
+                    <p style="font-size: 13px;">Deliveries</p>
+                   
+                  </div>
+                     <div class="col-lg-6 text-center" style="padding-right: 60px;">
+                    <p> <button class="btn btn-lg btn-danger" style="width: 80px; height: 80px; font-size: 35px; border-radius: 50px;  font-weight: bold; outline: none">
+                      15
+                    </button></p>
+                    <p style="font-size: 15px; margin:0px; font-weight: bold">Incomplete</p> 
+                    <p style="font-size: 13px;">Deliveries</p>
+                   
+                  </div>
+                  </div>
+                <div class="col-lg-5" >
+                  
+
+                    <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555; margin-bottom: 8px;display: none"">
+                        <div class="panel-body" style="height: 86px; background-color: #fff !important; padding: 0px; height: 119px; border: 1px solid #111;">
+                            <div class="col-lg-3 text-center" style="padding: 0px; background-color: #409819; height: 100%; margin: 0px; ">
+                                <i style="font-size: 35px; padding-top: 28px; color: #fff; margin-top: 15px;" class="fa fa-truck"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #111">
+                                <p style="margin: 10px; margin-bottom: 0px; font-size: 22px; margin-top: 10px;">Deliveries</p>
+                                <p style="margin: 6px; margin-top: 8px; margin-bottom: 14px;  border-bottom:1px solid #111;"></p>
+
+                                <div class="col-lg-6" style="padding: 0px; padding-right: 3px; border-right: 1px solid #111;">
+                                  <p style="margin: 10px; margin-bottom: 0px; margin-top: 8px; font-size: 25px; font-weight: bold;" >
+                                    00
+                                </p>
+                                <p style="margin: 10px; margin-top: 6px; font-size: 13px; color: green" >Upcoming</p>
+                                </div>
+                                 <div class="col-lg-6" style="padding: 0px; padding-left: 3px;">
+                                  <p style="margin: 10px; margin-bottom: 0px; margin-top: 8px; font-size: 25px; font-weight: bold;" >
+                                    00
+                                </p>
+                                <p style="margin: 10px; margin-top:6px; font-size: 13px; color: red" >Incomplete</p>
+                                </div>
+                                
+                                
+                            </div>
+
+                        </div>
+                    </div>
+
+                        <!-- border-top:1px solid #fff;-->
+
+                    <div class="panel panel-primary" style="border-radius: 0px; border: 2px solid #1a755b; margin-top: 17px;">
+                       
+                        <div class="panel-body" style="padding:0px;padding-top: 8px;">
+                             <div class="table-responsive tablescroll" style="padding: 0px;">
+                              <table class="table table-hover">
+                                    <tbody>
+
+                                        {% for x in '*****' %}
+                                            <tr>
+                                               <td>
+                                               <div class="panel panel-primary" style="padding:0px; padding-bottom: 5px; margin:0px; border-radius: 0px;border-color: #fff; border-top: 2px solid #056c82;">
+                                                <div class="panel-body" style="padding-bottom: 0px;">
+                                                    
+                                                   <div style="padding-left: 0px;">
+                                                      <div></div>
+                                                      <div></div>
+                                                        <p style="font-size:18px; margin-bottom: 0px; ">Month 00, 0000</p>
+                                                        <p style="font-size:12px; margin-bottom: 3px; "><span style="font-size: 13px; font-weight: bold;"> 0 </span>day/s to go</p>
+                                                        <p style="margin: 0px; margin-bottom:15px; border-bottom:1px solid #888; width: 80%;"></p>
+                                                        <p style="font-size: 13px; font-weight: bold; margin-bottom: 5px">Suppliers's Long Name Mendokuse</p>
+                                                        <p style="margin: 0px; margin-bottom:5px; border-bottom:1px solid #888; width: 100%;"></p>
+                                                        <p>
+                                                           <div class="col-lg-6">P.O. No. Ref.:</div> 
+                                                           <div class="col-lg-6">000-00</div>
+                                                         </p>
+                                                          <p>
+                                                           <div class="col-lg-6">Cost Value:</div> 
+                                                           <div class="col-lg-6">000,000,000</div>
+                                                         </p>
+                                                         <p>
+                                                           <div class="col-lg-6">Status:</div> 
+                                                           <div class="col-lg-6"><label class="label label-success"> Upcoming</label></div>
+                                                         </p>
+
+                                                         <p class="text-right" style="margin-bottom: 0px;">
+                                                           <button class="btn btn-info btn-xs"  style="margin-top: 28px;">View Details</button>
+                                                         </p>
+                                                     
+                                                   </div>
+                                                </div>
+                                               </div>
+
+                                           </td>
+                                            </tr>
+                                        {% endfor %}
+                                     
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6" style="padding:8px; padding-top:0px;">
+                    <div class="panel panel-primary" style="border-radius: 0px; border: 2px solid #056c82">
+                          <div class="panel-body" style="border-top:4px solid #428bca; font-size: 20px; padding-top: 20px;">
+                                <p>Purchase Requests</p>
+                                <p style="margin: 0px; margin-top: 5px; margin-bottom: 25px;  border-bottom:2px solid #428bca; width: 60%;"></p>
+                                <p style="margin-bottom: 0px;">
+                                    <div class="panel-body col-lg-6 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                            <div class="form-group input-group" style="padding:0px;margin:0px;">
+                       
+                                <input type="text" class="form-control input-sm" placeholder="Search for an Item" id="searchInput" s>
+                                    <span class="input-group-btn">
+                                        <button id="findSearch" class="btn btn-info btn-sm " type="button">
+                                            <i class="fa fa-search "></i>
+                                    </button>
+                                </span>
+                            </div> 
+
+
+                            </div></p>
+                                
+                                
+
+                             </div>
+                        <div class="panel-body" style="padding-right: 0px;">
+                             <div class="table-responsive tablescroll" >
+                              <table class="table table-hover ">
+                                    <thead>
+                                        <tr style=" background: #eee">
+                                            <th >Requested By</th>
+                                            
+                                            <th class="text-center" style="width:95px;">Total Cost</th>
+                                            <th class="text-center" style="width:95px;">Details</th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+                                       {% for xx in '******' %}
+                                        <tr>
+                                           <td>
+                                            <p style="font-weight: bold">Engr. Virgilio Ramos</p>
+                                            <p style="font-size: 13px;">Office of the Vice Chancellor for Administration and Finances</p></td>
+                                            <td class="text-center">000,000,000</td>
+                                           <td class="text-center">
+                                            <button class="btn btn-sm btn-primary" style="border-radius: 20px; outline: none"><i class="icon-arrow-right"></i></button>
+                                           </td>
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                            <div class="col-lg-6" style="padding:8px; padding-top:0px;">
+                    <div class="panel panel-primary" style="border-radius: 0px; border: 2px solid #056c82">
+                          <div class="panel-body" style="border-top:4px solid #428bca; font-size: 20px; padding-top: 20px;">
+                                <p>Requisition Issuance List</p>
+                                <p style="margin: 0px; margin-top: 5px; margin-bottom: 25px;  border-bottom:2px solid #428bca; width: 60%;"></p>
+                                <p style="margin-bottom: 0px;">
+                                    <div class="panel-body col-lg-6 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                            <div class="form-group input-group" style="padding:0px;margin:0px;">
+                       
+                                <input type="text" class="form-control input-sm" placeholder="Search for an Item" id="searchInput" s>
+                                    <span class="input-group-btn">
+                                        <button id="findSearch" class="btn btn-info btn-sm " type="button">
+                                            <i class="fa fa-search "></i>
+                                    </button>
+                                </span>
+                            </div> 
+
+
+                            </div></p>
+                                
+                                
+
+                             </div>
+                        <div class="panel-body">
+                             <div class="table-responsive tablescroll">
+                              <table class="table table-hover ">
+                                    <thead>
+                                        <tr style=" background: #eee">
+                                            <th >Requested By</th>
+                                            
+                                            <th class="text-center" style="width:95px;">Status</th>
+                                            
+                                            <th class="text-center" style="width:95px;">Qty. Being Requested</th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+                                        {% for xx in '******' %}
+                                        <tr>
+                                           <td>
+                                            <p style="font-weight: bold">Engr. Virgilio Ramos</p>
+                                            <p style="font-size: 13px;">Office of the Vice Chancellor for Administration and Finances</p></td>
+                                           <td class="text-center">
+                                            <button disabled="" class="btn btn-sm" style="background-color: #fff; border: 2px solid {{x.3.4}}; color: {{x.3.4}}">zxzxzxz</button>
+                                           </td>
+                                            <td class="text-center">xcxc</td>
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+          <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+                
+                       
+
+                            
+                  
+                </div>      
+
+                        </div>   
+    
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+
+
+    <!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="newReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <form action="" method="POST">{% csrf_token %} 
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Enter reason of denial</h4>
+                                    </div>
+                                   
+                                    
+                                    <div class="modal-body">
+
+                                            <div class="checkbox" >
+                                                        <label>
+                                                            <div class="checker hover"><span><input checked id="chck1" class="uniform" type="checkbox" value="option1"></span></div>Select a Reason
+                                                        </label>
+                                             </div>
+                                             
+                                             <div>
+                                                <select id="selReason" class="form-control">
+                                                <option>On tight budget</option>
+                                                <option>Unreasonable request</option>
+                                                <option>Date interval of last the account is too near</option>
+                                            </select>
+
+                                             </div>
+                                             
+
+                                             <div class="checkbox">
+                                                        <label>
+                                                            <div class="checker hover"><span><input id="chck2" class="uniform" type="checkbox" value="option2"></span></div>Specify Reason
+                                                        </label>
+                                             </div>
+                                                    
+                                                    <div>
+                                                        <textarea id="reasonIn" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 100px;" disabled></textarea>
+                                                    </div>
+                                                
+                                      
+                                    </div>
+                                   
+                                      
+                                          <div class="modal-footer">
+                                            <button id="submitDecline" data-dismiss="modal" type="button" role="button" class="btn btn-success">Submit</button>
+                                    </div>
+
+                                        
+                                       
+                                     
+                                     
+                                    
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transCompAppr" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Update on Purchase Request Approval Status Complete</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">• You have successfully approved this request.</p>
+                                        <p style="margin-bottom:10px;">• The personnel or office responsible on task/s for the next part of the this transaction have been notified to proceed.</p>
+                                        <p style="margin-bottom:10px;">• You will be receiving notifications regarding on the developement of this transaction.</p>
+                                           
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transCompDecl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Update on Purchase Request Approval Status Complete</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">• You have purposely declined this request.</p>
+                                        <p style="margin-bottom:10px;">• The requesting personnel of this request will be notified regarding the denial of this request together with the it's reason.</p> 
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotifDecl" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transCompApprConf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Confirm Request Approval</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">Are you sure you want to approve this request?</p>
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                            <button id="apprReqBtn" data-dismiss="modal" type="submit" class="btn btn-success"><i class="icon-ok"></i> Yes</button>
+                                            <button data-dismiss="modal" type="submit" class="btn btn-danger"><i class="icon-remove"></i> No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+
+
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec" >
+      &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    <!-- WIZARD SCRIPTS -->
+
+    <script type="text/javascript">
+        
+     $(document).ready(function () {
+         $('#home').attr('class','{{cssActiveMenu}}')
+     })
+
+    </script>
+
+{% endblock %}
+
+
+
+   
+

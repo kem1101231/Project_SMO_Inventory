@@ -1,0 +1,321 @@
+﻿{% extends 'procurement/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <div id="page-wrapper">
+
+
+
+            <!--  ========================================================   -->
+            <!--  ========================================================  
+
+              <div style="   
+                                     display:inline;
+                                     padding: 0px;
+                                     margin: 0px;
+                                     margin-top: 51px;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                        
+                        <div class="btn-group">
+                                        <a data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="icon-bar-chart"></i> Generates Inventory Reports<span style="margin-left:5px;" class="caret"></span></a>
+                                        <ul class="dropdown-menu message-dropdown" style="right:0;">
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#" ><i class="icon-list-alt" style="margin-left:4px;margin-right:6px;"></i> Physical Count of Property</a>
+                                            </li>
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#"><i class="icon-trash" style="margin-left:4px;margin-right:10px;"></i> Waste Material Report</a>
+                                            </li>
+
+
+                                        </ul>
+                         </div>
+                </div> -->
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:48px; 
+
+                ">
+                <div>
+                    
+                    Purchase Requests
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                <div class="col-lg-12" style="display:none">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {% for x in pageData1 %}
+                            <p>{{x}}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>    
+                <div class="col-lg-12">
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="padding-bottom:0px;">  
+                            <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                                <div class="form-group input-group" style="padding:0px;margin:0px;">
+                           
+                                            <input type="text" class="form-control input-sm" placeholder="Find PR" >
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default btn-sm " type="button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div> 
+
+
+                                </div>
+                            </div>
+                            <div class="panel-body" style=" padding-right: 0px; padding-top:10px;">
+                            
+
+                            <div class="panel">
+                            <!-- 
+                          
+ -->
+                               <div class="panel-body" style=" padding-top:0px; padding-left: 0px;">
+                           
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered">
+                                    <thead style="background: #333; color:white;">
+                                        <tr>
+                                            
+                                            <th style="width:280px;">Requesting Office</th>
+                                            <th style="width:280px;">Purpose</th>
+                                            <th class="text-center" style="width:150px;">Date Approved</th>
+                                            <th class="text-center" style="width:100px;">P.R. No.</th>
+                                            <th class="text-center" style="width:120px;">Cur. Phase</th>
+                                            
+                                            
+                                            <th class="text-center" style="width:95px;">Details</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in pageData1 %}
+                                      <tr style="display:none" >
+                                        <td colspan="6">
+                                          {% for xx in x %}
+                                          <p>{{xx}}</p>
+                                          {% endfor%}
+                                        </td>
+
+                                      </tr>
+
+                                      {% if x.4.1 > 1 %}
+                                        {% for xx in  x.2 %}
+                                          
+                                        <tr>
+                                          
+                                          {% if xx.0.0 == x.2.0.0.0 %}
+                                                <td>{{x.3.2.1}}</td>
+                                                <td>{{x.0.2}}</td>
+                                                <td class="text-center">{{x.0.11}}</td>
+                                                <td  class="text-center"
+                                                style="background-color: 
+                                                {% if x.0.1 == None %}
+                                                #f3d4a7
+                                                {% else %}
+                                                #abda97
+                                                {% endif %};
+                                                " 
+                                                >
+                                                {% if x.0.1 == None %}
+                                                <span style="font-size: 12px;">Doc. hasn't arrived yet</span>
+                                                {% else %}
+                                                {{x.0.1}}
+                                                {% endif %}
+                                                </td>
+                                          {% else %}
+                                                
+                                                <td style="border-top: 2px solid #fff; "></td>
+                                                <td style="border-top: 2px solid #fff; "></td>
+                                                <td class="text-center" style="border-top: 2px solid #fff; "></td>
+                                                <td  class="text-center"
+                                                style="background-color: 
+                                                {% if x.0.1 == None %}
+                                                #f3d4a7
+                                                {% else %}
+                                                #abda97
+                                                {% endif %};
+                                                " 
+                                                > <p style="margin:2px;">{{x.0.1}}</p><p style="margin:2px;">(CE-{{xx.0.0.10}})</p>
+                                                </td>
+                                          {% endif %}
+                                            
+                                            <td class="text-center" style="background-color: {% if xx.0.19 != None %}#97da99{% else %}#bfd6ea{% endif %} ;">
+
+                                                {% if xx.0.1 == None %}
+                                                  <span style="font-size: 12px;">Doc. hasn't arrived yet</span>
+                                               {% endif %}
+                                               {% if xx.0.1 != None and xx.0.3 == None %}
+                                                  <span style="font-size: 12px;">Preparing for Canvass</span>
+                                               {% endif %}
+                                               {% if xx.0.3 != None and xx.0.8 == None %}
+                                                  <span style="font-size: 12px;">Ongoing Canvass</span>
+                                               {% endif %}
+                                               {% if xx.0.8 != None and xx.0.10 == None %}
+                                                  <span style="font-size: 12px;">Selection of Bids</span>
+                                               {% endif %}
+                                               {% if xx.0.10 != None and xx.0.19 == None %}
+                                                  <span style="font-size: 12px;">Preparing Purchase Order</span>
+                                               {% endif %}
+                                               {% if xx.0.19 != None %}
+                                                  <span style="font-size: 12px;">Purchase Order Served</span>
+                                               {% endif %}
+                                             </td>
+                                                <td class="text-center">
+                                                  <a href="{{xx.1}}/details"><button style="outline: none; border-radius:20px" class="btn btn-sm btn-primary" role ="submit" aria-disabled="true"><i class="icon-arrow-right"></i></button></a>
+                                                   
+                                                   
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+
+                                      {% else %}
+                                        <tr>
+                                              
+                                              <td>{{x.3.2.1}}</td>
+                                              <td>{{x.0.2}}</td>
+                                              <td class="text-center">{{x.0.11}}</td>
+                                              <td  class="text-center"
+                                              style="background-color: 
+                                              {% if x.0.1 == None %}
+                                              #f3d4a7
+                                              {% else %}
+                                              #abda97
+                                              {% endif %};
+                                              " 
+                                              >
+                                              {% if x.0.1 == None %}
+                                              <span style="font-size: 12px;">Doc. hasn't arrived yet</span>
+                                              {% else %}
+                                              {{x.0.1}}
+                                              {% endif %}
+                                              </td>
+                                              
+                                               <td class="text-center" style="background-color:{% if x.2.0.19 != None %}#97da99{% else %}#bfd6ea{% endif %} ;">
+
+                                               {% if x.2.0.1 == None %}
+                                                  <span style="font-size: 12px;">Doc. hasn't arrived yet</span>
+                                               {% endif %}
+                                               {% if x.2.0.1 != None and x.2.0.3 == None %}
+                                                  <span style="font-size: 12px;">Preparing for Canvass</span>
+                                               {% endif %}
+                                               {% if x.2.0.3 != None and x.2.0.8 == None %}
+                                                  <span style="font-size: 12px;">Ongoing Canvass</span>
+                                               {% endif %}
+                                               {% if x.2.0.8 != None and x.2.0.10 == None %}
+                                                  <span style="font-size: 12px;">Selection of Bids</span>
+                                               {% endif %}
+                                               {% if x.2.0.10 != None and x.2.0.19 == None %}
+                                                  <span style="font-size: 12px;">Preparing Purchase Order</span>
+                                               {% endif %}
+                                               {% if x.2.0.19 != None %}
+                                                  <span style="font-size: 12px;">Purchase Order Served</span>
+                                               {% endif %}
+                                             </td>
+                                              <td class="text-center">
+                                                <a href="{{x.2.1}}/details"><button style="outline: none; border-radius:20px" class="btn btn-sm btn-primary" role ="submit" aria-disabled="true"><i class="icon-arrow-right"></i></button></a>
+                                                 
+                                                 
+                                              </td>
+                                          </tr>
+                                      {% endif %}
+
+                                        
+
+                                    {% endfor %}
+                                        
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>
+                
+                <div>
+
+
+                <!-- /. ROW  -->
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>
+        <!-- /. NAV SIDE  -->
+      
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/custom.js' %}"></script>
+
+    <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#pr').attr('class', 'active-menu-proc')
+        $('#proTop').attr('class', 'active-menu-top')
+        $('#proUL').attr('class','nav nav-second-level collapse in')
+    })
+
+    </script>
+
+{% endblock %}

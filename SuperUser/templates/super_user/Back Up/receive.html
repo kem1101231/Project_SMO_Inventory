@@ -1,0 +1,455 @@
+{% extends baseSource %}
+{% load staticfiles %}
+{% load humanize %}
+
+{% block content %}
+        <!-- /. NAV SIDE  -->
+
+          <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+         
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                    Delivery Receive Transactions
+
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 
+                <div class="col-lg-12" style="display: none;">
+                         <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="padding:0px;padding-top:20px; ">
+                                
+
+                       <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-1x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Total</div>
+                                       <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.0}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-ok"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Approved</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.1}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa  icon-spinner"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Pending</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.2}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-exclamation-sign"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  style="display:inline;">Denied</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.3}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-lg-12" style="display:none;">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {% for cc in pageData1 %}
+                            <p> {{cc}}</p>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                </div>    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                                  <table class="table table-bordered" id="dataTables-example">
+                                    <thead>
+                                        <tr style="background: #555; color: white;">
+                                        <th colspan="2" class="text-center">PO Number</th>
+                                        <th class="text-center">Delivery Remarks</th>
+                                        <th class="text-center">Delay Days</th>
+                                        <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in pageData1 %}
+                                        {% if x.0 == 'po' %}
+                                        <tr>
+                                            <td colspan="5" style="background-color: #555;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center" style="font-size: 18px;">{{x.1}}</td>
+                                            <td class="text-center">On Time</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center"> <a href="{{urlHead}}/receive/po/{{x.3}}/details/"><button style="border-radius: 13px;" class="btn btn-primary btn-sm">Details <i class="icon-arrow-right"></i></button></a></td>
+
+                                        </tr>
+
+                                        <tr class="even gradeC" style="display: none">
+                                        
+                                        <td style="background-color: 
+
+                                        {% if x.2 == 'Delivered' %}
+                                        #dff0d8
+                                        {% endif %}
+                                        {% if x.2 == 'None' %}
+                                        #e8e8c7
+                                        {% endif %}
+                                        {% if x.2 == 'Incomplete'%}
+                                        {% endif %}
+                                        ;" colspan="4">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                            <div style="width:100%; ">
+                                                <div class="text-right col-lg-5" >
+                                                    <span style="font-size: 12px;">
+
+
+                                        Purchase Order Num.:</span> 
+                                                </div>
+                                                <div class="col-lg-6" >
+                                                 <span style="font-size: 18px;">{{x.1}}</span> 
+                                                
+                                                </div>
+                                            </div> 
+                                        </div>
+                                         <div class="form-group">
+                                            <div style="width:100%; ">
+                                                <div class="text-right col-lg-5" >
+                                                    <span style="font-size: 12px;">
+
+
+                                        Delivery Status:</span> 
+                                                </div>
+                                                <div class="col-lg-6" >
+                                                 <span style="font-size: 18px;">Complete</span> 
+                                                
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="form-group">
+                                            <div style="width:100%; ">
+                                                <div class="text-right col-lg-5" >
+                                                    <span style="font-size: 12px;">
+
+
+                                        Delivery Date Remarks:</span> 
+                                                </div>
+                                                <div class="col-lg-6" >
+                                                 <span style="font-size: 18px;">On Time</span> 
+                                                
+                                                </div>
+                                            </div> 
+                                        </div>
+
+
+                                        </div>
+                                        <div class="col-lg-6 text-right" style="padding-right: 90px; padding-top: 10px;">
+                                             <a href="{{urlHead}}/receive/po/{{x.3}}/details/"><button class="btn btn-primary btn-sm">Details <i class="icon-arrow-right"></i></button></a>
+                                        </div>
+
+                                         </td>
+                                          <!--  
+                                            <td class="text-center">
+
+                                            <a href="{{urlHead}}/receive/{{x.5}}/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>-->
+                                        
+                                        </tr>
+
+                                            {% if x.2 == 'Delivered' %}
+                                             <tr style="background: #a1b7bd; color: white;">
+                                                <th class="text-center" style="width:120px; color: black; background: white;border-bottom-color: white; border-left-color:white;"></th>
+                                                <th class="text-center">IAR No.</th>
+                                                <th class="text-center">Date of Delivery</th>
+                                                <th class="text-right">Total Cost</th>
+                                                <th class="text-center">Delivery Status</th>
+                                            </tr>
+                                            {% endif %}
+                                       
+                                        {% else %}
+                                            {% if x.1 == None %}
+                                                <tr class="even gradeC">
+                                        
+                                        <td class="text-center" colspan="4">Items on this P.O. has not yet delivered</td>
+                                        
+                                        </tr>
+                                            {% else %}
+                                                 <tr class="even gradeC">
+                                            <td class="text-center" style="border-bottom-color: white; border-left-color:white;"></td>
+                                            <td class="text-center">{{x.1}}</td>
+                                            <td class="text-center">{{x.2}}</td>
+                                            <td class="text-right">{{x.6|floatformat|intcomma}}</td>
+                                            <td class="text-center">
+                                            {% if x.3 == 'Complete'%}
+                                            <i class="icon-ok" style="color:green"></i> {{x.3}}
+                                            {% else %} 
+                                                <i class="icon-remove" style="color:red"></i> {{x.3}}
+                                            {% endif %}
+                                            </td>
+                                            <!--  
+                                            <td class="text-center">
+
+                                            <a href="{{urlHead}}/receive/{{x.5}}/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>-->
+                                        </tr>
+                                            {% endif %}
+
+                                       
+                                        {% endif %}
+
+                                    {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+<!-- -->
+
+
+<!-- -->
+
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>
+
+<!-- ========================================================================================================= -->
+
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+   <div id="footer-sec">
+       &copy; Mindanao State University <i class=" buttom-header-right">Equipement Inventory </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+   <script>
+        $(document).ready(function () {
+
+            if ('{{urlHead}}' == '/inventory_office_admin') {
+
+           
+            $('#all_items').attr('class','{{cssActiveMenu}}')
+            $('#acctTop').attr('class', 'active-menu-top')
+            $('#theAcctUL').attr('class','nav nav-second-level collapse in')
+            
+            $('#title').html('All Delivery Transactions')
+
+            }
+            
+            else{
+
+           
+            $('#all_items').attr('class','{{cssActiveMenu}}')
+            $('#delTop').attr('class', 'active-menu-top')
+            $('#theDelUL').attr('class','nav nav-second-level collapse in')
+            
+            $('#title').html('All Delivery Transactions')
+
+            }
+
+           
+             });
+    </script>
+
+    
+    <script type="text/javascript">
+         
+            var prevID;  
+            var status = 'close'; 
+
+            var currentToUpdate
+
+            $('#theListTable').on('click', 'button', function (argument) {
+                var id = this.id
+                var arrData = id.split('_')
+
+                currentToUpdate = arrData
+
+                if (arrData[1] == 'dBTN') {
+
+                    console.log(prevID)
+
+                    $('#'+prevID+'_iarTR').removeAttr('style')
+                    $('#'+prevID+'_dBTN').html('<i class="icon-arrow-down"></i>')
+                    $('#'+prevID+'_dBTN').attr('class', 'btn-primary btn btn-sm')
+                    $('.theTRData').attr('style', 'display:none')
+                     //  
+
+                    if (arrData[0] != prevID) {
+
+                            
+                            $('#'+arrData[0]+'_iarTR').attr('style', 'background-color: #3c763d; font-weight:bold; font-size:15px; color:white; padding-top:15px;')
+                            $('#'+this.id).html('<i class="icon-remove"></i>')
+                            $('#'+this.id).attr('class', 'btn- btn-danger btn-sm')
+                           
+                            $('#'+arrData[0]+'_trlist').show('500')   
+
+
+                            prevID = arrData[0]
+
+
+                            $('#'+arrData[0]+'_trlist').body.scrollTop = 0; // For Chrome, Safari and Opera 
+                            $('#'+arrData[0]+'_trlist').documentElement.scrollTop = 0; 
+
+                    }
+                    else{
+
+                        prevID = null;
+                    }
+
+
+                } else {
+                    $('#updateModal').modal('toggle')
+                }
+
+
+               
+            })
+
+        $('#updateItemInfoBTN').click(function() {
+
+          console.log(currentToUpdate[0]+" == "+currentToUpdate[1]+" == "+$('#brandInF').val()+" == "+$('#typeF').val())
+            
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/updateItemAssetID/',
+                data: {
+                    
+                    'iarNum':currentToUpdate[0],
+                    'itemnum': currentToUpdate[1],
+                    'brand': $('#brandInF').val(),
+                    'model': $('#typeF').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+                        
+                        alert("Done Update")
+                        location.reload()
+                    }
+
+            });
+        })    
+
+
+
+    </script>
+
+{% endblock %}
+
+
+
+

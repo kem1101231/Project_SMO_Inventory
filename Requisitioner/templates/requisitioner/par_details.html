@@ -1,0 +1,561 @@
+{% extends 'requisitioner/base.html' %}
+
+{% load humanize %}
+
+{% load staticfiles %}
+{% block content %}
+
+        <!-- /. NAV SIDE  -->
+            <style type="text/css">
+        
+        .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px; 
+            margin-bottom:2px;
+         }
+
+        .dataFont3{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px;
+        
+         }
+
+         .dataFont4{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px;
+         }
+        
+
+    </style>
+    
+
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+
+             <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;
+                                     padding-bottom: 0px;
+                                     margin-top:55px; 
+
+                                     ">
+
+                       <form id="dlPDF" action="/requisitioner/generatePRDocument/" method="post" style="padding:0px;">{% csrf_token %}
+                                    
+                                    <div class="modal-header" style="padding:0px;">
+                                        <div>
+                                            <button id="sentNotif" name="reqNumB" value="{{pageData1.0.0}}" type="submit" role="submit" class="btn btn-success"><i class="icon-edit"></i> Create PR from PAR</button>
+                                            <button id="repToWasteBTN" name="reqNumB" value="{{pageData1.0.0}}" type="submit" role="submit" class="btn btn-danger"><i class="icon-trash"></i> Report all to Waste</button>
+                                        </div>
+                                    </div>
+                                    
+                        </form>      
+
+            </div>
+
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                   
+                       <span style="font-size: 19px;">Property Acceptance Receipt No. </span><span id="reqNum" name="reqNum" value="{{pageData1.0.0}}" style="font-weight:bold;"> {{pageData1.0.0}}</span>
+                    
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                
+
+
+                <div class="col-lg-6" style="">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Basic Information</h3>
+                            </div><!-- height:590px;-->
+                            <div class="panel-body" style="height:144px; padding-left:20px;">
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date Received:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {{pageData1.0.5}}
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Released by:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                       {{pageData3.0.1}}
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        On Account for:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {{pageData3.0.2}}
+                                    </div>
+                                </div> 
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" style=" padding-left:0px;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" id="statusTitle" style="font-weight:bold;">References</h3>
+                            </div><!-- height:590px;-->
+                            <div class="panel-body" style=" height:144px; padding-left:20px;">
+                             <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-7" >
+                                        Purchase Request:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-3 text-right" >
+                                     <a href="">{{pageData4.0.13}}</a>   
+                                    </div>
+                                    
+                                </div>   
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-7" >
+                                        Purchase Order:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-3 text-right" >
+                                        <a href="">{{pageData4.0.18}}</a>
+                                    </div>
+                                     </div>   
+
+                                    <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-7" >
+                                        Inspection and Acceptance Report:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-3 text-right" >
+                                        <a href="">000-00</a>
+                                    </div>
+                                    
+                                </div> 
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Items Included on the P.A.R.</h3>
+                            </div>
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                         
+                                 <div class="panel-body" style="
+                                 padding:0px;
+                                 ">
+
+                            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel panel-default">
+                            <div class="table-responsive">
+                                 <table id="theIncludedItems" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width:90px;">No.</th>
+                                            <th>Description</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center">Unit Price</th>
+                                            <th class="text-center">Total</th>
+                                            <th class="text-center">Inv. No.</th>
+                                            <th class="text-center">Status</th>
+                                            <th style="width:120px; display: none" class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in pageData2 %}
+                                        <tr style="display:none"> 
+                                            <td colspan="9">{{x}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="{{x.1}}" class="text-center">{{x.3}}</td>
+                                            <td rowspan="{{x.1}}" >{% if x.0.0 == '1' %}
+                                                  {{x.0.1.0}}  
+                                               {% else %}
+                                                    {% for xx in x.0.1.0 %}
+                                                            <p>{{xx}}</p>
+                                                    {% endfor %}
+                                               
+                                               {% endif %}
+                                            </td>
+                                            <td  rowspan="{{x.1}}" class="text-center">{{x.0.1.4|floatformat|intcomma}}</td>
+                                            <td rowspan="{{x.1}}" class="text-center">{{x.0.1.1}}</td>
+                                           
+                                            <td rowspan="{{x.1}}" class="text-center">{{x.0.1.2|floatformat|intcomma}}</td>
+                                            <td rowspan="{{x.1}}" class="text-center">{{x.0.1.5|floatformat|intcomma}}</td>
+
+                                               {% for xx in x.2 %}
+
+
+                                               {% if xx == x.2.0 %}
+                                                <td class="text-center">{{xx.0}}</td>
+                                            <td class="text-center">{{xx.1}}</td>
+                                            <td class="text-center" style="display: none">
+                                                <button id="createPRBtn"  class="btn btn-success btn-xs" role= "button" aria-disabled="true" value="{{x.0}}_{{x.5}}_{{x.2}}"><i class="icon-edit"></i></button>
+                                                <button id="reportWasteBtn" class="btn btn-xs btn-danger" role= "button" aria-disabled="true" value="{{x.0}}_{{x.5}}_{{x.2}}"><i class="icon-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                               {% else %}
+                                               <tr>
+                                                <td class="text-center">{{xx.0}}</td>
+                                            <td class="text-center">{{xx.1}}</td>
+                                            <td class="text-center" style="display: none">
+                                                <button id="createPRBtn"  class="btn btn-success btn-xs" role= "button" aria-disabled="true" value="{{x.0}}_{{x.5}}_{{x.2}}"><i class="icon-edit"></i></button>
+                                                <button id="reportWasteBtn" class="btn btn-xs btn-danger" role= "button" aria-disabled="true" value="{{x.0}}_{{x.5}}_{{x.2}}"><i class="icon-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                               {% endif %}
+
+                                               {%endfor%} 
+                                            
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                                
+                            </div>
+                           
+                        </div>
+
+                        </div>
+
+                    
+
+                    </div> 
+     
+                        </div>
+                        </div>
+                            </div>
+
+
+                 <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                           
+                            <div class="panel-body">
+                           
+
+                   <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px; padding-top:10px; padding-bottom:10px;">
+                                                                
+                                                                <div style="display: inline; font-weight: bold;  font-size: 14px;">
+                                                                    Total Cost: 
+                                                                </div>
+                                                                
+                                                                <div class="panel panel-default" style="display: inline; font-size: 18px;  font-weight: 400; padding:10px;">
+                                                                    ₱ {{pageData3.0.0.0.0|floatformat|intcomma}} 
+                                                                </div>
+                                                            </div> 
+
+               </div> 
+                           
+                        </div>
+                        </div>
+                            </div>            
+                                 <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div id="theDisplayRemoveBTN" class="panel panel-default" style="display: none">
+                                <div class="form-group text-right" style="padding-top: 30px;">
+                                    <label for="autosize" class="control-label col-lg-4" style=" font-size: 17px;">Items Condition:</label>
+
+                                    <div class="col-lg-6" >
+                                        <textarea id="autosize" placeholder="Indicate the Item/s' current condition to why are you reporting it for waste" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 100px;"></textarea>
+                                               
+                                            
+                                    </div>
+
+                                </div>
+                      
+                           
+                            <div class="panel-body text-right">
+                             <button id="sendReq" class="btn btn-danger" type="button" role="button">Report Items as Waste</button>
+                           
+                        </div>
+                        </div>
+                            </div>             
+
+
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+        
+
+        <!-- -->
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+
+        <!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="itemsTable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Indicate Items to Report to Waste</strong>
+                                        </h5>
+                                        <hr>
+                                        <div class="table-responsive">
+                                                 <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center" style="width:90px;background-color: #99d6b6">Inv. No.</th>
+                                                            <th>Description</th>
+                                                            <th style="width:120px;" class="text-center">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="theTableData">
+                                                    {% for x in pageData2 %}
+                                                        <tr>
+                                                            <td class="text-center">{{x.0}}</td>
+                                                            <td>{{x.2}}</td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-danger btn-xs"><i class="icon-trash"></i></button>
+                                                                <button class="btn btn-primary btn-xs"><i class="icon-remove"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>     
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addReq" data-dismiss="modal" type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+       <script type="text/javascript">
+           
+            var theArrayOfItemsToReport = {}
+
+           $('#theIncludedItems').on('click','button', function () {
+               
+               var value = this.value
+               
+               var arr = value.split('_')
+               
+               console.log(arr)
+
+               var invn = arr[0]
+               var qty = arr[1]
+               var des = arr[2]
+
+
+               
+               var theIntValue = parseInt(invn)
+               var theIntQTY = parseInt(qty)
+
+               console.log(des+' = '+theIntValue+' = '+theIntQTY )
+
+
+               var t = ''
+               document.getElementById('theTableData').html = ''
+               
+               for (var i = 0 ; i < theIntQTY; i++) {
+                   
+                   var tr = '<tr>'
+                       tr+=     '<td id="'+(theIntValue+i)+'_td" class="text-center" style="background-color:#c3f1d9;">'+(theIntValue+i)+'</td>'
+                         tr+=     '<td>'+des+'</td>'
+                          tr+=     '<td class="text-center">'
+                          tr+=     '<button id="'+(theIntValue+i)+'_add" value="'+(theIntValue+i)+'" class="btn btn-danger btn-xs" style="margin-right:5px;"><i class="icon-trash"></i></button>'
+                         tr+=     '<button id="'+(theIntValue+i)+'_exclude" class="btn btn-primary btn-xs"><i class="icon-remove"></i></button>'
+                           tr+=   '</td>'
+                           tr+=   '</tr>'
+
+                     t += tr      
+               
+               }
+               
+               document.getElementById('theTableData').innerHTML = t
+               
+               $('#itemsTable').modal('toggle')
+           
+           });
+
+
+           $('#theTableData').on('click', 'button', function () {
+               var id = this.id
+               var arr = id.split('_')
+
+               if (arr[1] == 'add') {
+                    
+                    theArrayOfItemsToReport[arr[0]] = {'invenNum':arr[0]}
+
+                    $('#'+arr[0]+'_exclude').attr('class','btn btn-default btn-xs')
+                    $('#'+arr[0]+'_td').attr('style','background-color:#f7c3c7')
+                    $(this).attr('class','btn btn-danger btn-xs')
+               
+
+
+               } else {
+
+
+                    $('#'+arr[0]+'_add').attr('class','btn btn-default btn-xs')
+                    $(this).attr('class','btn btn-primary btn-xs')
+                    $('#'+arr[0]+'_td').attr('style','background-color:#c3f1d9')
+
+                    delete theArrayOfItemsToReport[arr[0]];
+               }
+                console.log(theArrayOfItemsToReport)
+           })
+       
+
+       $('#addReq').click(function () {
+           $('#theDisplayRemoveBTN').removeAttr('style')
+           $('#repToWasteBTN').attr('style','display:none')
+           $('#createPRBtn').attr('class','btn btn-default btn-xs');
+       });
+
+       </script> 
+        
+
+<!-- ============================================================================================================================================ -->        
+        
+        <script type="text/javascript">
+       
+            $(document).ready(function () {
+                
+
+            $('#acctTop').attr('class', 'active-menu-top theAsTop');
+            $('#acctUL').attr('class', 'nav nav-second-level theUL collapse in');  
+            $('#myacct').attr('class', 'active-menu-requi theAs');
+            $('#acctMyTop').attr('class', 'active-menu-top theAsTop');
+            $('#acctMyUL').attr('class', 'nav nav-third-level theUL collapse in');  
+            
+            })
+           
+            
+        </script>
+
+
+{% endblock %}

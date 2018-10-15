@@ -1,0 +1,28 @@
+.user-img-div-drop {
+   
+    min-height: 170px;
+    padding: 20px;
+    padding-left: 13px;
+    padding-top: 12px;
+    background-image: url("img/gg8-non-requi.png");
+    
+}
+    
+    .user-brg-img-drop img{
+
+    }
+    
+    .user-img-div-drop img {
+        max-height: 50px;
+    }
+
+    .user-img-div-drop .inner-text {
+        
+        text-align: left;
+        position: relative;
+        color: #fff;
+        font-weight: 400;
+        line-height: 20px;
+        font-size: 14px;
+        
+    }

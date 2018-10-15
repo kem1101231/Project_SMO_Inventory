@@ -1,0 +1,356 @@
+{% extends 'inventory_office/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+
+          <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+         
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                    Delivery Receive Transactions
+
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 
+                <div class="col-lg-12" style="">
+                         <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="padding:0px;padding-top:20px; ">
+                                
+
+                       <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-1x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Total</div>
+                                       <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.0}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-ok"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Approved</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.1}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa  icon-spinner"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Pending</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.2}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-exclamation-sign"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  style="display:inline;">Denied</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.3}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                                  <table class="table table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">PO No.</th>
+                                            <th class="text-center">IAR No.</th>
+                                            <th class="text-center">Date of Delivery</th>
+                                            <th class="text-center">Delivery Status</th>
+                                            <th class="text-center">Condition Status</th>
+                                            <th class="text-center">Acct. Transfer</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      
+                                        <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                            <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                            <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                            <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                            <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                            <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                            <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                            <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                            <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                            <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                            <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                            <tr class="even gradeC">
+                                            <td class="text-center">2566-854</td>
+                                            <td class="text-center">526-986</td>
+                                            <td class="text-center">January 12, 2017</td>
+                                            <td class="text-center">Complete</td>
+                                            <td class="text-center">Nothing Damaged</td>
+                                            <td class="text-center"><label class="label label-success">Complete</label></td>
+                                            <td class="text-center">
+
+                                            <a href="/inventory_office/receive/details/"><button class="btn btn-primary btn-xs">Details <i class="icon-arrow-right"></i></button></a>
+                                        </td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>
+
+<!-- ========================================================================================================= -->
+
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+   <div id="footer-sec">
+       &copy; Mindanao State University <i class=" buttom-header-right">Equipement Inventory </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#all_items').attr('class','active-menu-inven')
+            $('#delTop').attr('class', 'active-menu-top')
+            $('#theDelUL').attr('class','nav nav-second-level collapse in')
+            
+            $('#title').html('All Delivery Transactions')
+
+           
+             });
+    </script>
+
+{% endblock %}
+
+
+
+

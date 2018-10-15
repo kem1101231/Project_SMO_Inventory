@@ -1,0 +1,254 @@
+{% extends 'inventory_office_inv_clerk/base.html' %}
+
+{% load staticfiles %}
+{% load humanize %}
+{% block content  %}
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+    
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:48px; 
+
+                ">
+                <div>
+                    
+                     Equipment Inventory
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 
+                <div class="col-lg-12" style="">
+                         <div class="panel panel-default">
+                            
+                             <div class="panel-body" style="padding:0px;padding-top:20px; ">
+                                
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-qrcode fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  >Total Quantity of Items</div>
+                                       <div style=" margin-left:15px;  margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                        {% if pageData2.0.0 == None %}
+                                         {{pageData2.0.0}}
+                                         {% else %}
+                                         {{pageData2.0.0|floatformat|intcomma}}
+                                         {% endif %}  </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-money fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  >Total Cost of Items</div>
+                                        <div style=" margin-left:15px; margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                         {% if pageData2.0.1 == None %}
+                                         {{pageData2.0.1}}
+                                         {% else %}
+                                         {{pageData2.0.1|floatformat|intcomma}}
+                                         {% endif %}  </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-edit fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div >Qty. Still on Account</div>
+                                        <div style=" margin-left:15px; margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                         {% if pageData2.0.2 == None %}
+                                         {{pageData2.0.2}}
+                                         {% else %}
+                                         {{pageData2.0.2|floatformat|intcomma}}
+                                         {% endif %}  </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-trash fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  >Qty. Disposed as Waste</div>
+                                        <div style=" margin-left:15px; margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                         {% if pageData2.0.3 == None %}
+                                         {{pageData2.0.3}}
+                                         {% else %}
+                                         {{pageData2.0.3|floatformat|intcomma}}
+                                         {% endif %}   
+                                        </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                              <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Item No.</th>
+                                            <th>Particular</th>
+                                            <th class="text-center">No. of Items by Description</th>
+                                            <th class="text-center">Total Cost Value</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for x in pageData1 %}
+                                            <tr>
+                                                <td class="text-center">{{x.3}}</td>
+                                                <td>{{x.1}}</td>
+                                                <td class="text-center">0</td>
+                                                <td class="text-center">0</td>
+                                                <td class="text-center">
+                                                   <form id="detailsButton" action="/inventory_office/displayItemOfParticular/" method="POST">{% csrf_token %} 
+                                                   <div>
+                                                   <button name ="partIDButton" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                                   </div>
+                                                   </form>
+                                               
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                     
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>    
+
+        <!-- ========================================================================================================== -->
+
+                    </div>
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+<div id="footer-sec">
+       &copy; Mindanao State University - General Santos City </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+  
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/js/wizard/modernizr-2.6.2.min.js' %}"></script>
+    <script src="{% static 'assets/js/wizard/jquery.cookie-1.3.1.js' %}"></script>
+    <script src="{% static 'assets/js/wizard/jquery.steps-addReceive.js' %}"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            $('#inventoryTop').attr('class', 'active-menu-top ')
+            $('#theInvenUL').attr('class', 'nav nav-second-level collapse in')
+            $('#equipment').attr('class','active-menu-inven-inv')
+            $('#title').html('Equipment Inventory')
+        })
+    </script>
+
+{% endblock %}
+
+
+
+

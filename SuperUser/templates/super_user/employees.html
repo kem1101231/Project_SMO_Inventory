@@ -1,0 +1,438 @@
+{% extends 'super_user/base.html' %}
+{% load humanize %}
+{% load staticfiles %}
+{% block content %}
+<style type="text/css">
+    
+            .tablescroll{
+            overflow-y:scroll;
+            height:1033px;
+            display:block;
+        }
+        
+        .tablescroll2{
+            
+            overflow-y:scroll;
+            height:235px;
+            display:block;
+        }
+        .divScroll{
+            
+            overflow-y:scroll;
+            height:450px;
+            display:block;
+        }
+
+</style>
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+          <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;
+                                     padding-bottom: 0px;
+                                     margin-top:70px; 
+                                     ">
+
+                                    
+                                    <div class="modal-header" style="padding:0px; border-radius: 20px;">
+                                        <div>
+                                            <a href="/system_admin/add_employee/"><button id="sentNotif" name="reqNumB" value="{{pageData1.0.0}}" type="submit" role="submit" class="btn btn-success" style="width: 150px; border-radius: 20px; outline:none;"><i class="icon-plus"></i> Add Employee</button></a>
+                                            
+                                        </div>
+                                    </div>
+                        
+            </div>
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body"  style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 15px;
+                 margin-top:70px; 
+
+                ">
+                <div>
+                    Agency Employeess
+
+                     
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #555!important;">
+             
+
+
+                <div class="col-lg-12" style="padding:2px; ">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-primary" style="border-radius: 0px; margin-bottom: 0px;">
+                           
+                             
+                            <div class="panel-body" style="padding-bottom:0px; padding:2px;">
+
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive" style="">
+                            <table class="table table-hover">
+                                    <thead>
+                                        <tr style=" background: #eee">
+                                            <th class="text-center" >ID no.</th>
+                                            <th >Name</th>
+                                            <th >Office</th>
+                                            <th class="text-center" >Account Created</th>
+                                             <th class="text-center" >Access Type</th>                                            
+                                            
+                                            <th class="text-center">Details</th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody >
+
+                                    {% for x in pageData1 %}
+                                        <tr>
+                                            <td colspan="6" style="display: none">
+                                                {{x}}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                           <td class="text-center">{{x.0}}</td>
+                                           <td >{{x.6}} {{x.1}} {{x.7}} {{x.2}} {{x.8}}</td>
+                                           <td>{{x.12}}</td>
+                                            <td class="text-center"><button class="btn btn-xs btn-success" style="border-radius: 15px;" disabled=""><i class="icon-ok"></i></button> <span style="font-weight: bold; padding-top: 100px;" >Yes</span> </td>
+                                            <td class="text-center"><button class="btn btn-xs btn-success" style="border-radius: 15px;" disabled=""><i class="icon-ok"></i></button> </td>
+                                            <td class="text-center">
+                                           <a href="/system_admin/employees/ii_8978/details/"><button style="border-radius: 15px;" class="btn btn-sm btn-primary"><i class="icon-arrow-right"></i></button></a>
+                                            </td>
+                                        </tr>
+
+
+                                    {% endfor %}
+                                    
+                                   
+                                   
+                                    </tbody>
+                                        
+                                </table>
+                            </div>
+                           
+                        </div>
+                      
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>    
+
+        <!-- ========================================================================================================== -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> New Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip2" class="form-control" autofocus>
+                                                        <span for="descrip2" id="errorde"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div id="descripDiv" class="form-group" style="display: none;">
+                                                        <label for="text1" class="control-label col-lg-4">Type: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="type" class="form-control">
+                                                        <span for="type" id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                 
+
+                                                 <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Classification: </label>
+                                                    
+                                                    
+
+
+                                                    <div class="col-lg-8">
+
+                                                        <div>
+                                                          
+                                                        
+
+
+                                                        <input id="class2" data-toggle="dropdown"  class="form-control dropdown-toggle" >
+                                                        <ul class="dropdown-menu message-dropdown" style="right:0; width: 342px; margin-left: 18px;">
+                                                                <li style="padding-bottom:5px; padding-top:5px;">
+                                                                    <a href="#"  id="equiSel2"><i class="icon-wrench" style="margin-left:4px;margin-right:6px;"></i> Equipment</a>
+                                                                </li>
+                                                                <li style="padding-bottom:5px; padding-top:5px;">
+                                                                    <a href="#" id="suppSel2"><i class="icon-file" style="margin-left:4px;margin-right:10px;"></i> Supply</a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                        <span for="class" id="errorde"></span>
+                                                    
+                                                    </div>
+
+
+                                                </div>
+                                                
+                                                   
+                                                 <div id="addDetDiv2" class="form-group" style="display: none">
+                                                        <label for="text1" class="control-label col-lg-4">Group Particular: </label>
+                                                    
+                                                    
+
+
+                                                    <div class="col-lg-8">
+
+                                                        <div>
+                                                          
+                                                        
+
+
+                                                        <input id="part2" data-toggle="dropdown"  class="form-control dropdown-toggle" >
+                                                        <ul id="theULList2" class="dropdown-menu message-dropdown" style="right:0; width: 342px; margin-left: 18px;">
+                                                                
+                                                            </ul>
+                                                        </div>
+                                                        <span for="part2" id="errorpart2"></span>
+                                                    
+                                                    </div>
+
+
+                                                </div>
+                                                
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Unit: </label>
+                                                        
+                                                    <div class="col-lg-8">
+                                                        <input id="unit2" class="form-control" list="compSeacrhList" />
+                                                        <datalist id="compSeacrhList">
+                                                        <option>Unit</option>
+                                                        <option>Piece</option>
+                                                        <option>Bundle</option>
+                                                        <option>Strip</option>
+                                                        <option>Pair</option>
+                                                        <option>Gram</option>
+                                                        <option>Kilogram</option>
+                                                        <option>Ounce</option>
+                                                        <option>Meter</option>
+                                                        <option>Inch</option>
+                                                        <option>Foot</option>
+                                                        <option>Brd. Feet</option>
+                                                        <option>Cu. Feet</option>
+                                                        <option>Cu. Meter</option>
+                                                        <option>Litre</option>
+                                                        <option>Load</option>
+                                                        <option>Bottle</option>
+                                                        <option>Case</option>
+                                                        <option>Vial</option>
+                                                        <option>Sheet</option>
+                                                        <option>Peso</option>
+                                                        </datalist>
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price2" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList2" type="submit" class="btn btn-success" >Save Item Information</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+                    </div>
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+  
+         
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+   
+    <div id="footer-sec">
+       &copy; Mindanao State University <i class=" buttom-header-right">Equipement Inventory </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/custom.js' %}"></script>
+
+    <script type="text/javascript">
+        
+
+    $(document).ready(function(){
+        displayRISList();
+    
+    });
+
+        function displayRISList() {
+            
+       
+                $.ajax({
+                    type: 'POST',
+                    url:'/inventory_office/getRIS/',
+                    data:{
+                    
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+
+                        document.getElementById("theRISListTable").innerHTML = "";
+                        
+                        var t = ''    
+                            for(var key in response) {
+                                var value = response[key];
+                                var tr = '<tr>'
+                                    if (value['risNum'] === null ) {
+                                        tr+=   '<td class="text-center" >---</td>'
+                                    }else{
+                                        tr+=   '<td class="text-center" style="background-color: #eff3eb;">'+value['risNum']+'</td>'
+                                    }
+                                    
+                                    tr+=  '<td>'+value['reqOff']+'</td>'
+                                    if (value['status'] === true) {
+                                        tr+=  '<td class="text-center"><label class="label label-success">Approved</label></td>'
+                                    }
+                                    if (value['status'] === null) {
+                                        tr+=  '<td class="text-center"><label class="label label-warning">Pending</label></td>'
+                                    }
+
+                                    if (value['status'] === false) {
+                                        tr+=  '<td class="text-center"><label class="label label-danger">Denied</label></td>'
+                                    }
+                                    if (value['relStatus'] === true) {
+                                        tr+=  '<td class="text-center"><label class="label label-success">Released</label></td>'
+                                    }
+                                    if (value['relStatus'] === null && value['status'] === null) {
+                                        tr+=  '<td class="text-center"><label class="label label-warning">Pending</label></td>'
+                                    }
+                                    if (value['relStatus'] === null && value['status'] === true) {
+                                        tr+=  '<td class="text-center"><label class="label label-warning">Waiting</label></td>'
+                                    }
+
+                                    tr+=   '<td class="text-center">'
+                                    tr+= '<form id="theDetails" method="POST" action="/inventory_office/displayRISDetails/">'
+                                    tr+="{% csrf_token %}"
+                                    tr+= '<div>'
+                                     tr+=  '<button id="slipNumButton" name="slipNumButton" class="btn btn-xs '
+                                     tr+=  'btn-primary" type="submit" role="submit" value="'+key+'">Details <i class="icon-arrow-right"></i></button>'
+                                    tr+= '</div>'
+                                    tr+= '</form>'
+                                  
+
+                                     tr+= '</td>'
+                                     tr+=  '</tr>'
+                                 t +=tr
+                        }
+                    
+                    document.getElementById("theRISListTable").innerHTML += t;
+                    
+                    }
+
+                }); 
+
+            }
+
+
+
+    </script>
+
+
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#all_emp').attr('class','active-menu-super')
+            $('#userTop').attr('class', 'active-menu-top')
+            $('#userUL').attr('class','nav nav-second-level collapse in')
+            $('#title').html('Users')
+
+           
+             });
+    </script>
+
+{% endblock %}
+
+
+    

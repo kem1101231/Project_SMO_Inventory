@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appproving Personel</title>
+    {% load staticfiles %}
+   <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-acctng.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+	
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+    <style type="text/css">
+        
+        .panel-green {
+    border-color: #5cb85c;
+}
+
+.panel-green > .panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+
+.panel-green > a {
+    color: #5cb85c;
+}
+
+.panel-green > a:hover {
+    color: #3d8b3d;
+}
+
+.panel-red {
+    border-color: #d9534f;
+}
+
+.panel-red > .panel-heading {
+    border-color: #d9534f;
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.panel-red > a {
+    color: #d9534f;
+}
+
+.panel-red > a:hover {
+    color: #b52b27;
+}
+
+.panel-yellow {
+    border-color: #f0ad4e;
+}
+
+.panel-yellow > .panel-heading {
+    border-color: #f0ad4e;
+    color: #fff;
+    background-color: #f0ad4e;
+}
+
+.panel-yellow > a {
+    color: #f0ad4e;
+}
+
+.panel-yellow > a:hover {
+    color: #df8a13;
+}
+
+
+    </style>
+    
+</head>
+<body style="height:100%; width:100%; min-height:100%;"">
+    
+    <div id="wrapper" >
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" 
+                    style="
+                        margin-bottom: 0px;
+                          ">
+           
+           <div  class="navbar-header navbar-brand"></div>
+
+           <ul class="nav navbar-right top-nav" 
+                        style="
+                        margin-right: 50px;
+                        ">
+
+
+                <li class="dropdown" id="taskLI">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span id="taskNumIndi2" class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                        
+                        <span id="taskNumIndi" class="label label-danger" style="display: none"></span> 
+                        
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul id="taskUL" class="dropdown-menu message-dropdown">
+                    
+                    <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body " style="margin-left:95px;">
+                                        <h5 class="media-heading">
+                                            <strong>Tasks</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+                
+                <li class="dropdown" id="notifLI">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span id="notifNumIndi2" class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                        <span id="notifNumIndi" class="label label-danger" style="display: none"></span> 
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul id="notifUL" class="dropdown-menu message-dropdown">
+                        
+                        <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                          
+                                    <div class="media-body" style="margin-left:75px;">
+                                        <h5 class="media-heading">
+                                            <strong>Notifications</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+               
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="width:220px;">
+                        <li>
+                            <a href="/procurement_office/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-truck"></i> Purchase Orders</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-shopping-cart"></i> Purchase Requests</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-th-list"></i> Request for Quotations</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-th-list"></i> Abstracts of Canvass</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-wrench"></i> Settings</a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa-fw icon-signout"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             <ul id="searchFieldSmall" class="nav navbar-right top-nav col-lg-5" style="margin-right:80px; margin-left:auto;">
+                        
+                <div>
+
+
+                    <form action="/inventory_office/search/" method="post">{% csrf_token %}
+                    
+                        <div class="form-group input-group"  style="padding:0px; padding-top:10px; margin:0px;">
+                          
+                           <input name="search_input" type="text" autofocus class="form-control input-sm" placeholder="Search for Inventory Information">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-primary btn-sm" type="submit" name="search_button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                  
+                    </form>
+                
+                </div>
+            </ul>
+               
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        <div class="user-img-div">
+
+                            <a href="requisitioner_profile.html"><img src="{% static 'assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                                 <div class="inner-text">
+              <p></p>
+                                <a href="/inventory_office/profile" class = "inner-text">{{name}}</a>
+                            <br />
+                                <p style="padding: 0px; margin: 0px; font-size: 11px;">{{designation}}</p>
+                                <p  style="padding: 0px; margin: 0px; font-size: 11px;">{{dept}}</p>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+
+                    <li>
+                        <a class="active-menu-acctng" href="/approving_officer"><i class="fa fa-home "></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a  href="/approving_officer/profile"><i class="fa fa-user "></i>Profile </a>
+                        
+                    </li>
+
+                     <li>
+                        <a  href="/approving_officer/profile"><i class="icon-list-alt"></i>Purchase Orders</a>
+                        
+                    </li>
+                     <li>
+                        <a  href="/approving_officer/profile"><i class="icon-truck"></i>Deliveries</a>
+                        
+                    </li>
+                     <li>
+                        <a href="/approving_officer/account"><i class="fa fa-th-list "></i>Inventory</a>
+                    </li>
+          
+                </ul>
+            </div>
+
+</div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        {% block content %}
+        {% endblock %}
+
+        <script type="text/javascript">
+
+                var taskNum = 0;
+                var notifNum = 0;
+
+                var taskUlData = ''
+                var notifUlData = ''
+
+                $(document).ready(function (argument) {
+                    
+
+                    updateTaskNum()
+                    updateNotifNum()
+                    
+                    taskUlData = document.getElementById('taskUL').innerHTML;
+                    notifUlData = document.getElementById('notifUL').innerHTML;
+
+                    setInterval(function(){
+                        updateTaskNum(); // this will run after every 5 seconds
+                    
+                    }, 30000);
+
+                })
+
+                function updateTaskNum() {
+                               
+                        $.ajax({
+
+                                type: 'POST',
+                                url: '/approving_officer/getTaskNum/',
+                                
+                                data:{
+
+                                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                               
+                                },
+
+                                success: function(response) {
+                                   
+                                    if (response != '0') {
+
+                                        $('#taskNumIndi2').attr('style', 'display:none')
+                                        $('#taskNumIndi').removeAttr('style')
+                                        $('#taskNumIndi').html(response)
+
+                                       
+                                    }
+                                    else{
+                                        
+                                        $('#taskNumIndi2').attr('style', 'display:none')    
+                                        $('#taskNumIndi').attr('style', 'display:none')
+                                        $('#taskNumIndi').html('')
+                                    
+                                    }
+
+                                    taskNum = parseInt(response)
+
+                                   
+                                }
+
+                        }); 
+                }
+                function updateNotifNum() {
+                               
+                        $.ajax({
+
+                                type: 'POST',
+                                url: '/approving_officer/getNotifNum/',
+                                
+                                data:{
+
+                                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                               
+                                },
+
+                                success: function(response) {
+                                    if (response != '0') {
+
+                                        $('#notifNumIndi2').attr('style', 'display:none')
+                                        $('#notifNumIndi').removeAttr('style')
+                                        $('#notifNumIndi').html(response)
+                                    
+                                    }
+                                    else{
+                                        
+                                        $('#notifNumIndi2').attr('style', 'display:none')    
+                                        $('#notifNumIndi').attr('style', 'display:none')
+                                        $('#notifNumIndi').html('')
+                                    
+                                    }
+
+                                     notifNum = parseInt(response)
+                                }
+                        }); 
+                }
+
+
+                $('#taskLI').click(function () {
+                     $.ajax({
+
+                                type: 'POST',
+                                url: '/approving_officer/getTasks/',
+                                
+                                data:{
+
+                                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                               
+                                },
+
+                                success: function(response) {
+                                
+                                
+                                document.getElementById('taskUL').innerHTML = ''    
+                                var toULData = ''
+                                 
+                                    var tr = ''
+                                    
+                                    if (taskNum == 0) {
+                                        tr +=   '<li class="message-preview" >'
+                                        tr +=   '<a>'
+                                        tr +=   '<div class="media" >'
+                                        tr +=   '<span class="pull-left" >'
+                                        tr +=   '<div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">'
+                                        tr +=   '<i class="icon-info"></i></div>'
+                                        tr +=   '</span>  '
+                                        tr +=   '<div class="media-body">'
+                                        tr +=   '<h5 class="media-heading">'
+                                        tr +=   '<strong>No task to process at the moment</strong>'
+                                        tr +=   '</h5>'
+                                        tr +=   '</div>'
+                                        tr +=   '</div>'
+                                        tr +=   '</a>'
+                                        tr +=   '</li>'
+                                     
+                                     }
+                                    
+                                    else{
+                                      for (var key in response) {
+                                         
+                                        var data = response[key]
+
+                                        tr += '<li class="message-preview">'
+                                        
+                                        tr += '<a href = "/procurement_office/notifs/'+data['notifID'].replace('-','_')+'/">'
+                                
+                                        tr += '<div class="media">'
+                                    
+                                        tr += '<span class="pull-left" >'
+                                        tr += '<div class="btn btn-'+data['colorTag']+' btn-circle" role="button" aria-disabled="true" disabled = "disabled">'
+                                        tr += '<i class="'+data['iconTag']+'"></i></div>'
+                                        tr += '</span>  '
+                                        tr += '<div class="media-body">'
+                                        tr += '<h5 class="media-heading">'
+                                        tr += '  <strong>'+data['title']+'</strong>'
+                                        tr += '</h5>'
+                                        tr += '<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>'
+                                        tr += ' <p style="margin-bottom:5px;">'+data['subT1']+'</p>      '
+                                        tr += ' <p>'+data['subT2']+'</p>'
+                                        tr += '</div>'
+                                        //tr += '<div class="media-body" style="float: right;">'
+                                        //tr += ' <button class="btn btn-xs btn-info" type="submit" name="d" value="'+data['notifID']+'">View Details</button>    '
+                                        //tr += '</div>'
+                                        tr += '</div>'
+                                        tr += '</a>'
+                                        tr += '</li>'
+
+
+                                    }
+
+                                  }
+
+                                  document.getElementById('taskUL').innerHTML = taskUlData + tr
+
+
+                                }
+
+                        }); 
+                })
+
+                $('#notifLI').click(function () {
+                     
+
+                     $.ajax({
+
+                                type: 'POST',
+                                url: '/approving_officer/getNotifs/',
+                                
+                                data:{
+
+                                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                               
+                                },
+
+                                success: function(response) {
+                                        
+                                        document.getElementById('notifUL').innerHTML = ''    
+                                        
+                                            var tr = ''
+                                            
+                                            if (notifNum == 0) {
+                                                tr +=   '<li class="message-preview" >'
+                                                tr +=   '<a>'
+                                                tr +=   '<div class="media" >'
+                                                tr +=   '<span class="pull-left" >'
+                                                tr +=   '<div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">'
+                                                tr +=   '<i class="icon-info"></i></div>'
+                                                tr +=   '</span>  '
+                                                tr +=   '<div class="media-body">'
+                                                tr +=   '<h5 class="media-heading">'
+                                                tr +=   '<strong>No unread notifications at the moment</strong>'
+                                                tr +=   '</h5>'
+                                                tr +=   '</div>'
+                                                tr +=   '</div>'
+                                                tr +=   '</a>'
+                                                tr +=   '</li>'
+                                             
+                                             }
+                                            
+                                            else{
+
+                                              for (var key in response) {
+                                                 
+                                                var data = response[key]
+
+                                                tr += '<li class="message-preview">'
+                                                
+                                                tr += '<a href = "/procurement_office/notifs/'+data['notifID'].replace('-','_')+'/">'
+                                        
+                                                tr += '<div class="media">'
+                                            
+                                                tr += '<span class="pull-left" >'
+                                                tr += '<div class="btn btn-'+data['colorTag']+' btn-circle" role="button" aria-disabled="true" disabled = "disabled">'
+                                                tr += '<i class="'+data['iconTag']+'"></i></div>'
+                                                tr += '</span>  '
+                                                tr += '<div class="media-body">'
+                                                tr += '<h5 class="media-heading">'
+                                                tr += '  <strong>'+data['title']+'</strong>'
+                                                tr += '</h5>'
+                                                tr += '<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>'
+                                                tr += ' <p style="margin-bottom:5px;">'+data['subT1']+'</p>      '
+                                                tr += ' <p>'+data['subT2']+'</p>'
+                                                tr += '</div>'
+                                                //tr += '<div class="media-body" style="float: right;">'
+                                                //tr += ' <button class="btn btn-xs btn-info" type="submit" name="d" value="'+data['notifID']+'">View Details</button>    '
+                                                //tr += '</div>'
+                                                tr += '</div>'
+                                                tr += '</a>'
+                                                tr += '</li>'
+
+
+                                            }
+
+                                          }
+
+                                          document.getElementById('notifUL').innerHTML = notifUlData + tr
+                                          //document.getElementById('notifUL').innerHTML = ulData
+
+                                }
+
+                        }); 
+                })
+
+
+                function replaceString(input) {
+                    return input.replace('-', '_')
+                }
+
+        </script>
+			
+
+</body>
+</html>
+
+
+

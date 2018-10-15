@@ -1,0 +1,797 @@
+{% extends 'inventory_office_admin/base.html' %}
+{% load humanize %}
+{% load staticfiles %}
+{% block content %}
+<style type="text/css">
+    
+            .tablescroll{
+            overflow-y:scroll;
+            height:1033px;
+            display:block;
+        }
+        
+        .tablescroll2{
+            
+            overflow-y:scroll;
+            height:235px;
+            display:block;
+        }
+        .divScroll{
+            
+            overflow-y:scroll;
+            height:450px;
+            display:block;
+        }
+
+</style>
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+    
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:48px; 
+
+                ">
+                <div>
+                    
+                     Supplies Inventory
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 
+                <div class="col-lg-12" style="">
+                         <div class="panel panel-default">
+                            
+                             <div class="panel-body" style="padding:0px;padding-top:20px; ">
+                                
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-qrcode fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  >Total Quantity of Items</div>
+                                       <div style=" margin-left:15px;  margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                        {% if pageData2.0.0 == None %}
+                                         {{pageData2.0.0}}
+                                         {% else %}
+                                         {{pageData2.0.0|floatformat|intcomma}}
+                                         {% endif %}  </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-money fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  >Total Cost of Items</div>
+                                        <div style=" margin-left:15px; margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                         {% if pageData2.0.1 == None %}
+                                         {{pageData2.0.1}}
+                                         {% else %}
+                                         {{pageData2.0.1|floatformat|intcomma}}
+                                         {% endif %}  </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-edit fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div >Qty. Still on Account</div>
+                                        <div style=" margin-left:15px; margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                         {% if pageData2.0.2 == None %}
+                                         {{pageData2.0.2}}
+                                         {% else %}
+                                         {{pageData2.0.2|floatformat|intcomma}}
+                                         {% endif %}  </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-trash fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  >Qty. Disposed as Waste</div>
+                                        <div style=" margin-left:15px; margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                         {% if pageData2.0.3 == None %}
+                                         {{pageData2.0.3}}
+                                         {% else %}
+                                         {{pageData2.0.3|floatformat|intcomma}}
+                                         {% endif %}   
+                                        </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Equipment Particulars
+                        </div>
+                        <div class="panel-body" style="padding-right: 2px;">
+                            <div class="table-responsive " >
+                              <table class="table table-hover" style="margin-bottom: 0px;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 80px;">Item No.</th>
+                                            <th >Particular</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+
+                                     </table>
+                                    <table class="table table-hover tablescroll2">
+                                     <tbody>
+
+                                        {% for x in pageData1 %}
+                                            <tr>
+                                                <td style="width: 80px;" class="text-center">{{x.3}}</td>
+                                                <td>{{x.1}}</td>
+                                                <td class="text-center">
+                                                   <form id="detailsButton" action="/inventory_office/displayItemOfParticular/" method="POST">{% csrf_token %} 
+                                                   <div>
+                                                   <button name ="partIDButton" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true"><i class="icon-circle-arrow-right"></i></button>
+                                                   </div>
+                                                   </form>
+                                               
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                     
+                                       
+                                    </tbody>
+                                </table>    
+
+                                   
+                               
+                            </div>
+                        </div>
+
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-6" style="padding-left: 0px;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           General Terms of Equipment Items
+                        </div>
+                              <div class="panel-body" style="padding-right: 2px;">
+                            <div class="table-responsive " >
+                              <table class="table table-hover" style="margin-bottom: 0px;">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 200px;" >Description</th>
+                                            <th style="width: 200px;" class="text-right" >Unit Price</th>
+                                            <th  style="width: 200px;" ></th>
+                                        </tr>
+                                    </thead>
+
+                                     </table>
+                                    <table class="table table-hover tablescroll2">
+                                     <tbody id="theListTable">
+
+                                        {% for x in pageData3 %}
+                                            <tr>
+                                                
+                                                {% if x.3 == '' %}
+                                                    <td style="width:200px; color: red" >{{x.1}}</td>
+                                                {% else %}
+                                                    <td style="width:200px;">{{x.1}}</td>
+                                                {% endif %}
+                                                
+                                                <td class="text-right" style="width:200px;">{{x.5}}</td>
+
+                                                {% if x.3 == '' %}
+                                                 <td class="text-right" style="width:180px;">
+                                                   <form id="detailsButton" action="/inventory_office/items/details" method="POST">{% csrf_token %} 
+                                                   <div>
+                                                   <button id="{{x.0}}_upBtn" name ="itemDetails" value="{{x.0}}" class="btn btn-xs btn-success" role ="submit" aria-disabled="true"><i class="icon-plus"></i></button>
+                                                   <button name ="itemDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true"><i class="icon-circle-arrow-right"></i></button>
+                                                   </div>
+                                                   </form>
+                                               
+                                                </td>
+                                                {% else %}
+                                                   <td class="text-right" style="width:180px;">
+                                                   <form id="detailsButton" action="/inventory_office/items/details" method="POST">{% csrf_token %} 
+                                                   <div>
+                                                   <button name ="itemDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true"><i class="icon-circle-arrow-right" ></i></button>
+                                                   </div>
+                                                   </form>
+                                               
+                                                </td>
+                                                {% endif %}
+                                                
+                                                
+                                            </tr>
+
+                                        {% endfor %}
+                                     
+                                       
+                                    </tbody>
+                                </table>    
+
+                                   
+                               
+                            </div>
+                        </div>
+
+                        </div>
+                        
+                    </div>
+                        
+                
+                    
+                  <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Inventory
+                            </div>
+                             <div class="panel-body" style="padding-bottom:0px;">
+                                  <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:0px;">
+                                  
+                                    <div class="form-group input-group" style="padding:0px;margin:0px;">
+                               
+                                                <input type="text" class="form-control input-sm" placeholder="Search for Inventory Information" >
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default btn-sm " type="button">
+                                                            <i class="fa fa-search "></i>
+                                                        </button>
+                                                    </span>
+                                                </div> 
+
+
+                                    </div>
+                             </div>
+
+                            <div class="panel-body" style="padding-bottom:0px;">
+
+                            <div class="panel">
+                          
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive" style="">
+                            <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th >Description</th>
+                                            <th >Type</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Available Qty.</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+
+                                    {% for x in pageData2 %}
+
+                                        <tr>
+                                           <td>{{x.1}}</td>
+                                           <td>Office Supplies</td>
+                                           {% if x.5 > 20 %}
+                                           <td class="text-center"><label class="label label-success"> Plenty</label></td>
+                                           {% endif %}
+                                           {% if x.5 < 20 and x.5 != 0 %}
+                                           <td class="text-center"><label class="label label-warning"> Near Deplete</label></td>
+                                           {% endif %}
+                                           {% if x.5 == 0 %}
+                                           <td class="text-center"><label class="label label-danger"> Depleted</label></td>
+                                           {% endif %}
+                                          
+                                            
+                                            <td class="text-center">{{x.5}}</td>
+                                            <td class="text-center">{{x.3}}</td>
+                                            <td class="text-center">
+                                            <a href="/inventory_office/supply/{{x.1}}/details/"><button class="btn btn-xs btn-primary">Details</button></a>
+                                            
+                                            </td>
+                                        </tr>
+
+
+                                    {% endfor %}
+                                   
+                                   
+                                    </tbody>
+                                        
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>    
+
+        <!-- ========================================================================================================== -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> New Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip2" class="form-control" autofocus>
+                                                        <span for="descrip2" id="errorde"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div id="descripDiv" class="form-group" style="display: none;">
+                                                        <label for="text1" class="control-label col-lg-4">Type: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="type" class="form-control">
+                                                        <span for="type" id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                 
+
+                                                 <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Classification: </label>
+                                                    
+                                                    
+
+
+                                                    <div class="col-lg-8">
+
+                                                        <div>
+                                                          
+                                                        
+
+
+                                                        <input id="class2" data-toggle="dropdown"  class="form-control dropdown-toggle" >
+                                                        <ul class="dropdown-menu message-dropdown" style="right:0; width: 342px; margin-left: 18px;">
+                                                                <li style="padding-bottom:5px; padding-top:5px;">
+                                                                    <a href="#"  id="equiSel2"><i class="icon-wrench" style="margin-left:4px;margin-right:6px;"></i> Equipment</a>
+                                                                </li>
+                                                                <li style="padding-bottom:5px; padding-top:5px;">
+                                                                    <a href="#" id="suppSel2"><i class="icon-file" style="margin-left:4px;margin-right:10px;"></i> Supply</a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                        <span for="class" id="errorde"></span>
+                                                    
+                                                    </div>
+
+
+                                                </div>
+                                                
+                                                   
+                                                 <div id="addDetDiv2" class="form-group" style="display: none">
+                                                        <label for="text1" class="control-label col-lg-4">Group Particular: </label>
+                                                    
+                                                    
+
+
+                                                    <div class="col-lg-8">
+
+                                                        <div>
+                                                          
+                                                        
+
+
+                                                        <input id="part2" data-toggle="dropdown"  class="form-control dropdown-toggle" >
+                                                        <ul id="theULList2" class="dropdown-menu message-dropdown" style="right:0; width: 342px; margin-left: 18px;">
+                                                                
+                                                            </ul>
+                                                        </div>
+                                                        <span for="part2" id="errorpart2"></span>
+                                                    
+                                                    </div>
+
+
+                                                </div>
+                                                
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Unit: </label>
+                                                        
+                                                    <div class="col-lg-8">
+                                                        <input id="unit2" class="form-control" list="compSeacrhList" />
+                                                        <datalist id="compSeacrhList">
+                                                        <option>Unit</option>
+                                                        <option>Piece</option>
+                                                        <option>Bundle</option>
+                                                        <option>Strip</option>
+                                                        <option>Pair</option>
+                                                        <option>Gram</option>
+                                                        <option>Kilogram</option>
+                                                        <option>Ounce</option>
+                                                        <option>Meter</option>
+                                                        <option>Inch</option>
+                                                        <option>Foot</option>
+                                                        <option>Brd. Feet</option>
+                                                        <option>Cu. Feet</option>
+                                                        <option>Cu. Meter</option>
+                                                        <option>Litre</option>
+                                                        <option>Load</option>
+                                                        <option>Bottle</option>
+                                                        <option>Case</option>
+                                                        <option>Vial</option>
+                                                        <option>Sheet</option>
+                                                        <option>Peso</option>
+                                                        </datalist>
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price2" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList2" type="submit" class="btn btn-success" >Save Item Information</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+                    </div>
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+
+          <!--  <div id="page-wrapper">
+
+
+
+            ========================================================   -->
+            <!--  ========================================================  
+
+              <div style="   
+                                     display:inline;
+                                     padding: 0px;
+                                     margin: 0px;
+                                     margin-top: 51px;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                        
+                        <div class="btn-group">
+                                        <a data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="icon-bar-chart"></i> Generates Inventory Reports<span style="margin-left:5px;" class="caret"></span></a>
+                                        <ul class="dropdown-menu message-dropdown" style="right:0;">
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#" ><i class="icon-list-alt" style="margin-left:4px;margin-right:6px;"></i> Physical Count of Property</a>
+                                            </li>
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#"><i class="icon-trash" style="margin-left:4px;margin-right:10px;"></i> Waste Material Report</a>
+                                            </li>
+
+
+                                        </ul>
+                         </div>
+                </div> 
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:48px; 
+
+                ">
+                <div>
+                    
+                    Supplies' Inventory and RIS List
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                    
+                        
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Requisition and Issuance Slips
+                            </div>
+                            <div class="panel-body" style="padding-bottom:0px;">  
+                            <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                                <div class="form-group input-group" style="padding:0px;margin:0px;">
+                           
+                                            <input type="text" class="form-control input-sm" placeholder="Find RIS" >
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default btn-sm " type="button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div> 
+
+
+                                </div>
+                            </div>
+                            <div class="panel-body" style=" padding-right: 0px; padding-top:0px;">
+                            
+
+                            <div class="panel">
+                          
+                          
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive tablescroll2" style="">
+                              <table class="table table-hover">
+                                    <thead>
+                                         <tr>
+                                            <th class="text-center" style="width:120px;background-color: #d6e9c6;">No.</th>
+                                            <th style="width:420px;">Requesting Office</th>
+                                            <th class="text-center" style="width:110px;">Status</th>
+                                            <th class="text-center"  style="width:110px;">Release Status</th>
+                                            <th class="text-center"  style="width:110px;">Action</th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody id="theRISListTable">
+
+                                      </tbody>  
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+              
+                </div>
+                
+              
+
+
+                <!-- /. ROW  
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+           ========================================================  
+
+
+
+                    </div>-->
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+   
+    <div id="footer-sec">
+       &copy; Mindanao State University <i class=" buttom-header-right">Equipement Inventory </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/custom.js' %}"></script>
+
+    <script type="text/javascript">
+        
+
+    $(document).ready(function(){
+        displayRISList();
+    
+    });
+
+        function displayRISList() {
+            
+       
+                $.ajax({
+                    type: 'POST',
+                    url:'/inventory_office/getRIS/',
+                    data:{
+                    
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+
+                        document.getElementById("theRISListTable").innerHTML = "";
+                        
+                        var t = ''    
+                            for(var key in response) {
+                                var value = response[key];
+                                var tr = '<tr>'
+                                    if (value['risNum'] === null ) {
+                                        tr+=   '<td class="text-center" >---</td>'
+                                    }else{
+                                        tr+=   '<td class="text-center" style="background-color: #eff3eb;">'+value['risNum']+'</td>'
+                                    }
+                                    
+                                    tr+=  '<td>'+value['reqOff']+'</td>'
+                                    if (value['status'] === true) {
+                                        tr+=  '<td class="text-center"><label class="label label-success">Approved</label></td>'
+                                    }
+                                    if (value['status'] === null) {
+                                        tr+=  '<td class="text-center"><label class="label label-warning">Pending</label></td>'
+                                    }
+
+                                    if (value['status'] === false) {
+                                        tr+=  '<td class="text-center"><label class="label label-danger">Denied</label></td>'
+                                    }
+                                    if (value['relStatus'] === true) {
+                                        tr+=  '<td class="text-center"><label class="label label-success">Released</label></td>'
+                                    }
+                                    if (value['relStatus'] === null && value['status'] === null) {
+                                        tr+=  '<td class="text-center"><label class="label label-warning">Pending</label></td>'
+                                    }
+                                    if (value['relStatus'] === null && value['status'] === true) {
+                                        tr+=  '<td class="text-center"><label class="label label-warning">Waiting</label></td>'
+                                    }
+
+                                    tr+=   '<td class="text-center">'
+                                    tr+= '<form id="theDetails" method="POST" action="/inventory_office/displayRISDetails/">'
+                                    tr+="{% csrf_token %}"
+                                    tr+= '<div>'
+                                     tr+=  '<button id="slipNumButton" name="slipNumButton" class="btn btn-xs '
+                                     tr+=  'btn-primary" type="submit" role="submit" value="'+key+'">Details <i class="icon-arrow-right"></i></button>'
+                                    tr+= '</div>'
+                                    tr+= '</form>'
+                                  
+
+                                     tr+= '</td>'
+                                     tr+=  '</tr>'
+                                 t +=tr
+                        }
+                    
+                    document.getElementById("theRISListTable").innerHTML += t;
+                    
+                    }
+
+                }); 
+
+            }
+
+
+
+    </script>
+
+
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#supply').attr('class','active-menu-inven')
+            $('#inventoryTop').attr('class', 'active-menu-top')
+            $('#theInvenUL').attr('class','nav nav-second-level collapse in')
+            $('#title').html('Supplies')
+
+           
+             });
+    </script>
+
+{% endblock %}
+
+
+    

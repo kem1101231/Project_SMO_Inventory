@@ -1,0 +1,766 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    {%load staticfiles%}
+    <title>{{pageData1.0.0}} Requests</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'procurement/assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'procurement/assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'procurement/assets/css/basic.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'procurement/assets/css/custom.css' %}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    
+    <link rel="stylesheet" href="{% static 'procurement/assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+      <link href="{% static 'requisitioner/assets/plugins/dataTables/dataTables.bootstrap.css' %}" rel="stylesheet" />
+
+
+</head>
+<body>
+    <div id="wrapper">
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" style="margin-bottom: 0">
+           
+           <div  class="navbar-header navbar-brand"></div>
+
+           <ul class="nav navbar-right top-nav"
+                        style="
+                        margin-right: 50px;
+                        ">
+
+                        <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="label label-danger">2</span> 
+                    <i class="icon-file-text"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        
+                        <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="label label-danger">1</span> 
+                    <i class="icon-file-text"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        
+                        <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body " style="margin-left:10px;">
+                                        <h5 class="media-heading">
+                                            <strong>Purchase Requests on Process</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        <li class="message-preview">
+                            
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn  btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong></strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;"></p>      
+                                        <p></p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="GGut">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        <li class="message-footer">
+                            <a href="/requisitioner/pr">View all Purchase Request</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                    
+                    <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body " style="margin-left:95px;">
+                                        <h5 class="media-heading">
+                                            <strong>Tasks</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+
+                    {% if taskNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No task to process at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}    
+                    
+                    {% for x in taskDetails %}
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/approving_officer/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                     {% endfor %}   
+
+                        <li class="message-footer">
+                            <a href="#">View all Processed Tasks</a>
+                        </li>
+
+                    </ul>
+                </li>    
+                
+                <li class="dropdown">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body" style="margin-left:75px;">
+                                        <h5 class="media-heading">
+                                            <strong>Notifications</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unread notification at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}
+
+                       {% for x in notifDetails %}
+
+                       <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                       {% endfor %}
+                        
+                         
+                        <li class="message-footer">
+                            <a href="#">View all Notifications</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/requisitioner/profile/"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="/requisitioner/pr/"><i class="fa fa-fw fa-shopping-cart"></i> My Requests</a>
+                        </li>
+                        <li>
+                            <a href="/requisitioner/accounts/"><i class="fa fa-fw fa-th-list"></i> My Acct. Items</a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa-fw icon-signout"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        {%load staticfiles%}
+                        <div class="user-img-div">
+
+                            <a href="/requisitioner/profile/"><img src="{% static 'requisitioner/assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="/requisitioner/profile/" class = "inner-text">{{lname}}, {{fname}}</a>
+                            <br />
+                                <small>{{designation}}</small>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+ <li>
+                        <a href="/procurement_office"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    </li>
+                     <li>
+                        <a  href="#"><i class="icon-briefcase"></i>Purchase Req. & Ordr.<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level collapse in">
+                            <li>
+                                <a href="/procurement_office/create_po"><i class="icon-pencil"></i>Create P.O.</a>
+                            </li>
+                            <li>
+                                <a href="/procurement_office/po"><i class="fa fa-truck"></i>Purchase Orders</a>
+                            </li>
+                            <li>
+                                <a  class="active-menu" href="/procurement_office/pr"><i class="icon-shopping-cart"></i>Purchase Req.</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a  href="#"><i class="icon-envelope-alt"></i>Quotations and Abstracts<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+
+                         
+                           <li>
+                               <a href="/procurement_office/add_quotation"><i class="icon-pencil"></i>New Quotation</a>
+                           </li>
+                           <li>
+                              <a href="/procurement_office/add_abstract"><i class="icon-pencil"></i>Create Abstract</a>
+                            </li>
+
+                            <li>
+                                <a href="/procurement_office/quotations"><i class="fa fa-reorder "></i>All Quotations</a>
+                            </li>
+                            <li>
+                                <a href="/procurement_office/abstract"><i class="fa fa-reorder "></i>All Abstacts</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a  href="#"><i class="icon-building"></i>BAC Records<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/procurement_office/add_bid"><i class="icon-edit"></i>Record a Bidding</a>
+                            </li>
+                            <li>
+                                <a href="/procurement_office/add_contract"><i class="icon-edit"></i>New Contract</a>
+                            </li>
+                            <li>
+                                <a href="/procurement_office/bids"><i class="icon-list-alt"></i>All Biddings</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                     <li>
+                        <a  href="#"><i class="icon-group"></i>Suppliers</a>
+                    </li>
+                </ul>
+            </div>
+
+</div>
+        </nav>
+
+       
+           
+
+        
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner" style="
+            margin-bottom: 0px;
+            ">
+
+                             <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                ">
+                <div>
+                    {{pageData1.0.1}}
+                </div>
+                  <hr> 
+               </div>
+
+               <div class="panel new-panel-ds"
+                        style="
+                        margin-bottom: 0px;
+                             ">
+                
+                                <div id="wrap" style="position:relative;">
+                            <div id="wrap" style="position:relative;">
+                            <div id="left" class ="panel"
+                                style="
+                                    
+                                    height: 625px;
+                                 
+                                ">
+                                 <div class="panel-body" style="
+                                 padding-top:0px;
+                                 padding-left: 0px;
+                                 padding-right: 0px;
+                                 ">
+
+                            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel">
+                            
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                           
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Item No.</th>
+                                            <th>Particular</th>
+                                            <th class="text-center">No. of Items</th>
+                                            <th class="text-center">Total Cost Value</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td>Land and Land Improvements</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2</td>
+                                            <td>Academics/School Buildings</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">3</td>
+                                            <td>Other Structures</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4</td>
+                                            <td>Machinery Equipement</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4.1</td>
+                                            <td>Communication Equipement</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4.2</td>
+                                            <td>Fire Fighting Equipement and Accesories</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4.3</td>
+                                            <td>Information Technology Equipement and Accessories</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4.4</td>
+                                            <td>Medical and Dental Equipement</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4.5</td>
+                                            <td>Military, Police and Security Equipement</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4.6</td>
+                                            <td>Scienctific Equipement and Related Materials</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4.7</td>
+                                            <td>Sound System Equipement and Accessories</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4.8</td>
+                                            <td>sports Equipement and Accessories</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">5</td>
+                                            <td>Transportation Equipement</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">5.1</td>
+                                            <td> Motor Vehicles, Parts and Accessories</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">6</td>
+                                            <td>Furnitures Fixtures and Books</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">7</td>
+                                            <td>Other Property, Plant and Equipement</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">8</td>
+                                            <td>Livestocks</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/equipment/list/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                            </div>
+
+                        </div>
+
+                    </div> 
+
+                
+
+                    </div> 
+                    </div>
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - Supply and Equipement Inventory
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+     <script src="{% static 'procurement/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/custom.js' %}"></script>
+
+    <script src="{% static 'procurement/assets/plugins/jquery-2.0.3.min.js' %}"></script>
+    <script src="{% static 'procurement/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'procurement/assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+    <script src="{% static 'procurement/assets/plugins/dataTables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'procurement/assets/plugins/dataTables/dataTables.bootstrap.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+             });
+    </script>
+
+
+</body>
+</html>

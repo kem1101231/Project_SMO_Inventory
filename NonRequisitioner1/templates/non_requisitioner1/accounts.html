@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {%load staticfiles%}
+    <title>Accounted Items</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-requi.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <link href="{% static 'assets/plugins/dataTables/dataTables.bootstrap.css' %}" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+
+    
+</head>
+<body>
+    <div id="wrapper">
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" style="margin-bottom: 0">
+           
+           <div  class="navbar-header navbar-brand"></div>
+
+            <ul class="nav navbar-right top-nav" 
+                        style="
+                        margin-right: 50px;
+                        ">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                    
+                    <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body " style="margin-left:95px;">
+                                        <h5 class="media-heading">
+                                            <strong>Tasks</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+
+                    {% if taskNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No task to process at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}    
+                    
+                    {% for x in taskDetails %}
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                     {% endfor %}   
+
+
+                    </ul>
+                </li>    
+                
+                <li class="dropdown">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body" style="margin-left:75px;">
+                                        <h5 class="media-heading">
+                                            <strong>Notifications</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unread notification at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}
+
+                       {% for x in notifDetails %}
+
+                       <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                       {% endfor %}
+                        
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/requisitioner/profile/"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="/requisitioner/pr/"><i class="fa fa-fw fa-shopping-cart"></i> My Requests</a>
+                        </li>
+                        <li>
+                            <a href="/requisitioner/accounts/"><i class="fa fa-fw fa-th-list"></i> My Acct. Items</a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa-fw icon-signout"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        {%load staticfiles%}
+                        <div class="user-img-div">
+
+                            <a href="/requisitioner/profile/"><img src="{% static 'assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="/requisitioner/profile/" class = "inner-text">{{lname}}, {{fname}}</a>
+                            <br />
+                                <small>{{dept}} - {{designation}}</small>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+
+                       <li>
+                        <a  href="/non_requisitioner/"><i class="fa fa-home "></i>Home</a>
+                    </li>
+          <li>
+                        <a  href="/non_requisitioner/profile/"><i class="fa fa-user "></i>Profile </a>
+                        
+                    </li>
+                    <li>
+                        <a class="active-menu-nonrequi" href="/non_requisitioner/pr/"><i class="fa fa-reorder "></i>Purchase Requests</a>
+                    </li>
+                     <li>
+                        <a href="/non_requisitioner/accounts/"><i class="fa fa-th-list "></i>Items on Account</a>
+                    </li>
+          
+          
+                </ul>
+            </div>
+
+</div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner" style="
+            margin-bottom: 0px;
+            ">
+               
+               <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                ">
+                <div>
+                    
+                     Items on Account
+                </div>
+               </div>
+
+
+               <div class="panel panel-body" style="margin-top:10px;">
+                   
+
+
+                       <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-1x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Total</div>
+                                       <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-ok"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Approved</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Pending</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-support"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  style="display:inline;">Denied</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+
+
+               </div>
+
+               <div class="panel new-panel-ds"
+                        style="
+                        margin-bottom: 0px;
+                             ">
+                
+                                <div id="wrap" style="position:relative;">
+                            <div id="wrap" style="position:relative;">
+                            <div id="left" class ="panel"
+                                style="
+                                    
+                                    height: 625px;
+                                 
+                                ">
+                                 <div class="panel-body" style="
+                                 padding-top:0px;
+                                 padding-left: 0px;
+                                 padding-right: 0px;
+                                 ">
+
+                            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                           
+                           <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>PAR Number</th>
+                                            <th class="text-center">No of Items</th>
+                                            <th class="text-center">Total Cost</th>
+                                            <th class="text-center">Date Recieved</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableOfPAR">
+
+                                    {% for x in pageData1 %}
+                                        <tr class="odd gradeX" id="{{x.0}}">
+                                            
+                                            <td>{{x.0}}</td>
+                                            <td class="text-center">{{x.7}}</td>
+                                            <td class="text-center">{{x.6}}</td>
+                                            <td class="text-center">{{x.3}}</td>
+                                            <td class="text-center">
+                                            <form id="{{x.0}}_actions" action="" method="POST">{% csrf_token %}
+                                                <div>
+                                                    
+                                                    <button id="{{x.0}}_details" name="details" value="{{x.0}}" class="btn btn-xs btn-primary" role= "submit" type="submit" aria-disabled="true"><i class="icon-reorder"></i></button>
+                                                    
+                                                    <button id="{{x.0}}_waste" name="waste" value="{{x.0}}" class="btn btn-xs btn-danger" role ="button" type="button" aria-disabled="true"><i class="icon-trash"></i></button>
+                                                
+                                                </div>
+                                            </form>
+
+                                                </td>
+                                        </tr>
+                                    {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    </div> 
+                    </div>
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; 2016 Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    
+    <script src="{% static 'assets/plugins/jquery-2.0.3.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/dataTables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'assets/plugins/dataTables/dataTables.bootstrap.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+             });
+    </script>
+    <script type="text/javascript">
+        document.getElementById("detailsButton").onclick = function() {
+            alert(document.getElementById("detailsButton").value
+        }
+        
+        function commaSeparator(input) {
+             return input.toLocaleString();
+        }
+        
+    </script>
+
+    <script type="text/javascript">
+        
+   
+    $('#tableOfPAR').on('click','button', function (e) {
+        
+        var id = this.id;
+        var value = document.getElementById(id).value
+        var trID = $(this).closest('tr').attr('id');
+
+
+        if (id === value+"_details") {
+            $('#'+value+'_actions').attr('action', '/requisitioner/displayPARDetails/')
+        } else {
+
+        }
+    });
+
+    </script>
+
+</body>
+</html>

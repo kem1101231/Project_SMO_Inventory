@@ -1,0 +1,825 @@
+{% extends 'inventory_office/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <style type="text/css">
+        
+        .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 270px;
+             
+         }
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:5px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:5px; 
+            margin-bottom:2px;
+         }
+         .dataFont3{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+        
+         }
+
+         .dataFont4{
+            
+            font-weight: 450;  
+            font-size: 15px;
+         }
+
+            .tablescroll{
+            overflow-y:scroll;
+            height:1033px;
+            display:block;
+        }
+        
+        .tablescroll2{
+            
+            overflow-y:scroll;
+            height:195px;
+            display:block;
+        }
+        .divScroll{
+            
+            overflow-y:scroll;
+            height:450px;
+            display:block;
+        }
+
+
+    </style>
+        <!-- /. NAV SIDE  -->
+                <div id="page-wrapper">
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Personnel Information</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+            
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+
+
+                <div class="col-lg-12">
+                    <div class="col-lg-5 text-center" style="padding-left: 0px;">
+                         <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="height: 300px; padding-left:7px;">
+                                    <div style="width: 100%;">
+                    <img style="max-width: 150px;
+                                " src = "{% static 'assets/img/user.jpeg' %}">
+                </div>
+                    <div class="form-group" style="margin-top:36px;">
+                                <div style="width:100%; ">
+                                  
+                                    <div style="font-weight: bold; font-size: 16px;">
+                                        Engr. Virgilio A. Ramos
+                                    </div>
+                                    <div style="padding-top: 5px;">
+                                      Vice Chancellor for Finance and Administration
+                                    </div>
+                                    <div style="padding-top: 5px; font-size:14px; font-weight: 600;">
+                                      Office of the Vice Chancellor for Finance and Administration
+                                    </div>
+                                </div> 
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-lg-3" style="padding-left:0px;">
+                        
+                         <div class="panel panel-default">
+                           
+                          
+                            <div class="panel-body" style="height: 300px;padding-left:20px;">
+                             <div>
+                                <div class="panel panel-info" style="margin-top: 8px;">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-qrcode fa-2x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div  >Items on Account:</div>
+                                               <div style=" margin-left:15px;  margin-top:8px;"><span class="badge" style="font-size:15px;">00,000</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-money fa-2x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div  > Accounts Value: </div>
+                                               <div style=" margin-left:15px;  margin-top:8px;"><span class="badge" style="font-size:15px;">₱ 00,000</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="panel panel-danger" style="margin-bottom: 8px;">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa icon-trash fa-2x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div  > Returned as Waste: </div>
+                                               <div style=" margin-left:15px;  margin-top:8px;"><span class="badge" style="font-size:15px;">0000</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4"  style="padding-left:0px; padding-right: 0px;">
+                         
+                        <div class="panel panel-default" style="height: 302px;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Accounted Assets</h3>
+                            </div>
+                            <div class="panel-body" style="padding: 10px; padding-right: 2px;">
+
+                                <div style="margin-right: 17px;">
+                                    <table class="table table-striped table-bordered table-hover" style="margin-bottom: 0px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th class="text-right" style="width: 60px;">Qty</th>
+                                            <th class="text-right" style="width: 92px;">Cost</th>
+                                        </tr>
+                                    </thead>
+                                    </table>
+                                </div>
+                                   <div class="table-responsive tablescroll2" >
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                   
+                                    <tbody>
+                                        
+                                        <tr class="gradeU">
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" style="width: 60px;">3</td>
+                                            <td class="text-right" style="width: 92px;">45,000</td>
+                                            
+                                        </tr>
+                                        <tr class="gradeU">
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" style="width: 60px;">3</td>
+                                            <td class="text-right" style="width: 92px;">45,000</td>
+                                            
+                                        </tr>
+                                        <tr class="gradeU">
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" style="width: 60px;">3</td>
+                                            <td class="text-right" style="width: 92px;">45,000</td>
+                                            
+                                        </tr>
+                                        <tr class="gradeU">
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" style="width: 60px;">3</td>
+                                            <td class="text-right" style="width: 92px;">45,000</td>
+                                            
+                                        </tr>
+                                        <tr class="gradeU">
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" style="width: 60px;">3</td>
+                                            <td class="text-right" style="width: 92px;">45,000</td>
+                                            
+                                        </tr>
+                                        <tr class="gradeU">
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" style="width: 60px;">3</td>
+                                            <td class="text-right" style="width: 92px;">45,000</td>
+                                            
+                                        </tr>
+                                        <tr class="gradeU">
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" style="width: 60px;">3</td>
+                                            <td class="text-right" style="width: 92px;">45,000</td>
+                                            
+                                        </tr>
+                                        <tr class="gradeU">
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" style="width: 60px;">3</td>
+                                            <td class="text-right" style="width: 92px;">45,000</td>
+                                            
+                                        </tr>
+                                        <tr class="gradeU">
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" style="width: 60px;">3</td>
+                                            <td class="text-right" style="width: 92px;">45,000</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                
+                </div>
+                    </div>
+                
+
+                </div>
+                 
+                <div class="col-lg-12" style="display: inline;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Personnel's List of Accounts</h3>
+                            </div>
+                            <div class="panel-body" style="height:840px;">
+                                <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead>
+                                        <tr>
+                                            <th>PAR No.</th>
+                                            <th>PO Ref.</th>
+                                            <th>Date Recieved</th>
+                                            <th class="text-right" >No. of Items</th>
+                                            <th class="text-right">Cost</th>
+                                            <th class="text-right" >On Acct. For</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="theTable2">
+                                        
+                                        <tr class="gradeU">
+                                            
+                                            <td>000-17</td>
+                                            <td>000-17</td>
+                                            <td>March 21, 2017</td>
+                                            <td class="text-right" >152</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right" >0 Years, 0 Months </td>
+                                           
+                                           
+                                        </tr>
+                                       
+                                       <tr class="gradeU">
+                                            
+                                            <td>000-17</td>
+                                            <td>000-17</td>
+                                            <td>March 21, 2017</td>
+                                            <td class="text-right" >152</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right" >0 Years, 0 Months</td>
+                                           
+                                           
+                                        </tr>
+                                      
+                                        <tr class="gradeU">
+                                            
+                                            <td>000-17</td>
+                                            <td>000-17</td>
+                                            <td>March 21, 2017</td>
+                                            <td class="text-right" >152</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right" >0 Years, 0 Months</td>
+                                           
+                                           
+                                        </tr>
+                                      
+                                        <tr class="gradeU">
+                                            
+                                            <td>000-17</td>
+                                            <td>000-17</td>
+                                            <td>March 21, 2017</td>
+                                            <td class="text-right" >152</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right" >0 Years, 0 Months</td>
+                                           
+                                           
+                                        </tr>
+                                      
+                                        <tr class="gradeU">
+                                            
+                                            <td>000-17</td>
+                                            <td>000-17</td>
+                                            <td>March 21, 2017</td>
+                                            <td class="text-right" >152</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right" >0 Years, 0 Months</td>
+                                           
+                                           
+                                        </tr>
+                                      
+                                        <tr class="gradeU">
+                                            
+                                            <td>000-17</td>
+                                            <td>000-17</td>
+                                            <td>March 21, 2017</td>
+                                            <td class="text-right" >152</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right" >0 Years, 0 Months</td>
+                                           
+                                           
+                                        </tr>
+                                      
+                                        <tr class="gradeU">
+                                            
+                                            <td>000-17</td>
+                                            <td>000-17</td>
+                                            <td>March 21, 2017</td>
+                                            <td class="text-right" >152</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right" >0 Years, 0 Months</td>
+                                           
+                                           
+                                        </tr>
+                                      
+                                        <tr class="gradeU">
+                                            
+                                            <td>000-17</td>
+                                            <td>000-17</td>
+                                            <td>March 21, 2017</td>
+                                            <td class="text-right" >152</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right" >0 Years, 0 Months</td>
+                                           
+                                           
+                                        </tr>
+                                      
+                                        <tr class="gradeU">
+                                            
+                                            <td>000-17</td>
+                                            <td>000-17</td>
+                                            <td>March 21, 2017</td>
+                                            <td class="text-right" >152</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right" >0 Years, 0 Months</td>
+                                           
+                                           
+                                        </tr>
+                                      
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                                
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+                
+                <div class="col-lg-6" style="display: none; padding-left:0px;">
+
+                    <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Property Acceptance Receipt Details</h3>
+                            </div>
+                            <div class="panel-body"  style="height:840px;">
+                                
+                                <div class="panel-body">
+                                    
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        PAR No.:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        001-17
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        PO Ref.:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                    <form id="myForm" action="" method="POST">{% csrf_token %}
+                                        <div>
+                                        <input type="hidden" name="detailsButton" value="{{x.1}}" />
+                                        <a href="#" onclick="document.getElementById('myForm').submit();">001-17</a>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px;  width:100%;">
+                                    <div class="col-lg-5 dataFont2">
+                                        Date Received:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                       March 17, 2015
+                                    </div>
+                                </div> 
+                            </div> 
+                           
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Received From:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                       Kuchiki Byakuya
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        On Account for:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                        2 years, 2 months, 24 days
+                                    </div>
+                                </div> 
+                            </div>  
+
+                                </div>
+                                <div class="panel-body">
+                                <div class="form-group">
+                                <div style="padding-left: 0px; width:100%;">
+                                    <div class="col-lg-5 dataFont2" style="padding-left: 0px; font-weight:bold;">
+                                        Items on PAR 
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                    </div>
+                                </div> 
+                            </div>
+                                    <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Inv. No.</th>
+                                            <th>Description</th>
+                                            <th class="text-right" >Quantity</th>
+                                            <th class="text-right">Unit Cost</th>
+                                            <th class="text-right">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                        
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+                </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transComp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;"><div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-print"></i></div>
+                                            <strong>Property Acceptance Receipt Details</strong>
+                                        </h5>
+                                        <hr>
+                                       <div class="panel-body">
+                                    
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        PAR No.:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        001-17
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        PO Ref.:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                    <form id="myForm" action="" method="POST">{% csrf_token %}
+                                        <div>
+                                        <input type="hidden" name="detailsButton" value="{{x.1}}" />
+                                        <a href="#" onclick="document.getElementById('myForm').submit();">001-17</a>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px;  width:100%;">
+                                    <div class="col-lg-5 dataFont2">
+                                        Date Received:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                       March 17, 2015
+                                    </div>
+                                </div> 
+                            </div> 
+                           
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Received From:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                       Kuchiki Byakuya
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        On Account for:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                        2 years, 2 months, 24 days
+                                    </div>
+                                </div> 
+                            </div>  
+
+                                </div>
+                                <div class="panel-body">
+                                <div class="form-group">
+                                <div style="padding-left: 0px; width:100%;">
+                                    <div class="col-lg-5 dataFont2" style="padding-left: 0px; font-weight:bold;">
+                                        Items on PAR 
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                    </div>
+                                </div> 
+                            </div>
+                                    <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Inv. No.</th>
+                                            <th>Description</th>
+                                            <th class="text-right" >Quantity</th>
+                                            <th class="text-right">Unit Cost</th>
+                                            <th class="text-right">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                        
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                                </div>
+                                   
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+                 
+
+
+
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <div id="footer-sec">
+       &copy; Mindanao State University - General Santos City</i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/plugins/morris/raphael-2.1.0.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/morris/morris.js' %}"></script>
+
+
+    <script type="text/javascript">
+        
+    $('#theTable2').on('click', 'td', function (argument) {
+        $('#transComp').modal('toggle')
+    })
+
+
+    </script>
+
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#office').attr('class','active-menu-inven')
+            $('#title').html('Employee Details')
+
+           
+             });
+    </script>
+
+
+
+{% endblock %}
+</body>
+</html>
+
+
+

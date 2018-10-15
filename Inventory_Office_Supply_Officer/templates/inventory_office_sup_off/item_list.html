@@ -1,0 +1,916 @@
+﻿{% extends 'inventory_office/base.html' %}
+
+{% load staticfiles %}
+{% block content %}
+
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+    
+            <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-top:0px;
+                                     margin-top:52px; 
+                                     margin-bottom: 0px;
+                                     padding-bottom: 0px;
+                                     padding-right:20px;
+                                    ">
+
+                                        
+                     <div >
+                                <button class="btn btn-success" role ="button" aria-disabled="true" id="approveButton" name="approveButton" value="{{pageData1.0.1}}"><i class="icon-plus"></i> New Item Information</button>
+                            
+                      </div>
+                       
+                       
+             </div>
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:48px; 
+
+                ">
+                <div>
+                    
+                  General Term of Items
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 
+                
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-body" style="padding-bottom:0px;">  
+                            <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                                <div class="form-group input-group" style="padding:0px;margin:0px;">
+                           
+                                            <input type="text" class="form-control input-sm" placeholder="Find Item" autofocus="" >
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default btn-sm " type="button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div> 
+
+
+                                </div>
+                            </div>
+                            <div class="panel-body" style="padding-top: 0px;">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center" style="width:200px;">Classification</th>
+                                            <th class="text-right" style="width:200px;">Unit Price</th>
+                                            <th style="width:180px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="theListTable">
+                                        
+                                        {% for x in pageData1 %}
+
+                                            <tr>
+                                                <td>{{x.1}}</td>
+                                                <td class="text-center">{{x.4}}</td>
+                                                
+                                                {% if x.3 == '' %}
+                                                    <td class="text-center" style="width:200px; color: red" >Not yet Classified</td>
+                                                {% else %}
+                                                    <td class="text-center" style="width:200px;">{{x.3}}</td>
+                                                {% endif %}
+                                                
+                                                <td class="text-right" style="width:200px;">{{x.5}}</td>
+
+                                                {% if x.3 == '' %}
+                                                 <td class="text-right" style="width:180px;">
+                                                   <form id="detailsButton" action="/inventory_office/items/details" method="POST">{% csrf_token %} 
+                                                   <div>
+                                                   <button id="{{x.0}}_upBtn" name ="itemDetails" value="{{x.0}}" class="btn btn-xs btn-success" role ="submit" aria-disabled="true"><i class="icon-plus"></i> Update</button>
+                                                   <button name ="itemDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true"><i class="icon-circle-arrow-right"></i></button>
+                                                   </div>
+                                                   </form>
+                                               
+                                                </td>
+                                                {% else %}
+                                                   <td class="text-right" style="width:180px;">
+                                                   <form id="detailsButton" action="/inventory_office/items/details" method="POST">{% csrf_token %} 
+                                                   <div>
+                                                   <button name ="itemDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                                   </div>
+                                                   </form>
+                                               
+                                                </td>
+                                                {% endif %}
+                                                
+                                                
+                                            </tr>
+
+
+                                        {% endfor %}
+                                        
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>    
+        <!-- /. NAV SIDE  -->
+        
+                    </div>
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+            <!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="newReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> New Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip" class="form-control" autofocus>
+                                                        <span for="descrip" id="errorde"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div id="descripDiv" class="form-group" style="display: none;">
+                                                        <label for="text1" class="control-label col-lg-4">Type: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="type" class="form-control">
+                                                        <span for="type" id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                 
+
+                                                 <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Classification: </label>
+                                                    
+                                                    
+
+
+                                                    <div class="col-lg-8">
+
+                                                        <div>
+                                                          
+                                                        
+
+
+                                                        <input id="class" data-toggle="dropdown"  class="form-control dropdown-toggle" >
+                                                        <ul class="dropdown-menu message-dropdown" style="right:0; width: 342px; margin-left: 18px;">
+                                                                <li style="padding-bottom:5px; padding-top:5px;">
+                                                                    <a href="#"  id="equiSel"><i class="icon-wrench" style="margin-left:4px;margin-right:6px;"></i> Equipment</a>
+                                                                </li>
+                                                                <li style="padding-bottom:5px; padding-top:5px;">
+                                                                    <a href="#" id="suppSel"><i class="icon-file" style="margin-left:4px;margin-right:10px;"></i> Supply</a>
+                                                                </li>
+
+
+                                                            </ul>
+                                                        </div>
+                                                        <span for="class" id="errorde"></span>
+                                                    
+                                                    </div>
+
+
+                                                </div>
+                                                 
+                                                 
+                                                 <div id="addDetDiv1" class="form-group" style="display: none">
+                                                        <label for="text1" class="control-label col-lg-4">Group Particular: </label>
+                                                    
+                                                    
+
+
+                                                    <div class="col-lg-8">
+
+                                                        <div>
+                                                          
+                                                        
+
+
+                                                        <input id="part1" data-toggle="dropdown"  class="form-control dropdown-toggle" >
+                                                        <ul id="theULList1" class="dropdown-menu message-dropdown" style="right:0; width: 342px; margin-left: 18px;">
+                                                                
+                                                            </ul>
+                                                        </div>
+                                                        <span for="part1" id="errorpart1"></span>
+                                                    
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Unit: </label>
+                                                        
+                                                    <div class="col-lg-8">
+                                                        <input id="unit" class="form-control" list="compSeacrhList" />
+                                                        <datalist id="compSeacrhList">
+                                                        <option>Unit</option>
+                                                        <option>Piece</option>
+                                                        <option>Bundle</option>
+                                                        <option>Strip</option>
+                                                        <option>Pair</option>
+                                                        <option>Gram</option>
+                                                        <option>Kilogram</option>
+                                                        <option>Ounce</option>
+                                                        <option>Meter</option>
+                                                        <option>Inch</option>
+                                                        <option>Foot</option>
+                                                        <option>Brd. Feet</option>
+                                                        <option>Cu. Feet</option>
+                                                        <option>Cu. Meter</option>
+                                                        <option>Litre</option>
+                                                        <option>Load</option>
+                                                        <option>Bottle</option>
+                                                        <option>Case</option>
+                                                        <option>Vial</option>
+                                                        <option>Sheet</option>
+                                                        <option>Peso</option>
+                                                        </datalist>
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList" type="submit" class="btn btn-success" >Save Item Information</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> New Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip2" class="form-control" autofocus>
+                                                        <span for="descrip2" id="errorde"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div id="descripDiv" class="form-group" style="display: none;">
+                                                        <label for="text1" class="control-label col-lg-4">Type: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="type" class="form-control">
+                                                        <span for="type" id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                 
+
+                                                 <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Classification: </label>
+                                                    
+                                                    
+
+
+                                                    <div class="col-lg-8">
+
+                                                        <div>
+                                                          
+                                                        
+
+
+                                                        <input id="class2" data-toggle="dropdown"  class="form-control dropdown-toggle" >
+                                                        <ul class="dropdown-menu message-dropdown" style="right:0; width: 342px; margin-left: 18px;">
+                                                                <li style="padding-bottom:5px; padding-top:5px;">
+                                                                    <a href="#"  id="equiSel2"><i class="icon-wrench" style="margin-left:4px;margin-right:6px;"></i> Equipment</a>
+                                                                </li>
+                                                                <li style="padding-bottom:5px; padding-top:5px;">
+                                                                    <a href="#" id="suppSel2"><i class="icon-file" style="margin-left:4px;margin-right:10px;"></i> Supply</a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                        <span for="class" id="errorde"></span>
+                                                    
+                                                    </div>
+
+
+                                                </div>
+                                                
+                                                   
+                                                 <div id="addDetDiv2" class="form-group" style="display: none">
+                                                        <label for="text1" class="control-label col-lg-4">Group Particular: </label>
+                                                    
+                                                    
+
+
+                                                    <div class="col-lg-8">
+
+                                                        <div>
+                                                          
+                                                        
+
+
+                                                        <input id="part2" data-toggle="dropdown"  class="form-control dropdown-toggle" >
+                                                        <ul id="theULList2" class="dropdown-menu message-dropdown" style="right:0; width: 342px; margin-left: 18px;">
+                                                                
+                                                            </ul>
+                                                        </div>
+                                                        <span for="part2" id="errorpart2"></span>
+                                                    
+                                                    </div>
+
+
+                                                </div>
+                                                
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Unit: </label>
+                                                        
+                                                    <div class="col-lg-8">
+                                                        <input id="unit2" class="form-control" list="compSeacrhList" />
+                                                        <datalist id="compSeacrhList">
+                                                        <option>Unit</option>
+                                                        <option>Piece</option>
+                                                        <option>Bundle</option>
+                                                        <option>Strip</option>
+                                                        <option>Pair</option>
+                                                        <option>Gram</option>
+                                                        <option>Kilogram</option>
+                                                        <option>Ounce</option>
+                                                        <option>Meter</option>
+                                                        <option>Inch</option>
+                                                        <option>Foot</option>
+                                                        <option>Brd. Feet</option>
+                                                        <option>Cu. Feet</option>
+                                                        <option>Cu. Meter</option>
+                                                        <option>Litre</option>
+                                                        <option>Load</option>
+                                                        <option>Bottle</option>
+                                                        <option>Case</option>
+                                                        <option>Vial</option>
+                                                        <option>Sheet</option>
+                                                        <option>Peso</option>
+                                                        </datalist>
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price2" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList2" type="submit" class="btn btn-success" >Save Item Information</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transComp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Item Information Saved</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">You have successfully save a new item information</p>
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="upComp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Item Information Updated</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">You have successfully updated an item information</p>
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif2" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+
+
+
+
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+<div id="footer-sec">
+       &copy; Mindanao State University - General Santos City </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+   
+    <!-- WIZARD SCRIPTS -->
+    
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#items').attr('class', 'active-menu-inven')
+        $('#inventoryTop').attr('class', 'active-menu-top')
+        $('#theInvenUL').attr('class','nav nav-second-level collapse in')
+        $('#title').html('Items')
+    })
+
+
+    var theItemPartId = ''    
+    var theSelected = ''
+
+
+    var theSelectedItemtoUpdate = ''
+
+    var modalCheck = ''
+    $('#approveButton').click(function () {
+        $('#newReg').modal('toggle')
+        modalCheck = 'new'
+    })    
+    
+    $('#equiSel').click(function (argument) {
+        
+        $('#class').val('Equipment')
+        $('#addDetDiv1').removeAttr('style');
+        
+       
+
+        $.ajax({
+                type: 'POST',
+                url:'/inventory_office/getEquiParticulars/',
+                data:{
+
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        console.log('Good')
+                        var t = ''
+
+                        for (var key in response) {
+                           
+                            var value = response[key]
+                            var tr = '<li id="'+key+'" class="theListItemLI" style="padding-bottom:5px; padding-top:5px;">'
+                                tr  +=     '<a href="#" value="'+value['name']+'" id="'+key+'_a" class="theListItem"><i style="margin-left:2px;margin-right:10px;"></i>'+value['name']+'</a>'
+                                tr += '</li>'
+                            t += tr    
+                        }
+                     
+                            document.getElementById('theULList1').innerHTML = t
+                        
+                        
+                    }
+
+            });
+
+    }) 
+
+       $('#equiSel2').click(function (argument) {
+        
+        $('#class2').val('Equipment')
+        $('#addDetDiv2').removeAttr('style');
+        
+       
+
+        $.ajax({
+                type: 'POST',
+                url:'/inventory_office/getEquiParticulars/',
+                data:{
+
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        console.log('Good')
+                        var t = ''
+
+                        for (var key in response) {
+                           
+                            var value = response[key]
+                            var tr = '<li id="'+key+'" class="theListItemLI" style="padding-bottom:5px; padding-top:5px;">'
+                                tr  +=     '<a href="#" value="'+value['name']+'" id="'+key+'_a" class="theListItem"><i style="margin-left:2px;margin-right:10px;"></i>'+value['name']+'</a>'
+                                tr += '</li>'
+                            t += tr    
+                        }
+                     
+                            document.getElementById('theULList2').innerHTML = t
+                        
+                        
+                    }
+
+            });
+
+    }) 
+
+
+    /*$('body').mousemove(function(evt){
+    console.log(evt.target);
+    });
+    */
+    $('#theULList1').mousemove(function(evt){
+        var id = evt.target.id
+        
+        var arr = id.split('_')
+
+        if (id != '') {
+                if (arr.length == 2) {
+                    
+                    console.log('focus is a')
+                    $('.theListItemLI').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                    $('.theListItem').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                    
+                    $('#'+arr[0]).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+                    $('#'+id).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+
+                    theSelected = $('#'+id).attr('value')
+                    theItemPartId = arr[0]
+
+                }
+
+                 else {
+                    
+                    console.log('focus is li')
+                    $('.theListItemLI').attr('style', 'padding-bottom:5px; padding-top:5px;background-color:white;')
+                    $('.theListItem').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                   
+                    $('#'+id).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+                    $('#'+id+'_a').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fbd;')
+                    
+                    theSelected = $('#'+id+'_a').attr('value');
+                    theItemPartId = id
+                }
+        }
+
+    });
+
+
+    $('#theULList2').mousemove(function(evt){
+        var id = evt.target.id
+        
+        var arr = id.split('_')
+
+        if (id != '') {
+                if (arr.length == 2) {
+                    
+                    console.log('focus is a')
+                    $('.theListItemLI').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                    $('.theListItem').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                    
+                    $('#'+arr[0]).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+                    $('#'+id).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+
+
+                }
+
+                 else {
+                    
+                    console.log('focus is li')
+                    $('.theListItemLI').attr('style', 'padding-bottom:5px; padding-top:5px;background-color:white;')
+                    $('.theListItem').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                   
+                    $('#'+id).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+                    $('#'+id+'_a').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fbd;')
+                    
+                    
+                }
+        }
+
+    });
+    
+    $('#theULList1').on('click','a',function (argument) {
+        var id = this.id
+
+        var arr = id.split('_')
+
+        $('#part1').val($(this).attr('value'))
+        theItemPartId = arr[0]
+    }) 
+  
+    $('#theULList2').on('click','a',function (argument) {
+        var id = this.id
+
+        var arr = id.split('_')
+
+        $('#part2').val($(this).attr('value'))
+        theItemPartId = arr[0]
+    }) 
+
+    $('#suppSel').click(function (argument) {
+        
+    
+        $('#class').val('Supply')
+         
+        $('#addDetDiv1').attr('style','display: none')
+       
+    })   
+
+      $('#suppSel2').click(function (argument) {
+        
+        $('#class2').val('Supply')
+         
+        $('#addDetDiv2').attr('style','display: none')
+    })  
+
+    $('#price').keypress(function(event){
+
+       if(event.which != 8 && isNaN(String.fromCharCode(event.which))){
+            document.getElementById("errorpr").innerHTML = "Non-number input is not allowed" 
+           event.preventDefault(); //stop character from entering input
+       }
+       else{
+        document.getElementById("errorpr").innerHTML = ""
+        $('#price').removeAttr("style") 
+       }
+
+    });
+
+    $('#addList').click(function (e) {
+            
+         e.preventDefault();
+            
+            
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/addNewItem/',
+                data:{
+                    
+                    'description': $('#descrip').val(),
+                    'part': theItemPartId,
+                    'type': $('#type').val(),
+                    'class': $('#class').val(),
+                    'unit': $('#unit').val(),
+                    'price': $('#price').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function() {
+                        $('#newReg').modal('toggle');
+                        $('#transComp').modal('toggle');
+                    }
+
+            });
+
+    });
+
+    $('#addList2').click(function (e) {
+            
+         e.preventDefault();
+         var data22 = {
+                    'itemid' : theSelectedItemtoUpdate,
+                    'description': $('#descrip2').val(),
+                    'part': theItemPartId,
+                    'itemtype': $('#type2').val(),
+                    'itemclass': $('#class2').val(),
+                    'unit': $('#unit2').val(),
+                    'price': $('#price2').val(),}
+         console.log(data22)   
+            
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/updateItem/',
+                data:{
+                    'itemid' : theSelectedItemtoUpdate,
+                    'description': $('#descrip2').val(),
+                    'part': theItemPartId,
+                    'itemtype': $('#type2').val(),
+                    'itemclass': $('#class2').val(),
+                    'unit': $('#unit2').val(),
+                    'price': $('#price2').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function() {
+                        $('#updateModal').modal('toggle');
+                        $('#upComp').modal('toggle');
+                    }
+
+            });
+
+    });
+
+    
+    $('#theListTable').on('click', 'button', function () {
+        var id = this.id
+        var name = $(this).attr('name')
+        
+        if (id != '') {
+            var arr = id.split('_')
+
+            theSelectedItemtoUpdate = arr[0]
+
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/getItemDetails/',
+                data:{
+                    
+                    'itemID': arr[0],
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        $('#descrip2').val(response['descrip']);
+                        $('#unit2').val(response['unit']);
+                        $('#price2').val(response['price']);
+                    }
+
+            });
+            
+            modalCheck = 'update';
+
+            $('#updateModal').modal('toggle')
+
+            return false;
+        
+        } else {
+            return true;
+        }
+
+        
+    })
+
+
+    $('#sentNotif').click(function() {
+        location.reload();  
+    })
+
+    $('#sentNotif2').click(function() {
+        location.reload();  
+    })
+
+
+    </script>
+    <script type="text/javascript">
+        
+    
+    </script>
+
+
+{% endblock %}
+
+
+

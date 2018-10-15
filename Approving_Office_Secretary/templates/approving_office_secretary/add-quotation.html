@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Req. for Quotation</title>
+    {% load staticfiles %}
+   <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-proc.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+    
+</head>
+
+<body style="height:100%; width:100%; min-height:100%;"">
+
+
+    <div id="wrapper" >
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" 
+                    style="
+                        margin-bottom: 0px;
+                          ">
+           
+           <div  class="navbar-header navbar-brand"></div>
+
+           <ul class="nav navbar-right top-nav" 
+                        style="
+                        margin-right: 50px;
+                        ">
+                
+                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="label label-danger">1</span> 
+                    <i class="icon-building"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn  btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong></strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;"></p>      
+                                        <p></p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="GGut">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        <li class="message-footer">
+                            <a href="/requisitioner/pr">View all Conducted Biddings</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="label label-danger">1</span> 
+                    <i class="icon-file-text"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn  btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong></strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;"></p>      
+                                        <p></p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="GGut">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        <li class="message-footer">
+                            <a href="/requisitioner/pr">View all Purchase Request</a>
+                        </li>
+
+                    </ul>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                     {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unprocessed task at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                        {% endif %}   
+                    
+                    {% for x in taskDetails %}
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                     {% endfor %}   
+
+                        <li class="message-footer">
+                            <a href="#">View all Processed Tasks</a>
+                        </li>
+
+                    </ul>
+                </li>    
+                
+                <li class="dropdown">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                        
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unread notification at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                        {% endif %}
+
+                       {% for x in notifDetails %}
+
+                       <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                       {% endfor %}
+                        
+                         
+                        <li class="message-footer">
+                            <a href="#">View all Notifications</a>
+                        </li>
+
+                    </ul>
+                </li>
+               
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-shopping-cart"></i> My Requests</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-th-list"></i> My Acct. Items</a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa-fw icon-signout"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        <div class="user-img-div">
+
+                            <a href="requisitioner_profile.html"><img src="{% static 'procurement/assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="requisitioner_profile.html" class = "inner-text">{{lname}}, {{fname}}</a>
+                            <br />
+                                <small>{{designation}}</small>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+
+                     <li>
+                        <a href="/procurement_office"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    </li>
+                     <li>
+                        <a  href="#"><i class="icon-briefcase"></i>Purchase Req. & Ordr.<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/procurement_office/create_po"><i class="icon-pencil"></i>Create P.O.</a>
+                            </li>
+                            <li>
+                                <a href="/procurement_office/po"><i class="fa fa-truck"></i>Purchase Orders</a>
+                            </li>
+                            <li>
+                                <a  href="/procurement_office/pr"><i class="icon-shopping-cart"></i>Purchase Req.</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a  href="#"><i class="icon-envelope-alt"></i>Quotations and Abstracts<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level collapse in">
+
+                         
+                           <li>
+                               <a  class="active-menu-proc"  href="/procurement_office/add_quotation"><i class="icon-pencil"></i>New Quotation</a>
+                           </li>
+                           <li>
+                              <a href="/procurement_office/add_abstract"><i class="icon-pencil"></i>Create Abstract</a>
+                            </li>
+
+                            <li>
+                                <a href="/procurement_office/quotations"><i class="fa fa-reorder "></i>All Quotations</a>
+                            </li>
+                            <li>
+                                <a href="/procurement_office/abstract"><i class="fa fa-reorder "></i>All Abstacts</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a  href="#"><i class="icon-building"></i>BAC Records<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/procurement_office/add_bid"><i class="icon-edit"></i>Record a Bidding</a>
+                            </li>
+                            <li>
+                                <a href="/procurement_office/add_contract"><i class="icon-edit"></i>New Contract</a>
+                            </li>
+                            <li>
+                                <a href="/procurement_office/bids"><i class="icon-list-alt"></i>All Biddings</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                     <li>
+                        <a  href="#"><i class="icon-group"></i>Suppliers</a>
+                    </li>
+                </ul>
+            </div>
+
+</div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                
+            
+                <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                ">
+
+                <div>
+                    Create a Request for Quotation
+                </div>
+                  <hr>
+
+
+               </div>
+
+               <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px;">
+                                                                
+                        <div style="display: inline; font-weight: 400;  font-size: 18px;">
+                             Quotation Number: 
+                        </div>
+                                                                
+                        <div id="total" value="0" class="panel panel-default" style="display: inline; font-size: 25px;  font-weight: 400; padding:10px;">{{pageData2.0.0}}
+                         </div>
+                     </div> 
+
+               </div> 
+
+               <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 18px;
+                 padding-top: 0px;
+                 padding-bottom: 0px;
+                ">
+
+                <div>
+                    Request Information
+                </div>
+                  <hr style="margin-bottom:0px;">
+
+
+             </div>
+             
+             <div class="panel panel-body">
+                
+                <form method="POST" action="" class="form-horizontal">{% csrf_token %}
+                
+
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">PR Number: </label>
+
+                    <div class="col-lg-5">
+ 
+                        <div class=" input-group">
+                       {% if pageData3.0.0 != None %}
+                        <input type="text" id="prNum" list="result" autofocus class="form-control" value="{{pageData3.0.0}}">
+                       {% else %}
+                        <input type="text" id="prNum" list="result" autofocus class="form-control">
+                       {% endif %}
+                       <datalist id="result">
+                       </datalist>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-success btn" id="include" type="button" data-toggle="modal"  data-target="#itemList">
+                                                    <i class="icon-plus "></i> Incliude Items
+                                                </button>
+                                            </span>
+                                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Project Name: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="projName"  class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Project Location: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="projLoc"  class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Canvasser: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="canv"  class="form-control" list="canvassPerson">
+                        <datalist id="canvassPerson">
+                        </datalist>
+                    </div>
+                </div>
+            </form>
+            </div>
+
+            <hr>
+            <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 18px;
+                 padding-top: 0px;
+                 padding-bottom: 0px;
+                ">
+                <div>
+                    Recieving Suppliers
+                </div>
+                  <hr style="margin-bottom:0px;">
+
+
+               </div>
+            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    margin-top: 0px; 
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Company Name</th>
+                                            <th class="text-center">Address</th>
+                                            <th class="text-center">Company Representative</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table">
+                                        
+                                    </tbody>
+                                </table>
+                                
+                                <button class="btn btn-xs btn-success" role= "button" aria-disabled="true" data-toggle="modal"  data-target="#newReg"><i class="icon-plus"></i> Add Supplier Information</button>
+                            
+                            </div>
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                                </div>
+
+                                <hr>
+                <form id="addForm" method="POST" action="">{% csrf_token %}
+                  <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px; padding-top:20px;">
+                         <button class="btn btn-info" role ="button" aria-disabled="true"><i class="icon-file"></i> View Documents</button>
+                         <button id="send" class="btn btn-success" role= "submit" aria-disabled="true"><i class="icon-ok"></i> Create Request</button>
+                        
+                   </div> 
+
+               </div>
+            </form>
+                <!-- /. ROW  -->
+                
+                    </div>
+                </div>
+            
+            </div>
+<!--// =======================================  Modal  ====================================//-->
+            
+            <form id="theModal" action="" method="POST">}{% csrf_token %}
+          
+                        <div class="modal fade" id="newReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4">Add Supplier Information</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form role="form">
+                                        <div class="form-group">
+                                            <label>Company Name</label>
+                                            <input id="descrip" class="form-control" role="submit" type="text" list="compSeacrhList" autofocus>
+                                            <datalist id="compSeacrhList">
+                                            </datalist>
+                                            <span id="errorde"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input id="unit" class="form-control" />
+                                            <span id="errorun"></span>
+                                        </div>
+                                       <div class="form-group">
+                                            <label>Company Rep.</label>
+                                            <input id="price" class="form-control" />
+                                            <span id="errorpr"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telephone Number</label>
+                                            <input id="quantity" class="form-control" />
+                                            <span id="errorqu"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input id="email" class="form-control" />
+                                            <span id="errorem"></span>
+                                        </div>
+
+                                       
+                                    </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="addList" type="button" class="btn btn-success" >Add to List</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                   </form>
+<!--// =======================================  Modal  ====================================//-->
+            
+            <form id="theModal3" action="" method="POST">}{% csrf_token %}
+          
+                        <div class="modal fade" id="editReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4">Add Supplier Information</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form role="form">
+                                        <div class="form-group">
+                                            <label>Company Name</label>
+                                            <input id="descrip2" class="form-control" role="submit" type="text" list="compSeacrhList" autofocus>
+                                            <datalist id="compSeacrhList">
+                                            </datalist>
+                                            <span id="errorde"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input id="unit2" class="form-control" />
+                                            <span id="errorun"></span>
+                                        </div>
+                                       <div class="form-group">
+                                            <label>Company Rep.</label>
+                                            <input id="price2" class="form-control" />
+                                            <span id="errorpr"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telephone Number</label>
+                                            <input id="quantity2" class="form-control" />
+                                            <span id="errorqu"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input id="email2" class="form-control" />
+                                            <span id="errorem"></span>
+                                        </div>
+
+                                       
+                                    </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="addList" type="button" class="btn btn-success" >Update Information</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                   </form>
+
+<!--// =======================================  Modal  ====================================//-->
+            
+            <form id="theModal2" action="" method="POST">}{% csrf_token %}
+          
+                        <div class="modal fade" id="itemList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4">Select the items from PR to include on the Request</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form role="form">
+                                         <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    margin-top: 0px; 
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>Description</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-right">Include?</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="itemTable">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                                </div>
+                                    </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="includeItemsButton" type="button" class="btn btn-success" >Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                   </form>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec" >
+    <div class="text-right">
+        &copy; Mindanao State University
+    </div>
+      
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script type="text/javascript">
+
+
+       var itemListArray = {};
+       var total = 0;
+       var theArray = {};
+       var theArrayIndex = 0;
+
+       var includeItemSelStatus = false;      
+       
+       var url = '';
+       
+    document.getElementById("addList").onclick = function() {
+
+            var descrip = document.getElementById("descrip").value;
+            var unit = document.getElementById("unit").value;
+            var price = document.getElementById("price").value;
+            var quantity = document.getElementById("quantity").value;
+            var itemTotal = document.getElementById("price").value * document.getElementById("quantity").value;
+            var itemTotalToString = "" + itemTotal;
+            var email = document.getElementById("email").value;
+
+            if (descrip === ""||unit === ""||price === ""||quantity === ""||email === "") {
+
+                if (descrip === "") {
+                    
+                    document.getElementById("errorde").innerHTML = "Don't leave this blank";
+                    
+                    document.getElementById("errorpr").innerHTML = "";
+                    document.getElementById("errorun").innerHTML = "";
+                    document.getElementById("errorqu").innerHTML = "";
+                    document.getElementById("errorem").innerHTML = "";
+
+                    return false;
+                }
+                if (unit === "") {
+                    document.getElementById("errorun").innerHTML = "Don't leave this blank" 
+
+                    document.getElementById("errorde").innerHTML = "";
+                    document.getElementById("errorpr").innerHTML = "";
+                    document.getElementById("errorqu").innerHTML = "";
+                    document.getElementById("errorem").innerHTML = "";
+
+                    return false;
+                }
+                if (price === "") {
+                    document.getElementById("errorpr").innerHTML = "Don't leave this blank"; 
+
+                    document.getElementById("errorde").innerHTML = "";
+                    document.getElementById("errorun").innerHTML = "";
+                    document.getElementById("errorqu").innerHTML = "";
+                    document.getElementById("errorem").innerHTML = "";
+
+                    return false;
+                }
+                if (quantity === "") {
+                    document.getElementById("errorqu").innerHTML = "Don't leave this blank" ;
+
+                    document.getElementById("errorde").innerHTML = "";
+                    document.getElementById("errorpr").innerHTML = "";
+                    document.getElementById("errorun").innerHTML = "";
+                    document.getElementById("errorem").innerHTML = "";
+
+                    return false;
+                }
+                if (email === "") {
+                    document.getElementById("errorem").innerHTML = "Don't leave this blank" ;
+
+                    document.getElementById("errorde").innerHTML = "";
+                    document.getElementById("errorpr").innerHTML = "";
+                    document.getElementById("errorun").innerHTML = "";
+                    document.getElementById("errorqu").innerHTML = "";
+
+                    return false;
+                }
+
+                    
+            } else {
+
+            
+            var t = '';
+            var tr = '<tr id="'+theArrayIndex+'_table">';
+                     tr += '<td>'+descrip+'</td>';
+                     tr += '<td class="text-center">'+unit+'</td>';
+                     tr += '<td class="text-center">'+price+'</td>';
+                     tr += '<td class="text-center">';
+                     tr += '<button id = "editRow" value="'+theArrayIndex+'" data-toggle="modal"  data-target="#editReg" class="btn btn-xs btn-success" role= "button" aria-disabled="true"><i class="icon-edit"></i></button>';
+                     tr += ' <button id = "removeRow" value="'+theArrayIndex+'" class="btn btn-xs btn-danger" role= "button" aria-disabled="true"><i class="icon-remove"></i></button>';
+                     tr +='</td>';
+                     tr += "</tr>";
+                     t += tr;
+            
+            document.getElementById("table").innerHTML += t;
+
+            theArray[theArrayIndex] = {'1':descrip, '2':unit, '3':price, '4':quantity, '5': email};
+            
+            theArrayIndex = theArrayIndex + 1;
+             
+            document.getElementById("descrip").value = "";
+            document.getElementById("unit").value = "";
+            document.getElementById("price").value = "";
+            document.getElementById("quantity").value = "";
+            document.getElementById("email").value = "";
+
+            $('#newReg').modal('toggle');
+
+        }
+
+
+            document.getElementById("errorde").innerHTML = "";
+            document.getElementById("errorpr").innerHTML = "";
+            document.getElementById("errorun").innerHTML = "";
+            document.getElementById("errorqu").innerHTML = "";
+            document.getElementById("errorem").innerHTML = "";
+
+
+           
+};
+
+
+        var qoutNum =''
+        var prNum = ''
+        var projLoc = ''
+        var projName = ''
+        var canv = ''
+
+
+
+    document.getElementById("send").onclick = function () {
+        
+        prNum = document.getElementById("prNum").value;
+        projLoc = document.getElementById("projLoc").value;
+        projName = document.getElementById("projName").value;
+        canv = document.getElementById("canv").value;
+
+
+        if (prNum === ""|| projName === ""|| projLoc === ""|| canv === "") {
+                alert("Provide all Data First");
+                return false;
+        } else {
+
+            if (theArrayIndex == 0) {
+                alert("No Suppliers added")
+                return false;
+            } else {
+
+                if (includeItemSelStatus == false) {
+                     alert("No Included Items")
+                     return false;
+                } else {
+                    return true;
+                }
+
+                
+            }
+
+            
+        }
+    };
+    
+
+    var numB = 0
+
+
+    $('#itemTable').on('click','button', function (e) {
+        var id = this.id;
+        var value = document.getElementById(id).value
+        if (id == 'removeRow') {
+
+            delete itemListArray[value];
+            $('#editRow').hide()
+            document.getElementById(value+"_act").innerHTML = '<label class="label label-danger">Excluded</label>'
+        
+        } else {
+            $('#removeRow').hide()
+            document.getElementById(value+"_act").innerHTML = '<label class="label label-success">Included</label>'
+        }
+        
+        
+    });
+
+    $('#table').on('click','button', function (e) {
+        var id = this.id;
+        var value = document.getElementById(id).value
+        
+        if (id === 'removeRow') {
+            delete theArray[value];
+            $(this).closest ('tr').remove ();
+        
+        } else {
+
+            var theArrayData = theArray[value]
+            
+            document.getElementById("descrip2").value = theArrayData['1'];
+            document.getElementById("unit2").value = theArrayData['2'];
+            document.getElementById("price2").value = theArrayData['3'];
+            document.getElementById("quantity2").value = theArrayData['4'];
+            document.getElementById("email2").value = theArrayData['5'];
+        
+        }
+
+    });
+
+    $('#includeItemsButton').click(function () {
+
+        includeItemSelStatus = true;
+        $('#itemList').modal('toggle');
+    })
+
+    $('#descrip').keyup(function(e){
+        e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/findComp/',
+                data:{
+                    
+                    'compName': document.getElementById("descrip").value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("price").value = ""
+                        document.getElementById("unit").value = ""
+                        document.getElementById("quantity").value = ""
+                        document.getElementById("email").value = ""
+                        document.getElementById("compSeacrhList").innerHTML = ""
+                        
+                        for(var key in response) {
+                            var value = response[key];
+                            document.getElementById("compSeacrhList").innerHTML += '<option value ="'+value+'"/>'
+                        }
+                    }
+
+            });
+    });
+
+     $('#canv').keyup(function(e){
+        e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getEmployeeData/',
+                data:{
+                    
+                    'inputName': document.getElementById("canv").value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("canvassPerson").innerHTML = ""
+                        
+                        for(var key in response) {
+                           
+                            var value = response[key];
+                            document.getElementById("canvassPerson").innerHTML += '<option id="'+key+'" value ="'+value['name']+'"/>'
+
+                        }
+
+                    }
+
+            });
+    });
+
+
+    $("#canv").on('input', function () {
+       
+        var val = this.value;
+        var op = $(this).closest('option')
+        var id = this.id
+
+        
+        if($('#canvassPerson option').filter(function(){
+            return this.value === val;        
+            }).length) {
+
+            alert(this.value)
+        }
+        /*if($('#compSeacrhList option').filter(function(){
+            return this.value === val;        
+            }).length) {
+                
+                $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getSupplierDetails/',
+                data:{
+                    'compName': this.value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("price").value = response.address
+                        document.getElementById("unit").value = response.rep
+                        document.getElementById("quantity").value = response.repnum
+                        document.getElementById("email").value = response.repemail
+                       
+                    }
+
+            });
+
+            //send ajax request  
+        //alert(this.value);
+    }*/
+});    
+
+
+
+    $("#descrip").on('input', function () {
+        var val = this.value;
+        if($('#compSeacrhList option').filter(function(){
+            return this.value === val;        
+            }).length) {
+                
+                $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getSupplierDetails/',
+                data:{
+                    'compName': this.value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("price").value = response.address
+                        document.getElementById("unit").value = response.rep
+                        document.getElementById("quantity").value = response.repnum
+                        document.getElementById("email").value = response.repemail
+                       
+                    }
+
+            });
+
+            //send ajax request  
+        //alert(this.value);
+    }
+});
+    $('#include').click(function(e){
+           e.preventDefault();
+            
+            
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getPRItems/',
+                data:{
+
+                    'prNum': document.getElementById("prNum").value,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("itemTable").innerHTML = "";
+
+                        for(var key in response) {
+                             
+                             itemListArray[key] = response[key];
+                             var value = itemListArray[key];
+                            
+                            var t = '';
+                            var tr = '<tr id="'+key+'">';
+                                    tr += '<td>'+value['description']+'</td>';
+                                    tr += '<td class="text-center">'+value['quantity']+'</td>';
+                                    tr += '<td class="text-right" id = "'+key+'_act">';
+                                    tr += '<button id = "editRow" value="'+key+'" class="btn btn-xs btn-success" type="button" role= "button" aria-disabled="true"><i class="icon-ok"></i></button>';
+                                    tr += ' <button id = "removeRow" value="'+key+'" class="btn btn-xs btn-danger" type="button" role= "button" aria-disabled="true"><i class="icon-remove"></i></button>';
+                                    tr +='</td>';
+                                    tr += "</tr>";
+                                    t += tr;
+
+                                document.getElementById("itemTable").innerHTML += t;
+                        }
+
+
+                       
+                    }
+
+            }); 
+    })
+
+
+    $(document).on('submit', '#addForm', function(e){
+            
+            e.preventDefault();
+            
+            
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/addReqQuotation/',
+                data:{
+                    
+                    'theMatrix': JSON.stringify(theArray),
+                    'theItemMatrix': JSON.stringify(itemListArray),
+                    'prnum': prNum,
+                    'projName': projName,
+                    'projLoc': projLoc,
+                    'canv': canv,
+                    
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+                        alert("Transaction Complete");
+                        location.reload();
+                        //window.location.href = "/requisitioner/pr/";
+                    }
+
+            });
+
+
+    });
+
+    function comaSegregator(input){
+
+        var output = "";
+        var indexCheck = 1;
+        for (var i = input.length - 1; i >= 0; i--) {
+            
+            if (indexCheck%3 === 0) {
+
+                if (i === 0) {
+                     output = input[i] + output;
+                    indexCheck = indexCheck + 1;
+
+                } else {
+                     output = ", " + input[i] + output;
+                    indexCheck = indexCheck + 1;
+                }
+                   
+            } else {
+                output = input[i] + output;
+                indexCheck = indexCheck + 1;
+            }
+        }
+
+        return(output);
+    }
+
+   
+    </script>
+
+    </body>
+    </html>

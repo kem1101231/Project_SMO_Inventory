@@ -1,0 +1,234 @@
+﻿{% extends baseSource %}
+{% load staticfiles %}
+{% block content %}
+        <div id="page-wrapper">
+
+
+
+            <!--  ========================================================   -->
+            <!--  ========================================================  
+
+              <div style="   
+                                     display:inline;
+                                     padding: 0px;
+                                     margin: 0px;
+                                     margin-top: 51px;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                        
+                        <div class="btn-group">
+                                        <a data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="icon-bar-chart"></i> Generates Inventory Reports<span style="margin-left:5px;" class="caret"></span></a>
+                                        <ul class="dropdown-menu message-dropdown" style="right:0;">
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#" ><i class="icon-list-alt" style="margin-left:4px;margin-right:6px;"></i> Physical Count of Property</a>
+                                            </li>
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#"><i class="icon-trash" style="margin-left:4px;margin-right:10px;"></i> Waste Material Report</a>
+                                            </li>
+
+
+                                        </ul>
+                         </div>
+                </div> -->
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 30px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:75px; 
+                 margin-bottom: 30px
+
+                ">
+                <div>
+                    
+                    Purchase Requests
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #fff!important;">
+             
+                <div class="col-lg-12" style="padding: 8px; padding-top: 0px;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-primary" style="border-radius: 0px;">
+                            
+                            <div class="panel-body" style="padding-bottom:0px;">  
+                            <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                                <div class="form-group input-group" style="padding:0px;margin:0px;">
+                           
+                                            <input id="searchInput" type="text" class="form-control input-sm" placeholder="Find PR" >
+                                                <span class="input-group-btn">
+                                                    <button id="findSearch" class="btn btn-info btn-sm " type="button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div> 
+
+
+                                </div>
+                            </div>
+                            <div class="panel-body" style=" padding-right: 0px; padding-top:10px;">
+                            
+
+                            <div class="panel">
+                            <!-- 
+                          
+ -->
+                               <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                           
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr style="background-color: #eee">
+                                            <th style="width:110px;">P.R. No.</th>
+                                            <th style="width:320px;">Requesting Office</th>
+                                            <th style="width:250px;">Purpose</th>
+                                            <th class="text-center" style="width:150px;">Date Approved</th>
+                                            <th class="text-center" style="width:150px;">Action</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dataTable">
+                                    {% for x in pageData1 %}
+                                        <tr>
+                                            <td>{{x.0.1}}</td>
+                                            <td>{{x.3.2.1}}</td>
+                                            <td>{{x.0.2}}</td>
+                                            <td class="text-center">{{x.0.11}}</td>
+                                            <td class="text-center">
+                                              <a href="{{urlHead}}/pr/{{x.4.0}}/details/"><button name ="offDetails" value="{{x.0}}" class="btn btn-sm btn-primary" role ="submit" aria-disabled="true" style="outline: none; border-radius: 15px;"><i class="icon-arrow-right"></i></button>
+                                            </a>
+                                               
+                                               
+                                            </td>
+                                        </tr>
+
+                                    {% endfor %}
+                                        
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+ 
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+                </div>  
+                
+                <div>
+
+
+                <!-- /. ROW  -->
+
+                
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>
+        <!-- /. NAV SIDE  -->
+      
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; 2016 Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/custom.js' %}"></script>
+    <script type="text/javascript">
+        
+            
+        $('#findSearch').click(function () {
+            findFromTable()
+        })
+
+        $('#searchInput').keyup(function () {
+            findFromTable()
+        })
+
+        function findFromTable() {
+          
+          var input, filter, table, tr, td, i;
+          
+          input = document.getElementById("searchInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("dataTable");
+          
+          tr = table.getElementsByTagName("tr");
+          
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            td1 = tr[i].getElementsByTagName("td")[1];
+            td2 = tr[i].getElementsByTagName("td")[2];
+            if (td||td1||td2) {
+              if (td.innerHTML.toUpperCase().indexOf(filter) > -1||td1.innerHTML.toUpperCase().indexOf(filter) > -1||td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+
+    </script>
+
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#pr').attr('class','{{cssActiveMenu}}')
+            $('#reftop').attr('class', 'active-menu-top')
+            $('#theRefUL').attr('class','nav nav-second-level collapse in')
+            
+            $('#title').html('Purchase Requests')
+
+           
+             });
+    </script>
+
+{% endblock %}

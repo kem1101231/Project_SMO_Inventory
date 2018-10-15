@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equipment Details</title>
+    {% load staticfiles %}
+   <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-inven.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+    
+    <link href="{% static 'assets/plugins/morris/morris-0.4.3.min.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'assets/css/wizard/jquery.steps.css' %}" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+
+    <style type="text/css">
+        
+        .test25{
+
+            max-width: 180px;
+            min-height: 180px;
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px; 
+            margin-bottom:2px;
+         }
+
+         .item-img-div {
+   
+    min-height: 140px;
+}
+    
+    .item-brg-img img{
+
+    }
+    
+    .item-img-div img {
+        max-height: 150px;
+    }
+
+    .item-img-div .inner-text {
+        
+        text-align: left;
+        position: relative;
+        color: #fff;
+        font-weight: 500;
+        line-height: 20px;
+        font-size: 15.5px;
+        
+    }
+
+    </style>
+</head>
+<body>
+    
+   
+        <div id="wrapper">
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" 
+                    style="
+                        margin-bottom: 0px;
+                          ">
+           
+           <div  class="navbar-header navbar-brand"></div>
+
+          <ul class="nav navbar-right top-nav" 
+                        style="
+                        margin-right: 50px;
+                        ">
+                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                    
+                    <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body " style="margin-left:95px;">
+                                        <h5 class="media-heading">
+                                            <strong>Tasks</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+
+                    {% if taskNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No task to process at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}    
+                    
+                    {% for x in taskDetails %}
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                     {% endfor %}   
+
+
+                    </ul>
+                </li>    
+                
+                <li class="dropdown">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body" style="margin-left:75px;">
+                                        <h5 class="media-heading">
+                                            <strong>Notifications</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unread notification at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}
+
+                       {% for x in notifDetails %}
+
+                       <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                       {% endfor %}
+                        
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="width:220px;">
+                        <li>
+                            <a href="/inventory_office/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/inventory_office/equipement"><i class="fa fa-fw fa-qrcode"></i> Equipment Inventory</a>
+                        </li>
+                        <li>
+                            <a href="/inventory_office/inventory"><i class="fa fa-fw icon-paper-clip" style="margin-left:4px;margin-right:4px;"></i> Supplies Inventory</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/inventory_office/receive/"><i class="fa fa-fw fa-truck"></i> Received Items</a>
+                        </li>
+                        <li>
+                            <a href="/inventory_office/accounts"><i class="fa fa-fw fa-group"></i> Employee Acct. Items</a>
+                        </li> 
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw icon-desktop" style="margin-left:4px;margin-right:4px;"></i> Switch User-Type</a>
+                        </li>                       
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa fa-fw icon-signout" style="margin-left:4px;margin-right:4px;"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        <div class="user-img-div">
+
+                            <a href="/inventory_office/profile"><img src="{% static 'assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="/inventory_office/profile" class = "inner-text">{{lname}}, {{fname}}</a>
+                            <br />
+                                <small>{{designation}}</small>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+   <li>
+                        <a  href="/inventory_office"><i class="fa fa-home "></i>Home</a>
+                    </li>
+                    <li>
+                        <a href="/inventory_office/profile"><i class="fa fa-user "></i>Profile </a>
+                        
+                    </li>
+                    <li>
+                        <a  href="#" class="active-menu-top"><i class="icon-book "></i>Inventory<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level collapse in">
+                            <li>
+                                <a class="active-menu-inven"  href="/inventory_office/equipement"><i class="icon-qrcode"></i>Equipment</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/inventory"><i class="icon-paper-clip"></i>Supplies</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a  href="#"><i class="icon-truck "></i>Received Items<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/add_receive"><i class="icon-plus"></i>New Items</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/receive"><i class="icon-tags"></i>View All Received</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a  href="#"><i class="icon-group"></i>Employees' Acct. Items<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/add_accounts"><i class="icon-plus"></i>Create PAR</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/accounts"><i class="icon-list-alt"></i>View All Accounts</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a  href="#"><i class="icon-bar-chart"></i>Reports<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/physical_count"><i class="icon-list-alt"></i>PCP</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/waste_material"><i class="icon-trash"></i>WMI</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+</div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+                 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}" style="font-size: 22px;">Equipment Details --- </span><span name="reqNum" id="reqNum" value="{{pageData1.0.0}}" style="font-weight: 600;">"Asus EEE PC 1025-c"</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                <div class="col-lg-7" style="padding-right:0px;">
+
+                <div class="col-lg-5" style="padding-left:0px; margin-left:0px;">
+                    <div class="col-lg-12" style="margin-left:0px; padding-left:0px; margin-right:0px; padding-right:0px; ">
+                            
+                         <div class="panel">
+                     
+                                       <div class = "panel panel-info item-img-div"  style="margin-bottom:0px;">
+                                        <img src = "{% static 'assets/img/portfolio-img8.jpg' %}">
+                                        
+                                  
+                                    </div>
+                </div>
+
+                    </div>
+                    <div class="col-lg-12" style="margin-left:0px; padding-left:0px; margin-right:0px; padding-right:0px; ">
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+                        <div class="col-lg-12 col-md-12" style="padding:0px;">
+                        <div class="panel panel-info" style="margin-bottom:13px;">
+                            <div class="panel-heading" style="padding:7px;">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-edit fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline; font-weight:bold;">Quantity on Account:</div>
+                                       <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">15,000</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12" style="padding:0px;">
+                        <div class="panel panel-info" style=" margin-bottom:13px;">
+                            <div class="panel-heading" style="padding:7px;">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-money fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline; font-weight:bold;">Total Cost Value</div>
+                                        <div style="display:inline; margin-left:15px;"> <span class="badge" style="font-size:15px;"> ₱ 10,000</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12" style="padding:0px;">
+                        <div class="panel panel-info" style="">
+                            <div class="panel-heading" style="padding:7px;">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-bar-chart fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  style="display:inline; font-weight:bold;">Overall Cost Share</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">20%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12" style="padding:0px;">
+                        <div class="panel panel-success" style="">
+                            <div class="panel-heading" style="padding:7px;">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-truck fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  style="display:inline; font-weight:bold;">Incoming Delivery</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">15</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12" style="padding:0px;">
+                        <div class="panel panel-danger" style="margin-bottom:10px;">
+                            <div class="panel-heading" style="padding:7px;">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-trash fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  style="display:inline; font-weight:bold;">Reported as Waste</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">200</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+
+
+                        </div>
+                        
+                           
+                    </div>
+
+                         
+
+                    </div>
+               
+
+
+                </div>
+                <div class="col-lg-7" style="padding-left:0px;">
+                    <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Basic Information</h3>
+                            </div>
+                            <div class="panel-body" style="height:542px; padding-left:20px;">
+                                    
+                                
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-5 dataFont2" >
+                                                    Brand:  
+                                                </div>
+                                                <div class="col-lg-6 dataFont1" >
+                                                    Asus
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-5 dataFont2" >
+                                                    Model:  
+                                                </div>
+                                                <div class="col-lg-6 dataFont1" >
+                                                    EEE PC 1025-c
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%;">
+                                                <div class="col-lg-5 dataFont2" >
+                                                    Type:  
+                                                </div>
+                                                <div class="col-lg-6 dataFont1">
+                                                   Netbook Computer
+                                                </div>
+                                            </div> 
+                                        </div>
+                                          <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                                    <div class="col-lg-5 dataFont2" >
+                                                        Unit:  
+                                                    </div>
+                                                    <div class="col-lg-6 dataFont1">
+                                                        Unit
+                                                    </div>
+                                                </div> 
+                                            </div> 
+
+                                            <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%;">
+                                                    <div class="col-lg-5 dataFont2">
+                                                        Unit Price:  
+                                                    </div>
+                                                    <div class="col-lg-6 dataFont1">
+                                                        ₱ 18,000
+                                                    </div>
+                                                </div> 
+                                            </div>
+
+                                                               <div class="form-group">
+                                        <div style="padding-left: 2px;  width:100%;">
+                                            <div class="col-lg-5 dataFont2">
+                                                Latest Update:  
+                                            </div>
+                                            <div class="col-lg-6 dataFont1">
+                                                April 14, 2017
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                                               <div class="form-group">
+                                        <div style="padding-left: 2px;  width:100%;">
+                                            <div class="col-lg-5 dataFont2">
+                                                 
+                                            </div>
+                                            <div class="col-lg-6 dataFont1">
+                                             
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                                               <div class="form-group">
+                                        <div style="padding-left: 2px;  width:100%;">
+                                            <div class="col-lg-5 dataFont2">
+                                                  
+                                            </div>
+                                            <div class="col-lg-6 dataFont1">
+                                                
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                                               <div class="form-group">
+                                        <div style="padding-left: 2px;  width:100%;">
+                                            <div class="col-lg-5 dataFont2">
+                                                Latest Update:  
+                                            </div>
+                                            <div class="col-lg-6 dataFont1">
+                                                April 14, 2017
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                                               <div class="form-group">
+                                        <div style="padding-left: 2px;  width:100%;">
+                                            <div class="col-lg-5 dataFont2">
+                                                Latest Update:  
+                                            </div>
+                                            <div class="col-lg-6 dataFont1">
+                                                April 14, 2017
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                                               <div class="form-group">
+                                        <div style="padding-left: 2px;  width:100%;">
+                                            <div class="col-lg-5 dataFont2">
+                                                Latest Update:  
+                                            </div>
+                                            <div class="col-lg-6 dataFont1">
+                                                April 14, 2017
+                                            </div>
+                                        </div> 
+                                    </div>
+                                   
+                                    <div class="col-lg-12" style="padding-left:0px; margin:left:0px;">
+                                         <div class="form-group">
+                                <div style="padding-left: 2px;  width:100%;">
+                                    <div class="col-lg-5" style=" font-weight: 450;  font-size: 15px; padding:7px; padding-bottom: 10px; margin-bottom:0px;">
+                                        Particular:  
+                                    </div>
+                                    <div class="col-lg-12" style=" font-size: 15px;  font-weight: bold; padding:0px; margin-bottom:5px; text-indent:20px;">
+                                        Information Technology Equipement and Accessories
+                                    </div>
+                                </div> 
+                            </div> 
+
+                                    </div>
+                            
+                                    
+                                    
+                                   
+                                      
+                                    
+
+                                
+                            <hr>
+                           
+                           
+                                
+                            </div>
+                        </div>
+
+
+                </div>
+                    </div>
+                    <div class="col-lg-5"  style="padding-left:0px;  margin-left:0px;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Quantity Purchased during the Last 6 Month</h3>
+                            </div>
+                            <div class="panel-body" style="height:242px; padding-left:7px;">
+                            <div id="morris-bar-chart" style="height:210px;"></div>
+                            </div>
+                        </div>
+                    </div>
+  
+                <div class="col-lg-5" style="display: inline; padding-left: 0px; margin-left:0px;">
+
+                  
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Offices Most Accounted by this Item</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-bar-chart2" style="height:210px;"></div>
+                                
+                            </div>
+                
+                </div>
+
+                </div>   
+
+                
+                <div class="col-lg-12" style="display: inline;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Quantity Distribution by Offices</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Office</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-right">Total Cost</th>
+                                            <th class="text-center">Latest Account</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="gradeU">
+                                            <td>College of Natural Sciences and Mathematics</td>
+                                            <td class="text-center">15</td>
+                                            <td class="text-right">270,000</td>
+                                            <td class="text-center">00/00/0000</td>
+                                            <td class="text-center"><a href="/inventory_office/accounts/offices/details/" class="btn btn-xs btn-primary">Details <i class="icon-arrow-right"></i></a></td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                                
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <div id="footer-sec">
+       &copy; Mindanao State University <i class=" buttom-header-right">Equipement Inventory </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/plugins/morris/raphael-2.1.0.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/morris/morris.js' %}"></script>
+
+    <script type="text/javascript">
+        
+
+        Morris.Bar({
+        element: 'morris-bar-chart',
+        data: [{
+            device: 'January',
+            geekbench: 6
+        }, {
+            device: 'February',
+            geekbench: 4
+        }, {
+            device: 'March',
+            geekbench: 8
+        }, {
+            device: 'April',
+            geekbench: 2
+        }, {
+            device: 'May',
+            geekbench: 3
+        }, {
+            device: 'June',
+            geekbench: 12
+        }, {
+            device: 'July',
+            geekbench: 8
+        }],
+        xkey: 'device',
+        ykeys: ['geekbench'],
+        labels: ['Quantity Purchased'],
+        barRatio: 0.4,
+        xLabelAngle: 35,
+        hideHover: 'auto',
+        resize: true
+    });
+
+        Morris.Bar({
+        element: 'morris-bar-chart2',
+        data: [{
+            device: 'CNSM',
+            geekbench: 60
+        }, {
+            device: 'CSSH',
+            geekbench: 56
+        }, {
+            device: 'COA',
+            geekbench: 52
+        }, {
+            device: 'SMO',
+            geekbench: 48
+        }, {
+            device: 'VCAF',
+            geekbench: 45
+        }, {
+            device: 'COEd',
+            geekbench: 42
+        }, {
+            device: 'COBA/A',
+            geekbench: 35
+        }, {
+            device: 'COE',
+            geekbench: 28
+        }, {
+            device: 'COL',
+            geekbench: 22
+        }, {
+            device: 'GradS',
+            geekbench: 20
+        }],
+        xkey: 'device',
+        ykeys: ['geekbench'],
+        labels: ['Quantity ON Account'],
+        barRatio: 0.4,
+        xLabelAngle: 35,
+        hideHover: 'auto',
+        resize: true
+    });
+
+
+
+
+    </script>
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,658 @@
+{% extends 'procurement/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <style type="text/css">
+        
+        .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont3{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+        
+         }
+
+         .dataFont4{
+            
+            font-weight: 450;  
+            font-size: 15px;
+         }
+                 .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px; 
+            margin-bottom:2px;
+
+    </style>
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Purchase Order no. 000-00</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 
+                <div class="col-lg-6" style="">
+                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Basic Information</h3>
+                            </div><!-- -->
+                            <div class="panel-body" style="height:590px;  padding-left:20px;">
+                            
+                           
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Status:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        <label class="label label-success">Approved</label>
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Service Status:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        <label class="label label-success">PO Served</label>
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Status Date:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        January 01, 2017
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                           <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date Served:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        January 01, 2017
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                          
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                           
+
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date Prepared:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        January 01, 2017
+                                    </div>
+                                </div> 
+                            </div>
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Funding:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        000-000-00
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        P.O. Cost:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        ₱ 1,000,000
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Supplier:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        Yurozuya Gin-chan - Akiba Branch
+                                    </div>
+                                </div> 
+                            </div>
+                           <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Conforme:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        Sakata, Gintoki
+                                    </div>
+                                </div> 
+                            </div>
+
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                         
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Delivery Term:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        15 days
+                                    </div>
+                                </div> 
+                            </div>
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Payment Mode:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        On Account
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Delivery Date: 
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        January 01, 2017
+                                    </div>
+                                </div> 
+                            </div>
+
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                       
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+
+
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Delivery Status:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        <label class="label label-success">Delivered</label>
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date Delivered: 
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        January 01, 2017
+                                    </div>
+                                </div> 
+                            </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6" style="padding-left:0px;">
+                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Delivery Information</h3>
+                            </div>
+                            <div class="panel-body" style=" padding-left:20px;">
+                            
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-6" >
+                                        Quantity Status:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        <label class="label label-success">Complete</label>
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-6" >
+                                        Item Condition:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                       <label class="label label-success">Good and Working</label>
+                                    </div>
+                                </div> 
+                            </div>
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-6" >
+                                        Delay:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        <label class="label label-success">On-time</label>
+                                    </div>
+                                </div> 
+                            </div>
+
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-6" >
+                                        I.A.R. Reference No.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        000-00
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                           
+                             
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style=" padding-left:0px;">
+                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">References Information</h3>
+                            </div>
+                            <div class="panel-body" style=" height:365px;  padding-left:20px;">
+                            
+                          
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        P.R. Reference :  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        000-00
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                           <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Abstract No.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        000-00
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date Processed:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        January 01, 2017
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Req. Personnel:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        Katsura Kotarou
+                                    </div>
+                                </div> 
+                            </div>
+
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Requesting Off.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        Joi Rebel - Saikyo no Aho Department
+                                    </div>
+                                </div> 
+                            </div>
+
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-6" >
+                                         
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 " >
+                                        Purpose:  
+                                    </div>
+                                    <div class="dataFont1" style="text-indent:30px;">
+                                        Don't ask me on what's the purpose of this request, just go to the store and by me a FAMICOM.
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                  
+                
+                <div class="col-lg-12" style="display: inline;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Purchase Order Items</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width:90px;">Item No.</th>
+                                            <th>Requested Item Description</th>
+                                            <th>Ordered Item Description</th>
+                                            <th class="text-right" >Quantity</th>
+                                            <th class="text-center"  >Unit</th>
+                                            <th class="text-right"  >Unit Cost</th>
+                                            <th class="text-right"  >Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                    <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        <tr>
+                                       <td class="text-center">1</td> 
+                                       <td>Laptop - Netbook</td>
+                                       <td>Asus EEE PC 1025-c</td>
+                                       <td class="text-right">2</td>    
+                                       <td class="text-center">Unit</td>
+                                       <td class="text-right">15,000</td>
+                                       <td class="text-right">30,000</td>
+
+                                    </tr>
+                                        
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                                
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+                
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <div id="footer-sec">
+       &copy; Mindanao State University <i class=" buttom-header-right">Equipement Inventory </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/plugins/morris/raphael-2.1.0.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/morris/morris.js' %}"></script>
+
+
+
+   <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#ac').attr('class', 'active-menu-proc')
+        $('#rqacTop').attr('class', 'active-menu-top')
+        $('#rqacUL').attr('class','nav nav-second-level collapse in')
+    })
+
+    </script>
+
+{% endblock %}

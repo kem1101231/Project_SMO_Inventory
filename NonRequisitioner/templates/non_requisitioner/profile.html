@@ -1,0 +1,1184 @@
+﻿{% extends 'non_requisitioner/base.html' %}
+
+{% load staticfiles %}
+{% block content %}        
+ <style type="text/css">
+        
+        .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            text-indent: 20px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding-bottom: 4px;
+         }
+
+            .tablescroll{
+            overflow-y:scroll;
+            height:1033px;
+            display:block;
+        }
+        
+        .tablescroll5{
+            
+            overflow-y:scroll;
+            height:1080px;
+            display:block;
+        }
+        .divScroll{
+            
+            overflow-y:scroll;
+            height:450px;
+            display:block;
+        }
+
+    </style>
+        <!-- /. NAV SIDE  -->
+            <div id="page-wrapper">
+
+            
+            
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Profile</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+                <div id="page-inner" style="margin-top:0px; background-color: #555!important;">
+             
+                <hr>
+
+                <div class="col-lg-5" style="">
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body" style=" padding-left:20px;">
+                            <div class = "profiletest2">
+                    <img src = "{% static 'assets/img/user.jpeg' %}" class="img-circle">
+                </div>
+                <div style="width:100%; margin-top: 20px; font-size:18px; font-weight:bold;" class="text-center">
+                    {{pageData3.0.6}} {{pageData3.0.1}} {{pageData3.0.7}} {{pageData3.0.2}}, {{pageData3.0.8}}
+                </div>
+                        <div style=" font-size: 14px;  font-weight: 360; padding-top:10px;" class="text-center">
+                                         {{pageData2.0.1}}
+                        </div>
+                         
+                        </div>
+                        </div>
+
+
+
+                    </div>
+                     <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                         <div class="panel panel-default">
+                            
+                            <div class="panel-body" style=" padding-left:20px;">
+                              
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        ID Number:   
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                         {{pageData1.0.2}}
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Designation:   
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                         {{designation}}
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Rank:   
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                         {% if pageData3.0.5 == None %}
+                                                    Not yet defined
+                                                {% else %}
+                                                    {{pageData3.0.5}}
+                                                {% endif %}
+
+                                    </div>
+                                </div> 
+                            </div> 
+                           
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                         <div class="panel panel-default">
+                            
+                            <div class="panel-body" style=" padding-left:20px;">
+                              
+                        
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Username:   
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        {{pageData1.0.0}}
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        <button class="btn btn-xs btn-default">change username</button>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Password:   
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                       {% for x in pageData1.0.1 %}
+                                            •
+                                        {% endfor %}
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                         <button class="btn btn-xs btn-default" data-toggle="modal"  data-target="#passChange">change password</button>
+                                    </div>
+                                </div> 
+                            </div> 
+                                
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-lg-12" style="padding-right: 0px; padding-left: 0px; display: none;">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                 <div  style="margin:0px; padding:0px;">
+                        <div class="form-group">
+                             
+                      <div class="">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" style="font-size:20px;padding-bottom:5px;padding-top:3px;">{{pageData2.0.0}}</div>
+                                        <div>Requests Made</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/requisitioner/pr/">
+                                <div class="panel-footer" style="color: green;">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                         <div class="">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-file fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" style="font-size:20px;padding-bottom:5px;padding-top:3px;">{{pageData2.1.0}}</div>
+                                        <div>PAR Received</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/requisitioner/accounts/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-th-list fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                       <div class="huge" style="font-size:20px;padding-bottom:5px;padding-top:3px;">{{pageData2.1.2}}</div>
+                                        <div>Accounted Items</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/requisitioner/accounts/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+               
+                    <div class="">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-money fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge" style="font-size:20px;padding-bottom:5px;padding-top:3px;">₱ {{pageData2.1.1}}</div>
+                                        <div>Cost of Acct Assets</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/requisitioner/accounts/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+<!-- 
+
+
+
+  -->
+                           
+                        </div>
+                        
+
+                    </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                         
+                    
+                    <div class="col-lg-7"  style="padding-left:0px;">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="">Activities, Task and Notifications</h3>
+                            </div>
+                            <div class="panel-body" style="height:1150px; padding-left:7px;">
+                   
+                           
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#acti" data-toggle="tab">Activities</a>
+                                    </li>
+                                    <li><a href="#noti" data-toggle="tab">Notificaton</a>
+                                    </li>
+                                    <li><a href="#tas1" data-toggle="tab">Tasks</a>
+                                    </li>
+                                    
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="acti">
+                                        <div class="table-responsive tablescroll5">
+                                            <table class="table table-hover " id="dataTables-example">
+                                                <tbody>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        </div>
+                                   
+                                    <div class="tab-pane fade" id="noti">
+                                           <div class="table-responsive tablescroll5">
+                                            <table class="table table-hover " id="dataTables-example">
+                                                <tbody>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        </div>
+                                    <div class="tab-pane fade" id="tas1">
+                                           <div class="table-responsive tablescroll5">
+                                            <table class="table table-hover " id="dataTables-example">
+                                                <tbody>
+                                                    <tr>
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">1Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+                                                    <tr >
+                                                        <td> 
+                                                        <div class="media col-lg-12" style="padding-left: 100px; padding-top: 20px;">
+                                    
+                                                                <span class="pull-left" style="margin-right: 20px;">
+                                                                <div class="btn btn-success btn-circle btn-lg"  role="button" aria-disabled="true" disabled = "disabled">
+                                                                <i class="icon-ok"></i></div>
+                                                            </span>  
+                                                            <div class="media-body">
+                                                                <h5 class="media-heading">
+                                                                    <strong style="font-size: 16px;">Successfully created a purchase request</strong>
+                                                                </h5>
+                                                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Month dd, YYYY at HH:MM</p>
+                                                                <p style="margin-bottom:5px;">
+                                                                   • P.R. Type: Equipment
+                                                                   
+                                                                </p>      
+                                                                <p>
+                                                                   • Purpose: The indicated purpose on the PR
+                                                                </p>
+                                                            </div>
+                                                            <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                                            <div class="media-body" style="float: right;">
+                                                                <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                                            </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            
+                    
+                    
+ 
+                            </div>
+                        </div>
+                    </div>
+                
+              
+          
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>  
+
+
+                </div>
+
+    
+
+
+
+
+<!-- ===================================================   Modal  s==================================================================================  -->
+                        
+                            
+                       
+                       <div class="modal fade" id="passChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> New Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">{% csrf_token %}
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Current Password: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip" class="form-control" type="password" autofocus>
+                                                        <span for="descrip" id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1"  class="control-label col-lg-4">New Password: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price" class="form-control" type="password"/>
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Confirm Password: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="quantity" type="password" class="form-control" />
+                                                        <span id="errorqu"></span>
+                                                    </div>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList" type="button" role="button" class="btn btn-success" style="visibility:hidden;">Update Password</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transComp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Password Update Complete.</strong>
+                                        </h5>
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+                
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+     <script src="{% static 'assets/plugins/jasny/js/bootstrap-fileupload.js' %}"></script>
+
+
+    <script src="{% static 'assets/js/requi-profile.js' %}"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.theUL nav-second-level').attr('class', 'nav-second-level theUL');  
+            $('.theAsTop').attr('class', 'theAsTop');   
+            $('.theAs').attr('class', 'theAs'); 
+            $('#profile').attr('class', 'active-menu-nonrequi');
+       
+        })
+
+        $('#uploadPic').click(function (argument) {
+              
+              //var data = new FormData();
+              
+              var data2 = new FormData();
+              data2.append('file' , $('#file').files[0])
+
+
+              alert(data2)
+              
+              $.ajax({
+                type: 'POST',
+                url:'/requisitioner/updateProfilePic/',
+                data:{
+                    
+                    'file': data2,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+                 contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, 
+
+                    success:function(response) {
+                        alert('Success')
+                        
+                    }
+
+            });
+        })
+
+       
+        
+    </script>
+{% endblock %}
+

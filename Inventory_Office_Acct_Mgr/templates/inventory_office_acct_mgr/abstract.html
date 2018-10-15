@@ -1,0 +1,572 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    {%load staticfiles%}
+    <title>Abstract of Canvass</title>
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-proc.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+    
+</head>
+
+<body style="height:100%; width:100%; min-height:100%;"">
+
+
+    <div id="wrapper" >
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" 
+                    style="
+                        margin-bottom: 0px;
+                          ">
+           
+           <div  class="navbar-header navbar-brand"></div>
+
+            <ul class="nav navbar-right top-nav" 
+                        style="
+                        margin-right: 50px;
+                        ">
+               
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown" style="width:350px;">
+                    
+                    <li class="message-preview" style="width:350px;">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body text-center ">
+                                        <h5 class="media-heading">
+                                            <strong >Tasks</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+
+                    {% if taskNum.0.0 == 0 %}
+
+                        <li class="message-preview" style="width:350px;">
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No task to process at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}    
+                    
+                    {% for x in taskDetails %}
+                        
+                        <li class="message-preview" style="width:350px;">
+                            
+
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"></p>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                    
+                                            <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                            <p>{{x.4}}</p>
+                                        
+                                    </div>
+                                    <form action="/procurement_office/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                     {% endfor %}   
+
+
+                    </ul>
+                </li>    
+                
+                <li class="dropdown">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul class="dropdown-menu message-dropdown"  style="width:350px;">
+                        
+                        <li class="message-preview"  style="width:350px;">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body text-center">
+                                        <h5 class="media-heading">
+                                            <strong>Notifications</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview"  style="width:350px;">
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unread notification at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}
+
+                       {% for x in notifDetails %}
+
+                       <li class="message-preview"  style="width:350px;">
+                            
+                                <a>
+                                <div class="media" style="margin-right:15px;">
+                                    <span class="pull-left">
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"></p>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/procurement_office/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                       {% endfor %}
+                        
+
+                    </ul>
+                </li>        
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="width:220px;">
+                        <li>
+                            <a href="/procurement_office/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-truck"></i> Purchase Orders</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-shopping-cart"></i> Purchase Requests</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-th-list"></i> Request for Quotations</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-th-list"></i> Abstracts of Canvass</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-wrench"></i> Settings</a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa-fw icon-signout"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        <div class="user-img-div">
+
+                            <a href="requisitioner_profile.html"><img src="{% static 'assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="requisitioner_profile.html" class = "inner-text">{{lname}}, {{fname}}</a>
+                            <br />
+                                <small>{{designation}}</small>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+
+                     <li>
+                        <a href="/procurement_office"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    </li>
+                     <li>
+                        <a  href="#"><i class="icon-briefcase"></i>Purchase Req. & Ordr.<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/procurement_office/create_po"><i class="icon-pencil"></i>Create P.O.</a>
+                            </li>
+                            <li>
+                                <a href="/procurement_office/po"><i class="fa fa-truck"></i>Purchase Orders</a>
+                            </li>
+                            <li>
+                                <a  href="/procurement_office/pr"><i class="icon-shopping-cart"></i>Purchase Req.</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a  href="#"><i class="icon-envelope-alt"></i>Quotations and Abstracts<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level collapse in">
+
+                         
+                           <li>
+                               <a  href="/procurement_office/add_quotation"><i class="icon-pencil"></i>New Quotation</a>
+                           </li>
+                           <li>
+                              <a href="/procurement_office/add_abstract"><i class="icon-pencil"></i>Create Abstract</a>
+                            </li>
+
+                            <li>
+                                <a href="/procurement_office/quotations"><i class="fa fa-reorder "></i>All Quotations</a>
+                            </li>
+                            <li>
+                                <a class="active-menu-proc"  href="/procurement_office/abstract"><i class="fa fa-reorder "></i>All Abstacts</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a  href="#"><i class="icon-building"></i>BAC Records<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/procurement_office/add_bid"><i class="icon-edit"></i>Record a Bidding</a>
+                            </li>
+                            <li>
+                                <a href="/procurement_office/add_contract"><i class="icon-edit"></i>New Contract</a>
+                            </li>
+                            <li>
+                                <a href="/procurement_office/bids"><i class="icon-list-alt"></i>All Biddings</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                     <li>
+                        <a  href="#"><i class="icon-group"></i>Suppliers</a>
+                    </li>
+                </ul>
+            </div>
+
+</div>
+        </nav>
+       
+           
+
+        
+        <!-- /. NAV SIDE  -->  <div id="page-wrapper">
+
+
+
+            <!--  ========================================================   -->
+            <!--  ========================================================  
+
+              <div style="   
+                                     display:inline;
+                                     padding: 0px;
+                                     margin: 0px;
+                                     margin-top: 51px;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                        
+                        <div class="btn-group">
+                                        <a data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="icon-bar-chart"></i> Generates Inventory Reports<span style="margin-left:5px;" class="caret"></span></a>
+                                        <ul class="dropdown-menu message-dropdown" style="right:0;">
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#" ><i class="icon-list-alt" style="margin-left:4px;margin-right:6px;"></i> Physical Count of Property</a>
+                                            </li>
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#"><i class="icon-trash" style="margin-left:4px;margin-right:10px;"></i> Waste Material Report</a>
+                                            </li>
+
+
+                                        </ul>
+                         </div>
+                </div> -->
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:48px; 
+
+                ">
+                <div>
+                    
+                    Abstract of Canvasses
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="padding-bottom:0px;">  
+                            <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                                <div class="form-group input-group" style="padding:0px;margin:0px;">
+                           
+                                            <input type="text" class="form-control input-sm" placeholder="Find Abstract" >
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default btn-sm " type="button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div> 
+
+
+                                </div>
+                            </div>
+                            <div class="panel-body" style=" padding-right: 0px; padding-top:10px;">
+                            
+
+                            <div class="panel">
+                            <!-- 
+                          
+ -->
+                               <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                           
+                              <div class="table-responsive">
+                                <table class="table table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" >Abstract No.</th>
+                                            <th class="text-center" >Quot. Ref. No.</th>
+                                            <th class="text-center" >PR No. Ref.</th>
+                                            <th class="text-center">Selection Status</th>
+                                            <th class="text-center" >Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for x in pageData1 %}
+                                             <tr class="odd gradeX">
+                                                
+                                                <td class="text-center" >{{x.0}}</td>
+                                                <td class="text-center">{{x.6}}</td>
+                                                <td class="text-center">{{x.7}}</td>
+
+                                                {% if x.5 == True %}
+                                                 <td class="text-center"><label class="label label-success">Processed</label></td>
+                                                {% else %}
+                                                 <td class="text-center"><label class="label label-warning">Pending</label></td>
+                                                {% endif %}
+
+                                               
+                                                <td class="text-center">
+
+                                                    <button class=" btn btn-xs btn-primary" role= "submit" aria-disabled="true">Details <i class="icon-arrow-right"></i></button>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                     
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+                
+                <div
+
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>
+        
+    
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - Supply and Equipement Inventory
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+<script src="{% static 'requisitioner/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/custom.js' %}"></script>
+    <script type="text/javascript">
+
+    var chosenBid = {}
+    var itemData = [('uy','yu'),('re','vf')]
+        
+   $('#itemTable').on('click','button', function (e) {
+        
+        var id = this.id;
+        var value = document.getElementById(id).value
+        var trID = $(this).closest('tr').attr('id');
+
+
+        $('#'+trID+' button').each(function(){
+            $(this).attr('class', 'btn btn-default');
+    
+        })
+
+        chosenBid[trID] = value;
+        $("#"+id).attr('class', 'btn btn-success');
+        
+    });
+
+
+
+   $(document).on('submit', '#addForm', function(e){
+
+       e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url:'/requisitioner/updateAbstract/',
+                data:{
+                    
+                    'chosenBid': JSON.stringify(chosenBid),
+                    'canvnum': $('#reqNum').attr('value'),
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+                        alert("Transaction Complete");
+                        window.location.href = "/requisitioner/pr/";
+                    }
+
+            });
+   })
+    </script>
+
+
+</body>
+</html>

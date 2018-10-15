@@ -1,0 +1,28 @@
+[
+
+(MzuT-2003, PgTb-3731, datetime.date(2017, 9, 21), procmode, datetime.date(2017, 2, 1), Mindanao State University, 15, on account, 3100.0, True, False, False, Sakata Gintoki, 001-17, 1, 1254-3652, datetime.date(2017, 10, 6), datetime.date(2017, 10, 6), 001-17, 3100.0), 
+
+(mVeB-9231, 001-17, Printing of Office Documents and Memos, Supply, 2017-0823, datetime.date(2017, 9, 21), None, True, True, None, 1, datetime.date(2017, 9, 21), 001_17, datetime.date(2017, 11, 5)),
+
+(2017-0823, Ramon, Descallar, Dean, CBAA, None, , V., MBA), 
+
+(College of Business Administration and Accountancy Deans Office&quot,), 
+
+(PgTb-3731, Yurozuya Gin-Chan, Kabuki District, Edo, Japan, Sakata Gintoki, 955-6955-265, strawberry_milk@edo.jp, , None, None, None),
+
+(	001-17, 
+	MzuT-2003, 
+	2017-0823,
+	datetime.date(2017, 9, 21), 
+	1243, 
+	datetime.date(2017, 9, 22), 
+	False, 
+	datetime.date(2017, 9, 22), 
+	2017-0822, 
+	True, 
+	datetime.date(2017, 9, 22), 
+	2017-0822, 
+	1, 
+	001_17), 
+
+(001-17, 001_17)]

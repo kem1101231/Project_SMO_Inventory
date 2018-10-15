@@ -1,0 +1,868 @@
+{% extends 'inventory_office_admin/base.html' %}
+
+{% load staticfiles %}
+{% load humanize %}
+{% block content  %}
+<style type="text/css">
+    
+            .tablescroll{
+            overflow-y:scroll;
+            height:1033px;
+            display:block;
+        }
+        
+        .tablescroll2{
+            
+            overflow-y:scroll;
+            height:235px;
+            display:block;
+        }
+        .divScroll{
+            
+            overflow-y:scroll;
+            height:450px;
+            display:block;
+        }
+
+</style>
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+    
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:48px; 
+
+                ">
+                <div>
+                    
+                     Equipment Inventory
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 
+                <div class="col-lg-12" style="">
+                         <div class="panel panel-default">
+                            
+                             <div class="panel-body" style="padding:0px;padding-top:20px; ">
+                                
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-qrcode fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  >Total Quantity of Items</div>
+                                       <div style=" margin-left:15px;  margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                        {% if pageData2.0.0 == None %}
+                                         {{pageData2.0.0}}
+                                         {% else %}
+                                         {{pageData2.0.0|floatformat|intcomma}}
+                                         {% endif %}  </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-money fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  >Total Cost of Items</div>
+                                        <div style=" margin-left:15px; margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                         {% if pageData2.0.1 == None %}
+                                         {{pageData2.0.1}}
+                                         {% else %}
+                                         {{pageData2.0.1|floatformat|intcomma}}
+                                         {% endif %}  </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-edit fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div >Qty. Still on Account</div>
+                                        <div style=" margin-left:15px; margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                         {% if pageData2.0.2 == None %}
+                                         {{pageData2.0.2}}
+                                         {% else %}
+                                         {{pageData2.0.2|floatformat|intcomma}}
+                                         {% endif %}  </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-trash fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  >Qty. Disposed as Waste</div>
+                                        <div style=" margin-left:15px; margin-top:8px;"><span class="badge" style="font-size:15px;">
+                                         {% if pageData2.0.3 == None %}
+                                         {{pageData2.0.3}}
+                                         {% else %}
+                                         {{pageData2.0.3|floatformat|intcomma}}
+                                         {% endif %}   
+                                        </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Equipment Particulars
+                        </div>
+                        <div class="panel-body" style="padding-right: 2px;">
+                            <div class="table-responsive " >
+                              <table class="table table-hover" style="margin-bottom: 0px;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 80px;">Item No.</th>
+                                            <th >Particular</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+
+                                     </table>
+                                    <table class="table table-hover tablescroll2">
+                                     <tbody>
+
+                                        {% for x in pageData1 %}
+                                            <tr>
+                                                <td style="width: 80px;" class="text-center">{{x.3}}</td>
+                                                <td>{{x.1}}</td>
+                                                <td class="text-center">
+                                                   <form id="detailsButton" action="/inventory_office/displayItemOfParticular/" method="POST">{% csrf_token %} 
+                                                   <div>
+                                                   <button name ="partIDButton" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true"><i class="icon-circle-arrow-right"></i></button>
+                                                   </div>
+                                                   </form>
+                                               
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                     
+                                       
+                                    </tbody>
+                                </table>    
+
+                                   
+                               
+                            </div>
+                        </div>
+
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-6" style="padding-left: 0px;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           General Terms of Equipment Items
+                        </div>
+                              <div class="panel-body" style="padding-right: 2px;">
+                            <div class="table-responsive " >
+                              <table class="table table-hover" style="margin-bottom: 0px;">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 200px;" >Description</th>
+                                            <th style="width: 200px;" class="text-right" >Unit Price</th>
+                                            <th  style="width: 200px;" ></th>
+                                        </tr>
+                                    </thead>
+
+                                     </table>
+                                    <table class="table table-hover tablescroll2">
+                                     <tbody id="theListTable">
+
+                                        {% for x in pageData3 %}
+                                            <tr>
+                                                
+                                                {% if x.3 == '' %}
+                                                    <td style="width:200px; color: red" >{{x.1}}</td>
+                                                {% else %}
+                                                    <td style="width:200px;">{{x.1}}</td>
+                                                {% endif %}
+                                                
+                                                <td class="text-right" style="width:200px;">{{x.5}}</td>
+
+                                                {% if x.3 == '' %}
+                                                 <td class="text-right" style="width:180px;">
+                                                   <form id="detailsButton" action="/inventory_office/items/details" method="POST">{% csrf_token %} 
+                                                   <div>
+                                                   <button id="{{x.0}}_upBtn" name ="itemDetails" value="{{x.0}}" class="btn btn-xs btn-success" role ="submit" aria-disabled="true"><i class="icon-plus"></i></button>
+                                                   <button name ="itemDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true"><i class="icon-circle-arrow-right"></i></button>
+                                                   </div>
+                                                   </form>
+                                               
+                                                </td>
+                                                {% else %}
+                                                   <td class="text-right" style="width:180px;">
+                                                   <form id="detailsButton" action="/inventory_office/items/details" method="POST">{% csrf_token %} 
+                                                   <div>
+                                                   <button name ="itemDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true"><i class="icon-circle-arrow-right" ></i></button>
+                                                   </div>
+                                                   </form>
+                                               
+                                                </td>
+                                                {% endif %}
+                                                
+                                                
+                                            </tr>
+
+                                        {% endfor %}
+                                     
+                                       
+                                    </tbody>
+                                </table>    
+
+                                   
+                               
+                            </div>
+                        </div>
+
+                        </div>
+                        
+                    </div>
+                        
+                
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                              <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Item No.</th>
+                                            <th>Particular</th>
+                                            <th class="text-center">No. of Items by Description</th>
+                                            <th class="text-center">Total Cost Value</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for x in pageData1 %}
+                                            <tr>
+                                                <td class="text-center">{{x.3}}</td>
+                                                <td>{{x.1}}</td>
+                                                <td class="text-center">0</td>
+                                                <td class="text-center">0</td>
+                                                <td class="text-center">
+                                                   <form id="detailsButton" action="/inventory_office/displayItemOfParticular/" method="POST">{% csrf_token %} 
+                                                   <div>
+                                                   <button name ="partIDButton" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details<i class="icon-circle-arrow-right" style="margin-left:5px;"></i></button>
+                                                   </div>
+                                                   </form>
+                                               
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                     
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>    
+
+        <!-- ========================================================================================================== -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> New Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip2" class="form-control" autofocus>
+                                                        <span for="descrip2" id="errorde"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div id="descripDiv" class="form-group" style="display: none;">
+                                                        <label for="text1" class="control-label col-lg-4">Type: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="type" class="form-control">
+                                                        <span for="type" id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                 
+
+                                                 <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Classification: </label>
+                                                    
+                                                    
+
+
+                                                    <div class="col-lg-8">
+
+                                                        <div>
+                                                          
+                                                        
+
+
+                                                        <input id="class2" data-toggle="dropdown"  class="form-control dropdown-toggle" >
+                                                        <ul class="dropdown-menu message-dropdown" style="right:0; width: 342px; margin-left: 18px;">
+                                                                <li style="padding-bottom:5px; padding-top:5px;">
+                                                                    <a href="#"  id="equiSel2"><i class="icon-wrench" style="margin-left:4px;margin-right:6px;"></i> Equipment</a>
+                                                                </li>
+                                                                <li style="padding-bottom:5px; padding-top:5px;">
+                                                                    <a href="#" id="suppSel2"><i class="icon-file" style="margin-left:4px;margin-right:10px;"></i> Supply</a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                        <span for="class" id="errorde"></span>
+                                                    
+                                                    </div>
+
+
+                                                </div>
+                                                
+                                                   
+                                                 <div id="addDetDiv2" class="form-group" style="display: none">
+                                                        <label for="text1" class="control-label col-lg-4">Group Particular: </label>
+                                                    
+                                                    
+
+
+                                                    <div class="col-lg-8">
+
+                                                        <div>
+                                                          
+                                                        
+
+
+                                                        <input id="part2" data-toggle="dropdown"  class="form-control dropdown-toggle" >
+                                                        <ul id="theULList2" class="dropdown-menu message-dropdown" style="right:0; width: 342px; margin-left: 18px;">
+                                                                
+                                                            </ul>
+                                                        </div>
+                                                        <span for="part2" id="errorpart2"></span>
+                                                    
+                                                    </div>
+
+
+                                                </div>
+                                                
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Unit: </label>
+                                                        
+                                                    <div class="col-lg-8">
+                                                        <input id="unit2" class="form-control" list="compSeacrhList" />
+                                                        <datalist id="compSeacrhList">
+                                                        <option>Unit</option>
+                                                        <option>Piece</option>
+                                                        <option>Bundle</option>
+                                                        <option>Strip</option>
+                                                        <option>Pair</option>
+                                                        <option>Gram</option>
+                                                        <option>Kilogram</option>
+                                                        <option>Ounce</option>
+                                                        <option>Meter</option>
+                                                        <option>Inch</option>
+                                                        <option>Foot</option>
+                                                        <option>Brd. Feet</option>
+                                                        <option>Cu. Feet</option>
+                                                        <option>Cu. Meter</option>
+                                                        <option>Litre</option>
+                                                        <option>Load</option>
+                                                        <option>Bottle</option>
+                                                        <option>Case</option>
+                                                        <option>Vial</option>
+                                                        <option>Sheet</option>
+                                                        <option>Peso</option>
+                                                        </datalist>
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price2" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList2" type="submit" class="btn btn-success" >Save Item Information</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+                    </div>
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+<div id="footer-sec">
+       &copy; Mindanao State University - General Santos City </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+  
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/js/wizard/modernizr-2.6.2.min.js' %}"></script>
+    <script src="{% static 'assets/js/wizard/jquery.cookie-1.3.1.js' %}"></script>
+    <script src="{% static 'assets/js/wizard/jquery.steps-addReceive.js' %}"></script>
+       <script type="text/javascript">
+ 
+
+    var theItemPartId = ''    
+    var theSelected = ''
+
+
+    var theSelectedItemtoUpdate = ''
+
+    var modalCheck = ''
+    $('#approveButton').click(function () {
+        $('#newReg').modal('toggle')
+        modalCheck = 'new'
+    })    
+    
+    $('#equiSel').click(function (argument) {
+        
+        $('#class').val('Equipment')
+        $('#addDetDiv1').removeAttr('style');
+        
+       
+
+        $.ajax({
+                type: 'POST',
+                url:'/inventory_office/getEquiParticulars/',
+                data:{
+
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        console.log('Good')
+                        var t = ''
+
+                        for (var key in response) {
+                           
+                            var value = response[key]
+                            var tr = '<li id="'+key+'" class="theListItemLI" style="padding-bottom:5px; padding-top:5px;">'
+                                tr  +=     '<a href="#" value="'+value['name']+'" id="'+key+'_a" class="theListItem"><i style="margin-left:2px;margin-right:10px;"></i>'+value['name']+'</a>'
+                                tr += '</li>'
+                            t += tr    
+                        }
+                     
+                            document.getElementById('theULList1').innerHTML = t
+                        
+                        
+                    }
+
+            });
+
+    }) 
+
+       $('#equiSel2').click(function (argument) {
+        
+        $('#class2').val('Equipment')
+        $('#addDetDiv2').removeAttr('style');
+        
+       
+
+        $.ajax({
+                type: 'POST',
+                url:'/inventory_office/getEquiParticulars/',
+                data:{
+
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        console.log('Good')
+                        var t = ''
+
+                        for (var key in response) {
+                           
+                            var value = response[key]
+                            var tr = '<li id="'+key+'" class="theListItemLI" style="padding-bottom:5px; padding-top:5px;">'
+                                tr  +=     '<a href="#" value="'+value['name']+'" id="'+key+'_a" class="theListItem"><i style="margin-left:2px;margin-right:10px;"></i>'+value['name']+'</a>'
+                                tr += '</li>'
+                            t += tr    
+                        }
+                     
+                            document.getElementById('theULList2').innerHTML = t
+                        
+                        
+                    }
+
+            });
+
+    }) 
+
+
+    /*$('body').mousemove(function(evt){
+    console.log(evt.target);
+    });
+    */
+    $('#theULList1').mousemove(function(evt){
+        var id = evt.target.id
+        
+        var arr = id.split('_')
+
+        if (id != '') {
+                if (arr.length == 2) {
+                    
+                    $('.theListItemLI').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                    $('.theListItem').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                    
+                    $('#'+arr[0]).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+                    $('#'+id).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+
+                    theSelected = $('#'+id).attr('value')
+                    theItemPartId = arr[0]
+
+                }
+
+                 else {
+                    
+                    console.log('focus is li')
+                    $('.theListItemLI').attr('style', 'padding-bottom:5px; padding-top:5px;background-color:white;')
+                    $('.theListItem').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                   
+                    $('#'+id).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+                    $('#'+id+'_a').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fbd;')
+                    
+                    theSelected = $('#'+id+'_a').attr('value');
+                    theItemPartId = id
+                }
+        }
+
+    });
+
+
+    $('#theULList2').mousemove(function(evt){
+        var id = evt.target.id
+        
+        var arr = id.split('_')
+
+        if (id != '') {
+                if (arr.length == 2) {
+                    
+                    console.log('focus is a')
+                    $('.theListItemLI').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                    $('.theListItem').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                    
+                    $('#'+arr[0]).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+                    $('#'+id).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+
+
+                }
+
+                 else {
+                    
+                    console.log('focus is li')
+                    $('.theListItemLI').attr('style', 'padding-bottom:5px; padding-top:5px;background-color:white;')
+                    $('.theListItem').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:white;')
+                   
+                    $('#'+id).attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fb;')
+                    $('#'+id+'_a').attr('style', 'padding-bottom:5px; padding-top:5px; background-color:#dce5fbd;')
+                    
+                    
+                }
+        }
+
+    });
+    
+    $('#theULList1').on('click','a',function (argument) {
+        var id = this.id
+
+        var arr = id.split('_')
+
+        $('#part1').val($(this).attr('value'))
+        theItemPartId = arr[0]
+    }) 
+  
+    $('#theULList2').on('click','a',function (argument) {
+        var id = this.id
+
+        var arr = id.split('_')
+
+        $('#part2').val($(this).attr('value'))
+        theItemPartId = arr[0]
+    }) 
+
+    $('#suppSel').click(function (argument) {
+        
+    
+        $('#class').val('Supply')
+         
+        $('#addDetDiv1').attr('style','display: none')
+       
+    })   
+
+      $('#suppSel2').click(function (argument) {
+        
+        $('#class2').val('Supply')
+         
+        $('#addDetDiv2').attr('style','display: none')
+    })  
+
+    $('#price').keypress(function(event){
+
+       if(event.which != 8 && isNaN(String.fromCharCode(event.which))){
+            document.getElementById("errorpr").innerHTML = "Non-number input is not allowed" 
+           event.preventDefault(); //stop character from entering input
+       }
+       else{
+        document.getElementById("errorpr").innerHTML = ""
+        $('#price').removeAttr("style") 
+       }
+
+    });
+
+    $('#addList').click(function (e) {
+            
+         e.preventDefault();
+            
+            
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/addNewItem/',
+                data:{
+                    
+                    'description': $('#descrip').val(),
+                    'part': theItemPartId,
+                    'type': $('#type').val(),
+                    'class': $('#class').val(),
+                    'unit': $('#unit').val(),
+                    'price': $('#price').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function() {
+                        $('#newReg').modal('toggle');
+                        $('#transComp').modal('toggle');
+                    }
+
+            });
+
+    });
+
+    $('#addList2').click(function (e) {
+            
+         e.preventDefault();
+         var data22 = {
+                    'itemid' : theSelectedItemtoUpdate,
+                    'description': $('#descrip2').val(),
+                    'part': theItemPartId,
+                    'itemtype': $('#type2').val(),
+                    'itemclass': $('#class2').val(),
+                    'unit': $('#unit2').val(),
+                    'price': $('#price2').val(),}
+         console.log(data22)   
+            
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/updateItem/',
+                data:{
+                    'itemid' : theSelectedItemtoUpdate,
+                    'description': $('#descrip2').val(),
+                    'part': theItemPartId,
+                    'itemtype': $('#type2').val(),
+                    'itemclass': $('#class2').val(),
+                    'unit': $('#unit2').val(),
+                    'price': $('#price2').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function() {
+                        $('#updateModal').modal('toggle');
+                        $('#upComp').modal('toggle');
+                    }
+
+            });
+
+    });
+
+    
+    $('#theListTable').on('click', 'button', function () {
+        var id = this.id
+        var name = $(this).attr('name')
+        
+        if (id != '') {
+            var arr = id.split('_')
+
+            theSelectedItemtoUpdate = arr[0]
+
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/getItemDetails/',
+                data:{
+                    
+                    'itemID': arr[0],
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        $('#descrip2').val(response['descrip']);
+                        $('#unit2').val(response['unit']);
+                        $('#price2').val(response['price']);
+                    }
+
+            });
+            
+            modalCheck = 'update';
+
+            $('#updateModal').modal('toggle')
+
+            return false;
+        
+        } else {
+            return true;
+        }
+
+        
+    })
+
+
+    $('#sentNotif').click(function() {
+        location.reload();  
+    })
+
+    $('#sentNotif2').click(function() {
+        location.reload();  
+    })
+
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            $('#inventoryTop').attr('class', 'active-menu-top ')
+            $('#theInvenUL').attr('class', 'nav nav-second-level collapse in')
+            $('#equipment').attr('class','active-menu-inven')
+        })
+    </script>
+
+{% endblock %}
+
+
+
+

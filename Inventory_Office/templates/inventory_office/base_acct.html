@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="title">Home</title>
+    {% load staticfiles %}
+   <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-inven-acct.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <link href="{% static 'assets/css/wizard/jquery.steps.css' %}" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+    <style type="text/css">
+        
+        .active-menu-inven-acct {
+    background-color: #541f54!important;
+}
+    </style>
+    
+</head>
+<body>
+
+        <div id="wrapper">
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" 
+                    style="
+                        margin-bottom: 0px;
+                          ">
+           
+           <div  class="navbar-header navbar-brand"></div>
+
+           <ul class="nav navbar-right top-nav" 
+                        style="
+                        margin-right: 50px;
+                        ">
+                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                    
+                    <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body " style="margin-left:95px;">
+                                        <h5 class="media-heading">
+                                            <strong>Tasks</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+
+                    {% if taskNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No task to process at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}    
+                    
+                    {% for x in taskDetails %}
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                     {% endfor %}   
+
+
+                    </ul>
+                </li>    
+                
+                <li class="dropdown">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body" style="margin-left:75px;">
+                                        <h5 class="media-heading">
+                                            <strong>Notifications</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unread notification at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}
+
+                       {% for x in notifDetails %}
+
+                       <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                       {% endfor %}
+                        
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="width:220px;">
+                        <li>
+                            <a href="/inventory_office/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/inventory_office/accounts"><i class="fa fa-fw fa-group"></i> Employee Acct. Items</a>
+                        </li> 
+                        <li class="divider"></li>
+                        <li>
+                        <a   class="theAs"   href="/non_requisitioner"><i ></i>Switch to Requisitioner <span style="float:right;padding-top: 3px;" class="icon-signout"></span></a>
+                    </li>                           
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa fa-fw icon-signout" style="margin-left:4px;margin-right:4px;"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+                <ul id="searchFieldSmall" class="nav navbar-right top-nav col-lg-4" style="margin-right:110px; margin-left:auto;">
+                        
+                <div>
+
+
+                    <form action="/inventory_office/search/" method="post">{% csrf_token %}
+                    
+                        <div class="form-group input-group"  style="padding:0px; padding-top:10px; margin:0px;">
+                          
+                           <input name="search_input" type="text" autofocus class="form-control input-sm" placeholder="Search for Inventory Information">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-primary btn-sm" type="submit" name="search_button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                  
+                    </form>
+                
+                </div>
+            </ul>
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        <div class="user-img-div">
+
+                            <a href="/inventory_office/profile"><img src="{% static 'assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="/inventory_office/profile" class = "inner-text">{{name}}</a>
+                            <br />
+                                <p style="padding: 0px; margin: 0px; font-size: 11px;">{{designation}}</p>
+                                <p  style="padding: 0px; margin: 0px; font-size: 11px;">{{dept}}</p>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+                     <li>
+                        <a id="home"  class="theAs"   href="{{urlHead}}"><i class="fa fa-home "></i>Home</a>
+                    </li>
+                    <li>
+                        <a id="reftop"  class="theTopAs" href="#"><i class="icon-folder-close"></i>References<span class="fa arrow"></span></a>
+                         <ul id="theRefUL" class="nav nav-second-level">
+                            <li>
+                                <a id="pr" class="theAs"   href="{{urlHead}}/pr/"><i class="icon-file"></i>Purchase Req.</a>
+                            </li>
+                            <li>
+                                <a id="rqac" class="theAs"   href="{{urlHead}}/quotations/"><i class="icon-file"></i>Quotations</a>
+                            </li>
+                            <li>
+                                <a id="po" class="theAs"   href="{{urlHead}}/po/"><i class="icon-file"></i>Purchase Orders</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a id="all_items" class="theAs"   href="{{urlHead}}/receive"><i class="icon-truck"></i>View All Deliveries</a>
+                    </li>
+                    
+                    <li>
+                        <a id="acctTop" class="theTopAs"  href="#"><i class="icon-print"></i>Prop. Accept. Receipt<span class="fa arrow"></span></a>
+                         <ul id="theAcctUL" id="acctTop" class="nav nav-second-level theULs">
+                            <li>
+                                <a id="new_par" class="theAs"   href="{{urlHead}}/add_accounts"><i class="icon-plus"></i>Create PAR</a>
+                            </li>
+                            <li>
+                                <a id="par" class="theAs"   href="{{urlHead}}/accounts"><i class="icon-list-alt"></i>All Acceptances</a>
+                            </li>
+                            <li>
+                                <a id="wmr" class="theAs"   href="{{urlHead}}/wmr"><i class="icon-trash"></i>Waste Ins. Req.</a>
+                            </li>
+                        </ul>
+                    </li>
+          
+                </ul>
+            </div>
+
+</div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+      {% block content %}
+      {% endblock %}
+
+</body>
+</html>
+
+
+
+   
+

@@ -1,0 +1,318 @@
+{% extends baseSource %}
+{% load staticfiles %}
+{% block content %}
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Received Items Transaction Details</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                
+                <div class="col-lg-7" >
+                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Basic Information</h3>
+                            </div>
+                            <div class="panel-body" style="height:242px; padding-left:20px;">
+                             
+                              <div class="form-group">
+                                <div style="padding-left: 2px;  width:100%;">
+                                    <div class="col-lg-5 dataFont2">
+                                        Remarks:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                    {% if pageData1.0.9 == True %}
+                                     <label class="label label-success">Complete</label>
+                                    {% else %}
+                                     <label class="label label-danger">Incomplete</label>
+                                    {% endif %}
+                                      
+                                    
+                                    </div>
+                                </div> 
+                            </div> 
+                           
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Date Received:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        {{pageData1.0.10}}
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        PO Reference:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                      {{pageData1.1.18}}
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px;  width:100%;">
+                                    <div class="col-lg-5 dataFont2">
+                                        Supplier:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        {{pageData3.0.1}}
+                                    </div>
+                                </div> 
+                            </div> 
+                           
+                            
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        ORS No.:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                        000-00
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%;">
+                                    <div class="col-lg-5 dataFont2">
+                                        Voucher:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                        000-00
+                                    </div>
+                                </div> 
+                            </div>
+                                        
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5" style="padding-left:0px;">
+                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Acceptance Information</h3>
+                            </div>
+                            <div class="panel-body" style="height:242px; padding-left:20px;">
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-6 dataFont2" >
+                                        IAR No.:  
+                                    </div>
+                                    <div class="col-lg-4 dataFont1" >
+                                        {{pageData1.0.0}}
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                          
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%;">
+                                    <div class="col-lg-6 dataFont2" >
+                                        Quantity Expected:  
+                                    </div>
+                                    <div class="col-lg-4 dataFont1">
+                                       {{pageData1.2.2|floatformat}} 
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-6 dataFont2" >
+                                        Quantity Missing:  
+                                    </div>
+                                    <div class="col-lg-4 dataFont1">
+                                        {{pageData1.2.3|floatformat}} 
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-6 dataFont2" >
+                                         
+                                    </div>
+                                    <div class="col-lg-4 dataFont1">
+                                        
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-6 dataFont2" >
+                                          
+                                    </div>
+                                    <div class="col-lg-4 dataFont1">
+                                        
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-6 dataFont2" >
+                                        Received By; 
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                        {{pageData1.2.0}}
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group">
+                                <div style="padding-left: 2px;  width:100%;">
+                                    <div class="col-lg-6 dataFont2">
+                                         Inspected By:
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                        {{pageData1.2.1}}
+                                    </div>
+                                </div> 
+                            </div> 
+                            
+                            </div>
+                        </div>
+                    </div>
+       
+                
+                <div class="col-lg-12" style="display: inline;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Items Received</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Desciption</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Missing</th>
+                                            <th class="text-center">Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in pageData2 %}
+                                      <tr class="gradeU">
+                                            <td>{{x.3}}</td>
+                                            <td class="text-center">{{x.2}}</td>
+                                            <td class="text-center">{{x.4|floatformat}}</td>
+                                            <td class="text-center">{{x.9|floatformat}}</td>
+                                            {% if x.9 == 0 or x.9 == None %}
+                                             <td class="text-center"><a href="#" class="btn btn-xs btn-success disabled"><i class="icon-ok"></i></a></td>
+                                             
+                                            {% else %}
+                                           <td class="text-center"><a href="#" class="btn btn-xs btn-danger disabled"><i class="icon-remove"></i></a></td>
+                                            {% endif %}
+
+
+                                           
+                                        </tr>
+                                       
+
+                                    {% endfor %}
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                                
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+                
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <div id="footer-sec">
+       &copy; Mindanao State University - General Santos City
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/plugins/morris/raphael-2.1.0.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/morris/morris.js' %}"></script>
+
+   <script>
+        $(document).ready(function () {
+
+           
+           
+            if ('{{urlHead}}' == '/inventory_office_admin') {
+
+           
+            $('#all_items').attr('class','{{cssActiveMenu}}')
+            $('#acctTop').attr('class', 'active-menu-top')
+            $('#theAcctUL').attr('class','nav nav-second-level collapse in')
+            
+            $('#title').html('All Delivery Transactions')
+
+            }
+            
+            else{
+
+           
+            $('#all_items').attr('class','{{cssActiveMenu}}')
+            $('#delTop').attr('class', 'active-menu-top')
+            $('#theDelUL').attr('class','nav nav-second-level collapse in')
+            
+            $('#title').html('All Delivery Transactions')
+
+            }
+
+           
+             });
+    </script>
+
+{% endblock %}
+

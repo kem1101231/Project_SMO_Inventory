@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="title">Administrator</title>
+    {% load staticfiles %}
+   <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-super.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'assets/css/aScript.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <link href="{% static 'assets/css/wizard/jquery.steps.css' %}" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+    
+    <link href="{% static 'assets/plugins/morris/morris-0.4.3.min.css' %}" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-spinner.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/plugins/daterangepicker/daterangepicker-bs3.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/plugins/datepicker/css/datepicker.css' %}" />
+
+    <style type="text/css">
+        
+        
+                .tablescroll{
+                   overflow-y:scroll;
+                    height:480px;
+                   display:block;
+                        }
+                .tablescroll2{
+                   overflow-y:scroll;
+                    height:405px;
+                   display:block;
+                        }
+                .tablescroll3{
+                   overflow-y:scroll;
+                    height:560px;
+                   display:block;
+        }
+
+
+    </style>
+    <style type="text/css">
+        
+        .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont3{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+        
+         }
+
+         .dataFont4{
+            
+            font-weight: 450;  
+            font-size: 15px;
+         }
+                 .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px; 
+            margin-bottom:2px;
+
+        }
+
+            /* Style The Dropdown Button */
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #f1f1f1}
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+    </style>
+    
+</head>
+<body>
+
+        <div id="wrapper">
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" 
+                    style="
+                        margin-bottom: 0px;
+                          ">
+           
+           <div  class="navbar-header navbar-brand"></div>
+<!-- 
+             <ul  class="nav navbar-right top-nav col-lg-4" style="margin-right:30%; margin-left:auto;">
+                        
+                <div>
+
+
+                    <form action="/inventory_office/search/" method="post">{% csrf_token %}
+                    
+                        <div class="form-group input-group"  style="padding:0px; padding-top:10px; margin:0px;">
+                          
+                           <input name="search_input" type="text" autofocus class="form-control input-sm" placeholder="Search for Information">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-primary btn-sm" type="submit" name="search_button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                  
+                    </form>
+                
+                </div>
+            </ul> -->
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        <div class="user-img-div">
+
+                            <a href="/inventory_office/profile"><img src="{% static 'assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="/inventory_office/profile" class = "inner-text">{{name}}</a>
+                            <br />
+                                <p style="padding: 0px; margin: 0px; font-size: 11px;">{{designation}}</p>
+                                <p  style="padding: 0px; margin: 0px; font-size: 11px;">{{dept}}</p>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+                    <li>
+                        <a id="home"  class="theAs"   href="/system_admin/"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a id="userTop" class="theAsTop"  href="#"><i class="fa fa-group "></i>Users<span class="fa arrow"></span></a>
+                         <ul id="userUL" class="nav nav-second-level theUL ">
+                            <li style="display:none">
+                                <a id="all_user" class="theAs"   href="/system_admin/users"><i class="icon-user"></i>All Users</a>
+                            </li>
+                            <li>
+                                <a id="all_emp" class="theAs"   href="/system_admin/employees"><i class="icon-book"></i>Employees</a>
+                            </li>
+                            <li>
+                                <a id="off" class="theAs"  href="/system_admin/offices"><i class="icon-building"></i>Offices</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a id="logs"  class="theAs"   href="/system_admin/logs"><i class="icon-reorder"></i>Logs</a>
+                    </li>
+                  
+                    <li>
+                        <a  href="/login"><i class="icon-signout"></i>Log Out</a>
+                        
+                    </li>
+          
+                </ul>
+            </div>
+
+</div>
+        </nav>
+            {% block content %}
+
+
+
+            {% endblock %}
+      <script src="{% static 'assets/plugins/datepicker/js/bootstrap-datepicker.js' %}"></script>      
+     <script type="text/javascript">
+         
+     $('#theTaskULtoHover').on('hover', 'li', function (argument) {
+         console.log(this.id)
+     });
+
+     $('#theNotifULtoHover').on('click', 'li', function (argument) {
+         console.log(this.id)
+     });
+
+     var id = ''
+     
+     $('.message-preview').mousemove(function(evt){
+                
+                
+                
+                if (this.id != '') {
+
+                    console.log("the ID " + id +" dsds")
+                   
+                    if (id != this.id) {
+
+                        id = this.id    
+                        
+                        var value = $(this).attr('value')
+                        console.log(value);
+                        
+                        $.ajax({
+                            type: 'POST',
+                            url:'/inventory_office/checkNotification/',
+                            data:{
+                            
+                                'notifNum': value,
+                                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                           
+                            },
+
+                            success: function(response) {
+                                    
+                                } 
+                        }); 
+
+                        
+                    
+                    }
+
+                    
+                }
+                // console.log(this.id)
+        });
+
+     </script>
+</body>
+</html>
+
+
+
+   
+

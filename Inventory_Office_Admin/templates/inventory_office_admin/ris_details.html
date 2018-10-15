@@ -1,0 +1,559 @@
+{% extends 'inventory_office/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <style type="text/css">
+        
+        .test25{
+
+            max-width: 180px;
+            min-height: 180px;
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px; 
+            margin-bottom:2px;
+            margin-right: 15px;
+         }
+
+         .item-img-div {
+   
+    min-height: 140px;
+}
+    
+    .item-brg-img img{
+
+    }
+    
+    .item-img-div img {
+        max-height: 150px;
+    }
+
+    .item-img-div .inner-text {
+        
+        text-align: left;
+        position: relative;
+        color: #fff;
+        font-weight: 500;
+        line-height: 20px;
+        font-size: 15.5px;
+        
+    }
+
+    </style>
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+                 
+
+                ">
+                <div>
+                {% if pageData1.0.5 == None or pageData1.0.5 == False  %} 
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}" style="font-size: 22px;">Requisition and Issuance Slip Details </span>
+                {% else %}
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}" style="font-size: 22px;">Requisition and Issuance Slip no. {{pageData1.0.1}} </span>     
+                {% endif %}
+                
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                            <div class="panel-heading">
+                                    
+                        <div class="header-right" style="display:inline;padding-right: 0px;">
+                            {% if pageData1.0.5 == None %} 
+                           
+                            {% endif %}
+                            {% if pageData1.0.5 == True %}
+                            <label class="label label-success">RIS Approved</label>
+                            {% endif %}
+                            {% if pageData1.0.5 == False %}
+                            <label class="label label-danger">RIS Declined</label>
+                            {% endif %}
+                            {% if pageData1.0.5 == True and pageData1.0.9 == None %}
+                                <label class="label label-warning">Waiting for retrival of items</label>
+                            {% endif %}
+                            {% if pageData1.0.5 == True and pageData1.0.9 == True %}
+                                <label class="label label-success">Items released</label>
+                            {% endif %}
+
+                            
+
+                        </div>
+                            <div >
+                               <h3 class="panel-title">Basic Information</h3>  
+                            </div>
+
+                                
+                            </div>
+                            <div class="panel-body" style="padding-left:20px;">
+                                    
+                                
+                                       
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="text-right col-lg-5 dataFont2" >
+                                                    Date Prepared:  
+                                                </div>
+                                                <div class="col-lg-6 dataFont1" >
+                                                    {{pageData1.0.3}}
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="text-right col-lg-5 dataFont2" >
+                                                    
+                                                    {% if pageData1.0.5 == None %} 
+                                                    Status: 
+                                                    {% endif %}
+                                                    {% if pageData1.0.5 == True %}
+                                                    Date Approved: 
+                                                    {% endif %}
+                                                    {% if pageData1.0.5 == False %}
+                                                    Reason on denial
+                                                    {% endif %} 
+                                                </div>
+                                                <div class="col-lg-6 dataFont1" >
+                                                    {% if pageData1.0.5 == None %} 
+                                                     <label class="label label-warning">Pending for Approval</label>
+                                                    {% endif %}
+                                                    {% if pageData1.0.5 == True %}
+                                                    {{pageData1.0.7}}
+                                                    {% endif %}
+                                                    {% if pageData1.0.5 == False %}
+                                                    {{pageData1.0.6}}
+                                                    {% endif %}
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="text-right col-lg-5 dataFont2" >
+                                                     
+                                                    {% if pageData1.0.5 == True and pageData1.0.9 == None %}
+                                                       Release Status: 
+                                                    {% endif %}
+                                                    {% if pageData1.0.5 == False %}
+                                                     Date Denied: 
+                                                    {% endif %}
+                                                    {% if pageData1.0.5 == None %}
+                                                     
+                                                    {% endif %}
+                                                    {% if pageData1.0.5 == True and pageData1.0.9 == True %}
+                                                        Item Release Date: 
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-lg-6 dataFont1" >
+                                                    {% if pageData1.0.5 == True and pageData1.0.9 == None %}
+                                                       Items are still in SMO possesion
+                                                    {% endif %}
+                                                    {% if pageData1.0.5 == False %}
+                                                    {{pageData1.0.7}}
+                                                    {% endif %}
+                                                     {% if pageData1.0.5 == None %}
+                                                     
+                                                    {% endif %}
+                                                    {% if pageData1.0.5 == True and pageData1.0.9 == True %}
+                                                        {{pageData1.0.10}}
+                                                    {% endif %}
+                                                </div>
+                                            </div> 
+                                        </div>
+                                   
+                                        {% if pageData1.0.9 == True and pageData1.0.5 == True %}
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="text-right col-lg-5 dataFont2" >
+                                                    Received by:  
+                                                </div>
+                                                <div class="col-lg-6 dataFont1" >
+                                                    Personel Name
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        {% endif %}
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="text-right col-lg-5 dataFont2" >
+                                                      
+                                                </div>
+                                                <div class="col-lg-6 dataFont1" >
+                                                    
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="text-right col-lg-5 dataFont2" >
+                                                    Requested by:  
+                                                </div>
+                                                <div class="col-lg-6 dataFont1" >
+                                                    {{pageData2.0.0}}
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%;">
+                                                <div class="text-right col-lg-5 dataFont2" >
+                                                    Office:  
+                                                </div>
+                                                <div class="col-lg-6 dataFont1">
+                                                   {{pageData2.0.1}}
+                                                </div>
+                                            </div> 
+                                        </div>
+                                          <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                                    <div class="text-right col-lg-5 dataFont2" >
+                                                        Purpose:  
+                                                    </div>
+                                                    <div class="col-lg-6 dataFont1">
+                                                        {{pageData1.0.2}}
+                                                    </div>
+                                                </div> 
+                                            </div> 
+                                
+                            <hr>
+                           
+                           
+                                
+                            </div>
+                        </div>
+
+
+                </div>
+                    <div class="col-lg-6"  style="padding-left:0px;  margin-left:0px; display: none;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Quantity Purchased during the Last 6 Month</h3>
+                            </div>
+                            <div class="panel-body" style="height:242px; padding-left:7px;">
+                            
+                            </div>
+                        </div>
+                    </div>
+                
+
+                
+                <div class="col-lg-12" style="display: inline;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">List of Requested Items</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table id="theListOfItems" class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th class="text-center" style="width:120px;">Unit</th>
+                                            <th class="text-right" style="width:120px; background-color: #d6e9c6;">Quantity Requested</th>
+                                            <th class="text-right" style="width:120px;">Consumed for this Quarter</th>
+                                            <th class="text-right" style="width:120px;">Quantity Available</th>
+                                            
+                                            {% if pageData1.0.5 == None %}
+                                                <th class="text-center" style="width:220px; background-color: #d6e9c6;" >Quantity to Approve</th>
+                                            {% else %}
+                                                <th class="text-right" style="width:120px; background-color: #d6e9c6;" >Quantity Approved</th>
+                                            {% endif %}
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for x in pageData3 %}
+                                        <tr class="gradeU">
+                                            <td>{{x.2}}</td>
+                                            <td class="text-center">{{x.3}}</td>
+                                            <td class="text-right">{{x.4}}</td>
+                                            <td class="text-right">00</td>
+                                            <td class="text-right">00</td>
+                                            {% if x.5 == 0 and pageData1.0.5 == None %}
+                                                
+                                                <td>
+                                                    <div class="panel-body"  style="padding:0px; margin: 0px;">
+                                                        <div class="col-lg-9" style="padding:0px; margin: 0px; padding-right: 10px;padding-left: 2px;">
+
+                                                        <div class="form-group input-group" style="padding:0px;margin:0px;">
+                                       
+                                                        <input id="{{x.1}}_input" type="text" class="form-control input-sm" placeholder="" >
+                                                            <span class="input-group-btn">
+                                                                <button id="{{x.1}}_part" class="btn btn-default btn-sm " type="button">
+                                                                    <i class="icon-plus"></i> Save
+                                                            </button>
+                                                            </span>
+                                                        </div> 
+                                                            
+                                                        </div>
+                                                        <div class="col-lg-3" style="padding:0px; margin: 0px;">
+                                                            
+                                                            <button id="{{x.1}}_all" value="{{x.4}}" class="btn btn-default btn-sm " type="button">
+                                                                    <i class="icon-ok"></i> All
+                                                            </button>
+
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+
+                                            {% else %}
+                                                <td class="text-right">{{x.5}}</td>
+                                            {% endif %}
+
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                                
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+                         {% if pageData1.0.5 == None %} 
+                            <div class="col-lg-12" >
+                                    <div class="panel panel-default">
+                                        <div class="panel-body" >
+                                            <div style="float:right; 
+                                             right:0;">
+                                                 
+                                               <button id="approveBtn" class="btn btn-success"><i class="icon-ok"></i> Approve</button>
+                                               <button class="btn btn-danger"><i class="icon-remove"></i> Decline</button>
+                                             </div>
+                                                    
+                                        </div>
+                                    </div>
+                                </div>
+              
+                            {% endif %}
+                      
+                            {% if pageData1.0.5 == True and pageData1.0.9 == None %}
+                            <div class="col-lg-12" >
+                                    <div class="panel panel-default">
+                                        <div class="panel-body" style="padding: 8px;">
+                                        <div class="form-group col-lg-10" style="padding:0px; margin:0px;">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="text-right col-lg-6 dataFont2" style="padding-top: 15px;">
+                                                    Release to:  
+                                                </div>
+                                                <div class="col-lg-5 dataFont1" style="font-weight: normal;">
+                                                        <input type="text" id="insofficer" list="insOffList" class="form-control" placeholder="Enter the Name of the personnel that claim the items" />
+                                                        <datalist id="insOffList">
+                                                        </datalist>
+                                                    
+                                                </div>
+                                            </div> 
+                                        </div>
+
+                                            <div  class="col-lg-2 text-right" style="margin-top: 7px;">
+                                                 
+                                               <button id="releaseBtn" class="btn btn-success"><i class="icon-ok"></i> Release</button>
+                                             </div>
+                                                    
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+               
+    <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+  </div> 
+
+                <!-- /. ROW  -->
+                
+                  
+
+            
+
+
+                </div>    
+
+                </div>
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <div id="footer-sec">
+       &copy; Mindanao State University - General Santos City</i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+
+    <script type="text/javascript">
+          var theArray = {}
+          var theArrayIndex = 0    
+          var insOffID = ''   
+        
+    $('#theListOfItems').on('click', 'button', function() {
+         var id = this.id
+                  var arr = id.split('_');
+         
+
+         if (arr[1] == 'part') {
+            
+            value = $('#'+arr[0]+'_input').val()
+
+            $('#'+arr[0]+'_all').attr('class', 'btn btn-default btn-sm')
+            $('#'+arr[0]+'_part').attr('class', 'btn btn-success btn-sm')
+
+            theArray[arr[0]] = $('#'+arr[0]+'_input').val()
+
+         } else {
+
+            $('#'+arr[0]+'_part').attr('class', 'btn btn-default btn-sm')
+            $('#'+arr[0]+'_all').attr('class', 'btn btn-success btn-sm')
+           
+            theArray[arr[0]] = $(this).val()
+         }
+        
+    });
+
+    $('#insofficer').keyup(function(e){
+        e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getEmployeeData/',
+                data:{
+                    
+                    'inputName': document.getElementById("insofficer").value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("insOffList").innerHTML = ""
+                        
+                        for(var key in response) {
+                           
+                            var value = response[key];
+                            document.getElementById("insOffList").innerHTML += '<option id="'+key+'" value ="'+value['name']+'"/>'
+
+                        }
+
+                    }
+
+            });
+    });
+
+    $("#insofficer").on('input', function () {
+       
+        var val = this.value;
+        var id = $('#insOffList option[value="' + val +'"]').attr('id');
+        
+        insOffID = id
+
+      }); 
+
+
+    $('#approveBtn').click(function (argument) {
+            
+            $.ajax({
+                    type: 'POST',
+                    url:'/inventory_office/approveRIS/',
+                    data:{
+
+                        'theMatrix': JSON.stringify(theArray),
+                        'slipnum': $('#reqNum').attr('value'),
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+                            alert('Approved')
+                    }
+
+                }); 
+    });
+
+    $('#releaseBtn').click(function (argument) {
+         
+            $.ajax({
+            type: 'POST',
+                    url:'/inventory_office/releaseRIS/',
+                    data:{
+
+                        'receiverID': insOffID,
+                        'slipnum': $('#reqNum').attr('value'),
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+                            alert('Approved')
+                    }
+
+                }); 
+    });
+
+    </script>
+
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#inquire').attr('class','active-menu-inven')
+            $('#title').html('Requisition and Issuance Details')
+
+           
+             });
+    </script>
+
+{% endblock %}

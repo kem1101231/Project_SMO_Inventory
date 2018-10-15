@@ -1,0 +1,1020 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RQ Template</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="assets/css/basic.css" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+    <style>
+<!--
+ /* Font Definitions */
+ @font-face
+    {font-family:"Cambria Math";
+    panose-1:2 4 5 3 5 4 6 3 2 4;
+    mso-font-charset:1;
+    mso-generic-font-family:roman;
+    mso-font-format:other;
+    mso-font-pitch:variable;
+    mso-font-signature:0 0 0 0 0 0;}
+@font-face
+    {font-family:Calibri;
+    panose-1:2 15 5 2 2 2 4 3 2 4;
+    mso-font-charset:0;
+    mso-generic-font-family:swiss;
+    mso-font-pitch:variable;
+    mso-font-signature:-536870145 1073786111 1 0 415 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+    {mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-parent:"";
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:8.0pt;
+    margin-left:0in;
+    line-height:107%;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+h1
+    {mso-style-priority:9;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-link:"Heading 1 Char";
+    mso-style-next:Normal;
+    margin-top:12.0pt;
+    margin-right:0in;
+    margin-bottom:0in;
+    margin-left:0in;
+    margin-bottom:.0001pt;
+    line-height:107%;
+    mso-pagination:widow-orphan lines-together;
+    page-break-after:avoid;
+    mso-outline-level:1;
+    font-size:16.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    color:#2E74B5;
+    mso-themecolor:accent1;
+    mso-themeshade:191;
+    mso-font-kerning:0pt;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;
+    font-weight:normal;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+    {mso-style-priority:10;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-link:"Title Char";
+    mso-style-next:Normal;
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:28.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    letter-spacing:-.5pt;
+    mso-font-kerning:14.0pt;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+    {mso-style-priority:10;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-link:"Title Char";
+    mso-style-next:Normal;
+    mso-style-type:export-only;
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:28.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    letter-spacing:-.5pt;
+    mso-font-kerning:14.0pt;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+    {mso-style-priority:10;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-link:"Title Char";
+    mso-style-next:Normal;
+    mso-style-type:export-only;
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:28.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    letter-spacing:-.5pt;
+    mso-font-kerning:14.0pt;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+    {mso-style-priority:10;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-link:"Title Char";
+    mso-style-next:Normal;
+    mso-style-type:export-only;
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    mso-pagination:widow-orphan;
+    font-size:28.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    letter-spacing:-.5pt;
+    mso-font-kerning:14.0pt;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+    {mso-style-priority:1;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-parent:"";
+    margin:0in;
+    margin-bottom:.0001pt;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:8.0pt;
+    margin-left:.5in;
+    mso-add-space:auto;
+    line-height:107%;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:0in;
+    margin-left:.5in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    line-height:107%;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:0in;
+    margin-left:.5in;
+    margin-bottom:.0001pt;
+    mso-add-space:auto;
+    line-height:107%;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+    {mso-style-priority:34;
+    mso-style-unhide:no;
+    mso-style-qformat:yes;
+    mso-style-type:export-only;
+    margin-top:0in;
+    margin-right:0in;
+    margin-bottom:8.0pt;
+    margin-left:.5in;
+    mso-add-space:auto;
+    line-height:107%;
+    mso-pagination:widow-orphan;
+    font-size:11.0pt;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+span.TitleChar
+    {mso-style-name:"Title Char";
+    mso-style-priority:10;
+    mso-style-unhide:no;
+    mso-style-locked:yes;
+    mso-style-link:Title;
+    mso-ansi-font-size:28.0pt;
+    mso-bidi-font-size:28.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    letter-spacing:-.5pt;
+    mso-font-kerning:14.0pt;}
+span.Heading1Char
+    {mso-style-name:"Heading 1 Char";
+    mso-style-priority:9;
+    mso-style-unhide:no;
+    mso-style-locked:yes;
+    mso-style-link:"Heading 1";
+    mso-ansi-font-size:16.0pt;
+    mso-bidi-font-size:16.0pt;
+    font-family:"Calibri Light","sans-serif";
+    mso-ascii-font-family:"Calibri Light";
+    mso-ascii-theme-font:major-latin;
+    mso-fareast-font-family:"Times New Roman";
+    mso-fareast-theme-font:major-fareast;
+    mso-hansi-font-family:"Calibri Light";
+    mso-hansi-theme-font:major-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:major-bidi;
+    color:#2E74B5;
+    mso-themecolor:accent1;
+    mso-themeshade:191;}
+span.SpellE
+    {mso-style-name:"";
+    mso-spl-e:yes;}
+span.GramE
+    {mso-style-name:"";
+    mso-gram-e:yes;}
+.MsoChpDefault
+    {mso-style-type:export-only;
+    mso-default-props:yes;
+    font-family:"Calibri","sans-serif";
+    mso-ascii-font-family:Calibri;
+    mso-ascii-theme-font:minor-latin;
+    mso-fareast-font-family:Calibri;
+    mso-fareast-theme-font:minor-latin;
+    mso-hansi-font-family:Calibri;
+    mso-hansi-theme-font:minor-latin;
+    mso-bidi-font-family:"Times New Roman";
+    mso-bidi-theme-font:minor-bidi;
+    mso-ansi-language:EN-US;
+    mso-fareast-language:EN-US;}
+.MsoPapDefault
+    {mso-style-type:export-only;
+    margin-bottom:8.0pt;
+    line-height:107%;}
+@page WordSection1
+    {size:8.5in 13.0in;
+    margin:1.0in 1.0in 1.0in 1.0in;
+    mso-header-margin:.5in;
+    mso-footer-margin:.5in;
+    mso-paper-source:0;}
+div.WordSection1
+    {page:WordSection1;}
+ /* List Definitions */
+ @list l0
+    {mso-list-id:587151343;
+    mso-list-type:hybrid;
+    mso-list-template-ids:-1790409880 -1759576766 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:1.25in;
+    text-indent:-.25in;}
+@list l0:level2
+    {mso-level-number-format:alpha-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:1.75in;
+    text-indent:-.25in;}
+@list l0:level3
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    margin-left:2.25in;
+    text-indent:-9.0pt;}
+@list l0:level4
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:2.75in;
+    text-indent:-.25in;}
+@list l0:level5
+    {mso-level-number-format:alpha-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:3.25in;
+    text-indent:-.25in;}
+@list l0:level6
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    margin-left:3.75in;
+    text-indent:-9.0pt;}
+@list l0:level7
+    {mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:4.25in;
+    text-indent:-.25in;}
+@list l0:level8
+    {mso-level-number-format:alpha-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:left;
+    margin-left:4.75in;
+    text-indent:-.25in;}
+@list l0:level9
+    {mso-level-number-format:roman-lower;
+    mso-level-tab-stop:none;
+    mso-level-number-position:right;
+    margin-left:5.25in;
+    text-indent:-9.0pt;}
+ol
+    {margin-bottom:0in;}
+ul
+    {margin-bottom:0in;}
+-->
+</style>
+
+</head>
+<body>
+
+    <div class="panel">
+
+        <div class="panel-body" style="width:100%; padding:0px; margin:0px;" >
+            
+            <div style="float: left; width:50%;">
+            <div style="padding:0px; margin:0px;">
+                
+                <span lang="EN-US" class="theFont" style="font-size:12.0pt;
+                                          font-weight: bold;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;
+                                          ">
+                                          MINDANAO STATE UNIVERSITY
+                </span>
+            </div>
+            <div style="padding:0px; margin:0px;">
+                <span lang="EN-US" class="theFont" style="font-size:10.0pt;
+                                          font-weight: bold;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">
+                                          Fatima, General Santos City
+                </span>
+            </div>
+            
+
+        </div>
+         <div class="text-right" style="float: right; width:50%;">
+            <div style="height:17px;padding:0px; margin:0px;">
+               <span lang="EN-US" class="theFont" style="font-size:10.0pt;
+                                          font-weight: bold;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">
+                                          Reference Nos.________________
+                </span>
+            </div>
+            <div style="height:17px;padding:0px; margin:0px;">
+            <span lang="EN-US" class="theFont" style="font-size:10.0pt;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">
+                                          Proj Name:________________
+                </span>
+                
+             
+            </div>
+            <div style="height:17px;padding:0px; margin:0px;">
+            <span lang="EN-US" class="theFont" style="font-size:10.0pt;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">
+                                          Location:________________
+                </span>
+                
+            </div>
+            
+
+        </div>
+        </div>
+        
+
+        
+
+        <div class="text-center panel-body" style="width:100%; padding:0px; margin:0px; margin-top:10px; margin-bottom:10px;">
+            
+            <span lang="EN-US" style="font-size:15.0pt;
+                             mso-bidi-font-size:11.0pt;
+                                      font-weight: bold;
+                                    line-height:107%;
+                                    font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">
+                                    REQUEST FOR QUOTATION
+            </span>
+
+        </div>
+        <div class="panel-body" style="width:100%; padding:0px; margin:0px;">
+            
+            <div  style="float: left; width:50%;">
+            <div style="padding:0px; margin:0px; margin-bottom:10px;">
+                
+                <div style="height:17px;padding:0px; margin:0px;">
+                    <span lang="EN-US" class="theFont" style="font-size:10.0pt;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;
+                                          ">
+                                          _______________________________
+                    </span>
+                </div>
+                <div  style="height:17px;padding:0px; margin:0px;padding-left:30px;">
+                    <span lang="EN-US" class="theFont" style="font-size:10.0pt;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;
+                                          ">
+                                          Company Name
+                    </span>
+                </div>
+            </div>
+            <div style="padding:0px; margin:0px;">
+               <div style="height:17px;padding:0px; margin:0px;">
+                    <span lang="EN-US" class="theFont" style="font-size:10.0pt;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;
+                                          ">
+                                          _______________________________
+                    </span>
+                </div>
+                <div  style="height:17px;padding:0px; margin:0px;padding-left:30px;">
+                    <span lang="EN-US" class="theFont" style="font-size:10.0pt;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;
+                                          ">
+                                          Address
+                    </span>
+                </div>
+            </div>
+            
+
+            </div>
+            
+            <div class="text-right" style="float: left; width:50%;">
+            <div style="padding:0px; margin:0px; margin-bottom:10px;">
+                
+                <div style="height:17px;padding:0px; margin:0px;">
+                    <span lang="EN-US" class="theFont" style="font-size:10.0pt;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;
+                                          ">
+                                          Date:________________
+                    </span>
+                </div>
+                <div  style="height:17px;padding:0px; margin:0px;">
+                    <span lang="EN-US" class="theFont" style="font-size:11.0pt;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;
+                                          ">
+                                          
+                    </span>
+                </div>
+            </div>
+            <div style="padding:0px; margin:0px;">
+               <div style="height:17px;padding:0px; margin:0px;">
+                    <span lang="EN-US" class="theFont" style="font-size:10.0pt;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;
+                                          ">
+                                          Quotation No.________________
+                    </span>
+                </div>
+                <div  style="height:17px;padding:0px; margin:0px;">
+                    <span lang="EN-US" class="theFont" style="font-size:11.0pt;
+                                          mso-bidi-font-size:11.0pt;
+                        font-family:&quot;Times New Roman&quot;,&quot;serif&quot;
+                                          ">
+                                          
+                    </span>
+                </div>
+            </div>
+            
+
+            </div>
+        </div>
+        <div class="panel-boby" style="margin:0px; padding:0px; margin-top:25px;">
+            <p class="MsoNormal" style="tab-stops:65.55pt"><span lang="EN-US" style="font-size:
+10.0pt;mso-bidi-font-size:11.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Please quote your
+lowest price on the item/s listed below, subject to the General Conditions,
+stating the shortest delivery and submit your quotation duly signed by your
+representative not later than ________________ in a sealed envelope.<o:p></o:p></span></p>
+
+        </div>
+        <div class="text-right" class="panel-body" style="margin:0px; padding:0px; padding-right:20px;padding-top:20px;">
+        <div style="height:17px;margin:0px; padding:0px;">
+            <u style="font-weight:bold">EDUARDO A. DELA VICTORIA</u>
+        </div>
+        <div style="height:17px;margin:0px; padding:0px; padding-right:15px;">
+            <span lang="EN-US" style="font-size:10.0pt;
+                            mso-bidi-font-size:11.0pt;
+                                    font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">
+                                    OIC, Procurement Office
+            </span>
+        </div>
+            
+        </div>
+        <div class="panel-body" style="margin:0px; padding:0px; ">
+                    
+                    <p class="MsoNormal" style="tab-stops:65.55pt"><span lang="EN-US" style="font-size:
+                    10.0pt;mso-bidi-font-size:11.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span lang="EN-US" style="font-size:7.0pt;mso-bidi-font-size:11.0pt;line-height:107%;
+                    font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">NOTE: <o:p></o:p></span></p>
+                                    <p class="MsoListParagraphCxSpFirst" style="margin-left:1.25in;mso-add-space:
+                    auto;text-indent:-.25in;mso-list:l0 level1 lfo1;tab-stops:65.55pt"><!--[if !supportLists]--><span lang="EN-US" style="font-size:7.0pt;mso-bidi-font-size:11.0pt;line-height:107%;
+                    font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span></span><!--[endif]--><span lang="EN-US" style="font-size:7.0pt;
+                    mso-bidi-font-size:11.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">ALL
+                    ENTRIES MUST BE TYPEWRITTEN<o:p></o:p></span></p>
+                                   
+                                        <p class="MsoListParagraphCxSpMiddle" style="margin-left:1.25in;mso-add-space:
+                    auto;text-indent:-.25in;mso-list:l0 level1 lfo1;tab-stops:65.55pt"><!--[if !supportLists]--><span lang="EN-US" style="font-size:7.0pt;mso-bidi-font-size:11.0pt;line-height:107%;
+                    font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span></span><!--[endif]--><span lang="EN-US" style="font-size:7.0pt;
+                    mso-bidi-font-size:11.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">DELIVERY
+                    PERIOD WITHIN __________ CALENDAR DAYS<o:p></o:p></span></p>
+                                <p class="MsoListParagraphCxSpMiddle" style="margin-left:1.25in;mso-add-space:
+                    auto;text-indent:-.25in;mso-list:l0 level1 lfo1;tab-stops:65.55pt"><!--[if !supportLists]--><span lang="EN-US" style="font-size:7.0pt;mso-bidi-font-size:11.0pt;line-height:107%;
+                    font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">3.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span></span><!--[endif]--><span lang="EN-US" style="font-size:7.0pt;
+                    mso-bidi-font-size:11.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">WARRANTY
+                    SHALL BE FOR A PERIOD OF SIX (6) MONTHS FOR SUPPLIES &amp; MATERIALS, ONE (1)
+                    YEAR FOR EQUIPMENT, FROM DATE OF ACCEPTANCE BY THE PROCURING ENTITY<o:p></o:p></span></p>
+                                   <p class="MsoListParagraphCxSpMiddle" style="margin-left:1.25in;mso-add-space:
+                    auto;text-indent:-.25in;mso-list:l0 level1 lfo1;tab-stops:65.55pt"><!--[if !supportLists]--><span lang="EN-US" style="font-size:7.0pt;mso-bidi-font-size:11.0pt;line-height:107%;
+                    font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">4.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span></span><!--[endif]--><span lang="EN-US" style="font-size:7.0pt;
+                    mso-bidi-font-size:11.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">PRICE
+                    VALIDITY SHALL BE FOR A PERIOD OF FIFTEEN (15) CALENDAR DAYS<o:p></o:p></span></p>
+                            <p class="MsoListParagraphCxSpMiddle" style="margin-left:1.25in;mso-add-space:
+                    auto;text-indent:-.25in;mso-list:l0 level1 lfo1;tab-stops:65.55pt"><!--[if !supportLists]--><span lang="EN-US" style="font-size:7.0pt;mso-bidi-font-size:11.0pt;line-height:107%;
+                    font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">5.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span></span><!--[endif]--><span lang="EN-US" style="font-size:7.0pt;
+                    mso-bidi-font-size:11.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">G-EPS
+                    REGISTRATION CERTIFICATE SHALL BE ATTACHED UPON SUBMISSION OF THE QUOTATION<o:p></o:p></span></p>
+
+                    <p class="MsoListParagraphCxSpLast" style="margin-left:1.25in;mso-add-space:auto;
+                    text-indent:-.25in;mso-list:l0 level1 lfo1;tab-stops:65.55pt"><!--[if !supportLists]--><span lang="EN-US" style="font-size:7.0pt;mso-bidi-font-size:11.0pt;line-height:107%;
+                    font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">6.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span></span></span><!--[endif]--><span lang="EN-US" style="font-size:7.0pt;
+                    mso-bidi-font-size:11.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">BIDDERS
+                    SHALL SUBMIT ORIGINAL BROCHURES SHOWING CERTIFICATIONS OF THE PRODUCT BEING
+                    OFFERED<o:p></o:p></span></p>
+
+
+        </div>
+
+        <div style="margin-top:15px;margin-bottom:55px;">
+            
+            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" style="margin-bottom:0px; font-size:10.0pt;
+                            mso-bidi-font-size:11.0pt;font-weight: bold;
+                                    font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">
+                                    <thead>
+                                        
+                                    <tr class="text-center">
+                                        <td style="height:25px; padding:0px;">
+                                            ITEM NO.
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                            ITEM & DESCRIPTION      
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                             QTY.
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                            UNIT
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                            UNIT PRICE
+                                        </td>
+
+                                    </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height:25px; padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">   
+                                        </td >
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+                                        <td style="height:25px;padding:0px;">
+                                        </td>
+
+                                    </tr>
+                                    
+
+                                    </tbody>
+
+                                </table>
+                                </div>
+
+        </div>
+        
+        <div class="panel-body text-right" style="padding:0px; margin:0px; width: 100%;">
+                           
+                            <div style="height:21px;">
+                                <span lang="EN-US" style="font-size:11.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">Delivery
+                Period: _________________</span>
+                            </div>
+                            <div style="height:21px;">
+                                <span lang="EN-US" style="font-size:11.0pt;font-family:
+                &quot;Times New Roman&quot;,&quot;serif&quot;">Warranty:
+                _______________________</span>
+                            </div>
+                            <div style="height:21px;">
+                                <span lang="EN-US" style="font-size:11.0pt;font-family:
+                &quot;Times New Roman&quot;,&quot;serif&quot;">Price
+                Validity: ___________________</span>
+                            </div>
+                            <div style="padding-bottom:0px;margin:bottom:0px;height:18px;">
+                            <span lang="EN-US" style="font-size:11.0pt;font-family:
+                &quot;Times New Roman&quot;,&quot;serif&quot;">________________________________</span>
+                            </div>
+                            <div>
+                            <span lang="EN-US" style="font-size:11.0pt;font-family:
+                &quot;Times New Roman&quot;,&quot;serif&quot;">Signature over printed name of bidder</span>
+                            </div>
+                            <div style="height:21px;">
+                            <span lang="EN-US" style="font-size:10.0pt;font-family:
+                &quot;Times New Roman&quot;,&quot;serif&quot;">Tel No./ Cellphone No.: _____________</span>
+                            </div>
+                            <div style="height:21px;">
+                            <span lang="EN-US" style="font-size:10.0pt;font-family:
+                &quot;Times New Roman&quot;,&quot;serif&quot;">E-mail address: ____________________</span>
+                            </div>
+            
+        </div>
+
+        <div class="panel-body" style="padding:0px; margin:0px; width: 100%; ">
+
+                    <div style="padding-bottom:0px;margin:bottom:0px;height:18px;">
+                            <span lang="EN-US" style="font-size:11.0pt;font-family:
+                &quot;Times New Roman&quot;,&quot;serif&quot;">_________________________________</span>
+                            </div>
+                            <div>
+                            <span lang="EN-US" style="font-size:11.0pt;font-family:
+                &quot;Times New Roman&quot;,&quot;serif&quot;">Signature over printed name of canvasser</span>
+                            </div>
+                            
+        </div>
+                
+
+
+    </div>
+
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="assets/js/bootstrap.js"></script>
+     <!-- METISMENU SCRIPTS -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+
+
+</body>
+</html>

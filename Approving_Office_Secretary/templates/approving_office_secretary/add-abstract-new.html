@@ -1,0 +1,1082 @@
+{% extends 'procurement/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                       <span name="reqNum" id="reqNum">Create an Abstract of Canvass</span>
+
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+            
+        
+
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                           
+                            <form id="theDLForm" action="/procurement_office/generateRQDocument/" method="POST"> {% csrf_token %}
+                                   <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px;">
+                                                                
+                        <div style="display: inline; font-weight: 400;  font-size: 18px;">
+                             Canvass Number: 
+                        </div>
+                                                                
+                        <div id="total" value="0" class="panel panel-default" style="display: inline; font-size: 25px;  font-weight: 400; padding:10px;">***-**
+                         </div>
+                     </div> 
+
+               </div>
+                                  </form>
+                                  <div  class="form-group"  style="display: inline;">
+                                <h3 class="panel-title" style="font-weight:bold;">Provide the Abstract Information</h3>
+                            </div>
+                                
+
+
+
+
+                            </div>
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                       <div class="panel panel-body">
+            
+            <form class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Quotation Number: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="quotNum"  class="form-control">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Opening Date: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="openingDate"  class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Opening Time: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="openingTime"  class="form-control">
+                    </div>
+                </div>
+            </form>
+            </div>
+
+                        </div>
+
+                    
+
+                    </div> 
+     
+                        </div>
+                        </div>
+                            </div>
+
+
+                     <div class="col-lg-12">
+                    
+                       
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Add Request Recipients</h3>
+                            </div>
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                         
+                                 <div class="panel-body" style="
+                                 padding:0px;
+                                 ">
+
+                            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel panel-default">
+                             <div class="table-responsive">
+                                <table id="myTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Company Name</th>
+                                            <th>Address</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="compTable">
+                                   
+                                    </tbody>
+                                </table>
+                                
+                                <!--<button class="btn btn-xs btn-success" role= "button" aria-disabled="true" data-toggle="modal"  data-target="#newReg"><i class="icon-plus"></i> Add Supplier Information</button>-->
+                            
+                            </div>
+
+                        </div>
+                     
+
+                    </div>
+
+
+                    </div>
+                                
+                            </div>
+                           
+                        </div>
+
+                        </div>
+
+                    
+
+                    </div> 
+     
+                        </div>
+                        </div>
+                            </div>   
+
+                            <div class="col-lg-12" >
+                                     <div class="panel panel-default">
+                                         <div class="panel-body" >
+                                      <form id="addForm" method="POST" action="">{% csrf_token %}
+                                     <div style="float:right; 
+                                     right:0;">
+                                         
+                         <button id="send" class="btn btn-success" role= "submit" aria-disabled="true"><i class="icon-ok"></i> Create Request for Quotation</button>
+                                     </div>
+                                     </form>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                  
+                </div>          
+
+                        </div>
+
+        
+
+<!--// =======================================  Modal  ====================================//-->
+            <!--class="col-lg-12"-->
+        <div id="dd">
+            <div class="modal fade" id="newReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                 <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                            <div class="modal-header">
+                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                     <h4 class="modal-title" id="H4">Enter the Company's Bids for the Items</h4>
+                            </div>
+                            <div class="modal-body">
+                                    <form role="form">
+<!--// =======================================  Test  ====================================//-->
+            
+            <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 0px;
+                 font-size: 15px;
+                 padding-top: 0px;
+                 padding-bottom: 0px;
+                ">
+                <div>
+                    <label id="comLabel" class="control-label"></label>
+                </div>
+                  <hr style="margin-bottom:0px;">
+
+
+               </div>
+
+               <form class="form-horizontal">
+
+                <div class="table-responsive">
+                        <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    margin-top: 0px; 
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    padding-bottom: 20px;
+                                    ">
+                                <div class="panel">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Item Requested</th>
+                                            <th>Bidded Item Description</th>
+                                            <th class="text-center">Bidded Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="itemListTable">
+                                    
+                                    </tbody>
+                                </table>
+                                
+                                <!--<button class="btn btn-xs btn-success" role= "button" aria-disabled="true" data-toggle="modal"  data-target="#newReg"><i class="icon-plus"></i> Add Supplier Information</button>-->
+                            
+                            </div>
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                </div>
+
+                <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 0px;
+                 font-size: 15px;
+                 padding-top: 0px;
+                 padding-bottom: 0px;
+                ">
+                <div>
+                    <label class="control-label">Prepared Terms</label>
+                </div>
+                  <hr style="margin-bottom:0px;">
+
+
+               </div> 
+                
+                <div class="panel panel-body" style="padding-top:0px;">
+                 <form class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Warranty Period: </label>
+
+                    <div class="col-lg-5">
+                        <input autofocus type="text" id="warrranty"  class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Delivery Period: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="delivery"  class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Price Validity: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="validity"  class="form-control">
+                    </div>
+                </div>
+                </div>           
+
+<!--// =======================================  Test  ====================================//-->
+                                       
+
+                                    </form>
+                                    </div>
+
+                                <div class="modal-footer">
+                                    <button id="saveBidList" type="button" role="button" class="btn btn-success" >Save</button>
+                                </div>
+
+                            </div>
+                           
+                        </div>
+                 </div>
+            </div>
+        </div>
+<!--// ======================================= End of Modal Frame ====================================//-->
+
+<!--// =======================================  Modal  ====================================//-->
+            <!--class="col-lg-12"-->
+        <div id="dd">
+            <div class="modal fade" id="newAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                 <div id="modalMain" class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                            <div class="modal-header">
+                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                     <h4 class="modal-title" id="H4">Enter the Company's Bids for the Items</h4>
+                            </div>
+                            <div id="displayArea" class="modal-body">
+                                   
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button id="prev2" type="button" role="button" class="btn btn-primary" style="visibility:hidden">Previous Step</button>
+                                    <button id="saveBidList2" type="button" role="button" class="btn btn-primary" >Next Step</button>
+                                </div>
+
+                            </div>
+                           
+                        </div>
+                 </div>
+            </div>
+        </div>
+<!--// ======================================= End of Modal Frame ====================================//-->
+
+<!-- ========================================= wizard Item 1 ============================================= -->
+    
+    <div id="wizardUI1" style="display:none;"> 
+
+    <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 0px;
+                 font-size: 15px;
+                 padding-top: 0px;
+                 padding-bottom: 0px;
+                ">
+                <div>
+                    <label id="comLabel23" class="control-label"></label>
+                </div>
+                  <hr style="margin-bottom:0px;">
+
+
+               </div>
+
+               <form class="form-horizontal">
+
+             
+                   <div class="table-responsive">
+                        <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    margin-top: 0px; 
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    padding-bottom: 20px;
+                                    ">
+                                <div class="panel">
+                            <div class="table-responsive">
+                                <table id="myTable2" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Item Requested</th>
+                                            <th class="text-center">Estimated Cost</th>
+                                            <th>Bidded Item Description</th>
+                                            <th class="text-center">Bidded Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="itemListTable2">
+                                    
+                                    </tbody>
+                                </table>
+                            
+                            </div>
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                </div>
+                </form>
+</div>
+
+
+   
+<!-- ========================================= end of wizard Item 1 ============================================= -->
+<!-- ========================================= wizard Item 2 ============================================= -->
+<div id="wizardUI2" style="display:none;">
+     <form class="form-horizontal">
+
+             
+
+                <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 0px;
+                 font-size: 15px;
+                 padding-top: 0px;
+                 padding-bottom: 0px;
+                ">
+                <div>
+                    <label class="control-label">Prepared Terms</label>
+                </div>
+                  <hr style="margin-bottom:0px;">
+
+
+               </div> 
+                
+                <div class="panel panel-body" style="padding-top:0px;">
+                 <form class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Warranty Period: </label>
+
+                    <div class="col-lg-3">
+                        <input autofocus type="text" id="warrranty"  class="terms form-control">
+                    </div>
+                    <div class="col-lg-3">
+                       <label class="control-label">days</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Delivery Period: </label>
+
+                    <div class="col-lg-3">
+                        <input type="text" id="delivery"  class="terms form-control">
+                    </div>
+                    <div class="col-lg-3">
+                       <label class="control-label">days</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Price Validity: </label>
+
+                    <div class="col-lg-3">
+                        <input type="text" id="validity"  class="terms form-control">
+                    </div>
+                    <div class="col-lg-3">
+                       <label class="control-label">days</label>
+                    </div>
+                </div>
+                </div>     
+                <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 0px;
+                 font-size: 15px;
+                 padding-top: 0px;
+                 padding-bottom: 0px;
+                ">
+                <div>
+                    <label class="control-label">Company Representative</label>
+                </div>
+                  <hr style="margin-bottom:0px;">
+
+
+               </div> 
+                
+                <div class="panel panel-body" style="padding-top:0px;">
+                 <form class="form-horizontal">
+
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Name: </label>
+
+                    <div class="col-lg-5">
+                        <input autofocus type="text" id="repname"  class="rep form-control" list="compSeacrhList" >
+                        <datalist id="compSeacrhList">
+                        </datalist>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Telephone No.: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="reptel"  class="rep form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Email: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="repemail"  class="rep form-control">
+                    </div>
+                </div>
+                </div>       
+
+                                       
+
+                                    </form>
+
+
+</div>
+   
+
+<!-- ========================================= end of wizard Item 2 ============================================= -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transComp2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Abstract of Canvass/Bids Saved</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">Abstract of Canvass/Bids has been saved and sent to the requesting personnel of the reference PR of this task.</p>
+                                        <p style="margin-bottom:10px;">The requesting personnel will now select which supplier will provide his/her requested items</p> 
+                                        <p style="margin-bottom:10px;">Waiting for requesting personnel decission regarding on the selection</p> 
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec" >
+      &copy; Mindanao State University
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+   
+    <script src="{% static 'assets/plugins/datepicker/js/bootstrap-datepicker.js' %}"></script>
+
+    
+    <script type="text/javascript">
+
+       var total = 0;
+       var theArray = {};
+       var toDjangoArray = {};
+       var theArrayIndex = 0; 
+       var itemBidList = {};
+       var bidItemList = {};
+       var bidPricesList = {}; 
+
+       var bidFillComplete = false   
+       
+       var url = '';
+       
+
+        var qoutNum =''
+        var prNum = ''
+        var projLoc = ''
+        var projName = ''
+        var canv = ''
+
+
+        var theWizardUI1Default = $('#wizardUI1').html();
+        var theWizardUI2Default = $('#wizardUI2').html();
+
+
+
+    document.getElementById("send").onclick = function () {
+        
+        prNum = document.getElementById("prNum").value;
+        projLoc = document.getElementById("projLoc").value;
+        projName = document.getElementById("projName").value;
+        canv = document.getElementById("canv").value;
+
+
+        if (prNum === ""|| projName === ""|| projLoc === ""|| canv === "") {
+                alert("Provide all Data First");
+                return false;
+        } else {
+
+            if (bidFillComplete == false) {
+                alert("No Suppliers added")
+                return false;
+            } else {
+                return true;
+            }
+
+            
+        }
+    };
+    
+    var numB = 0
+
+
+   $('#modalMain').on('focus','input', function (e) {
+     var id =  this.id
+     var value = document.getElementById(id).value
+
+     if (id == 'repname') {
+
+        $('#'+id).keyup(function (e) {
+            
+            e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/findRepComp/',
+                data:{
+                    
+                    'repName': value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+                        
+                        document.getElementById("compSeacrhList").innerHTML = ''
+                        
+                        for(var key in response) {
+                            var value = response[key];
+                            document.getElementById("compSeacrhList").innerHTML += '<option id= "'+value['compname']+'" value ="'+value['name']+'"/>'
+                        }
+                    }
+
+            });
+        })    
+
+           
+     }
+   });
+
+    $('#modalMain').on('focus','input', function (e) {
+     
+     var id =  this.id
+     
+     if (id == 'repname') {
+
+        $('#'+id).on('input', function (t) {
+            
+        var val = this.value;
+        var id2 = $('#compSeacrhList option[value="' + val +'"]').attr('id');
+
+        
+        $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getSupplierDetails/',
+                data:{
+                    'compName': id2,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("reptel").value = response.repnum
+                        document.getElementById("repemail").value = response.repemail
+                       
+                    }
+
+            });
+
+
+
+        })
+
+
+     }
+
+   });
+
+
+
+    $('#quotNum').keyup(function (e) {
+        if (document.getElementById("quotNum").value == '') {
+            document.getElementById("total").innerHTML = '***-**'
+        } else {
+            document.getElementById("total").innerHTML = document.getElementById("quotNum").value
+            
+            if (document.getElementById("quotNum").value.length == 6) {
+                $.ajax({
+                    type: 'POST',
+                    url:'/procurement_office/getReqComp/',
+                    data:{
+                    
+                        'quotNum': document.getElementById("quotNum").value,
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+
+
+                        if (response === "nonExisting") {
+                            alert("Quotation not Found");
+                            $('#quotNum').val('');
+                            document.getElementById("total").innerHTML = '***-**';
+
+                        } else {
+
+                            if (response === "existing") {
+
+                                alert("Abstract has already been prepared");
+                                $('#quotNum').val('');
+                                document.getElementById("total").innerHTML = '***-**';
+                            
+                            } else {
+
+                                document.getElementById("compTable").innerHTML = "";
+
+                                for(var key in response) {
+                                    var value = response[key];
+                                    
+                                    var t = '';
+                                        var tr = '<tr id="'+value['compid']+'_row">';
+                                            tr += '<td>'+value['name']+'</td>';
+                                            tr += '<td>'+value['address']+'</td>';
+                                            tr += '<td class="text-center" id="'+value['compid']+'_act">';
+                                            tr += '<button id="'+value['compid']+'" value="'+value['name']+'" class="btn btn-xs btn-primary" type="button" role= "button" aria-disabled="true" data-toggle="modal" data-target="#newAdd">Enter Company Bids</button>';
+                                            tr +='</td>';
+                                            tr += "</tr>";
+                                            t += tr;
+                                
+                                document.getElementById("compTable").innerHTML += t;
+                
+                                }
+                            }
+                        }
+
+                     
+                    }
+
+            });
+            
+            }
+        }
+        
+    })
+
+
+
+    $('#compTable').on('click','button', function (e) {
+        
+        var id = this.id;
+        var valued = document.getElementById(id).value
+        
+        $('#saveBidList2').val(id)
+        $.ajax({
+                    type: 'POST',
+                    url:'/procurement_office/getReqQItems/',
+                    data:{
+                    
+                        'quotNum': document.getElementById("quotNum").value,
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+
+                        document.getElementById("itemListTable").innerHTML = "";
+                        
+                        for(var key in response) {
+                            var value = response[key];
+                            var t = '';
+                                var tr = '<tr id="'+value['description']+'_row">';
+                                    tr += '<td "">'+value['description']+'</td>';
+                                    tr += '<td class="text-center">'+value['price']+'</td>';
+                                    tr += '<td>';
+                                    tr += '<input class="bidsItem form-control" placeholder="Enter the Supplier'+"'"+'s bidded item" type="text" id="'+value['description']+'" style="width:100%">';
+                                    tr +='</td>';
+                                    tr += '<td class="text-right col-md-3">';
+                                    tr += '<input class="bidsInput form-control" placeholder="Enter the bidded price" type="text" id="'+value['description']+'" style="width:100%" >';
+                                    tr +='</td>';
+                                    tr += "</tr>";
+                                    t += tr;
+
+                        document.getElementById("itemListTable2").innerHTML += t;
+                        }
+
+                        document.getElementById("comLabel23").innerHTML = valued+"'s bids of items prices"
+                        $('#displayArea').html($('#wizardUI1').html())
+                        $('#wizardUI1').html('')
+                    }
+
+            });
+
+        
+        
+
+    });
+
+
+        var step = 1
+      
+      $('#saveBidList2').click(function (e) {
+
+
+        if (step === 1) {
+
+            $('.bidsInput').each(function() {
+                var grade =  $(this).val();
+                bidPricesList[this.id] = grade;
+            });
+            $('.bidsItem').each(function() {
+                var grade =  $(this).val();
+                bidItemList[this.id] = grade;
+            });
+
+            for (var i in bidPricesList) {
+                
+                var bidItemDescrip = bidItemList[i];
+                var bidPrice = bidPricesList[i];
+                itemBidList[i] = [bidItemDescrip, bidPrice];
+
+            }
+
+            $('#saveBidList2').html("Save Bids")
+            $('#saveBidList2').attr('class', 'btn btn-success')
+            $('#prev2').removeAttr('style')
+            $('#displayArea').html($('#wizardUI2').html())
+            $('#wizardUI2').html('')
+
+
+
+            step = step + 1;
+
+
+        } else {
+
+
+            var termnrep = {}
+
+
+            $('.terms').each(function() {
+                var grade =  $(this).val();
+                termnrep[this.id] = grade;
+            });
+            $('.rep').each(function() {
+                var grade =  $(this).val();
+                termnrep[this.id] = grade;
+            });
+            
+            if (termnrep['warrranty'] === ''||termnrep['delivery'] === ''||termnrep['validity']==='') {
+            
+                    alert("Provide all the Data Needed");
+            
+            } else {
+                
+                var btnID = $('#saveBidList2').val();
+                
+                toDjangoArray[btnID] =  {'itemBidList': itemBidList,
+                                         'warranty':termnrep['warrranty'],
+                                         'delivery':termnrep['delivery'],
+                                         'validity':termnrep['validity'],
+                                         'namerep':termnrep['repname'],
+                                         'telrep':termnrep['reptel'],
+                                         'emailrep':termnrep['repemail'],
+                                        }
+                                 
+                itemBidList = {};                                    
+               
+                resetModalData();
+                document.getElementById(btnID).innerHTML = "Bids Saved"
+                $("#"+btnID).attr('class', 'btn btn-xs btn-success');
+                $('#newAdd').modal('toggle');
+
+                $('#wizardUI1').html(theWizardUI1Default)
+                $('#wizardUI2').html(theWizardUI2Default)
+
+                step = 1
+
+                $('#saveBidList2').html("Next Step")
+                $('#saveBidList2').attr('class', 'btn btn-primary')
+                $('#prev2').attr('style', 'visibility:hidden')
+
+                // var data = $('#id').attr('value');
+                // var data = $('#id').val();
+
+            }
+
+
+            
+            console.log("toDjangoArray Data")
+            console.log(toDjangoArray)
+            //console.log(itemBidList)
+           
+        }
+
+
+        
+
+    });
+
+    $('#prev2').click(function (e) {
+        $('#saveBidList2').html("Next Step")
+        $('#saveBidList2').attr('class', 'btn btn-primary')
+        $('#prev2').attr('style', 'visibility:hidden')
+        $('#displayArea').html($('#wizardUI1').html())
+        step = step - 1;
+    }) 
+
+
+      $('#openingDate').focusin(function() {
+       $('#openingDate').datepicker({
+                    format: "yyyy-mm-dd"
+        });
+   })
+    
+
+    function resetModalData() {
+        $('#warrranty').val('');
+        $('#delivery').val('');
+        $('#validity').val('');
+
+        $('#repname').val('');
+        $('#reptel').val('');
+        $('#repemail').val('');
+    }
+
+   
+
+    $(document).on('submit', '#addForm', function(e){
+            e.preventDefault();
+            
+            
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/addAbstractOfCanvass/',
+                data:{
+                    
+                    'theDjangoArray': JSON.stringify(toDjangoArray),
+                    'quotNum': $('#quotNum').val(),
+                    'openingDate': $('#openingDate').val(),
+                    'openingTime': $('#openingTime').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+                        $('#transComp2').modal('toggle');
+                       
+                        //window.location.href = "/requisitioner/pr/";
+                    }
+
+            });
+
+
+    });
+
+    $('#sentNotif').click(function (argument) {
+         location.reload();
+    })
+
+
+    function comaSegregator(input){
+
+        var output = "";
+        var indexCheck = 1;
+        for (var i = input.length - 1; i >= 0; i--) {
+            
+            if (indexCheck%3 === 0) {
+
+                if (i === 0) {
+                     output = input[i] + output;
+                    indexCheck = indexCheck + 1;
+
+                } else {
+                     output = ", " + input[i] + output;
+                    indexCheck = indexCheck + 1;
+                }
+                   
+            } else {
+                output = input[i] + output;
+                indexCheck = indexCheck + 1;
+            }
+        }
+
+        return(output);
+    }
+
+    </script>
+
+
+    <script type="text/javascript">
+        
+         $(document).ready(function () {
+                
+
+                var someDate = new Date();
+                var numberOfDaysToAdd = 15;
+
+                
+                someDate.setDate(someDate.getDate()); //+ numberOfDaysToAdd
+
+                var dateToDisplay = someDate.getFullYear()+ '-' + 
+                                    setSingleDigitToDouble(someDate.getMonth())+ '-' + 
+                                    setSingleDigitToDouble(someDate.getDate());
+                    
+                $('#openingDate').val(dateToDisplay);
+            
+            });
+
+         function setSingleDigitToDouble(input) {
+            
+            
+            var outputData = "" + input;
+            
+            
+            if (outputData.length === 1) {
+                outputData = "0"+input;
+            }
+
+            return outputData;
+
+         }
+
+    </script>
+    <script type="text/javascript">
+        
+    $('#displayArea').on('click', 'input', function (e) {
+
+    })
+
+    </script>
+
+
+   <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#new_ac').attr('class', 'active-menu-proc')
+        $('#rqacTop').attr('class', 'active-menu-top')
+        $('#rqacUL').attr('class','nav nav-second-level collapse in')
+    })
+
+    </script>
+
+{% endblock %}

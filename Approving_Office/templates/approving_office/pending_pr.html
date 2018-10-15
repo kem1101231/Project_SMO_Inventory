@@ -1,0 +1,185 @@
+﻿{% extends 'approving_office/base.html' %}
+{% load humanize %}
+
+{% load staticfiles %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+        
+            <!--  ========================================================   -->
+
+         
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                    
+                     Purchase Requests
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered" id="dataTables-example">
+                                    <thead style="background-color: #555; color:white;">
+                                        <tr>
+                                            <th style="width:150px;">Date Created</th>
+                                            <th style="width:420px;">Req. Office</th>
+                                            <th style="width:420px;">Purpose</th>
+                                            <th style="width:200px;" class="text-center">Total Cost</th>
+                                            <th style="width:120px;" class="text-center">Status</th>
+                                            <th style="width:120px;" class="text-center">PR No.</th>
+                                            <th style="width:120px;" class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for x in pageData1 %}
+                                        <tr class="odd gradeX">
+                                            
+                                            
+                                            <td>{{x.5}}</td>
+                                            <td>{{x.14}}
+                                            </td>
+                                            <td>
+                                                {{x.2}}
+                                           
+                                            </td>
+                                            <td class="text-center">
+                                            ₱ {{x.12|floatformat|intcomma}}
+                                            </td>
+                                            <td class="text-center">
+
+                                            {% if x.7 == None and x.8 == None %}
+                                            <label class="label label-warning">Pending</label>
+                                            {% endif %}
+                                            {% if x.7 != None and x.8 == None %}
+                                                {% if designation == 'Vice Chancellor for Administration and Finance'  %}
+                                               <label class="label label-success">Pending</label>
+                                                {% else %}
+                                               <label class="label label-warning">Pending</label>  
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if x.7 == True and x.8 == True %}
+                                            <label class="label label-success">Approved</label>
+                                            {% endif %}
+                                            {% if x.7 == False or x.8 == False %}
+                                            <label class="label label-danger">Denied</label>
+                                            {% endif %}
+                                            
+                                            </td>
+                                            <td class="text-center">
+                                            {% if x.1 == None %}
+                                            ---
+                                            {% else %}
+                                            {{x.1}}
+                                            {% endif %}
+                                            
+                                            </td>
+                                            <td class="text-center">
+                                                {% if x.7 == None and x.8 == None %}
+                                                    <form style="display:inline;" action="/approving_officer/displayPendingPRDetails/" method="POST">{% csrf_token %}
+                                                        <div style="display:inline;">
+                                                        <button name="detailsButton" class="btn btn-xs btn-primary" role= "submit" aria-disabled="true" value="{{x.0}}"> Details <i class="icon-arrow-right"> <i class="icon-arrow-right"></i></button>
+                                                    </div>
+                                                    </form>
+                                                {% endif %}
+                                                {% if x.7 != None and x.8 == None %}
+                                                    {% if designation == 'Vice Chancellor for Administration and Finance'  %}
+                                                    <a href="/approving_officer/pr/{{x.13}}/details"><button class="btn btn-xs btn-primary" role="button" type="button">Details</button></a>
+                                                    {% else %}
+                                                          <form style="display:inline;" action="/approving_officer/displayPendingPRDetails/" method="POST">{% csrf_token %}
+                                                            <div style="display:inline;">
+                                                            <button name="detailsButton" class="btn btn-xs btn-primary" role= "submit" aria-disabled="true" value="{{x.0}}"> Details <i class="icon-arrow-right"></i></button>
+                                                        </div>
+                                                        </form>
+                                                    {% endif %}
+                                                {% endif %}
+                                                {% if x.7 != None and x.8 != None %}
+                                                  <a href="/approving_officer/pr/{{x.13}}/details"><button class="btn btn-xs btn-primary" role="button" type="button">Details <i class="icon-arrow-right"></i></button></a>
+                                                {% endif %}
+                                                
+                                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+               <!--  ========================================================   -->
+
+
+                    </div> 
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; 2016 Mindanao State University | Supply and Equipement Inventory
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script type="text/javascript">
+      
+            $('#pr').attr('class','active-menu-approv')
+      
+    </script>
+
+{% endblock %}

@@ -1,0 +1,281 @@
+{% extends 'non_requisitioner/base.html' %}
+
+{% load staticfiles %}
+{% block content %}  
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+         
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                    
+                    Requisition and Issuance Slips
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 
+                <div class="col-lg-12" style="display:none;">
+                         <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="padding:0px;padding-top:20px; ">
+                                
+
+                       <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-1x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Total</div>
+                                       <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.0}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-ok"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Approved</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.1}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa  icon-spinner"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div  style="display:inline;">Pending</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.2}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa icon-exclamation-sign"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                    <div  style="display:inline;">Denied</div>
+                                        <div style="display:inline; margin-left:15px;"><span class="badge" style="font-size:15px;">{{pageData2.0.3}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body">
+                            <div class="panel">
+                            <div class="panel-body col-lg-3 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                            <div class="form-group input-group" style="padding:0px;margin:0px;">
+                       
+                                        <input type="text" class="form-control input-sm" placeholder="Search for Information" >
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default btn-sm " type="button">
+                                                    <i class="fa fa-search "></i>
+                                                </button>
+                                            </span>
+                                        </div> 
+
+
+                            </div>
+                          
+
+                            <div class="panel-default" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr style="background-color: #202020; color: white;">
+                                            <th>Date Created</th>
+                                            <th style="width:420px;">Purpose</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">RIS Number</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for x in pageData1 %}
+                                        <tr class="odd gradeX">
+                                            
+                                            
+                                            <td>{{x.3}}</td>
+                                            <td>{{x.2}}</td>
+                                            <td class="text-center">
+                                            {% if x.5 == None %}
+                                                <label class="label label-warning">Pending</label>
+                                            {% endif %}
+                                            {% if x.5 == True %}
+                                                <label class="label label-success">Approved</label>
+                                            {% endif %}
+                                            {% if x.5 == False %}
+                                                <label class="label label-danger">Declined</label>
+                                            {% endif %}
+                                            </td>
+                                            <td class="text-center">
+                                            {% if x.1 == None %}
+                                                ---
+                                                
+                                            {% endif %}    
+                                            {% if x.1 != None %}
+                                                {{x.1}}
+                                            {% endif %}
+                                            </td>
+                                            <td class="text-center">
+                                                {% if x.7 == None %}
+                                                 <form style="display:inline;" action="/requisitioner/cancelPR/" method="POST">{% csrf_token %}
+                                                <div style="display:inline;">
+                                                <a class="btn btn-xs btn-danger" role= "submit" aria-disabled="true"><i class="icon-remove"></i></a>
+                                                </div>
+                                                </form>
+                                                {% endif %}
+                                                {% if x.7 != None %}
+                                                <form style="display:inline;" action="/requisitioner/createPRFromRef/" method="POST">{% csrf_token %}
+                                                <div style="display:inline;">
+                                                <button name="detailsButton" class="btn btn-xs btn-success" role= "submit" aria-disabled="true" value="{{x.0}}"><i class="icon-edit"></i></button>
+                                                </div>
+                                                </form>
+                                                {% endif %}
+                                                <form style="display:inline;" action="/requisitioner/displayRISDetails/" method="POST">{% csrf_token %}
+                                                    <div style="display:inline;">
+                                                    <button name="slipNumButton" class="btn btn-xs btn-primary" role= "submit" aria-disabled="true" value="{{x.0}}"><i class="icon-reorder"></i></button>
+                                                </div>
+                                                </form>
+                                                
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    
+    <script type="text/javascript">
+        document.getElementById("detailsButton").onclick = function() {
+            alert(document.getElementById("detailsButton").value
+        }
+        
+        function commaSeparator(input) {
+             return input.toLocaleString();
+        }
+        
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+           
+            $('.nav nav-second-level theUL').attr('class', ' nav nav-second-level theUL');  
+            $('.theAsTop').attr('class', 'theAsTop');   
+            $('.theAs').attr('class', 'theAs'); 
+            
+            $('#risTop').attr('class', 'active-menu-top theAsTop');
+            $('#risUL').attr('class', 'nav nav-second-level theUL collapse in');
+            $('#ris').attr('class', 'active-menu-nonrequi');
+       
+        })
+       
+        
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,785 @@
+{% extends baseSource %}
+{% load humanize %}
+{% load staticfiles %}
+{% block content %}
+        <style type="text/css">
+        
+        .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 270px;
+             
+         }
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:5px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:5px; 
+            margin-bottom:2px;
+         }
+         .dataFont3{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+        
+         }
+
+         .dataFont4{
+            
+            font-weight: 450;  
+            font-size: 15px;
+         }
+
+            .tablescroll{
+            overflow-y:scroll;
+            height:1033px;
+            display:block;
+        }
+        
+        .tablescroll2{
+            
+            overflow-y:scroll;
+            height:195px;
+            display:block;
+        }
+        .divScroll{
+            
+            overflow-y:scroll;
+            height:450px;
+            display:block;
+        }
+
+
+    </style>
+        <!-- /. NAV SIDE  -->
+                <div id="page-wrapper">
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 20px;
+                 margin-top:65px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Personnel Information</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+            
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <div class="col-lg-12" style="padding:8px;">
+                    <div class="col-lg-4 text-center" style="padding-left: 0px;">
+
+                         <div class="panel panel-default" style=""> 
+                            
+                            <div class="panel-body" style="height: 470px; padding-left:7px;">
+                                    <div style="width: 100%; margin-top: 40px;">
+                    <img style="max-width: 150px;
+                                " src = "{% static 'assets/img/user.jpeg' %}">
+                </div>
+                    <div class="form-group" style="margin-top:36px;">
+                                <div style="width:100%; ">
+                                  
+                                    <div style="font-weight: bold; font-size: 16px; border-bottom:1px solid #bbb; padding-bottom: 5px;">
+                                        {{pageData4.0.0.6}} {{pageData4.0.0.1}} {{pageData4.0.0.7}}. {{pageData4.0.0.2}} {{pageData4.0.0.8}}
+                                    </div>
+                                    <div style="padding-top: 8px;">
+                                        {% if pageData4.0.0.8 == '' %}
+                                       Designation Not Yet Indicated
+                                        {% else %}
+                                        {{pageData4.0.0.3}}
+                                        {% endif %}
+
+                                    </div>
+                                    <div style="padding-top: 15px; margin-top: 25px; font-size:14px; font-weight: 600; border-top:1px solid #ddd;">
+                                      {{pageData4.1.1}}
+                                    </div>
+                                    
+                                </div> 
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8" style="padding:0px;">
+                       <div class="col-lg-4" style="padding: 8px; padding-left: 0px; padding-top: 0px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555; margin-bottom: 0px;">
+                        <div class="panel-body" style="height: 90px; background-color: #479aaf !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #056c82; height: 100%; margin: 0px">
+                                <i style="font-size: 30px; padding-top: 28px; color: #fff;" class="fa fa-check"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px; font-size: 13px;">Accounted Items</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 10px; font-size: 18px; font-weight: bold;" >
+                                    {{pageData2.2|floatformat|intcomma}}
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;" >items</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <!-- yellow #d2983c icon #a97b00 -->
+                    <div class="col-lg-4" style="padding: 8px; padding-left: 0px; padding-top: 0px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555; margin-bottom: 0px;">
+                        <div class="panel-body" style="height: 90px; background-color: #00a65a !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #1a755b; height: 100%; margin: 0px">
+                                <i style="font-size: 30px; padding-top: 28px; color: #fff;" class="fa fa-money"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px; font-size: 13px;">Item Cost Value</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px;  margin-top: 10px; font-size: 18px; font-weight: bold;" >
+                                   {{pageData2.1|floatformat|intcomma}}
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;">pesos</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <a href="/inventory_office/ris/" style="display: none">
+                    <div class="col-lg-4" style="padding: 8px; padding-left: 0px; padding-right: 0px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555; margin-bottom: 0px;">
+                        <div class="panel-body" style="height: 100px; background-color: #a94442 !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #841614; height: 100%; margin: 0px">
+                                <i style="font-size: 30px; padding-top: 28px; color: #fff;" class="fa fa-file"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Current Requests</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 22px; font-weight: bold;" >
+                                        {{pageData3.3.0}}
+                                        </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;">Uncatered R.I.S.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    </a>
+                    <div class="col-lg-4" style="padding: 8px; padding-left: 0px; padding-right: 0px; padding-top: 0px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555; margin-bottom: 0px;">
+                        <div class="panel-body" style="height: 90px; background-color: #479aaf !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #056c82; height: 100%; margin: 0px">
+                                <i style="font-size: 30px; padding-top: 28px; color: #fff;" class="fa fa-book"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px; font-size: 13px;">Listed on</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 10px; font-size: 18px; font-weight: bold;" >
+                                    {{pageData2.0|floatformat|intcomma}}
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;" >Prop. Acct. Receipts</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+                 
+                    
+                    <div class="col-lg-8"  style="padding-left:0px; padding-right: 0px; padding-top: 0px;">
+                         
+                        <div class="panel panel-default" style="height: 369px;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Accounted Assets</h3>
+                            </div>
+                            <div class="panel-body" style="padding: 10px; padding-right: 2px;">
+
+                                <div style="margin-right: 17px;">
+                                    <table class="table table-striped table-bordered table-hover" style="margin-bottom: 0px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th class="text-right" style="width: 60px;">Qty</th>
+                                            <th class="text-right" style="width: 92px;">Cost</th>
+                                        </tr>
+                                    </thead>
+                                    </table>
+                                </div>
+                                   <div class="table-responsive tablescroll2" >
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                   
+                                    <tbody>
+                                        
+                                        
+                                        {% for x in pageData3 %}
+                                        <tr>
+                                            <td colspan="3">{{x}}</td>
+                                        </tr>
+                                        <tr class="gradeU">
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" style="width: 60px;">3</td>
+                                            <td class="text-right" style="width: 92px;">45,000</td>
+                                            
+                                        </tr>
+                                        {% endfor%}
+
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                
+                </div>
+                    </div>
+                
+
+                </div>
+                 
+                <div class="col-lg-12" style="padding: 8px; padding-top: 0px;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Personnel's List of Accounted Items</h3>
+                            </div>
+                            <div class="panel-body" style="">
+                                
+                                                       <div class="table-responsive">
+                                    <table class="table table-hover table-bordered" id="dataTables-example">
+                                    <thead style="background: #555; color: white;">
+                                        <tr>
+                                            <th style=""></th>
+                                            <th class="text-center">Asset Description</th>
+                                            <th class="text-center" style="width: 100px;">Unit</th>
+                                            <th class="text-center" style="width: 100px;">Unit Cost</th>
+                                            <th class="text-right" style="width: 80px;">Accountable Qty.</th>
+                                            <th class="text-right" style="width: 150px;">Total Cost</th>
+                                            <th class="text-center">Inv. No.</th>
+                                            <th class="text-center" style="width: 150px;">Unique ID</th>
+                                            <th class="text-center">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableOfPAR">
+
+                                    {% for x in pageData1 %}
+                                    <tr style="display: none"><td colspan="5">
+                                        <p>{{x}}</p><p>{{x.7}}</p></td></tr>
+                                        <tr class="odd gradeX" id="{{x.0}}">
+                                            
+                                            <td class="text-center" rowspan="{{x.4}}"><button class="btn btn-xs" style="width: 15px; height: 15px; border-radius: 15px; background-color: #111;" disabled=""></button></td>
+                                            <td rowspan="{{x.4}}" class="">
+                                                {% if x.0.6 == True %}
+                                                    {% for xx in x.0.0 %}
+                                                    <p>{{xx}}</p>
+                                                    {% endfor %}
+                                                
+                                                {% else %}
+                                                    {{x.0.0}}
+                                                {% endif %}
+                                              
+                                            </td>
+                                            <td rowspan="{{x.4}}"  class="text-center"> {{x.0.1}}</td>
+                                            <td rowspan="{{x.4}}"  class="text-right"> ₱ {{x.0.2|floatformat|intcomma}}</td>
+                                            <td rowspan="{{x.4}}"  class="text-right">{{x.1|floatformat|intcomma}}</td>
+                                            <td rowspan="{{x.4}}"  class="text-right"> ₱ {{x.2|floatformat|intcomma}}</td>
+                                            {% for xx in x.3 %}
+                                                {% if xx == x.3.0 %}
+                                                <td class="text-center">{{xx.0}}</td>
+                                                <td class="text-center"> 
+                                                    {% if xx.2 == None %}
+                                                        -----
+                                                        {% else %}
+                                                        {{xx.2}}
+                                                        {% endif %}
+                                                </td>
+                                                <td class="text-center">
+                                                    {% if xx.1 == True %}
+                                                        <button class="btn btn-sm btn-success" disabled="" style="border-radius: 15px;"><i class="icon-ok"></i></button>
+                                                        {% else %}
+                                                        <button class="btn btn-sm btn-danger" disabled="" style="border-radius: 15px;"><i class="icon-exclamation"></i></button>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                                {% else %}
+                                                <tr>
+                                                    <td class="text-center">{{xx.0}}</td>
+                                                    <td class="text-center">
+                                                        {% if xx.2 == None %}
+                                                        -----
+                                                        {% else %}
+                                                        {{xx.2}}
+                                                        {% endif %}
+                                                    
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {% if xx.1 == True %}
+                                                        <button class="btn btn-sm btn-success" disabled="" style="border-radius: 15px;"><i class="icon-ok"></i></button>
+                                                        {% else %}
+                                                        <button class="btn btn-sm btn-danger" disabled="" style="border-radius: 15px;"><i class="icon-exclamation"></i></button>
+                                                        {% endif %}
+                                                    
+                                                </td>
+                                                </tr>
+                                                {% endif %}
+
+                                            {% endfor %}
+
+                                            <td class="text-center" style="display: none">
+                                            
+                                                <div>
+                                                    <a href="/requisitioner/accounts/par/{{x.12}}/details"><button   class="btn btn-sm btn-primary" role= "button" type="button" aria-disabled="true" style="border-radius:15px; outline: none"><i class="icon-reorder"></i></button></a>
+                                                    
+                                                    
+                                                    <button style="display: none" id="{{x.0}}_waste" name="waste" value="{{x.0}}" class="btn btn-xs btn-danger" role ="button" type="button" aria-disabled="true"><i class="icon-trash"></i></button>
+                                                
+                                                </div>
+                                           
+
+                                                </td>
+                                        </tr>
+                                    {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+                
+                <div class="col-lg-6" style="display: none; padding-left:0px;">
+
+                    <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Property Acceptance Receipt Details</h3>
+                            </div>
+                            <div class="panel-body"  style="height:840px;">
+                                
+                                <div class="panel-body">
+                                    
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        PAR No.:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        001-17
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        PO Ref.:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                    <form id="myForm" action="" method="POST">{% csrf_token %}
+                                        <div>
+                                        <input type="hidden" name="detailsButton" value="{{x.1}}" />
+                                        <a href="#" onclick="document.getElementById('myForm').submit();">001-17</a>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px;  width:100%;">
+                                    <div class="col-lg-5 dataFont2">
+                                        Date Received:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                       March 17, 2015
+                                    </div>
+                                </div> 
+                            </div> 
+                           
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Received From:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                       Kuchiki Byakuya
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        On Account for:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                        2 years, 2 months, 24 days
+                                    </div>
+                                </div> 
+                            </div>  
+
+                                </div>
+                                <div class="panel-body">
+                                <div class="form-group">
+                                <div style="padding-left: 0px; width:100%;">
+                                    <div class="col-lg-5 dataFont2" style="padding-left: 0px; font-weight:bold;">
+                                        Items on PAR 
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                    </div>
+                                </div> 
+                            </div>
+                                    <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Inv. No.</th>
+                                            <th>Description</th>
+                                            <th class="text-right" >Quantity</th>
+                                            <th class="text-right">Unit Cost</th>
+                                            <th class="text-right">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                        
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+                </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transComp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;"><div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-print"></i></div>
+                                            <strong>Property Acceptance Receipt Details</strong>
+                                        </h5>
+                                        <hr>
+                                       <div class="panel-body">
+                                    
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        PAR No.:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        001-17
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        PO Ref.:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                    <form id="myForm" action="" method="POST">{% csrf_token %}
+                                        <div>
+                                        <input type="hidden" name="detailsButton" value="{{x.1}}" />
+                                        <a href="#" onclick="document.getElementById('myForm').submit();">001-17</a>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px;  width:100%;">
+                                    <div class="col-lg-5 dataFont2">
+                                        Date Received:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                       March 17, 2015
+                                    </div>
+                                </div> 
+                            </div> 
+                           
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Received From:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                       Kuchiki Byakuya
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group" >
+                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                    <div class="col-lg-5 dataFont2" >
+                                        On Account for:  
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                        2 years, 2 months, 24 days
+                                    </div>
+                                </div> 
+                            </div>  
+
+                                </div>
+                                <div class="panel-body">
+                                <div class="form-group">
+                                <div style="padding-left: 0px; width:100%;">
+                                    <div class="col-lg-5 dataFont2" style="padding-left: 0px; font-weight:bold;">
+                                        Items on PAR 
+                                    </div>
+                                    <div class="col-lg-6 dataFont1">
+                                    </div>
+                                </div> 
+                            </div>
+                                    <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Inv. No.</th>
+                                            <th>Description</th>
+                                            <th class="text-right" >Quantity</th>
+                                            <th class="text-right">Unit Cost</th>
+                                            <th class="text-right">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                         <tr class="gradeU">
+                                            <td>101</td>
+                                            <td>Asus EEE PC 1025-c</td>
+                                            <td class="text-right" >3</td>
+                                            <td class="text-right" >15,000</td>
+                                            <td class="text-right">45,000</td>
+                                            
+                                        </tr>
+                                        
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                                </div>
+                                   
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+                 
+
+
+
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <div id="footer-sec">
+       &copy; Mindanao State University - General Santos City</i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/plugins/morris/raphael-2.1.0.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/morris/morris.js' %}"></script>
+
+
+    <script type="text/javascript">
+        
+    $('#theTable2').on('click', 'td', function (argument) {
+        $('#transComp').modal('toggle')
+    })
+
+
+    </script>
+
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#office').attr('class','{{cssActiveMenu}}')
+            $('#title').html('Employee Details')
+
+           
+             });
+    </script>
+
+
+
+{% endblock %}
+</body>
+</html>
+
+
+

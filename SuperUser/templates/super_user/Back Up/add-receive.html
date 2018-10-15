@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receive Items</title>
+    {% load staticfiles %}
+   <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-inven.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'assets/plugins/daterangepicker/daterangepicker-bs3.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/plugins/datepicker/css/datepicker.css' %}" />
+
+    <link href="{% static 'assets/css/wizard/jquery.steps.css' %}" rel="stylesheet" />
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+    <style type="text/css">
+        
+        .clsDatePicker {
+
+    z-index: 100000;
+
+}
+
+    </style>
+
+    <style>
+/* Style The Dropdown Button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+</style>
+</head>
+<body>
+
+    <div id="wrapper">
+        <!-- /. NAV TOP  -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" 
+                    style="
+                        margin-bottom: 0px;
+                          ">
+           
+           <div  class="navbar-header navbar-brand"></div>
+
+           <ul class="nav navbar-right top-nav" 
+                        style="
+                        margin-right: 50px;
+                        ">
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                    
+                    <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body " style="margin-left:95px;">
+                                        <h5 class="media-heading">
+                                            <strong>Tasks</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+
+                    {% if taskNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No task to process at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}    
+                    
+                    {% for x in taskDetails %}
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                     {% endfor %}   
+
+
+                    </ul>
+                </li>    
+                
+                <li class="dropdown">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body" style="margin-left:75px;">
+                                        <h5 class="media-heading">
+                                            <strong>Notifications</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unread notification at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}
+
+                       {% for x in notifDetails %}
+
+                       <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                       {% endfor %}
+                        
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu" style="width:220px;">
+                        <li>
+                            <a href="/inventory_office/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/inventory_office/equipement"><i class="fa fa-fw fa-qrcode"></i> Equipment Inventory</a>
+                        </li>
+                        <li>
+                            <a href="/inventory_office/inventory"><i class="fa fa-fw icon-paper-clip" style="margin-left:4px;margin-right:4px;"></i> Supplies Inventory</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/inventory_office/receive/"><i class="fa fa-fw fa-truck"></i> Received Items</a>
+                        </li>
+                        <li>
+                            <a href="/inventory_office/accounts"><i class="fa fa-fw fa-group"></i> Employee Acct. Items</a>
+                        </li> 
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw icon-desktop" style="margin-left:4px;margin-right:4px;"></i> Switch User-Type</a>
+                        </li>                       
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa fa-fw icon-signout" style="margin-left:4px;margin-right:4px;"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        {%load staticfiles%}
+                        <div class="user-img-div">
+
+                            <a href="/requisitioner/profile"><img src="{% static 'assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="/requisitioner/profile" class = "inner-text">{{lname}}, {{fname}}</a>
+                            <br />
+                                <small>{{dept}} - {{designation}}</small>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+
+                   <li>
+                        <a href="/inventory_office"><i class="fa fa-home "></i>Home</a>
+                    </li>
+                    <li>
+                        <a href="/inventory_office/profile"><i class="fa fa-user "></i>Profile </a>
+                        
+                    </li>
+                    <li>
+                        <a  href="#"><i class="icon-book "></i>Inventory<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/equipement"><i class="icon-qrcode"></i>Equipment</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/inventory"><i class="icon-paper-clip"></i>Supplies</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a  href="#"><i class="icon-truck "></i>Received Items<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level collapse in">
+                            <li>
+                                <a class="active-menu-inven" href="/inventory_office/add_receive"><i class="icon-plus"></i>New Items</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/receive"><i class="icon-tags"></i>View All Received</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a  href="#"><i class="icon-group"></i>Employees' Acct. Items<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/add_accounts"><i class="icon-plus"></i>Create PAR</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/accounts"><i class="icon-list-alt"></i>View All Accounts</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a  href="#"><i class="icon-bar-chart"></i>Reports<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/inventory_office/physical_count"><i class="icon-list-alt"></i>PCP</a>
+                            </li>
+                            <li>
+                                <a href="/inventory_office/waste_material"><i class="icon-trash"></i>WMI</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+          
+                </ul>
+            </div>
+
+</div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            
+            <div id="page-inner">
+
+                <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                ">
+
+                <div>
+                    Receive Newly Delivered Items
+                </div>
+                  <hr>
+               </div>
+
+                <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px;">
+                                                                
+                        <div style="display: inline; font-weight: 400;  font-size: 18px;">
+                            Number: 
+                        </div>
+                                                                
+                        <div id="poNumDiv" value="0" class="panel panel-default" style="display: inline; font-size: 25px;  font-weight: 400; padding:10px;"><span id="iarNum" value="{{pageData1.0.0}}"></span> {{pageData1.0.0}}
+                         </div>
+                        
+                     </div> 
+
+               </div>
+
+               <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 18px;
+                 padding-top: 0px;
+                 padding-bottom: 0px;
+                ">
+
+                <div>
+                    Inspection and Acceptance Receipt Information
+                </div>
+                  <hr>
+               </div>
+
+               <!-- Button to trigger modal -->
+<a  role="button" class="btn" data-toggle="modal" data-target="#newReg">Launch demo modal</a>
+ 
+
+
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal3">Launch demo modal</button>
+
+
+
+<div class="dropdown " style="float:right;">
+  <button class="dropbtn ">Right</button>
+  <div class="dropdown-content" style="min-width:160px;right:0;">
+    <a href="javascript:void(0)">Link 1</a>
+    <a href="javascript:void(0)">Link 2</a>
+    <a href="javascript:void(0)">Link 3</a>
+  </div>
+</div>
+
+
+                <div class="panel panel-body">
+                <form class="form-horizontal" action="" method="POST">{% csrf_token %}
+
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Invoice Number: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="receiptnum"  class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Receipt Date: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="recdate"  class="form-control" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Inspection Officer: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="insofficer"  class="form-control" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Inspection Date: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="insdate"  class="form-control" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Property Officer: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="receiveoff"  class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Date Received: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="deldate"  class="form-control" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">P.O. Number: </label>
+
+                    <div class="col-lg-5">
+                    <div>
+                          <input type="text" id="ponum_field"  class="form-control">
+
+                    </div>
+                      
+                    <div class="checkbox" style="visibility: hidden;">
+                                <label>
+                                    <div class="checker hover"><span><input id="chck" class="uniform" type="checkbox" value="option2"></span></div> This is a Non-MSU Ordered Items
+                                </label>
+                     </div>
+
+
+                    </div>
+                    
+                </div>
+            
+            </form>
+            </div>
+            <hr>
+
+
+            <div class="panel panel-heading" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 18px;
+                 padding-top: 0px;
+                 padding-bottom: 0px;
+                ">
+                <div>
+                   Items to Receive
+                </div>
+                  <hr style="margin-bottom:0px;">
+
+
+               </div>
+               <div class="panel panel-default">
+                   <div class="table-responsive">
+                    
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    margin-top: 0px; 
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table table-hover">
+                                    <thead id="tablehead">
+                                        <tr>
+                                            <th>Decription</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Complete?</th>
+                                            <th class="text-center">Working?</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table">
+                                        
+                                    </tbody>
+                                </table>
+                                
+                                <button id="butn" class="btn btn-sm btn-success" role= "button" aria-disabled="true" style="visibility: hidden;"><i class="icon-plus"></i> Add Item to List</button>
+                            
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+               </div>
+            
+                <hr>
+                <form id="addForm" action="" method="POST">
+                    
+                
+                <div class="form-group">{% csrf_token %}
+                  <div class="header-right" style="padding-right: 40px; padding-top:20px;">
+                         <button id="viewD" role="button" type="button" class="btn btn-info" role ="button" aria-disabled="true"><i class="icon-file"></i> View Document</button>
+                         <button id="send" class="btn btn-success" type="submit" role= "submit" aria-disabled="true"><i class="icon-save"></i> Save Information</button>
+                   </div> 
+
+               </div>
+            </form>
+
+                </div>
+                    
+            </div>
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+
+​
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="col-md-12">
+
+                    <div class="row">
+
+                        <label for="idTourDateDetails">Tour Start Date:</label>
+
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <input type="text" name="idTourDateDetails" id="idTourDateDetails" readonly="readonly" class="form-control clsDatePicker" style="z-index: 1151 !important;  "> <span class="input-group-addon"><i id="calIconTourDateDetails" class="glyphicon glyphicon-th"></i></span>
+
+​
+
+                            </div>
+
+                        </div>Alt Field:
+
+                        <input type="text" name="idTourDateDetailsHidden" id="idTourDateDetailsHidden">
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+
+            </div>
+
+            <!-- /.modal-content -->
+
+        </div>
+
+        <!-- /.modal-dialog -->
+
+    </div>
+
+    <!-- /.modal -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="newReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                      <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <div id="datetimepicker1" class="input-append date">
+      <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+      <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="editReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> New Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip2" class="form-control" autofocus>
+                                                        <span  id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Unit: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="unit2" class="form-control" />
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                            
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price2" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Quantity: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="quantity2" class="form-control" />
+                                                        <span id="errorqu"></span>
+                                                    </div>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList2" type="submit" class="btn btn-success" >Update List</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+
+
+
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+   <div id="footer-sec">
+       &copy; Mindanao State University - General Santos City </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/js/wizard/modernizr-2.6.2.min.js' %}"></script>
+    <script src="{% static 'assets/js/wizard/jquery.cookie-1.3.1.js' %}"></script>
+    <script src="{% static 'assets/js/wizard/jquery.steps-addReceive.js' %}"></script>
+    <script src="{% static 'assets/plugins/daterangepicker/daterangepicker.js' %}"></script>
+    <script src="{% static 'assets/plugins/daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/datepicker/js/bootstrap-datepicker.js' %}"></script>
+       <script type="text/javascript">
+        
+         $('#idTourDateDetails').datepicker({
+
+     dateFormat: 'dd-mm-yy',
+
+     minDate: '+5d',
+
+     changeMonth: true,
+
+     changeYear: true,
+
+     altField: "#idTourDateDetailsHidden",
+
+     altFormat: "yy-mm-dd"
+
+ });
+
+
+        
+    </script>
+    <script type="text/javascript">
+
+
+    $('#clock').click(function(argument) {
+        
+        $('.clockpicker').datepicker({
+            placement: 'top',
+            align: 'left',
+            donetext: 'Done'
+        });
+    })
+
+</script>
+    <script type="text/javascript">
+        
+       var total = 0
+       var theArray = {}
+       var theArrayIndex = 1       
+       var prevTotal = 0;
+       var compArray = {};
+       var workarray = {};
+     
+
+        $('#chck').click(function() {
+            $('#butn').removeAttr('style')
+            
+            if ($('#chck').is(":checked")) {
+                    
+                    
+                    var th = '<tr>'
+                        th+= '<th>Decription</th>'
+                        th+= '<th class="text-center">Quantity</th>'
+                        th+= '<th class="text-center">Complete?</th>'
+                        th+= '<th class="text-center">Working?</th>'
+                        th+= '<th class="text-center">Actions</th>'
+                        th+= '</tr>'
+
+                    $("#tablehead").html(th);
+                    $('#butn').show();
+                    $('#table').html('');
+
+            } else {
+
+                    var th = '<tr>'
+                        th+= '<th>Decription</th>'
+                        th+= '<th class="text-center">Quantity</th>'
+                        th+= '<th class="text-center">Complete?</th>'
+                        th+= '<th class="text-center">Working?</th>'
+                        th+= '</tr>'
+                    
+                    $("#tablehead").html(th);
+                    $('#butn').hide()
+                    $('#table').html('');
+            }
+        });
+
+        $('#butn').click(function () {
+
+            $('#newReg').modal('toggle');
+        });
+
+//===============================================================
+       
+
+       document.getElementById("addList").onclick = function() {
+            
+            var descrip = document.getElementById("descrip").value;
+            var unit = document.getElementById("unit").value;
+            var price = document.getElementById("price").value;
+            var quantity = document.getElementById("quantity").value;
+            var itemTotal = document.getElementById("price").value * document.getElementById("quantity").value;
+            var itemTotalToString = "" + itemTotal;
+
+            setErrorMsgToEmpty()
+
+            if (descrip == ""||unit == ""||price == ""||quantity == "") {
+
+
+                if (descrip == "") {
+                    
+                    document.getElementById("errorde").innerHTML = "Don't leave this blank"
+                    return false;
+
+                }
+                if (unit == "") {
+                    document.getElementById("errorun").innerHTML = "Don't leave this blank" 
+                    return false;
+
+                }
+                if (price == "") {
+                    document.getElementById("errorpr").innerHTML = "Don't leave this blank" 
+                    return false;
+
+                }
+                if (quantity == "") {
+                    document.getElementById("errorqu").innerHTML = "Don't leave this blank" 
+                    return false;
+
+                }
+
+
+            } else {
+            
+            var t = ''
+            var tr = '<tr id = "'+theArrayIndex+'_tr">';
+                     tr += '<td>'+descrip+'</td>';
+                     tr += '<td class="text-center">'+comaSegregator(quantity)+'</td>';
+                     tr += '<td class="text-center" id="compTD">';
+                     tr += '<button id = "'+theArrayIndex+'_comp" value="'+theArrayIndex+'" class="btn btn-sm btn-success btn-circle" role= "button" aria-disabled="true" style="font-weight:200">Yes</button>';
+                     tr += ' <button id = "'+theArrayIndex+'_notcomp" value="'+theArrayIndex+'" class="btn btn-sm btn-danger btn-circle" role= "submit" aria-disabled="true" style="font-weight:200">No</button>';
+                     tr +='</td>';
+                     tr += '<td class="text-center" id="workTD">';
+                     tr += '<button id = "'+theArrayIndex+'_work" value="'+theArrayIndex+'" class="btn btn-sm btn-success btn-circle" role= "button" aria-disabled="true" style="font-weight:200">Yes</button>';
+                     tr += ' <button id = "'+theArrayIndex+'_notwork" value="'+theArrayIndex+'" class="btn btn-sm btn-danger btn-circle" role= "submit" aria-disabled="true" style="font-weight:200">No</button>';
+                     tr +='</td>';
+                     tr += '<td class="text-center" id="actionTD">';
+                     tr += '<button id = "'+theArrayIndex+'_editRow" value="'+theArrayIndex+'" data-toggle="modal"  data-target="#editReg" class="btn btn-sm btn-success btn-circle" role= "button" aria-disabled="true"><i class="icon-edit"></i></button>';
+                     tr += ' <button id = "'+theArrayIndex+'_removeRow" value="'+theArrayIndex+'" class="btn btn-sm btn-danger btn-circle" role= "submit" aria-disabled="true"><i class="icon-remove"></i></button>';
+                     tr +='</td>';
+                     tr += "</tr>";
+                     t += tr;
+            
+            
+            total = total + itemTotal;
+            
+            var totalToString = ""+total;
+            
+            document.getElementById("table").innerHTML += t;
+
+            theArray[theArrayIndex] = {'1':descrip, '2':unit, '3':price, '4':quantity};
+            
+            theArrayIndex = theArrayIndex + 1;
+             
+            document.getElementById("descrip").value = "";
+            document.getElementById("unit").value = "";
+            document.getElementById("price").value = "";
+            document.getElementById("quantity").value = "";
+
+
+            $('#newReg').modal('toggle');
+
+        }
+            
+    }
+       
+    // =====================================================================================================  
+       
+       $('#addList2').click(function() {
+
+        var btnValue = $('#addList2').val()
+
+        var descrip = document.getElementById("descrip2").value;
+        var unit = document.getElementById("unit2").value;
+        var price = document.getElementById("price2").value;
+        var quantity = document.getElementById("quantity2").value;
+        var itemTotal = document.getElementById("price2").value * document.getElementById("quantity2").value;
+        var itemTotalToString = "" + itemTotal;
+        
+        var tr = '<tr id = "'+btnValue+'_tr">';
+                     tr += '<td>'+descrip+'</td>';
+                     tr += '<td class="text-center">'+comaSegregator(quantity)+'</td>';
+                     tr += '<td class="text-center" id="compTD">';
+                     tr += '<button id = "'+btnValue+'_comp" value="'+btnValue+'" class="btn btn-sm btn-success btn-circle" role= "button" aria-disabled="true" style="font-weight:200">Yes</button>';
+                     tr += ' <button id = "'+btnValue+'_notcomp" value="'+btnValue+'" class="btn btn-sm btn-danger btn-circle" role= "submit" aria-disabled="true" style="font-weight:200">No</button>';
+                     tr +='</td>';
+                     tr += '<td class="text-center" id="workTD">';
+                     tr += '<button id = "'+btnValue+'_work" value="'+btnValue+'" class="btn btn-sm btn-success btn-circle" role= "button" aria-disabled="true" style="font-weight:200">Yes</button>';
+                     tr += ' <button id = "'+btnValue+'_notwork" value="'+btnValue+'" class="btn btn-sm btn-danger btn-circle" role= "submit" aria-disabled="true" style="font-weight:200">No</button>';
+                     tr +='</td>';
+                     tr += '<td class="text-center" id="actionTD">';
+                     tr += '<button id = "'+btnValue+'_editRow" value="'+btnValue+'" data-toggle="modal"  data-target="#editReg" class="btn btn-sm btn-success btn-circle" role= "button" aria-disabled="true"><i class="icon-edit"></i></button>';
+                     tr += ' <button id = "'+btnValue+'_removeRow" value="'+btnValue+'" class="btn btn-sm btn-danger btn-circle" role= "submit" aria-disabled="true"><i class="icon-remove"></i></button>';
+                     tr +='</td>';
+        
+        total = total - prevTotal;
+        total = total + itemTotal;
+        var totalToString = ""+total;
+        
+        document.getElementById(btnValue+"_tr").innerHTML = tr;  
+        
+        theArray[btnValue] = {'1':descrip, '2':unit, '3':price, '4':quantity};
+                      
+        $('#editReg').modal('toggle');    
+           
+       });
+
+// =====================================================================================================  
+
+    $('#ponum_field').keyup(function() {
+        
+        if (document.getElementById("ponum_field").value.length == 6) {
+                
+                $.ajax({
+                    type: 'POST',
+                    url:'/inventory_office/getPOItems/',
+                    data:{
+                    
+                        'poNum': $('#ponum_field').val(),
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                    },
+
+                    success: function(response) {
+
+                        document.getElementById("table").innerHTML = "";
+                        
+                        for(var key in response) {
+                            var value = response[key];
+                            
+                            var t = '';
+                                var tr = '<tr id="'+value['itemnum']+'_tr">';
+                                    tr += '<td>'+value['decrip']+'</td>';
+                                    tr += '<td class="text-center">'+value['quantity']+'</td>';
+                                    tr += '<td class="text-center" id="compTD">';
+                                    tr += '<button id = "'+value['itemnum']+'_comp" value="'+value['itemnum']+'" class="btn btn-sm btn-success btn-circle" role= "button" aria-disabled="true" style="font-weight:200">Yes</button>';
+                                    tr += ' <button id = "'+value['itemnum']+'_notcomp" value="'+value['itemnum']+'" class="btn btn-sm btn-danger btn-circle" role= "submit" aria-disabled="true" style="font-weight:200">No</button>';
+                                    tr +='</td>';
+                                    tr += '<td class="text-center" id="workTD">';
+                                    tr += '<button id = "'+value['itemnum']+'_work" value="'+value['itemnum']+'" class="btn btn-sm btn-success btn-circle" role= "button" aria-disabled="true" style="font-weight:200">Yes</button>';
+                                    tr += ' <button id = "'+value['itemnum']+'_notwork" value="'+value['itemnum']+'" class="btn btn-sm btn-danger btn-circle" role= "submit" aria-disabled="true" style="font-weight:200">No</button>';
+                                    tr +='</td>';
+                                    tr += "</tr>";
+                                    t += tr;
+                        
+                        document.getElementById("table").innerHTML += t;
+        
+                        }
+                    }
+
+            });
+            
+            }
+    })
+
+
+// =====================================================================================================  
+       
+    $('#myTable').on('click','button', function (e) {
+        
+        var id = this.id;
+        var value = document.getElementById(id).value
+        
+        var tdClicked = $(this).closest('td').attr('id');
+        
+        if (tdClicked === 'compTD') {
+
+
+            if (id === value+'_comp') {
+
+
+                $('#'+value+'_comp').attr('class', 'btn btn-sm btn-success btn-circle')
+                $('#'+value+'_notcomp').attr('class', 'btn btn-sm btn-circle')
+
+                compArray[value] = 'TRUE'
+            
+            } else {
+                
+                $('#'+value+'_notcomp').attr('class', 'btn btn-sm btn-danger btn-circle')
+                $('#'+value+'_comp').attr('class', 'btn btn-sm btn-circle')
+
+                compArray[value] = {'status':'FALSE', 'quantity': 0}
+            }
+
+        }
+
+        if (tdClicked === 'workTD') {
+
+            if (id === value+'_work') {
+
+
+                $('#'+value+'_work').attr('class', 'btn btn-sm btn-success btn-circle')
+                $('#'+value+'_notwork').attr('class', 'btn btn-sm btn-circle')
+                workarray[value] = 'TRUE'
+            
+            } else {
+                
+                $('#'+value+'_notwork').attr('class', 'btn btn-sm btn-danger btn-circle')
+                $('#'+value+'_work').attr('class', 'btn btn-sm btn-circle')
+                workarray[value] = 'FALSE'
+            }
+
+        
+
+        }
+
+        if (tdClicked === 'actionTD') {
+
+            if (id === value+'_removeRow') {
+                
+                $(this).closest ('tr').remove ();
+
+                delete theArray[value];
+
+            } else {
+
+                
+                var theArrayData = theArray[value]
+                prevTotal = theArrayData['3']*theArrayData['4'];
+
+                document.getElementById("descrip2").value = theArrayData['1'];
+                document.getElementById("unit2").value = theArrayData['2'];
+                document.getElementById("price2").value = theArrayData['3'];
+                document.getElementById("quantity2").value = theArrayData['4'];
+                
+                $('#addList2').val(value);
+            
+            }
+
+        }
+
+        
+
+    });
+
+// =====================================================================================================    
+    
+    $(document).on('submit', '#addForm', function(e){
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/receiveItems/',
+                data: {
+                    
+                    'theArray': JSON.stringify(theArray),
+                    'compArray': JSON.stringify(compArray),
+                    'workarray': JSON.stringify(workarray),
+                    'invNum': $('#receiptnum').val(),
+                    'recDate': $('#recdate').val(),
+                    'insOff': $('#insofficer').val(),
+                    'insdate': $('#insdate').val(),
+                    'receiveoff': $('#receiveoff').val(),
+                    'receivedate': $('#deldate').val(),
+                    'poNum': $('#ponum_field').val(),
+                    'iarnum': $('#iarNum').attr('value'),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+                        alert("Transaction Complete");
+                        //window.location.href = "/requisitioner/pr/";
+                    }
+
+            });
+
+
+    });
+
+
+// =====================================================================================================      
+
+    $('#price').keypress(function(event){
+
+       if(event.which != 8 && isNaN(String.fromCharCode(event.which))){
+            document.getElementById("errorpr").innerHTML = "Non-number input is not allowed" 
+           event.preventDefault(); //stop character from entering input
+       }
+       else{
+        document.getElementById("errorpr").innerHTML = ""
+        $('#price').removeAttr("style") 
+       }
+
+   });
+
+// =====================================================================================================      
+
+   $('#quantity').keypress(function(event){
+
+       if(event.which != 8 && isNaN(String.fromCharCode(event.which))){
+            document.getElementById("errorqu").innerHTML = "Non-number input is not allowed" 
+           event.preventDefault(); //stop character from entering input
+       }
+       else{
+        document.getElementById("errorqu").innerHTML = "" 
+       }
+
+   });
+
+// =====================================================================================================  
+
+     function comaSegregator(input){
+
+        var output = ""
+        var indexCheck = 1
+        for (var i = input.length - 1; i >= 0; i--) {
+            
+            if (indexCheck%3 == 0) {
+
+                if (i == 0) {
+                     output = input[i] + output;
+                    indexCheck = indexCheck + 1;
+
+                } else {
+                     output = ", " + input[i] + output;
+                    indexCheck = indexCheck + 1;
+                }
+                   
+            } else {
+                output = input[i] + output;
+                indexCheck = indexCheck + 1;
+            }
+        }
+
+        return(output)
+    }
+
+// =====================================================================================================      
+
+    function setErrorMsgToEmpty() {
+        
+        document.getElementById("errorde").innerHTML = "";
+        document.getElementById("errorpr").innerHTML = "";
+        document.getElementById("errorun").innerHTML = "";
+        document.getElementById("errorqu").innerHTML = "";
+    }
+
+// =====================================================================================================      
+
+    </script>
+
+    <script type="text/javascript">
+        
+
+    $('#deldate').focusin(function () {
+        $('#deldate').datepicker({
+                    format: "yyyy-mm-dd"
+                }); 
+    });
+
+// =====================================================================================================      
+
+    $('#insdate').focusin(function () {
+        $('#insdate').datepicker({
+                    format: "yyyy-mm-dd"
+                }); 
+    });
+
+     $('#recdate').focusin(function () {
+        $('#recdate').datepicker({
+                    format: "yyyy-mm-dd"
+                }); 
+    });
+
+     
+
+
+    $('#idTourDateDetails').focusin(function () {
+        $('#idTourDateDetails').datepicker({
+                    format: "yyyy-mm-dd"
+                }); 
+    });
+
+    $('#idTourDateDetailsHidden').focusin(function () {
+        $('#idTourDateDetailsHidden').datepicker({
+                    format: "yyyy-mm-dd"
+                }); 
+    });
+
+// =====================================================================================================      
+
+        $(document).ready(function () {
+                
+
+                var someDate = new Date();
+
+                var dateToDisplay = someDate.getFullYear()+ '-' + 
+                                    setSingleDigitToDouble(someDate.getMonth()+1)+ '-' + 
+                                   setSingleDigitToDouble(someDate.getDate());
+                 
+                 
+                $('#deldate').val(dateToDisplay);
+                $('#insdate').val(dateToDisplay);
+                $('#recdate').val(dateToDisplay);
+            
+            });
+                
+// =====================================================================================================                  
+        
+        function setSingleDigitToDouble(input) {
+            
+            
+            var outputData = "" + input;
+            
+            
+            if (outputData.length === 1) {
+                outputData = "0"+input;
+            }
+
+            return outputData;
+
+         }
+// =====================================================================================================  
+
+    </script>
+
+
+
+
+</body>
+</html>
+
+

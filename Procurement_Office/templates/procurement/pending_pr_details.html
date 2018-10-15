@@ -1,0 +1,327 @@
+﻿{% extends 'procurement/base.html' %}
+{% load staticfiles %}
+{% load humanize %}
+{% block content %}
+        
+
+        
+        <!-- /. NAV SIDE  -->
+         <div id="page-wrapper">
+         <form id="decide" action="/procurement_office/numtheReq/" method="POST">{% csrf_token %}
+            <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-top:0px;
+                                     margin-top:52px;
+                                     margin-bottom:0px;
+                                     padding-bottom: 0px;
+                                     padding-right:20px;
+                                     margin-bottom: 0px;
+                                    ">
+
+                                        
+                     <div >
+                                <button class="btn btn-success" role ="button" aria-disabled="true" id="approveButton" name="approveButton" value="{{pageData1.0.1}}"><i class="icon-ok"></i> Create Request For Quotation</button>
+                            
+                      </div>
+                       
+                       
+                                    </div>
+
+           </form>
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Purchase Request Details ( No. {{pageData1.0.1}} )</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                 
+                <div class="col-lg-8" style="">
+                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Basic Information</h3>
+                            </div><!-- -->
+                            <div class="panel-body" style="height:  padding-left:20px;">
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date of Request:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                         {{pageData1.0.5}}
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date Approved:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                         {{pageData1.0.11}}
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                          
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                           
+
+                            
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Requesting Personnel:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >{{pageData3.0.6}} {{pageData3.0.1}} {{pageData3.0.7}} {{pageData3.0.2}},  {{pageData3.0.8}} 
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Office:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >{{pageData3.0.4}} 
+                                    </div>
+                                </div> 
+
+                            </div>
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Purpose:
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {{pageData1.0.2}}
+                                    </div>
+                                </div> 
+                            </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4" style=" padding-left:0px;">
+                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Referenced to</h3>
+                            </div>
+                            <div class="panel-body" style="  padding-left:20px;">
+                            
+                            
+                           <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-8" >
+                                        Quotation No.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-4" >000-00
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-8" >
+                                        No. of Suppliers:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-4" >00
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-8" >
+                                        Abstract No.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-4" >000-00
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-8" >
+                                        
+                                    </div>
+                                    <div class="dataFont1 col-lg-4" >
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-8" >
+                                       Selection Status:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-4" ><label class="label label-success">Processed</label>
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-8" >
+                                       Generated P.O.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-4" >000-00
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                           
+                           
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                  
+                
+                <div class="col-lg-12" style="display: inline;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Purchase Order Items</h3>
+                            </div>
+                            <div class="panel-body">
+                                 <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center">Unit Cost</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for x in pageData2 %}
+                                        <tr>
+                                            <td>{{x.2}}</td>
+                                            <td class="text-center">{{x.3}}</td>
+                                            <td class="text-center">{{x.4|intcomma}}</td>
+                                            <td class="text-center">{{x.5}}</td>
+                                            <td class="text-center">{{x.6|intcomma}}</td>
+                                            
+                                        </tr>
+                                        
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                    <div class="panel-body">
+
+                    <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     ">
+
+                       <div class="form-group">
+                  <div class="header-right" style=" ">
+                                                                
+                      <div style="display: inline; font-weight: 400;  font-size: 14px;">
+                           Estimated Total Cost: 
+                    </div>
+                                                                
+                        <div class="panel panel-default" style="display: inline; font-size: 18px;  font-weight: 400; padding:10px;">
+                             {{pageData4.0.0|intcomma}}
+                        </div>
+                    
+                    </div> 
+
+               </div>
+
+                 </div></div>
+                        
+                    </div>
+                </div>
+                
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+        
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City 
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/custom.js' %}"></script>
+    
+   <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#pr').attr('class', 'active-menu-proc')
+        $('#proTop').attr('class', 'active-menu-top')
+        $('#proUL').attr('class','nav nav-second-level collapse in')
+    })
+
+    </script>
+
+{% endblock %}

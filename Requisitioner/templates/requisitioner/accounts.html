@@ -1,0 +1,253 @@
+
+{% extends 'requisitioner/base.html' %}
+
+{% load humanize %}
+
+{% load staticfiles %}
+{% block content %}
+        <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+         
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                    
+                     Property Acceptance Receipts
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #555!important;">
+             
+                <hr>
+                <div class="col-lg-3" style=" padding-right:10px;">
+                             <div class="panel panel-primary ">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #428bca; color:white; padding:0px; padding-left: 10px; height: 32px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #428bca;background-color:white;  border-color: #428bca; margin-top: 5px;" >  <i class="icon-list"></i></button> Total P.A.R. Received.</div>
+                                    <div class="panel-body" style="padding: 10px; height: 40px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:0px;">
+                                        {% if pageData2.0.0 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.0|floatformat|intcomma}}
+                                        {% endif %}</p>
+                                    
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#d9534f;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                
+                <div class="col-lg-3" style="padding-left:0px; padding-right:10px;">
+                             <div class="panel panel-primary">
+                                    <div class="panel-heading" style="font-size:15px; background-color: #428bca; color:white; padding:0px; padding-left: 10px; height: 32px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #428bca;background-color:white;  border-color: #428bca; margin-top: 5px;" > <i class="icon-ok"></i></button>  Qty on Account</div>
+                                    <div class="panel-body" style="padding: 10px; height: 40px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.2 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.2|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+                                    
+
+                                    </div>
+                                    <div style="display: none;" class="panel-footer"><span style="color:#5cb85c; "><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                <div class="col-lg-3" style="padding-left:0px; padding-right:10px;">
+                             <div class="panel panel-success" style="border-color: #5cb85c;">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #5cb85c; color:white; padding:0px; height: 32px; padding-left: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #5cb85c;background-color:white; border-color: #5cb85c;margin-top: 5px;">  <i class="icon-money"></i></button> Total Item Cost</div>
+                                    <div class="panel-body" style="padding: 10px; height: 40px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.1 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.1|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+                                  
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#428bca;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                  <div class="col-lg-3" style="padding-left:0px;">
+                             <div class="panel panel-warning" style="border-color: #a94442">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #a94442; color:white; padding: 0px; height: 32px; padding-left: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #a94442; background-color:white; border-color: #a94442;margin-top: 5px;">  <i class="icon-trash"></i></button> Qty Returned as Waste</div>
+                                    <div class="panel-body" style="padding: 10px; height: 40px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.3 == None %}
+                                         0
+                                        {% else %}
+                                         {{pageData2.0.3|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+
+                                    </div>
+                                    <div style="display: none;" class="panel-footer"><span style="color:#5cb85c; "><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+
+     
+                
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                                    <table class="table table-hover table-bordered" id="dataTables-example">
+                                    <thead style="background: #555; color: white;">
+                                        <tr>
+                                            <th>PAR Number</th>
+                                            <th class="text-center">No of Items</th>
+                                            <th class="text-center">Total Cost</th>
+                                            <th class="text-center">Date Recieved</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableOfPAR">
+
+                                    {% for x in pageData1 %}
+                                    <tr style="display: none"><td colspan="5">
+                                        <p>{{x}}</p><p>{{x.7}}</p></td></tr>
+                                        <tr class="odd gradeX" id="{{x.0}}">
+                                            
+                                            <td>{{x.0}}</td>
+                                            <td class="text-center">{{x.7}}</td>
+                                            <td class="text-center">₱ {{x.10|floatformat|intcomma}}</td>
+                                            <td class="text-center">{{x.3}}</td>
+                                            <td class="text-center">
+                                            
+                                                <div>
+                                                    <a href="/requisitioner/accounts/par/{{x.11}}/details"><button   class="btn btn-sm btn-primary" role= "button" type="button" aria-disabled="true" style="border-radius:15px; outline: none"><i class="icon-reorder"></i></button></a>
+                                                    
+                                                    
+                                                    <button style="display: none" id="{{x.0}}_waste" name="waste" value="{{x.0}}" class="btn btn-xs btn-danger" role ="button" type="button" aria-disabled="true"><i class="icon-trash"></i></button>
+                                                
+                                                </div>
+                                           
+
+                                                </td>
+                                        </tr>
+                                    {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+                 </div>
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; 2016 Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    
+    <script type="text/javascript">
+        document.getElementById("detailsButton").onclick = function() {
+            alert(document.getElementById("detailsButton").value
+        }
+        
+        function commaSeparator(input) {
+             return input.toLocaleString();
+        }
+        
+    </script>
+
+    <script type="text/javascript">
+        
+   
+    $('#tableOfPAR').on('click','button', function (e) {
+        
+        var id = this.id;
+        var value = document.getElementById(id).value
+        var trID = $(this).closest('tr').attr('id');
+
+
+        if (id === value+"_details") {
+            $('#'+value+'_actions').attr('action', '/requisitioner/displayPARDetails/')
+        } else {
+
+        }
+    });
+
+    </script>
+    </script>
+        <script type="text/javascript">
+       
+        $(document).ready(function () {
+            
+
+            $('#acctTop').attr('class', 'active-menu-top theAsTop');
+            $('#acctUL').attr('class', 'nav nav-second-level theUL collapse in');  
+            $('#myacct').attr('class', 'active-menu-requi theAs');
+            $('#acctMyTop').attr('class', 'active-menu-top theAsTop');
+            $('#acctMyUL').attr('class', 'nav nav-third-level theUL collapse in');  
+            
+       
+        })
+       
+        
+    </script>
+
+
+{% endblock %}

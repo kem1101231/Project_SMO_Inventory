@@ -1,0 +1,514 @@
+{% extends baseSource %}
+{% load staticfiles %}
+{% block content %}
+       
+        <div id="page-wrapper">
+            <div id="page-inner">
+
+                <hr>
+                <div style=" margin-left:30px; font-weight: 450;  font-size: 22px; padding-bottom:20px;">
+                       <i class="icon-search"></i> Search Results
+                </div>
+
+
+
+                        {% if pageData1.0 == None %}
+                         <div class="text-center" style="width:100%;">
+                            
+                            No Found Match on any Saved Information
+
+
+                        </div>
+
+
+                       {% else %} 
+                        <div class="table-responsive col-lg-6 col-centered" >
+                                                
+                                    <div class="col-md-12" style="
+                                                padding-left: 55px;
+                                                padding-right: 0px;
+                                                ">
+                                       
+                                       <div class="panel">
+                                        
+
+                                        <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover" id="dataTables-example">
+                                               
+                                                <tbody id="tableOfPAR">
+
+
+                                                {% for x in pageData1 %}
+                                                {%  if x.0 == 'pr' %}
+
+                                                    <tr class="odd gradeX">
+                                                       
+                                                        <div class="media" >
+                                                                <span class="pull-left" >
+                                                                    <div class="btn btn-primary btn-circle" role="button" aria-disabled="true" >
+                                                                    <i class="icon-shopping-cart"></i></div>
+                                                                </span>  
+                                                                <div class="media-body">
+                                                                    <h5 class="media-heading" style="font-size:13pt; font-weight:bold; margin-top:10px; margin-bottom:15px;">
+                                                                       
+                                                                            <a href="/inventory_office/search/pr/{{x.7}}/details/">Purchase Request - {{x.5}}</a>
+                                                                          
+                                                                    </h5>
+                                                                    <div class="col-lg-5" style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">Request type:</p> 
+                                                                        <p style="margin-bottom:5px;">Req. Off.:</p> 
+                                                                        <p style="margin-bottom:5px;">Total Cost:</p> 
+                                                                        
+                                                                        <p>Purpose:</p>
+
+                                                                    </div>
+                                                                    <div class="col-lg-6"  style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">{{x.6}} Request</p> 
+                                                                        <p style="margin-bottom:5px;">Office Name</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.4}}</p> 
+                                                                        <p>{{x.2}}</p>
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                    </tr>
+
+                                                {% endif %}
+                                                {% if x.0 == 'po' %}
+
+                                                    <tr class="odd gradeX">
+                                                       
+                                                        <div class="media" >
+                                                                <span class="pull-left" >
+                                                                    <div class="btn btn-primary btn-circle" role="button" aria-disabled="true" >
+                                                                    <i class="icon-credit-card"></i></div>
+                                                                </span>  
+                                                                <div class="media-body">
+                                                                    <h5 class="media-heading" style="font-size:13pt; font-weight:bold; margin-top:10px; margin-bottom:15px;">
+                                                                        <strong><a href="/inventory_office/po/{{x.6}}/details/">Purchase Order - {{x.5}}</a></strong>
+                                                                    </h5>
+                                                                    <div class="col-lg-5" style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">Reference:</p> 
+                                                                        <p style="margin-bottom:5px;">Recipient:</p> 
+                                                                        <p style="margin-bottom:5px;">Delivery Date:</p> 
+                                                                        
+                                                                        
+                                                                        <p>Total Cost:</p>
+
+                                                                    </div>
+                                                                    <div class="col-lg-6"  style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">PR no. {{x.1}}</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.2}}</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.3}}</p> 
+                                                                        <p>{{x.4}}</p>
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                    </tr>
+
+                                                {% endif %}
+                                                {% if x.0 == 'rq' %}
+
+                                                <tr class="odd gradeX">
+                                                       
+                                                        <div class="media" >
+                                                                <span class="pull-left" >
+                                                                    <div class="btn btn-primary btn-circle" role="button" aria-disabled="true" >
+                                                                    <i class="icon-building"></i></div>
+                                                                </span>  
+                                                                <div class="media-body">
+                                                                    <h5 class="media-heading" style="font-size:13pt; font-weight:bold; margin-top:10px; margin-bottom:15px;">
+                                                                        <strong><a href="/inventory_office/search/rq/{{x.5}}">Request for Quotation- {{x.4}}</a></strong>
+                                                                    </h5>
+                                                                    <div class="col-lg-6" style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">Request Reference:</p> 
+                                                                        <p style="margin-bottom:5px;">Number of Suppliers:</p> 
+                                                                        <p">Date Prepared:</p> 
+                                                                        
+
+                                                                    </div>
+                                                                    <div class="col-lg-5"  style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">PR no. {{x.4}}</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.2}}</p> 
+                                                                        <p">{{x.3}}</p> 
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                    </tr>
+
+                                                {% endif %}
+                                                {% if x.0 == 'ac' %}
+                                                 <tr class="odd gradeX">
+                                                       
+                                                        <div class="media" >
+                                                                <span class="pull-left" >
+                                                                    <div class="btn btn-primary btn-circle" role="button" aria-disabled="true" >
+                                                                    <i class="icon-list-alt"></i></div>
+                                                                </span>  
+                                                                <div class="media-body">
+                                                                    <h5 class="media-heading" style="font-size:13pt; font-weight:bold; margin-top:10px; margin-bottom:15px;">
+                                                                        <strong><a href="/inventory_office/search/ac/{{x.4}}">Abstract of Canvass - {{x.3}}</a></strong>
+                                                                    </h5>
+                                                                    <div class="col-lg-6" style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">Canvass Reference:</p> 
+                                                                        <p style="margin-bottom:5px;">Canvass Date:</p> 
+                                                                        <p style="margin-bottom:5px;">Selection Status:</p> 
+                                                                        
+
+                                                                    </div>
+                                                                    <div class="col-lg-6"  style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">Quotation no. {{x.3}}</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.1}}</p> 
+
+                                                                        {% if x.2 == True %}
+                                                                        <p><label class="label label-success">Processed</label></p> 
+                                                                        {% else  %}
+                                                                        <p><label class="label label-warning">Pending</label></p> 
+                                                                        {% endif %}
+
+                                                                        
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                    </tr>
+
+                                                {% endif %}
+                                                {% if x.0 == 'equi' %}
+                                                 <tr class="odd gradeX">
+                                                       
+                                                        <div class="media" >
+                                                                <span class="pull-left" >
+                                                                    <div class="btn btn-primary btn-circle" role="button" aria-disabled="true">
+                                                                    <i class="icon-bolt"></i></div>
+                                                                </span>  
+                                                                <div class="media-body">
+                                                                    <h5 class="media-heading" style="font-size:13pt; font-weight:bold; margin-top:10px; margin-bottom:15px;">
+                                                                        <strong><a href="/inventory_office/search/supply/{{x.3}}_{{x.2}}">{{x.2}}</a></strong>
+                                                                    </h5>
+                                                                    <div class="col-lg-4" style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">Brand:</p> 
+                                                                        <p style="margin-bottom:5px;">Type:</p> 
+                                                                        <p ">Classification:</p> 
+                                                                        
+
+                                                                    </div>
+                                                                    <div class="col-lg-7"  style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">{{x.3}}</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.1}}</p> 
+                                                                        <p ">{{x.4}}</p> 
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                    </tr>
+
+                                                {% endif %}
+                                                {% if x.0 == 'supp' %}
+
+                                                    <tr class="odd gradeX">
+                                                       
+                                                        <div class="media" >
+                                                                <span class="pull-left" >
+                                                                    <div class="btn btn-primary btn-circle" role="button" aria-disabled="true">
+                                                                    <i class="icon-pencil"></i></div>
+                                                                </span>  
+                                                                <div class="media-body">
+                                                                    <h5 class="media-heading" style="font-size:13pt; font-weight:bold; margin-top:10px; margin-bottom:15px;">
+                                                                        <strong><a href="/inventory_office/search/asset/{{x.3}}_{{x.2}}">{{x.2}}</a></strong>
+                                                                    </h5>
+                                                                    <div class="col-lg-4" style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">Brand:</p> 
+                                                                        <p style="margin-bottom:5px;">Type:</p> 
+                                                                        <p ">Classification:</p> 
+                                                                        
+
+                                                                    </div>
+                                                                    <div class="col-lg-7"  style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">{{x.3}}</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.1}}</p> 
+                                                                        <p ">{{x.4}}</p> 
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                    </tr>
+
+                                                {% endif %}
+                                                {% if x.0 == 'name' %}
+
+                                                    <tr class="odd gradeX">
+                                                       
+                                                        <div class="media" >
+                                                                <span class="pull-left" >
+                                                                    <div class="btn btn-primary btn-circle" role="button" aria-disabled="true">
+                                                                    <i class="icon-user"></i></div>
+                                                                </span>  
+                                                                <div class="media-body">
+                                                                    <h5 class="media-heading" style="font-size:13pt; font-weight:bold; margin-top:10px; margin-bottom:15px;">
+                                                                        <strong><a href="/inventory_office/search/employee/{{x.2}}_{{x.1}}">{{x.2}}, {{x.1}} </a></strong>
+                                                                    </h5>
+                                                                    <div class="col-lg-4" style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">Designation:</p> 
+                                                                        <p style="margin-bottom:5px;">Office:</p> 
+                                                                        <p ">Inventory Worth:</p> 
+                                                                        
+
+                                                                    </div>
+                                                                    <div class="col-lg-7"  style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">{{x.3}}</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.4}}</p> 
+                                                                        <p ">{{x.5}}</p> 
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                    </tr>
+
+                                                {% endif %}
+                                                {% if x.0 == 'supplier' %}
+
+                                                    <tr class="odd gradeX">
+                                                       
+                                                        <div class="media" >
+                                                                <span class="pull-left" >
+                                                                    <div class="btn btn-primary btn-circle" role="button" aria-disabled="true">
+                                                                    <i class="icon-truck"></i></div>
+                                                                </span>  
+                                                                <div class="media-body">
+                                                                    <h5 class="media-heading" style="font-size:13pt; font-weight:bold; margin-top:10px; margin-bottom:15px;">
+                                                                        <strong><a href="/inventory_office/search/a/{{x.1}}">{{x.1}}</a></strong>
+                                                                    </h5>
+                                                                    <div class="col-lg-6" style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">Address:</p> 
+                                                                        <p style="margin-bottom:5px;">Representative:</p> 
+                                                                        <p ">No. of Done Transaction:</p> 
+                                                                        
+
+                                                                    </div>
+                                                                    <div class="col-lg-6"  style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">{{x.2}}</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.3}}</p> 
+                                                                        <p ">{{x.4}}</p> 
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                    </tr>
+
+                                                {% endif %}
+                                                {% if x.0 == 'item' %}
+
+                                                    <tr class="odd gradeX">
+                                                       
+                                                        <div class="media" >
+                                                                <span class="pull-left" >
+                                                                    <div class="btn btn-primary btn-circle" role="button" aria-disabled="true">
+                                                                    <i class="icon-exclamation"></i></div>
+                                                                </span>  
+                                                                <div class="media-body">
+                                                                    <h5 class="media-heading" style="font-size:13pt; font-weight:bold; margin-top:10px; margin-bottom:15px;">
+                                                                        <strong><a href="">{{x.1}}</a></strong>
+                                                                    </h5>
+                                                                    <div class="col-lg-4" style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">Type:</p> 
+                                                                        <p ">Classification:</p> 
+                                                                        
+
+                                                                    </div>
+                                                                    <div class="col-lg-7"  style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">{{x.2}}</p>
+                                                                        <p ">{{x.3}}</p> 
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                    </tr>
+
+                                                {% endif %}
+
+                                                {% if x.0 == 'iar' %}
+
+                                                    <tr class="odd gradeX">
+                                                       
+                                                        <div class="media" >
+                                                                <span class="pull-left" >
+                                                                    <div class="btn btn-primary btn-circle" role="button" aria-disabled="true">
+                                                                    <i class="icon-file"></i></div>
+                                                                </span>  
+                                                                <div class="media-body">
+                                                                    <h5 class="media-heading" style="font-size:13pt; font-weight:bold; margin-top:10px; margin-bottom:15px;">
+                                                                        <strong><a href="">Inspection and Acceptance Report No. 000-00</a></strong>
+                                                                    </h5>
+                                                                    <div class="col-lg-5" style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">P.O. Reference:</p> 
+                                                                        <p style="margin-bottom:5px;">Delivery Date:</p> 
+                                                                        <p style="margin-bottom:5px;">Supplier:</p> 
+                                                                        <p style="margin-bottom:5px;">Transaction Cost:</p> 
+                                                                        <p style="margin-bottom:5px;">Remarks:</p>
+                                                                        
+
+                                                                    </div>
+                                                                    <div class="col-lg-6"  style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">{{x.1}}</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.2}}</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.3}}</p> 
+                                                                        <p style="margin-bottom:5px;">000.00</p> 
+                                                                        <p style="margin-bottom:5px;">
+
+                                                                        {% if x.4 == True %}
+                                                                        <label class="label label-success">Complete</label></p> 
+                                                                        {% else  %}
+                                                                        <p><label class="label label-danger">Incomplete</label></p> 
+                                                                        {% endif %}
+
+                                                                        
+                                                                       
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                    </tr>
+
+                                                {% endif %}
+
+                                                {% if x.0 == 'par' %}
+
+                                                 
+                                                      <tr class="odd gradeX">
+                                                       
+                                                        <div class="media" >
+                                                                <span class="pull-left" >
+                                                                    <div class="btn btn-primary btn-circle" role="button" aria-disabled="true">
+                                                                    <i class="icon-file"></i></div>
+                                                                </span>  
+                                                                <div class="media-body">
+                                                                    <h5 class="media-heading" style="font-size:13pt; font-weight:bold; margin-top:10px; margin-bottom:15px;">
+                                                                        <strong><a href="">Propety Acceptance Receipt No. {{x.4}}</a></strong>
+                                                                    </h5>
+                                                                    <div class="col-lg-4" style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">Received By:</p> 
+                                                                        <p style="margin-bottom:5px;">Released By:</p> 
+                                                                        <p ">Prepared:</p> 
+                                                                        
+
+                                                                    </div>
+                                                                    <div class="col-lg-7"  style="display:inline;">
+                                                                        <p style="margin-bottom:5px;">{{x.1}}</p> 
+                                                                        <p style="margin-bottom:5px;">{{x.2}}</p> 
+                                                                        <p ">{{x.3}}</p> 
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                    </tr>
+
+                                                {% endif %}
+
+
+
+
+
+                                                {% endfor %}
+
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                       
+                                    </div>
+                                    </div>
+                                        
+
+
+                                </div>
+                                            </div>
+
+
+                    {% endif %}
+
+
+				
+                <!-- /. ROW  -->
+    
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+                    </div>
+
+
+                </div>
+
+                
+			
+            </div>
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec" >
+      &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+   <script>
+        $(document).ready(function () {
+
+            $('#home').attr('class','{{cssActiveMenu}}')
+            $('#title').html('Search Information')
+           
+             });
+    </script>
+
+{% endblock %}
+

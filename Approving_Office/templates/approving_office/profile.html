@@ -1,0 +1,174 @@
+{% extends 'approving_office/base.html' %}
+{% load humanize %}
+{% load staticfiles %}
+{% block content %}
+        
+        <!-- /. NAV SIDE  -->
+          <div id="page-wrapper">
+
+            
+            
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Profile</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+                <div id="page-inner" style="margin-top:0px; background-color: #555!important;">
+             
+                <hr>
+
+                <div class="col-lg-5" style="">
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body" style=" padding-left:20px;">
+                            <div class = "profiletest2">
+                    <img src = "{% static 'assets/img/user.jpeg' %}" class="img-circle">
+                </div>
+                <div style="width:100%; margin-top: 20px; font-size:18px; font-weight:bold;" class="text-center">
+                    {{empData.0.6}} {{empData.0.1}} {{empData.0.7}} {{empData.0.2}}
+                </div>
+                        <div style=" font-size: 17px;  font-weight: 360; padding-top:10px;" class="text-center">
+                                        {{designation}}
+                                    </div>   
+                                
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                         <div class="panel panel-default">
+                            
+                            <div class="panel-body" style=" padding-left:20px;">
+                              
+                        
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Account Type:   
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        Approving Officer
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Username:   
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        {{pageData1.0.0}}
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        <button class="btn btn-xs btn-default">change username</button>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        Password:   
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                       {% for x in pageData1.0.1 %}
+                                            •
+                                        {% endfor %}
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class="col-lg-5 dataFont2" >
+                                        
+                                    </div>
+                                    <div class="col-lg-6 dataFont1" >
+                                        <button class="btn btn-xs btn-default">change password</button>
+                                    </div>
+                                </div> 
+                            </div> 
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                         
+                    
+                    <div class="col-lg-7"  style="padding-left:0px;">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="">Activities, Task and Notifications</h3>
+                            </div>
+                            <div class="panel-body" style="height:1150px; padding-left:7px;">
+                            
+ 
+                            </div>
+                        </div>
+                    </div>
+                
+              
+          
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>  
+
+
+                </div>
+
+
+        
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - Supply and Equipement Inventory
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    <script type="text/javascript">
+        
+        $('#profile').attr('class', 'active-menu-approv')
+    
+    </script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'procurement/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+				
+				<div class= "header-right">
+                
+				</div>
+			
+			
+                <div class = "test2">
+					<img src = "{% static 'procurement/assets/img/Msu.png' %}" class="img-circle">
+				</div>
+				<div >
+				<div class="col-lg-8 col-centered test">
+					<div class="form-group input-group">
+                       
+                       <input type="text" autofocus class="form-control input-lg" placeholder="Search for Inventory Information">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary btn-lg" type="button">
+                                                    <i class="fa fa-search "></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                </div>
+				</div>
+				
+                <!-- /. ROW  -->
+                
+                    </div>
+                </div>
+			
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec" >
+      &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#home').attr('class', 'active-menu-proc')
+    })
+
+    </script>
+
+{% endblock %}
+
+

@@ -1,0 +1,200 @@
+{% extends 'inventory_office/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner" style="
+            margin-bottom: 0px;
+            ">
+              
+
+               
+               <div class="panel panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                ">
+                <div>                     
+                Employees Account of Items - Colleges and Offices
+                </div>
+                  <hr> 
+               </div>
+
+               <div class="panel new-panel-ds"
+                        style="
+                        margin-bottom: 0px;
+                             ">
+                
+                                <div id="wrap" style="position:relative;">
+                            <div id="wrap" style="position:relative;">
+                            <div id="left" class ="panel"
+                                style="
+                                    
+                                    height: 625px;
+                                 
+                                ">
+                                 <div class="panel-body" style="
+                                 padding-top:0px;
+                                 padding-left: 0px;
+                                 padding-right: 0px;
+                                 ">
+
+                            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel">
+                            
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Office</th>
+                                            <th class="text-center">No. of Items</th>
+                                            <th class="text-center">%"pending title"%</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <tr>
+                                            <td>CNSM</td>
+                                            <td>College of Natural Sciences and Mathematics</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/accounts/offices/details/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details</button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                         
+                                         <tr>
+                                            <td>IT-Physics</td>
+                                            <td>Information Technology and Physics Department</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/accounts/offices/details/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details</button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td>Math</td>
+                                            <td>Mathematics Department</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/accounts/offices/details/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details</button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td>Bio</td>
+                                            <td>Biology Department</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">0</td>
+                                            <td class="text-center">
+                                               <form id="detailsButton" action="/inventory_office/accounts/offices/details/" method="POST">{% csrf_token %} 
+                                               <div>
+                                               <button name ="offDetails" value="{{x.0}}" class="btn btn-xs btn-primary" role ="submit" aria-disabled="true">View Details</button>
+                                               </div>
+                                               </form>
+                                           
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                            </div>
+
+                        </div>
+
+                    </div> 
+  </div>
+                    </div> 
+                    </div>
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+   
+    <div id="footer-sec">
+       &copy; Mindanao State University <i class=" buttom-header-right">Equipement Inventory </i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/wizard/modernizr-2.6.2.min.js' %}"></script>
+    <script src="{% static 'inventory_office/assets/js/wizard/jquery.cookie-1.3.1.js' %}"></script>
+    <script src="{% static 'inventory_office/assets/js/wizard/jquery.steps-addReceive.js' %}"></script>
+
+    <script src="{% static 'inventory_office/assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+    <script src="{% static 'inventory_office/assets/plugins/dataTables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'inventory_office/assets/plugins/dataTables/dataTables.bootstrap.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+             });
+    </script>
+
+   <script>
+        $(document).ready(function () {
+
+           
+            $('#acct').attr('class','active-menu-inven')
+            $('#acctTop').attr('class', 'active-menu-top')
+            $('#theAcctUL').attr('class','nav nav-second-level collapse in')
+            $('#title').html('Offices')
+
+           
+             });
+    </script>
+
+{% endblock %}
+
+
+    

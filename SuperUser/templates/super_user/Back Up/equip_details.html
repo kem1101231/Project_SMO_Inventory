@@ -1,0 +1,559 @@
+{% extends baseSource %}
+{% load staticfiles %}
+{% load humanize %}
+{% block content %}
+            <style type="text/css">
+        
+        .test25{
+
+            max-width: 180px;
+            min-height: 180px;
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont1{
+            
+            font-size: 15px; 
+            
+            padding:7px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            
+            font-size: 15px;
+            padding:7px; 
+            margin-bottom:2px;
+         }
+
+         .item-img-div {
+   
+    min-height: 140px;
+}
+    
+    .item-brg-img img{
+
+    }
+    
+    .item-img-div img {
+        max-height: 150px;
+    }
+
+    .item-img-div .inner-text {
+        
+        text-align: left;
+        position: relative;
+        color: #fff;
+        font-weight: 500;
+        line-height: 20px;
+        font-size: 15.5px;
+        
+    }
+
+        .tablescroll{
+            overflow-y:scroll;
+            height:1033px;
+            display:block;
+        }
+        
+        .tablescroll2{
+            
+            overflow-y:scroll;
+            height:550px;
+            display:block;
+        }
+        .divScroll{
+            
+            overflow-y:scroll;
+            height:450px;
+            display:block;
+        }
+
+    </style>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:60px; 
+                 
+
+                ">
+                <div style="padding-bottom: 0px;">
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}" style="font-size: 20px;"></span><span name="reqNum" id="reqNum" value="{{pageData1.0.0}}" style="font-weight: 500; font-size: 30px;">Equipment Details</span>
+                 
+                </div>
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #888!important;">
+             
+                <hr>
+        
+                
+
+                <div class="col-lg-3" style="">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="panel col-lg-12 text-center" style="padding:0px;">
+                                            <div class = "panel panel-info item-img-div"  style="margin-bottom:0px; max-width: 100%; width: 100%; ">
+                                                <img style="max-height: 210px; max-width: 210px;" src = "{% static 'assets/img/portfolio-img8.jpg' %}">          
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 text-right" style="padding:0px;">
+                                            <button class="btn btn-success btn-sm" style="border-radius: 15px;">Update</button>
+                                        </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" style="padding-left: 0px;">
+                    <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="height: 291px; padding-left:20px;">
+                                      <div class="col-lg-12" style="padding:0px;">
+                                          <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-4 dataFont2" >
+                                                     
+                                                </div>
+                                                <div class="col-lg-8 dataFont1"  >
+                                                 
+                                                </div>
+                                            </div> 
+                                        </div>
+                                                <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-4 dataFont2" >
+                                                    Brand:  
+                                                </div>
+                                                <div class="col-lg-8 dataFont1" >
+                                                     {{pageData1.0.3}}
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-4 dataFont2" >
+                                                    Model:  
+                                                </div>
+                                                <div class="col-lg-8 dataFont1"  >
+                                                     {{pageData1.0.2}}
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-4 dataFont2" >
+                                                     
+                                                </div>
+                                                <div class="col-lg-8 dataFont1"  >
+                                                  
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-4 dataFont2" >
+                                                    Description:  
+                                                </div>
+                                                <div class="col-lg-8 dataFont1"  >
+
+                                                {% if pageData1.1.1 == None %}
+                                                    {{pageData1.1}}
+                                                {% else %}
+                                                    {% for x in pageData1.1 %}
+                                                    <p>{{x}}</p>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                  
+                                                  
+                                                    
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        
+                                        
+                                        
+                                      
+
+                                      
+
+                                      </div>  
+                                       
+                                        
+
+                                        
+                                   
+                                
+                            </div>
+                        </div>
+
+
+                </div>
+                <div class="col-lg-5" style="margin-left:0px; padding-left:0px;">
+                    <div class="col-lg-4" style=" padding-right:10px; padding-left: 0px;">
+                             <div class="panel panel-primary ">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #428bca; color:white; padding:0px; padding-left: 10px; height: 32px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #428bca;background-color:white;  border-color: #428bca; margin-top: 5px;" >  <i class="icon-list"></i></button> On Acct.</div>
+                                    <div class="panel-body" style="padding: 10px; height: 40px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:0px;">
+                                        {% if pageData1.4.0 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData1.4.0|floatformat|intcomma}}
+                                        {% endif %}</p>
+                                    
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#d9534f;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                <div class="col-lg-4" style="padding-left:0px; padding-right:10px;">
+                             <div class="panel panel-success" style="border-color: #5cb85c;">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #5cb85c; color:white; padding:0px; height: 32px; padding-left: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #5cb85c;background-color:white; border-color: #5cb85c;margin-top: 5px;">  <i class="icon-money"></i></button> Total Cost</div>
+                                    <div class="panel-body" style="padding: 10px; height: 40px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData1.4.1 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData1.4.1|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+                                  
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#428bca;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                <div class="col-lg-4" style="padding-left:0px; padding-right: 0px;">
+                             <div class="panel panel-warning" style="border-color: #a94442">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #a94442; color:white; padding: 0px; height: 32px; padding-left: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #a94442; background-color:white; border-color: #a94442;margin-top: 5px;">  <i class="icon-trash"></i></button> Qty Wasted</div>
+                                    <div class="panel-body" style="padding: 10px; height: 40px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData1.4.2 == None %}
+                                         0
+                                        {% else %}
+                                         {{pageData1.4.2|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+
+                                    </div>
+                                    <div style="display: none;" class="panel-footer"><span style="color:#5cb85c; "><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+               
+                
+                </div>
+                <div class="col-lg-5" style="padding:0px; padding-right: 15px;">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                                   <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                                    <div class="col-lg-5 dataFont2" >
+                                                        Unit:  
+                                                    </div>
+                                                    <div class="col-lg-7 dataFont1">
+                                                        {{pageData1.2.4}}
+                                                    </div>
+                                                </div> 
+                                            </div> 
+
+                                            <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%;">
+                                                    <div class="col-lg-5 dataFont2">
+                                                        Highest Price:  
+                                                    </div>
+                                                    <div class="col-lg-7 dataFont1">
+                                                        ₱ 18,000
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-5 dataFont2" >
+                                                     Latest Update: 
+                                                </div>
+                                                <div class="col-lg-7 dataFont1"  >
+                                                    April 14, 2017
+                                                </div>
+                                            </div> 
+                                        </div>
+
+                                       
+
+                                    <div class="form-group">
+                                        <div style="padding-left: 2px;  width:100%;">
+                                            <div class="col-lg-5 dataFont2">
+                                     
+                                              Particular No. <span style="font-weight: bold">{{pageData1.3.3}}</span>: 
+                                            </div>
+                                            <div class="col-lg-7 dataFont1">
+                                                 {{pageData1.3.1}}
+                                            </div>
+                                        </div> 
+                                    </div>
+                
+                        </div>
+                    </div>
+                </div>
+                    
+                 
+  
+                <div class="col-lg-12" style="display:none">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {% for x in pageData4 %}
+                                <p>{{x}}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12" style="display: inline;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Quantity Distribution by Offices</h3>
+                            </div>
+                            <div class="panel-body">
+                           
+                            
+                            <div class="panel panel-info" style="margin-bottom: 0px;">
+                                <div class="panel-heading">Offices List</div>
+                                <div class="panel-body" style="margin:0px; padding:0px;">
+                                <div class="table-responsive">
+                                <table class="table " id="theOffTable">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th class="text-center">PAR No.</th>
+                                            <th class="text-center">Date Received</th>
+                                            <th class="text-center">Purchase Price</th>
+                                            <th class="text-center">Accounted Person</th>
+                                            <th class="text-center">Unique ID.</th>
+                                            <th class="text-center">Inv. No.</th>
+                                            <th class="text-center">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in pageData4 %}
+                                    <tr id="{{x.0}}" class="tr_class" style="background-color:#ccc;">
+                                            <td colspan="7">{{x.0.1}}</td>
+                                            <td id="{{x.0}}_td" class="text-center" style="display: none"><button id="{{x.0}}_button"  class="btn btn-xs btn-primary btn_class">View Details <i class="icon-arrow-right"></i></button></td>
+                                        </tr>
+
+                                        {% if x.1.0 == None %}
+                                            <tr>
+                                                <td colspan="7">The office doesn't possess any of this items</td>
+                                            </tr>
+                                        {% else %}
+                                             
+                                             {% for xx in x.1 %}
+
+                                                {% for xy in xx.1 %}
+
+                                                    <tr class="gradeU">
+                                                        
+                                                        <td class="text-center">{{xy.1}}</td>
+                                                        <td class="text-center">00/00/0000</td>
+                                                        <td class="text-center">000,000</td>
+                                                        <td class="text-center">{{xx.0.6}} {{xx.0.1}} {{xx.0.7}} {{xx.0.2}} {{xx.0.8}}</td>
+                                                         <td class="text-center">
+                                                         {% if xy.8 == None %}
+                                                            <button class="btn btn-xs btn-warning" id="{{xy.0}}_serailBTN">Add</button>
+                                                         {% else %}
+                                                            {{xy.8}}
+                                                         {% endif %}
+                                                         
+                                                         </td>
+                                                        <td class="text-center">{{xy.0}}</td>
+                                                        <td class="text-center">
+                                                        {% if xy.6 == True %}
+                                                        On Account <button class="btn btn-success btn-xs" disabled="" style="border-radius: 15px; height: 15px; width: 15px;"></button>
+                                                        {% else %}
+                                                        Disposed <button class="btn btn-danger btn-xs" disabled="" style="border-radius: 15px; height: 15px; width: 15px;"></button>
+                                                        {% endif %}
+
+                                                         </td>
+                                                    </tr>
+
+                                            {% endfor %}
+   
+
+                                        {% endfor %}
+                                        
+
+                                        {% endif %}
+
+
+                                       
+
+                                    {% endfor %}
+                                        
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            </div>
+
+                            </div>     
+
+                            
+                                
+
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+
+<!-- ===================================================   Modal ================================================================================  -->
+           
+                       
+                       <div class="modal fade" id="updateSerial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Update Serial Number or Unique ID</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Unique ID: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip2" class="form-control" autofocus placeholder="e.g. serial no., body no." />
+                                                        <span  id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                            <button id="saveSerial" type="submit" class="btn btn-success" >Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+<!-- ===================================================   Modal ===============================================================================  -->
+
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <div id="footer-sec">
+       &copy; Mindanao State University - General Santos City
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/plugins/morris/raphael-2.1.0.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/morris/morris.js' %}"></script>
+
+    <script>
+        
+        var invnum = ''
+
+        $('#theOffTable').on('click','button', function () {
+            var id  = this.id
+            var arrid = id.split('_')
+            
+            invnum = arrid[0]
+
+            $('#updateSerial').modal('toggle')
+
+        })    
+
+        $('#saveSerial').click(function () {
+            
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/updateSerial/',
+                data:{
+                    
+                    'inputData': $('#descrip2').val(),
+                    'invnum': invnum,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        alert("Done")
+                        $('#updateSerial').modal('toggle')
+                        location.reload()
+                    }
+
+            });
+        })
+
+
+
+        $(document).ready(function () {
+
+            $('#equipment').attr('class','{{cssActiveMenu}}')
+            $('#inventoryTop').attr('class', 'active-menu-top')
+            $('#theInvenUL').attr('class','nav nav-second-level collapse in')
+
+            $('#title').html('Equipement Details')
+
+           
+             });
+
+
+    </script>
+
+{% endblock %}
+
+

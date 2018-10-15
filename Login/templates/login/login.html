@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    {% load staticfiles%}
+    <title>MSU IMS - Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'login/assets/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'login/assets/css/basic.css' %}" rel="stylesheet">
+    <!--external css-->
+    <link href="{% static 'login/assets/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+        
+    <!-- Custom styles for this template -->
+    <link href="{% static 'login/assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'login/assets/css/style-responsive.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+    <div class="col-lg-12" style="padding: 0px;">
+        <div class="panel panel-default" style="background-color:transparent; " >
+          <div class="panel-body" style="height: 70px; ">
+          <div class="col-lg-4 text-center">
+               <div class = "" style="font-weight: bold">
+                <p style=""><img style="width: 175px; height: 175px; position:absolute; " src = "{% static 'login/assets/img/MSU.png' %}" class="img-circle"></p>
+                
+          </div>  
+            </div>
+        
+          
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-lg-7" style="height: 100%; margin-top: 25%;">
+        
+          <div class="panel-body" style="height: 100%; font-weight: bold; padding-left: 5%;">
+            <div class="text-left" style=" color: white;
+                              text-shadow:
+                              -2px -2px 0 #000,
+                              2px -2px 0 #000,
+                              -2px 2px 0 #000,
+                              2px 2px 0 #000; ">
+                
+                <p style="font-size: 50px; margin-bottom: 20px; text-indent: 50px;">Requests</p><p style="font-size: 50px; margin-bottom: 20px; text-indent: 100px;"> Accounts</p><p style="font-size: 50px; margin-bottom: 20px; text-indent: 150px;"> Inventory</p>
+                <p style="font-size: 25px;margin-top: 40px;">Mindanao State University - PMIIS</p>
+                </div>
+          
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        
+        <div class="panel panel-default" style="margin-left: 50px; ;width: 330px; background-color: rgba(0, 0, 0, .64)">
+          <div class="panel-body text-center" style="font-size:26px; font-weight: bold; margin-top: 50px; color:#fff;">
+          <p style="padding-bottom: 15px;">SIGN-IN</p>
+        </div>
+        
+          <div class="panel-body" style="height: 350px; padding-left: 30px; padding-right: 30px">
+              <form id="logInForm"  method="post" autocomplete="off"> {% csrf_token %}
+          {% load staticfiles %}
+              <div style="padding-bottom: 16px;">
+             {% if error == 'password' %}
+              <input name="unmField" id="unmField"  type="text" class="form-control" value="{{uname}}">
+              {% else %}
+               <input name="unmField" id="unmField" type="text" class="form-control" placeholder="Username" autofocus>
+               {% endif %}
+              </div>
+              <div style="padding-bottom: 16px;">
+              {% if error == 'password' %}
+              <input name="passField" type="password" class="form-control" placeholder="Password" autofocus>
+              {% else %}
+              <input name="passField" id="passField" type="password" class="form-control" placeholder="Password">
+              {% endif %}
+              </div>
+             <label id="errorDisplay" style="width:100%;">
+                    {% if error == 'username' %}
+                    <div class="has-error">
+                      <label  class="control-label text-center" style=" width:100%;" for="error">Incorrect Username</label> 
+                    </div>
+                      
+                    {% endif %}
+                    {% if error == 'password' %}
+                    <div class="has-error">
+                      <label class="control-label text-center" style=" width:100%;" for="error">Incorrect Password</label> 
+                     </div>
+                    {% endif %}  
+                </label>
+              <div style="padding-bottom: 16px;">
+              <input type="submit" name="loginButton" id="loginButton"  class="btn btn-theme btn-block" value="SIGN IN"><br>
+              </div>
+               </form>
+              
+              
+             
+              
+                
+                <div class="registration" style="color: #fff; font-size: 14px;">
+                    Don't have an account yet?<br>
+                    <a class="" href="/create_acct" >
+                        <button class="btn btn-sm btn-primary" style="border-radius: 15px; outline: none; margin-top: 10px; width: 160px;">Create an account</button> 
+                    </a>
+                </div>
+
+          </div>
+       
+        </div>
+      </div>
+
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="newReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Login as:</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group" style="width:100%; text-align:center;">
+                                                        <button class="btn " style="width:70%; background-color:#025656; color:#fff;">Requesting Personnel</button>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px; width:100%; text-align:center;">
+                                                        <button class="btn " style="width:70%; background-color:#7d5613; color:#fff;">Procurement Office Personnel</button>
+                                                        
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px; width:100%; text-align:center;">
+                                                        <button class="btn " style="width:70%; background-color:#030352; color:#fff;">SMO Personnel</button>
+                                                       
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="errorDisable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Login as:</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group" style="width:100%; text-align:center;">
+                                                        <button class="btn " style="width:70%; background-color:#025656; color:#fff;">Requesting Personnel</button>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px; width:100%; text-align:center;">
+                                                        <button class="btn " style="width:70%; background-color:#7d5613; color:#fff;">Procurement Office Personnel</button>
+                                                        
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px; width:100%; text-align:center;">
+                                                        <button class="btn " style="width:70%; background-color:#030352; color:#fff;">SMO Personnel</button>
+                                                       
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="{% static 'login/assets/js/jquery.js' %}"></script>
+    <script src="{% static 'login/assets/js/bootstrap.min.js' %}"></script>
+
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+    <script type="text/javascript" src="{% static 'login/assets/js/jquery.backstretch.min.js' %}"></script>
+    <script>
+        $.backstretch("{% static 'login/assets/img/login-bg.jpg' %}", {speed: 500});
+    </script>
+    <script type="text/javascript" src = "{% static 'login/asstes/js/jquery.js' %}"></script>
+    <script type="text/javascript" src = "{% static 'login/assets/js/login.js' %}"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+          if ('{{error}}' == 'disabled') {
+              alert("your account was currently disabled due to some issues detected.")
+          }
+        })
+
+        $(document).on('submit', '#logInForm', function (e) {
+          
+   
+          e.preventDefault();
+            
+  //===================================================================================================
+
+            
+
+              $.ajax({
+
+                type: 'POST',
+                url:'/chckUname/',
+                data:{
+                    
+                    'uname': $('#unmField').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success: 
+                      function (response) {
+                    
+                        if (response === "True") {
+                          var code = '<div class="has-error">';
+                              code += '<label  class="control-label text-center" style=" width:100%;" for="error">Username doenst Exist</label>' ;
+                              code += '</div>';
+                              $('#errorDisplay').html(code);
+                        
+
+                        } else {
+
+                                  $.ajax({
+                                    type: 'POST',
+                                    url:'/getUserAccessType/',
+                                    data:{
+                                        
+                                        uname: $('#unmField').val(),
+                                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                                    },
+
+                                        success: function(response) {
+
+                                            var data = response['accsType'];
+                                            
+                                            if (data.length === 1) {
+
+                                               document.getElementById('logInForm').submit();
+                                            
+                                            } else {
+
+                                                $.ajax({
+                                                  
+                                                    type: 'POST',
+                                                    url:'/getUserAccessType/',
+                                                    data:{
+                                        
+                                                    password: $('#unmField').val(),
+                                                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                                                    
+                                                    },
+
+                                                    success: function(response) {
+                                                        
+                                                        
+                                                    
+                                                    }
+
+                                                })
+
+                                                $('#newReg').modal('toggle')
+                                            }
+
+                                        }
+
+                                });
+
+                        }
+                       
+                      
+////+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+////////++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+                        
+
+                      }
+            });
+
+
+  //===================================================================================================
+
+            
+        })
+      
+   /*     $('#loginButton').click(function (e) {
+           e.preventDefault();
+            
+           alert("Login Pressed")
+
+            $.ajax({
+                type: 'POST',
+                url:'/getUserAccessType/',
+                data:{
+                    
+                    'uname': $('#unmField').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                },
+
+                    success: function(response) {
+                        
+                        for(var key in response) {
+                             
+                             itemListArray[key] = response[key];
+                             var value = itemListArray[key];
+                            
+
+                              document.getElementById("itemTable").innerHTML += t;
+                            }
+                              
+                        
+                    }
+
+            });
+        })*/
+
+
+    </script>
+      
+  </body>
+</html>

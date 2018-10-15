@@ -1,0 +1,886 @@
+{% extends 'procurement/base.html' %}
+{% load staticfiles %}
+
+{% load humanize %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                       <span name="reqNum" id="reqNum">Create a Request for Quotation</span>
+
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+            
+        
+
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                           
+                            <form id="theDLForm" action="/procurement_office/generateRQDocument/" method="POST" style="display: none"> {% csrf_token %}
+                                   <div class="form-group" style="display: inline;"> 
+
+
+                                      <div class="header-right" style="padding-right: 40px; ">
+                                                                                    
+                                            <div style="display: inline; font-weight: 400;  font-size: 18px;">
+                                                 Quotation Number: 
+                                            </div>
+                                                                                    
+                                            <div id="total" class="panel panel-default" style="display: inline; font-size: 25px;  font-weight: 400; padding:10px;"><input name="theRQNum" id="theRQNum" value="{{pageData2.0.0}}" style="background:rgba(0,0,0,0);
+                                            border:none; width:90px;"/>
+                                             </div>
+                                         </div> 
+                     
+                                   </div>
+                                  </form>
+                                  <div  class="form-group"  style="display: inline;">
+                                <h3 class="panel-title" style="font-weight:bold;">Provide the Request Information</h3>
+                            </div>
+                                
+
+
+
+
+                            </div>
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                         <div class="panel panel-body">
+                
+                <form method="POST" action="" class="form-horizontal">{% csrf_token %}
+                
+
+               
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Quotation No.: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="quoNumIn"  class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Project Name: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="projName"  class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Project Location: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="projLoc"  class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Canvasser: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="canv"  class="form-control" list="canvassPerson">
+                        <datalist id="canvassPerson">
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">P.R. Ref. No.: </label>
+
+                    <div class="col-lg-5">
+                        <input type="text" id="prNum"  class="form-control">
+                        <div class="col-md-12 checkbox" style="margin-bottom: 10px;">
+                                <label>
+                                    <div class="checker hover"><span><input id="chck" class="uniform" type="checkbox" value="option2"></span></div>A Canvass Extension for this Purchase Request
+                                </label>
+                     </div>
+                     <input style="display: none" type="text" id="prCENumF" placeholder="Indicated the CE number. (e.g. 1 for CE-1)"  class="form-control">
+                    </div>
+
+                    
+                </div>
+
+
+            </form>
+            </div>
+
+                        </div>
+
+                    
+
+                    </div> 
+     
+                        </div>
+                        </div>
+                            </div>
+
+                <div class="col-lg-12">
+                    
+                       
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Items to Include to Quotation</h3>
+                            </div>
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                         
+                                 <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead >
+                                        <tr>
+                                            <th class="text-center" style="width:90px;">Item No.</th>
+                                            <th>Requested Item Description</th>
+                                            <th class="text-right">Quantity</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-right">Unit Cost</th>
+                                            <th class="text-right">Total</th>
+                                            <th class="text-center">Include?</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table">
+                                    
+
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                                
+                            </div>
+
+                        </div>
+
+                    
+
+                        </div>
+                            </div> 
+                            
+                            <div class="col-lg-12" >
+                                     <div class="panel panel-default">
+                                         <div class="panel-body" >
+                                      <form id="addForm" method="POST" action="">{% csrf_token %}
+                                     <div style="float:right; 
+                                     right:0;">
+                                         
+                         <button id="send" class="btn btn-success" role= "submit" aria-disabled="true"><i class="icon-ok"></i> Create Request for Quotation</button>
+                                     </div>
+                                     </form>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                  
+                </div>          
+
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+            
+            </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="newReg222" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Add supplier information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Company Name: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip" class="form-control" role="submit" type="text" list="compSeacrhList" autofocus>
+                                                        <datalist id="compSeacrhList">
+                                                        </datalist>
+                                                        <span id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Address: </label>
+                                                        
+                                                    <div class="col-lg-8">
+                                                        <input id="unit" class="form-control" />
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px; display:none;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="form-group" style="margin-bottom:10px;display:none;">
+                                                    <label for="text1" class="control-label col-lg-4">Quantity: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="quantity" class="form-control" />
+                                                        <span id="errorqu"></span>
+                                                    </div>
+                                                </div> 
+                                                <div class="form-group" style="margin-bottom:10px;display:none;">
+                                                    <label for="text1" class="control-label col-lg-4">Quantity: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="email" class="form-control" />
+                                                        <span id="errorem"></span>
+                                                    </div>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList" type="submit" class="btn btn-success" >Add to List</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+
+            
+           
+          
+                        <div class="modal fade" id="editReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4">Update Supplier Information</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                             <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Company Name: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip2" class="form-control" role="submit" type="text" list="compSeacrhList" autofocus>
+                                                        <datalist id="compSeacrhList">
+                                                        </datalist>
+                                                        <span id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Address: </label>
+                                                        
+                                                    <div class="col-lg-8">
+                                                        <input id="unit2" class="form-control" />
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px; display:none;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price2" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="form-group" style="margin-bottom:10px;display:none;">
+                                                    <label for="text1" class="control-label col-lg-4">Quantity: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="quantity2" class="form-control" />
+                                                        <span id="errorqu"></span>
+                                                    </div>
+                                                </div> 
+                                                <div class="form-group" style="margin-bottom:10px;display:none;">
+                                                    <label for="text1" class="control-label col-lg-4">Quantity: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="email2" class="form-control" />
+                                                        <span id="errorem"></span>
+                                                    </div>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                       
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="addList2" type="button" class="btn btn-success" >Update Information</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                   
+<!--// =======================================  Modal  ====================================//-->
+
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="notifInclude" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Are you sure you want to include these items?</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">Please review your chosen items to be included on this quotation</p>
+                                        <p style="margin-bottom:10px;">Clicking "Continue" will save these items and prevent you to add or remove included items to this quotation until this task is finished or restarts</p>
+                                        <p style="margin-bottom:10px;">Do you want to continue?</p>   
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="validateInclude" data-dismiss="modal" type="submit" class="btn btn-success">Continue</button>
+                                            <button id="cancelvalidateInclude" data-dismiss="modal" type="submit" class="btn btn-danger">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transComp2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Request for Quotation Saved</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">Request for Quotation has been saved</p>
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="createRQDocPOP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-warning btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Generating Documents</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">Preparing the Request for Quotation documents.</p>
+                                        <p style="margin-bottom:10px;">It will be automatically downloaded to this computer after finishing the generation process.</p>
+                                        <p style="margin-bottom:10px;">Do not close this tab. Please wait until the download has initialized.</p> 
+                                        <p style="margin-bottom:10px;">This may take few minutes.</p>    
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="createRQDocBtn" data-dismiss="modal" type="submit" class="btn btn-danger">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="itemList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4">Select the items from PR to include on the Request</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+                                                    <div class="table-responsive">
+                                                            <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                                
+                                                    <div class="col-md-12" style="
+                                                                margin-top: 0px; 
+                                                                padding-left: 0px;
+                                                                padding-right: 0px;
+                                                                ">
+                                                            <div class="panel">
+                                                        <div class="table-responsive">
+                                                            <table id="myTable" class="table table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        
+                                                                        <th>Description</th>
+                                                                        <th class="text-center">Quantity</th>
+                                                                        <th class="text-center">Unit</th>
+                                                                        <th class="text-center">Unit Price</th>
+                                                                        <th class="text-right">Include?</th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="itemTable">
+                                                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                        
+
+                                                </div>
+
+
+                                                </div>
+                                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="includeItemsButton" type="button" class="btn btn-success" >Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec" >
+    <div class="text-right">
+        &copy; Mindanao State University
+    </div>
+      
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script type="text/javascript">
+
+
+       var itemListArray = {};
+
+        var itemListArrayToDjango = {};
+
+       var total = 0;
+       var theArray = {};
+       var theArrayList = {};
+       var theArrayIndex = 0;
+
+       var includeItemSelStatus = false;  
+
+       var idCanvasser = '';    
+       
+       var url = '';
+       
+
+        var qoutNum =''
+        var prNum = ''
+        var projLoc = ''
+        var projName = ''
+        var canv = ''
+
+        
+
+    document.getElementById("send").onclick = function () {
+        
+        prNum = document.getElementById("prNum").value;
+        projLoc = document.getElementById("projLoc").value;
+        projName = document.getElementById("projName").value;
+        canv = document.getElementById("canv").value;
+        qoutNum = document.getElementById("quoNumIn").value;
+
+
+        if (prNum === ""|| projName === ""|| projLoc === ""|| canv === ""||qoutNum == "") {
+                alert("Provide all Data First");
+                return false;
+        } else {
+
+            if (includeItemSelStatus == false) {
+                alert("No Items Included")
+                return false;
+            } 
+        }
+    };
+    
+
+    var numB = 0
+
+    $('#table').on('click','button', function (e) {
+        
+        var id = this.id;
+        var idArr = id.split('_')
+        console.log(id)
+
+        if (idArr[1] == 'exc') {
+
+
+            $('#'+idArr[0]+'_exc').attr('class','btn btn-sm btn-danger')
+            $('#'+idArr[0]+'_inc').attr('class','btn btn-sm btn-default')
+
+            delete theArray[idArr[0]];
+            console.log(theArray)
+
+        
+        } else {
+
+            
+            $('#'+idArr[0]+'_inc').attr('class','btn btn-sm btn-success')
+            $('#'+idArr[0]+'_exc').attr('class','btn btn-sm btn-default')
+
+            theArray[idArr[0]] = theArrayList[idArr[0]]
+            console.log("done Here")
+            console.log(theArray)
+
+            includeItemSelStatus = true;
+
+        }
+        
+    });
+
+    $('#canv').keyup(function(e){
+        e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getEmployeeData/',
+                data:{
+                    
+                    'inputName': document.getElementById("canv").value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("canvassPerson").innerHTML = ""
+                        
+                        for(var key in response) {
+                           
+                            var value = response[key];
+                            document.getElementById("canvassPerson").innerHTML += '<option id="'+key+'" value ="'+value['name']+'"/>'
+
+                        }
+
+                    }
+
+            });
+    });
+
+
+    $("#canv").on('input', function () {
+       
+        var val = this.value;
+        var id = $('#canvassPerson option[value="' + val +'"]').attr('id');
+        
+        idCanvasser = id
+
+      });  
+
+    $('#chck').click(function() {
+       // alert(noExp)
+        if ($('#chck').is(":checked")) {
+                  $('#prCENumF').removeAttr('style')
+                  
+                  //noExp = true
+            } else {
+                 $('#prCENumF').attr('style','display:none;') 
+                //noExp = false
+            }
+
+     });
+
+   /* document.getElementById("includeItemsButton").onclick = function() {
+        
+        $('#notifInclude').modal('toggle');
+
+    }*/
+    
+
+            //send ajax request  
+        //alert(this.value);
+
+
+                        
+         
+           
+                
+
+
+
+    $('#prNum').keyup(function (argument) {
+            
+           
+
+            var prInput = $('#prNum').val() 
+            
+            if (prInput.length > 5) {
+
+                $.ajax({
+                    type: 'POST',
+                    url:'/procurement_office/getPRItems/',
+                    data:{
+
+                        'prNum': document.getElementById("prNum").value,
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                       
+                    },
+
+                        success: function(response) {
+
+                            document.getElementById("table").innerHTML = "";
+                       
+                            for(var key in response) {
+                                 
+                                itemListArray[key] = response[key];
+                                itemListArrayToDjango[key] = response[key];
+                                
+                                var keyData = parseInt(key)
+                                
+                                var value = itemListArray[key];
+                                
+                                
+                                theArrayList[''+keyData] = {'1':value['description'], '2':value['unit'], '3':value['unitprice'], '4':value['quantity']};
+                    
+                                
+                                
+                                var t = '';
+                                var tr = '<tr id="'+keyData+'">';
+                                        tr += '<td class="text-center">'+keyData+'</td>';
+
+                                        var descripStringRef = value['description'];
+                                        var descripStringRefArr = descripStringRef.split('$');
+                                        tr += '<td>'
+                                        if (descripStringRefArr.length == 1) {
+                                            tr += ''+value['description']+'';
+                                        } else {
+                                            for (var i = 0; i < descripStringRefArr.length; i++) {
+                                               tr += '<p>'+descripStringRefArr[i]+'</p>';
+                                            }
+                                        }
+                                        tr += '</td>'
+                                        tr += '<td class="text-right">'+value['quantity']+'</td>';
+                                        tr += '<td class="text-center">'+value['unit']+'</td>';
+                                        tr += '<td class="text-right">₱ '+comaSegregator(''+value['unitprice'])+'</td>';
+                                        tr += '<td class="text-right">₱ '+comaSegregator(''+(value['unitprice']*value['quantity']))+'</td>';
+                                        tr += '<td class="text-center" id = "'+keyData+'_act">';
+                                        tr += '<button id = "'+keyData+'_inc" value="'+keyData+'" class="btn btn-sm btn-success" type="button" role= "button" aria-disabled="true" style="border-radius:15px; outline:none"><i class="icon-ok"></i></button>';
+                                        tr += ' <button id = "'+keyData+'_exc" value="'+keyData+'" class="btn btn-sm btn-danger" type="button" role= "button" aria-disabled="true" style="border-radius:15px; outline:none"><i class="icon-remove"></i></button>';
+                                        tr +='</td>';
+                                        tr += "</tr>";
+                                        t += tr;
+
+                                    document.getElementById("table").innerHTML += t;
+                            }
+
+                            
+
+                        }
+
+                }); 
+
+
+            }
+
+            
+    })
+
+    prRef = ''
+
+    $('#sentNotif').click(function (e) {
+
+         prRefURL = prRef.replace('-','_')   
+         window.location.href = '/procurement_office/pr/'+prRefURL+'/details/'  
+    })
+    $('#createRQDocBtn').click(function() {
+        $('#transComp2').modal('toggle');
+    })
+
+    $(document).on('submit', '#addForm', function(e){
+            
+            e.preventDefault();
+
+
+
+            
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/addReqQuotation/',
+                data:{
+                    
+                    'theItemMatrix': JSON.stringify(theArray),
+                    'quotNumCode': $('#quoNumIn').val() ,
+                    'prnum': $('#prNum').val() ,
+                    'projName': $('#projName').val() ,
+                    'projLoc': $('#projLoc').val() ,
+                    'canv': idCanvasser ,
+                    'ceNum': $('#prCENumF').val(),
+                    
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        $('#createRQDocPOP').modal('toggle')
+
+                        prRef = response
+                        //$("#theDLForm").submit();
+                        var rqNum = $('#quoNumIn').val() 
+                        window.location = '/procurement_office/generateRQDocument/'+rqNum.replace('-','_')+'/'
+                        
+                    }
+
+            });
+
+
+    });
+
+    function comaSegregator(input){
+
+        console.log(input)
+
+        var output = "";
+        var indexCheck = 1;
+
+
+        for (var i = input.length - 1; i >= 0; i--) {
+            
+            if (indexCheck%3 === 0) {
+
+                if (i === 0) {
+                     output = input[i] + output;
+                    indexCheck = indexCheck + 1;
+
+                } else {
+                     output = ", " + input[i] + output;
+                    indexCheck = indexCheck + 1;
+                }
+                   
+            } else {
+                output = input[i] + output;
+                indexCheck = indexCheck + 1;
+            }
+        }
+
+        return(output);
+    }
+
+   
+    </script>
+  
+ 
+    <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#quoList').attr('class', 'active-menu-proc')
+    })
+
+    </script>
+
+{% endblock %}

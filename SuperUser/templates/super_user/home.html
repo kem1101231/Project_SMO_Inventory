@@ -1,0 +1,104 @@
+{% extends 'super_user/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+
+        
+        <div id="page-wrapper">
+            <div id="page-inner">
+                
+                <div class= "header-right">
+                    
+                </div>
+                
+                <div class = "test2">
+                    <img src = "{% static 'assets/img/Msu.png' %}" class="img-circle">
+                </div>
+                <div >
+               <form action="/inventory_office/search/" method="post">{% csrf_token %}
+                <div class="col-lg-8 col-centered test">
+                    <div class="form-group input-group">
+                      
+                       <input name="search_input" type="text" autofocus class="form-control input-lg" placeholder="Search for Inventory Information">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary btn-lg" type="submit" role="submit" name="search_button"  >
+                                                    <i class="fa fa-search "></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                </div>
+                </form>
+                </div>
+
+                
+                <!-- /. ROW  -->
+                
+                    </div>
+                </div>
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+<div id="footer-sec">
+       &copy; Mindanao State University- General Santos City</i>  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+  
+
+    <script src="{% static 'assets/js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-file-upload/vendor/jquery.ui.widget.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-file-upload/jquery.fileupload.js' %}"></script>
+    <script src="{% static 'assets/js/basic_upload.js' %}"></script>
+
+
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'inventory_office/assets/js/custom.js' %}"></script>
+
+
+    <script type="text/javascript">
+        
+     $(document).ready(function () {
+        
+         $('#home').attr('class','active-menu-super')
+          $('#searchFieldSmall').attr('style','display:none')
+     })
+    
+/*
+    $(function () {
+
+      $(".js-upload-photos").click(function () {
+        alert("Uploading")
+        $("#fileupload").click();
+      });
+
+      $("#fileupload").fileupload({
+        dataType: 'json',
+        done: function (e, data) {
+          if (data.result.is_valid) {
+            $("#gallery tbody").prepend(
+              "<tr><td><a href='" + data.result.url + "'>" + data.result.name + "</a></td></tr>"
+            )
+
+            alert("valid")
+          }
+        }
+      });
+  });
+         
+*/
+    </script>
+
+{% endblock %}
+   
+

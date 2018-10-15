@@ -1,0 +1,786 @@
+﻿{% extends 'procurement/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+            <form id="decide">{% csrf_token %}
+            <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;
+                                     margin-bottom: 0px;
+                                     padding-left: 15px;
+                                     font-size: 25px;
+                                     padding-top: 10px;
+                                     padding-bottom: 0px;
+                                     margin-top:50px; ">
+
+                                        
+                     <div class="form-group">
+                    <div class="header-right" style="padding-right: 40px; padding-top:10px;">
+                                                                                        
+                        <div style="display: inline; font-weight: 400;  font-size: 18px;">
+                             Reference Abstract No.: 
+                        </div>
+                                                                                        
+                        <div id="poNumDiv" value="0" class="panel panel-default" style="display: inline; font-size: 20px;  font-weight: 400; padding:10px;"><span id="absNumField" value="{{pageData1.0.1}}"></span> {{pageData1.0.1}}
+                        </div>
+                                                
+                     </div> 
+
+                </div>
+              </div>
+
+           </form>
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:60px; 
+
+                ">
+                <div>
+                       <span name="reqNum" id="reqNum">Create Purchase Order from Abtract of Canvass</span>
+
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+            
+                <div class="col-lg-12" style="">
+                   <div class="panel-body" style="padding:0px;">
+                            <ul class="nav nav-tabs">
+
+                                
+                            {% for x in pageData2 %}
+                                
+                                {% if x == pageData2.0 %}
+                                <li class="active"><a href="#{{x.0}}" data-toggle="tab">{{x.1}}</a>
+                                </li>
+                                {% else %}
+                                <li class=""><a href="#{{x.0}}" data-toggle="tab">{{x.1}}</a>
+                                </li>
+                                {% endif %}
+
+                             {% endfor %}   
+                            </ul>
+
+                            <div class="tab-content">
+                            {% for x in pageData2 %}
+                            
+                            {% if x == pageData2.0 %}
+                                <div class="tab-pane fade active in" id="{{x.0}}">
+                            {% else %}
+                                <div class="tab-pane fade" id="{{x.0}}" >
+                            {% endif %}
+                                
+                                 <div class="col-lg-12" style="padding-right: 0px;padding-left: 0px;  margin-right: 0px;  margin-left: 0px; background-color: #ddd!important;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                           
+                          
+                              <div class="form-group" style="display:none">
+                  <div class="header-right" style="padding-right: 40px;">
+                                                                
+                        <div style="display: inline; font-weight: 400;  font-size: 18px;">
+                            Purchase Order No.: 
+                        </div>
+                                                                
+                        <div id="poNumDiv" value="0" class="panel panel-default" style="display: inline; font-size: 25px;  font-weight: 400; padding:10px;"><span id="poNum" value="{{pageData1.0.0}}"></span> {{pageData1.0.0}}
+                         </div>
+                        
+                     </div> 
+
+               </div> 
+                                  <div  class="form-group"  style="display: inline;">
+                                <h3 class="panel-title" style="font-weight:bold;">Provide the Purchase Order Information</h3>
+                            </div>
+                                
+
+
+
+
+                            </div>
+                            <div class="panel panel-body">
+                                        <form class="form-horizontal">
+
+                                        <div class="form-group">
+                                            <label for="text1" class="control-label col-lg-4">P.R. Number: </label>
+
+                                            <div class="col-lg-5">
+                                                <input autofocus type="text" id="prRef" value="{{pageData1.0.0}}"  class="form-control">
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text1" class="control-label col-lg-4">Supplier: </label>                       
+                                            <div class="col-lg-5">
+                                                <input type="text" id="suppID" value="{{x.1}}"  class="form-control" list="compSeacrhList">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text1" class="control-label col-lg-4">T.I.N. No.: </label>                       
+                                            <div class="col-lg-5">
+                                                <input type="text" id="tinID" value="{{x.4}}"   class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text1" class="control-label col-lg-4">Procurement Mode: </label>
+
+                                            <div class="col-lg-5">
+                                                <input type="text" id="procmode"  class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="display:none">
+                                            <label for="text1" class="control-label col-lg-4" >Delivery Date: </label>
+
+                                            <div class="col-lg-5">
+                                                <input type="text" id="deldate" value="2017-04-15" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text1" class="control-label col-lg-4">Place of Delivery: </label>
+
+                                            <div class="col-lg-5">
+                                                <input type="text" id="delplace"  class="form-control" value="Mindanao State University, General Santos City">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text1" class="control-label col-lg-4">Delivery Term: </label>
+
+                                            <div class="col-lg-5">
+                                                <input type="text" id="delterm"  class="form-control" value="{{x.14}} DAYS">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text1" class="control-label col-lg-4">Payment Term: </label>
+
+                                            <div class="col-lg-5">
+                                                <input type="text" id="payterm"  class="form-control" value="on account">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="text1" class="control-label col-lg-4">Conforme: </label>
+
+                                            <div class="col-lg-5">
+                                                <input type="text" id="conf" value="{{x.3}}"  class="form-control">
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </div>
+                        </div>
+
+
+<!-- ======================================================================================================================= -->
+
+                        <div class="col-lg-12" style="padding-right: 0px;padding-left: 0px;  margin-right: 0px;  margin-left: 0px; background-color: #ddd!important;">
+                    
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                      
+                                  <div  class="form-group"  style="display: inline;">
+                                <h3 class="panel-title" style="font-weight:bold;">Items to be Ordered</h3>
+                            </div>
+                               
+                            </div>
+                            <div class="panel panel-body">
+                                         <div class="table-responsive">
+                                                        <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                                            
+                                                <div class="col-md-12" style="
+                                                            margin-top: 0px; 
+                                                            padding-left: 0px;
+                                                            padding-right: 0px;
+                                                            ">
+                                                        <div class="panel">
+                                                    <div class="table-responsive">
+                                                        <table id="myTable" class="table table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Decription</th>
+                                                                    <th class="text-center">Unit</th>
+                                                                    <th class="text-center">Unit Cost</th>
+                                                                    <th class="text-center">Quantity</th>
+                                                                    <th class="text-center">Total</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="table">
+                                                                {% for y  in pageData3 %}
+
+                                                                    {% if x.0 == y.1 %}
+
+                                                                        {% if y.6 == '' %}
+                                                                        <tr>
+                                                                            <td>{{y.11}}</td>
+                                                                            <td class="text-center">{{y.7}}</td>
+                                                                            <td class="text-center">{{y.3}}</td>
+                                                                            <td class="text-center">{{y.8}}</td>
+                                                                            <td class="text-center">{{y.10}}</td>
+
+                                                                        </tr>
+                                                                        {% else %}
+                                                                        <tr>
+                                                                            <td>{{y.6}}</td>
+                                                                            <td class="text-center">{{y.7}}</td>
+                                                                            <td class="text-center">{{y.3}}</td>
+                                                                            <td class="text-center">{{y.8}}</td>
+                                                                            <td class="text-center">{{y.10}}</td>
+                                                                        </tr>
+                                                                        {% endif %}
+                                                                        
+
+                                                                    {% endif %}
+                                                                  
+
+                                                                {% endfor %}
+                                                                
+                                                            </tbody>
+                                                                
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+
+
+
+                            </div>
+
+         <!-- ====================================================================================== -->  
+         
+         <div class="col-lg-12" style="padding-right: 0px;padding-left: 0px;  margin-right: 0px;  margin-left: 0px; background-color: #ddd!important;">
+          <div class="panel panel-default">
+                                         <div class="panel-body" >
+                             
+                                     <div style="float:right; 
+                                     right:0;">
+                                         
+                         <button id="send" class="btn btn-success" role= "button" aria-disabled="true"><i class="icon-ok"></i> Create Purchase Orders</button>
+                                     </div>
+                                 
+                                        </div>
+                                    </div>
+         </div>   
+
+      
+                                   
+                                </div>
+
+                            {% endfor %}    
+                                
+                            </div>
+                        </div>
+                    
+<!-- ================================== TAB =============================================================== -->
+               
+           
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="newReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> New Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip" class="form-control" autofocus>
+                                                        <span for="descrip" id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Unit: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="unit" class="form-control" />
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                            
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Quantity: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="quantity" class="form-control" />
+                                                        <span id="errorqu"></span>
+                                                    </div>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList" type="submit" class="btn btn-success" >Add to List</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="errorReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Form was not filled completely.</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">It is either that no Items were added or the purpose was not indicated .</p>
+                                        <p style="margin-bottom:10px;">Please provide all the informations ask before sending this request.</p>   
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList2" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="editReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Provide the following data complete the PO</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Procurement Mode: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip23" class="form-control" autofocus>
+                                                        <span  id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList23" type="button" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+                <!-- /. ROW  -->
+                
+                    </div>     
+
+
+                </div>   
+
+                
+
+
+                     
+
+                            
+                </div>          
+
+                        </div>
+
+
+         
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="newReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> New Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip" class="form-control" autofocus>
+                                                        <span for="descrip" id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Unit: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="unit" class="form-control" />
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                            
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Quantity: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="quantity" class="form-control" />
+                                                        <span id="errorqu"></span>
+                                                    </div>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList" type="submit" class="btn btn-success" >Add to List</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="errorReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Form was not filled completely.</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">It is either that no Items were added or the purpose was not indicated .</p>
+                                        <p style="margin-bottom:10px;">Please provide all the informations ask before sending this request.</p>   
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList2" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transComp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Purchase Order Saved.</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">• The Purchase Order has successfully created and saved</p>
+                                        <p style="margin-bottom:10px;">• Please print the downloaded documents and serve it to personnel responsible for approval.</p>
+                                        <p style="margin-bottom:10px;">• After the approval of this document, please confirm it through the message that you will receive in a form of a notification. </p>  
+                                        <p style="margin-bottom:10px;">• All concerned personnel and offices has been notified about this transaction. </p>    
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="editReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Provide the following data complete the PO</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Procurement Mode: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip23" class="form-control" autofocus>
+                                                        <span  id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addList23" type="button" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="genPOModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-warning btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Generating the P.O. Document</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">• The Document for this Task is currently generated, this may take a while</p>
+                                        <p style="margin-bottom:10px;">• Please do not close this until the download starts</p>   
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="genNotif" data-dismiss="modal" type="submit" class="btn btn-danger">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+                <!-- /. ROW  -->
+                
+                    </div>
+                </div>
+            
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec" >
+      &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/plugins/daterangepicker/daterangepicker.js' %}"></script>
+    <script src="{% static 'assets/plugins/daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/datepicker/js/bootstrap-datepicker.js' %}"></script>
+    
+    <script type="text/javascript">
+       
+       var total = 0
+       var theArray = {}
+       var theArrayIndex = 0       
+       var prevTotal = 0;
+
+       var thePONUM = {}
+       var poRef = '{{pageData1.1.0}}';
+
+       var theABCRef = ''
+
+ 
+   
+   $('#sentNotif').click(function (e) {
+       
+    window.location.href = "/procurement_office/po/";
+       
+   
+   })
+      $('#genNotif').click(function (e) {
+       
+       $('#transComp').modal('toggle')
+   
+   })
+
+
+
+
+
+
+    $('#send').click(function(e){
+            
+            
+            e.preventDefault();
+            
+            
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/addPObyAbs/',
+                data:{
+                    
+                    'ordNum': $('#absNumField').attr('value'),
+                    
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function() {
+                        $('#genPOModal').modal('toggle')
+                        
+                        var absRef = $('#absNumField').attr('value')
+
+                        theABCRef = absRef.replace('-','_')
+
+                        window.location.href = "/procurement_office/generatePODocumentFromAbs/"+theABCRef+"/";
+                        
+                    }
+
+            });
+
+
+    });
+   
+
+
+    </script>
+ 
+    <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#create_po').attr('class', 'active-menu-proc')
+        $('#proTop').attr('class', 'active-menu-top')
+        $('#proUL').attr('class','nav nav-second-level collapse in')
+    })
+
+    </script>
+
+{% endblock %}
+
+

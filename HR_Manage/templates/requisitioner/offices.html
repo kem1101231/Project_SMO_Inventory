@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {%load staticfiles%}
+    <title>Non_Inventory</title>
+    
+   <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'assets/css/basic.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/navbar-requi.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'requisitioner/assets/css/custom.css' %}" rel="stylesheet" />
+	
+    <link rel="stylesheet" href="{% static 'assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" /> 
+    
+</head>
+<body >
+    
+    <div  id="wrapper"  >
+        <!-- /. NAV TOP   -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" 
+                    style="
+                        margin-bottom: 0px;
+                          ">
+          
+           <div  class="navbar-header navbar-brand"></div>
+
+           
+        <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        {%load staticfiles%}
+                        <div class="user-img-div">
+
+                            <a href="/requisitioner/profile"><img src="{% static 'assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="/requisitioner/profile" class = "inner-text">{{lname}}, {{fname}}</a>
+                            <br />
+                                <small>{{dept}} - {{designation}}</small>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+
+                    <li>
+                        <a class="active-menu-requi" href="/requisitioner/"><i class="fa fa-home "></i>Home</a>
+                    </li>
+          <li>
+                        <a  href="/requisitioner/profile/"><i class="fa fa-user "></i>Profile </a>
+                        
+                    </li>
+                    <li>
+                        <a  href="#"><i class="fa fa-shopping-cart "></i>Purcahse Requests<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/requisitioner/create_pr/"><i class="icon-edit"></i>Create Request</a>
+                            </li>
+                            <li>
+                                <a href="/requisitioner/pr/"><i class="fa fa-reorder "></i>Manage Requests</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a  href="#"><i class="fa fa-th-list"></i>Accountabilities<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="" style="padding-right:10px;"><i class="fa fa-barcode " ></i>My Accounts<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level" >
+                                            <li>
+                                                <a href="" style="padding-left:65px;"><i class="fa fa-barcode "></i>Items</a>
+                                            </li>
+                                            <li>
+                                                <a href="/requisitioner/accounts/" style="padding-left:65px;"><i class="icon-file"></i>P.A.R.</a>
+                                            </li>
+                                            
+                                        </ul>
+                            </li>
+                            <li>
+                                <a href="/requisitioner/accounts/"><i class="icon-file"></i>Office Accounts</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+          
+                </ul>
+            </div>
+
+</div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+				
+				<div class= "header-right">
+                
+				</div>
+			
+			{%load staticfiles%}
+                <div class = "test2">
+					<img src = "{% static 'assets/img/Msu.png' %}" class="img-circle">
+				</div>
+				<div >
+                <form action="/requisitioner/search/" method="post">{% csrf_token %}
+				<div class="col-lg-8 col-centered test">
+					<div class="form-group input-group">
+                      
+                       <input name="search_input" type="text" autofocus class="form-control input-lg" placeholder="Search for Inventory Information">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary btn-lg" type="submit" role="submit" name="search_button"  >
+                                                    <i class="fa fa-search "></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                </div>
+                </form>
+				</div>
+				
+                <!-- /. ROW  -->
+                
+                    </div>
+                </div>
+			
+            </div>
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+   <!-- <div id="footer-sec" >
+      &copy; Mindanao State University
+    </div>--> 
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+</body>
+</html>
+
+
+

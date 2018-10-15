@@ -1,0 +1,572 @@
+{% extends baseSource %}
+{% load staticfiles %}
+{% load humanize %}
+{% block content %}
+            <style type="text/css">
+        
+        .test25{
+
+            max-width: 180px;
+            min-height: 180px;
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont1{
+            
+            font-size: 15px; 
+            
+            padding:7px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            
+            font-size: 15px;
+            padding:7px; 
+            margin-bottom:2px;
+         }
+
+         .item-img-div {
+   
+    min-height: 140px;
+}
+    
+    .item-brg-img img{
+
+    }
+    
+    .item-img-div img {
+        max-height: 150px;
+    }
+
+    .item-img-div .inner-text {
+        
+        text-align: left;
+        position: relative;
+        color: #fff;
+        font-weight: 500;
+        line-height: 20px;
+        font-size: 15.5px;
+        
+    }
+
+        .tablescroll{
+            overflow-y:scroll;
+            height:1033px;
+            display:block;
+        }
+        
+        .tablescroll2{
+            
+            overflow-y:scroll;
+            height:550px;
+            display:block;
+        }
+        .divScroll{
+            
+            overflow-y:scroll;
+            height:450px;
+            display:block;
+        }
+
+    </style>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 8px;
+                 font-size: 30px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:75px;
+                 margin-bottom:30px; 
+                 
+
+                ">
+                <div style="padding-bottom: 0px;">
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}" style="font-size: 20px;"></span><span name="reqNum" id="reqNum" value="{{pageData1.0.0}}" style="font-weight: 500; font-size: 30px;">Equipment Details</span>
+                 
+                </div>
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #fff!important;">
+             
+
+                <div class="col-lg-3" style="display: none">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="panel col-lg-12 text-center" style="padding:0px;">
+                                            <div class = "panel panel-info item-img-div"  style="margin-bottom:0px; max-width: 100%; width: 100%; ">
+                                                <img style="max-height: 210px; max-width: 210px;" src = "{% static 'assets/img/portfolio-img8.jpg' %}">          
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 text-right" style="padding:0px;">
+                                            <button class="btn btn-success btn-sm" style="border-radius: 15px;">Update</button>
+                                        </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" style="padding: 8px; padding-top: 0px;">
+                    <div class="panel panel-primary" style="border-radius: 0px;">
+                            
+                            <div class="panel-body" style="height: 308px; padding-left:20px; border-top:4px solid #428bca;">
+                                      <div class="col-lg-12" style="padding:0px;">
+                                          <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-4 dataFont2" >
+                                                     
+                                                </div>
+                                                <div class="col-lg-8 dataFont1"  >
+                                                 
+                                                </div>
+                                            </div> 
+                                        </div>
+                                                <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-4 dataFont2" >
+                                                    Brand:  
+                                                </div>
+                                                <div class="col-lg-8 dataFont1" >
+                                                     {{pageData1.0.3}}
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-4 dataFont2" >
+                                                    Model:  
+                                                </div>
+                                                <div class="col-lg-8 dataFont1"  >
+                                                     {{pageData1.0.2}}
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-4 dataFont2" >
+                                                     
+                                                </div>
+                                                <div class="col-lg-8 dataFont1"  >
+                                                  
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-4 dataFont2" >
+                                                    Description:  
+                                                </div>
+                                                <div class="col-lg-8 dataFont1"  >
+
+                                                {% if pageData1.1.1 == 'non' %}
+                                                    {{pageData1.1.0}}
+                                                {% else %}
+                                                    {% for x in pageData1.1.0 %}
+                                                    <p>{{x}}</p>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                  
+                                                  
+                                                    
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        
+                                        
+                                        
+                                      
+
+                                      
+
+                                      </div>  
+                                       
+                                        
+
+                                        
+                                   
+                                
+                            </div>
+                        </div>
+
+
+                </div>
+                <div class="col-lg-6" style="padding:8px; padding-top:0px; padding-bottom: 0px;">
+                      <div>
+                    <div class="col-lg-6" style="padding: 0px; padding-right:4px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555; margin-bottom: 8px;">
+                        <div class="panel-body" style="height: 100px; background-color: #479aaf !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #056c82; height: 100%; margin: 0px">
+                                <i style="font-size: 45px; padding-top: 28px; color: #fff;" class="fa fa-book"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Quantity on Account</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 22px; font-weight: bold;" >
+                                    {% if pageData1.4.0 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData1.4.0|floatformat|intcomma}}
+                                        {% endif %}
+                                </p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;" >Items</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-6" style="padding: 0px; padding-left:4px;">
+                       <div class="panel panel-default" style="border-radius: 0px; padding-bottom: 0px;border:0px solid #555;  margin-bottom: 8px;">
+                        <div class="panel-body" style="height: 100px; background-color: #00a65a !important; padding: 0px;">
+                            <div class="col-lg-4 text-center" style="padding: 0px; background-color: #1a755b; height: 100%; margin: 0px">
+                                <i style="font-size: 45px; padding-top: 28px; color: #fff;" class="fa fa-money"></i>
+                            </div>
+                            <div class="col-lg-8" style="padding: 0px; color: #fff">
+                                <p style="margin: 10px; margin-bottom: 0px;">Total Cost Value</p>
+                                <p style="margin: 6px; margin-top: 5px;  border-bottom:1px solid #fff;"></p>
+                                <p style="margin: 10px; margin-bottom: 5px; margin-top: 15px; font-size: 22px; font-weight: bold;" >{% if pageData1.4.1 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData1.4.1|floatformat|intcomma}}
+                                        {% endif %}</p>
+                                <p style="margin: 10px; margin-top: 0px; font-size: 12px;" >Pesos</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                   
+                </div>
+                <div class="col-lg-6" style="padding:8px; padding-top: 0px;">
+                    <div class="panel panel-primary" style="border-radius: 0px">
+                        <div class="panel-body" style="border-top:4px solid #428bca;">
+                                   <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%; margin-bottom:12px;">
+                                                    <div class="col-lg-5 dataFont2" >
+                                                        Unit:  
+                                                    </div>
+                                                    <div class="col-lg-7 dataFont1">
+                                                        {{pageData1.2.4}}
+                                                    </div>
+                                                </div> 
+                                            </div> 
+
+                                            <div class="form-group" >
+                                                <div style="padding-left: 2px;  width:100%;">
+                                                    <div class="col-lg-5 dataFont2">
+                                                        Highest Price:  
+                                                    </div>
+                                                    <div class="col-lg-7 dataFont1">
+                                                        ₱ 18,000
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="form-group">
+                                            <div style="padding-left: 2px; width:100%; ">
+                                                <div class="col-lg-5 dataFont2" >
+                                                     Latest Update: 
+                                                </div>
+                                                <div class="col-lg-7 dataFont1"  >
+                                                    April 14, 2017
+                                                </div>
+                                            </div> 
+                                        </div>
+
+                                       
+
+                                    <div class="form-group">
+                                        <div style="padding-left: 2px;  width:100%;">
+                                            <div class="col-lg-5 dataFont2">
+                                     
+                                              Particular No. <span style="font-weight: bold">{{pageData1.3.3}}</span>: 
+                                            </div>
+                                            <div class="col-lg-7 dataFont1">
+                                                 {{pageData1.3.1}}
+                                            </div>
+                                        </div> 
+                                    </div>
+                
+                        </div>
+                    </div>
+                </div>
+                    
+                 
+  
+                <div class="col-lg-12" style="display:none">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {% for x in pageData4 %}
+                                <p>{{x}}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12" style="padding:8px; padding-top: 0px;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-primary" style="border-radius: 0px;">
+                             <div class="panel-body" style="border-top:4px solid #428bca; font-size: 21px; padding-top: 20px;">
+                                <p>Quantity Distribution by Offices</p>
+                                <p style="margin: 0px; margin-top: 5px; margin-bottom: 25px;  border-bottom:2px solid #428bca; width: 60%;"></p>
+                            </div>
+                            <div class="panel-body" style="margin-top: 0px; padding-top: 0px;">
+                           
+                                <div class="table-responsive" style="margin-top: 0px; padding-top: 0px;">
+                                <table class="table table-hover" id="theOffTable">
+                                    <thead>
+                                        <tr style="background-color: #eee;">
+                                            
+                                            <th class="text-center" style="display: none">PAR No.</th>
+                                            <th class="text-center">Inv. No.</th>
+                                            <th class="text-center">Unique ID.</th>
+                                            <th class="text-center">Status</th>
+                                            
+                                            
+                                            
+                                            <th class="text-center">Accounted Person</th>
+                                            <th class="text-center">P.A.R. No.</th>
+                                            <th class="text-center">Date Received</th>
+                                            <th class="text-center">Purchase Price</th>
+                                            
+                                            
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in pageData4 %}
+                                    
+
+                                        {% if x.1.0 == None %}
+                                           
+                                        {% else %}
+                                            <tr id="{{x.0}}" class="tr_class" style="">
+                                            <td colspan="7" style="padding-bottom: 0px;"> 
+
+                                                <div class="panel-body" style="border-top:3px solid #555; font-size: 18px; padding-bottom: 0px;">
+                                <p>{{x.0.1}}</p>
+                                <p style="margin: 0px; margin-top: 5px; margin-bottom: 0px;  border-bottom:2px solid #428bca;"></p>
+                            </div>
+                                            </td>
+                                            <td id="{{x.0}}_td" class="text-center" style="display: none"><button id="{{x.0}}_button"  class="btn btn-xs btn-primary btn_class">View Details <i class="icon-arrow-right"></i></button></td>
+                                        </tr>
+                                             {% for xx in x.1 %}
+
+                                                {% for xy in xx.1 %}
+                                                <tr style="display: none">
+                                                    <td colspan="7">{{xy}}</td>
+                                                </tr>
+
+                                                    <tr class="gradeU">
+                                                        
+                                                        <td class="text-center" style="display: none">{{xy.1}}</td>
+                                                         <td class="text-center"> 
+                                                            {% if xy.12 == 'no' %}
+                                                            {{xy.1}}-{{xy.0}}
+                                                            {% else %}
+                                                            {{xy.0}}
+                                                            {% endif %}
+                                                          </td>
+                                                        <td class="text-center">
+                                                         {% if xy.8 == None %}
+                                                            <button class="btn btn-xs btn-warning" id="{{xy.0}}_serailBTN" style="width: 80px;"><i class="icon-plus"></i> Add</button>
+                                                         {% else %}
+                                                            {{xy.8}}
+                                                         {% endif %}
+                                                         </td>
+                                                         <td class="text-center" style="padding:0px; padding-top: 3px;">
+                                                        {% if xy.6 == True %}
+                                                                <p style="margin: 0px;"><button class="btn btn-success btn-xs" style="border-radius: 15px; height: 23px; width: 23px; background-color: #398439"><i class="icon-ok"></i></button></p>
+                                                                <p style="margin: 0px; font-size: 10px;">On Account </p>
+
+
+                                                        
+                                                        {% else %}
+                                                        Disposed <button class="btn btn-danger btn-xs" disabled="" style="border-radius: 15px; height: 15px; width: 15px;"></button>
+                                                        {% endif %}
+
+                                                         </td>
+                                                        <td class="text-center">{{xx.0.6}} {{xx.0.1}} {{xx.0.7}} {{xx.0.2}} {{xx.0.8}}</td>
+                                                        <td class="text-center">{{xy.1}}</td>
+                                                        <td class="text-center">{{xy.11}}</td>
+                                                        <td class="text-center">{{xy.4|floatformat|intcomma}}</td>
+                                                        
+                                                         
+                                                       
+                                                        
+                                                    </tr>
+
+                                            {% endfor %}
+   
+
+                                        {% endfor %}
+                                        
+
+                                        {% endif %}
+
+
+                                       
+
+                                    {% endfor %}
+                                        
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                     
+ 
+
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+
+<!-- ===================================================   Modal ================================================================================  -->
+           
+                       
+                       <div class="modal fade" id="updateSerial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Update Serial Number or Unique ID</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4">Unique ID: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="descrip2" class="form-control" autofocus placeholder="e.g. serial no., body no." />
+                                                        <span  id="errorde"></span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                            <button id="saveSerial" type="submit" class="btn btn-success" >Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+<!-- ===================================================   Modal ===============================================================================  -->
+
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <div id="footer-sec">
+       &copy; Mindanao State University - General Santos City
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'assets/plugins/morris/raphael-2.1.0.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/morris/morris.js' %}"></script>
+
+    <script>
+        
+        var invnum = ''
+
+        $('#theOffTable').on('click','button', function () {
+            var id  = this.id
+            var arrid = id.split('_')
+            
+            invnum = arrid[0]
+
+            $('#updateSerial').modal('toggle')
+
+        })    
+
+        $('#saveSerial').click(function () {
+            
+            $.ajax({
+                type: 'POST',
+                url:'/inventory_office/updateSerial/',
+                data:{
+                    
+                    'inputData': $('#descrip2').val(),
+                    'invnum': invnum,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        alert("Done")
+                        $('#updateSerial').modal('toggle')
+                        location.reload()
+                    }
+
+            });
+        })
+
+
+
+        $(document).ready(function () {
+
+            $('#equipment').attr('class','{{cssActiveMenu}}')
+            $('#inventoryTop').attr('class', 'active-menu-top')
+            $('#theInvenUL').attr('class','nav nav-second-level collapse in')
+
+            $('#title').html('Equipement Details')
+
+           
+             });
+
+
+    </script>
+
+{% endblock %}
+
+

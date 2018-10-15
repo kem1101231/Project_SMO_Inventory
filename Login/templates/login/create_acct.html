@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    {% load staticfiles%}
+    <title>MSU IMS - Create User</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'login/assets/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <link href="{% static 'login/assets/css/basic.css' %}" rel="stylesheet">
+    <!--external css-->
+    <link href="{% static 'login/assets/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+        
+    <!-- Custom styles for this template -->
+    <link href="{% static 'login/assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'login/assets/css/style-responsive.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'assets/img/Msu.ico' %}" type="image/x-icon" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+        <div class="col-lg-12" style="padding: 0px;">
+        <div class="panel panel-default" style="background-color:transparent; " >
+          <div class="panel-body" style="height: 70px; ">
+          <div class="col-lg-2 text-center">
+               <div class = "" style="font-weight: bold">
+                <p style=""><img style="width: 175px; height: 175px; position:absolute; " src ="{% static 'login/assets/img/MSU.png' %}" class="img-circle"></p>
+                
+          </div>  
+            </div>
+        
+          
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-lg-3" style="height: 100%; margin-top: 25%;">
+        
+          <div class="panel-body" style="height: 100%; font-weight: bold;">
+            <div class="text-left" style=" color: white;
+                              text-shadow:
+                              -2px -2px 0 #000,
+                              2px -2px 0 #000,
+                              -2px 2px 0 #000,
+                              2px 2px 0 #000; ">
+                
+               
+                </div>
+          
+        </div>
+      </div>
+        <form>{% csrf_token %}
+          {% load staticfiles %}
+        }
+      <div class="col-lg-9">
+        
+        <div class="panel panel-default" style="margin-left: 50px; ;width: 500px; background-color: rgba(93, 92, 92, 0.85)">
+          <div class="panel-body" style="font-size:26px; font-weight: bold; margin-top: 20px;">
+          <p style="padding-bottom: 15px; margin-left: 10px;  color:#fff">Create Account</p>
+        </div>
+
+          <div class="panel-body" style="height: 720px; padding-left: 30px; padding-right: 30px; color:#fff; font-size: 14px;">
+           
+              <div class="col-lg-12"  style="padding-bottom: 0px;">
+                <div class="col-lg-4" style="padding:0px;padding-top: 5px; ">Username:</div>
+                <div class="col-lg-8" style="padding:0px;">
+
+                <input name="unmField" id="unmField" type="text" class="form-control" placeholder="Username" autofocus>
+                <label style="padding-top: 0px;">
+                   
+                      <div class="has-error">
+                            <label class="control-label col-center" for="error"><span id="unameBlankErr"></span></label> 
+                     </div>
+                 
+                </label></div>
+              
+              </div>
+              <div class="col-lg-12" style="padding-bottom: 0px;">
+                <div class="col-lg-4" style="padding:0px;padding-top: 5px; ">Password:</div>
+                <div class="col-lg-8" style="padding:0px;"><input id="passField1" name="passField1" type="password" class="form-control" placeholder="Password">
+                <label style="padding-top: 0px;">
+                    <div class="has-error">
+                      <label class="control-label col-center" for="error"><span id="passIsWeakErr"></span></label> 
+                     </div>
+                </label></div>
+              
+              </div>
+              <div class="col-lg-12"  style="padding-bottom: 0px;">
+                <div class="col-lg-4" style="padding:0px;padding-top: 5px; ">Confirm Password:</div>
+                <div class="col-lg-8" style="padding:0px;"><input id="passField2" name="passField2" type="password" class="form-control" placeholder="Confirm Password">
+                <label style="padding-top: 0px;">
+                    <div class="has-error">
+                      <label class="control-label col-center" for="error"><span id="passNotMatchErr"></span></label> 
+                     </div>
+                </label></div>
+              
+              </div>
+              <div class="col-lg-12"  style="padding-bottom: 16px; border-top: 1px solid #fff;">
+                
+              </div>
+               <div class="col-lg-12"  style="padding-bottom: 0px;">
+                <div class="col-lg-4" style="padding:0px;padding-top: 5px; ">I.D. Number:</div>
+                <div class="col-lg-8" style="padding:0px;"><input name="idField" id="idField" type="text" class="form-control" placeholder="ID number" >
+              <label style="padding-top: 0px;">
+
+                    
+                      <div id="idDiv" class="has-success">
+                            <label id="idLabel" class="control-label col-center" for="success"><span id="idBlankErr" style=" t
+                               "></span></label> 
+                     </div>
+                    
+                    
+                </label></div>
+              
+              </div>
+                 <div class="col-lg-12"  style="padding-bottom: 16px; border-top: 1px solid #fff;">
+                
+              </div>
+
+              <div class="col-lg-12"  style="padding-bottom: 0px;">
+                <div class="col-lg-4" style="padding:0px;padding-top: 5px; ">First Name:</div>
+                <div class="col-lg-8" style="padding:0px;"><input name="fnameF" id="fnameF" type="text" class="form-control" placeholder="First Name" autofocus>
+              <label style="padding-top: 0px;">
+
+                    
+                      <div id="idDiv" class="has-success">
+                            <label id="idLabel" class="control-label col-center" for="success"><span id="idBlankErr"></span></label> 
+                     </div>
+                    
+                    
+                </label></div>
+              
+              </div>
+              <div class="col-lg-12"  style="padding-bottom: 0px;">
+                <div class="col-lg-4" style="padding:0px;padding-top: 5px; ">Middle Initial:</div>
+                <div class="col-lg-8" style="padding:0px;"><input name="miniF" id="miniF" type="text" class="form-control" placeholder="Middle Initial" autofocus>
+              <label style="padding-top: 0px;">
+
+                    
+                      <div id="idDiv" class="has-success">
+                            <label id="idLabel" class="control-label col-center" for="success"><span id="idBlankErr"></span></label> 
+                     </div>
+                    
+                    
+                </label></div>
+              
+              </div>
+              <div class="col-lg-12"  style="padding-bottom: 0px;">
+                <div class="col-lg-4" style="padding:0px;padding-top: 5px; ">Last Name:</div>
+                <div class="col-lg-8" style="padding:0px;"> <input name="lnameF" id="lnameF" type="text" class="form-control" placeholder="Last Name" autofocus>
+              <label style="padding-top: 0px;">
+
+                    
+                      <div id="idDiv" class="has-success">
+                            <label id="idLabel" class="control-label col-center" for="success"><span id="idBlankErr"></span></label> 
+                     </div>
+                    
+                    
+                </label></div>
+              
+              </div>
+                 <div class="col-lg-12"  style="padding-bottom: 16px; border-top: 1px solid #fff;">
+                
+              </div>
+              <div class="col-lg-12"  style="padding-bottom: 0px;">
+                <div class="col-lg-4" style="padding:0px;padding-top: 5px; ">Office:</div>
+                <div class="col-lg-8" style="padding:0px;"><input name="offF" id="offF" type="text" class="form-control" list="offList"  placeholder="Office/Department" autofocus>
+                    <datalist id="offList" style="overflow-y:scroll;max-height:150px;">
+                      {% for x in pageData1 %}
+                      <option id="{{x.0}}" value="{{x.1}}"></option>
+                      {% endfor %}
+                    </datalist>
+              <label style="padding-top: 0px;">
+
+                    
+                      <div id="idDiv" class="has-success">
+                            <label id="idLabel" class="control-label col-center" for="success"><span id="idBlankErr"></span></label> 
+                     </div>
+                    
+                    
+                </label></div>
+              
+              </div>
+                 <div class="col-lg-12"  style="padding-bottom: 16px; border-top: 1px solid #fff; padding-top: 16px;">
+                
+              </div>
+           
+              <div class="col-lg-12 text-center"  style="padding-bottom: 0px; padding-left: 70px;">
+              <input type="submit" name="loginB" id="loginB"  class="btn btn-theme btn-block" value="CREATE ACCOUNT" style=" width: 300px;"><br>
+              </div>
+               
+                <div class="registration" style=" font-size: 14px; color:#fff">
+                    Already have an account?<br>
+                    <a class="" href="/">
+                        <button class="btn btn-sm btn-primary" type="button" role="button"  style="border-radius: 15px; outline: none; width: 120px;">Log-in</button> 
+                    </a>
+                </div>
+          </div>
+        </div>
+      </div> </form>
+      <div class="col-lg-12" style="padding-bottom: 200px;">
+        
+      </div>
+
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    
+    <!-- BOOTSTRAP SCRIPTS -->
+    
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    
+    <!-- METISMENU SCRIPTS -->
+    
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+   
+
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+    <script type="text/javascript" src="{% static 'login/assets/js/jquery.backstretch.min.js' %}"></script>
+    <script>
+        $.backstretch("{% static 'login/assets/img/login-bg.jpg' %}", {speed: 300});
+    </script>
+    <!--<script type="text/javascript" src = "{% static 'login/asstes/js/jquery.js' %}"></script>-->
+    <script type="text/javascript" src = "{% static 'login/assets/js/login.js' %}"></script>
+   <script type="text/javascript">
+       
+       var idnum = '';
+       var uname = '';
+       var pass1 = '';
+       var pass2 = '';
+
+
+
+       var idExist = true;
+
+       var offID = ''
+
+            
+        //  if errMsg == "NoUnserMatch" 
+        //    if errMsg == "NoIdMatch" 
+
+
+        document.getElementById("passField2").onkeyup = function(){
+            
+            pass1 = document.getElementById("passField1").value;
+            pass2 = document.getElementById("passField2").value;
+
+            if (pass1 != pass2) {
+                document.getElementById("passNotMatchErr").innerHTML = "Password doesn't match above"
+            }
+           if (pass1 == pass2) {
+                document.getElementById("passNotMatchErr").innerHTML = ""
+            }
+        };
+
+        document.getElementById("loginB").onclick = function() {
+            
+            idnum = document.getElementById("idField").value;
+            uname = document.getElementById("unmField").value;
+
+            if (idnum == ""||uname ==""||pass1 == ""||pass1!=pass2) {
+                  alert("Dont leave any fields empty")
+                  return false;
+            }else{
+
+                return true;
+            }
+
+        }
+
+     
+
+        $('#unmField').keyup(function (e) {
+
+
+
+          e.preventDefault();
+              $('#unameBlankErr').attr('style','color:black;');
+              $('#unameBlankErr').html('Checking availability');
+
+              $.ajax({
+
+                type: 'POST',
+                url:'/chckUname/',
+                data:{
+                    
+                    'uname': $('#unmField').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success: 
+                      function (response) {
+                          if (response === "False") {
+                                $('#unameBlankErr').attr('style','color:red;');
+                               $('#unameBlankErr').html('Username is already used');
+                               $('#loginB').attr('disabled','');
+                          }
+                          else{
+                            $('#unameBlankErr').html('');
+                               $('#loginB').removeAttr('disabled');
+                          }
+                      }
+                      
+
+
+            });
+                
+        });
+
+         $('#idField').keyup(function (e) {
+
+
+
+          e.preventDefault();
+            
+
+              $.ajax({
+
+                type: 'POST',
+                url:'/chckIdnum/',
+                data:{
+                    
+                    'uname': $('#idField').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success: function (response) {
+                          
+                          if (response === "True") {
+
+                                $.ajax({
+
+                                      type: 'POST',
+                                      url:'/getEmpDetails/',
+                                      data:{
+                                          
+                                          'idnum':$('#idField').val(),
+                                        //'acctType' : $('#acctTypeData').val(),
+                                          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                                      },
+
+
+
+                                          success:function(response) {
+                                            
+                                            alert("account Created")
+                                            console.log(response)
+
+                                            var nameResponse = response['name']
+                                            var nameArr = nameResponse.split(';')
+                                            
+                                            $('#lnameF').val(nameArr[3])
+                                            $('#fnameF').val(nameArr[1])
+                                            $('#miniF').val(nameArr[2])
+
+                                            var offString = response['office']
+                                            var offArr = offString.split(';')
+                                            $('#offF').val(offArr[0])
+                                            $('#desigF').val(response['designation'])
+                                            $('#rankF').val(response['rank'])
+
+                                            offID = offArr[1]
+
+                                            
+
+                                    }
+
+                                  });
+
+
+                               $('#idDiv').attr('class','has-success');
+                               
+                               $('#idLabel').attr('for', 'success');
+                               $('#idBlankErr').html('ID is good to register');
+                               $('#loginB').removeAttr('disabled');
+
+                               idExist = true
+
+
+                          }
+                          else{
+
+                              if (response === "non-existing") {
+
+                                if ($('#idField').val().length === 9) {
+                                  $('#idDiv').attr('class','has-error');
+                                 
+                                  $('#idLabel').attr('for', 'error');
+                                  //$('#idBlankErr').html('ID does not exist');
+                                  $('#loginB').removeAttr('disabled','');
+                               } else {
+                                  $('#idBlankErr').html('');
+                                  $('#loginB').removeAttr('disabled','');
+                               } 
+
+                               idExist = false
+
+                              } else {
+
+
+                                  $('#loginB').attr('disabled','')
+                                  $('#idDiv').attr('class','has-error');
+                                  $('#idLabel').attr('for', 'error');
+                                  $('#idBlankErr').html('ID already have an account');
+
+                                  idExist = false
+                              }
+
+                               
+                               
+                          }
+                      }
+                      
+
+
+            });
+                
+        });
+
+        
+      /*  $('#list').on('click', 'a', function (e) {
+              var value = $(this).attr('value')
+              var id = $(this).attr('id')
+              
+              $('#acctType').val(value)
+              $('#acctTypeData').val(id)
+
+        }); */
+
+
+        $('#offF').on('input', function (argument) {
+            
+            var val = this.value;
+            var idComplt = $('#offList option[value="'+ val +'"]').attr('id');
+            
+            //var idArr = idComplt.split('_')
+            //var id = idArr[0]
+
+            offID = idComplt;
+        
+        })
+
+        $('#loginB').click(function(e){
+            e.preventDefault();
+
+              $.ajax({
+
+                type: 'POST',
+                url:'/createAcct/',
+                data:{
+                    
+                    'idnum':$('#idField').val(),
+                    'uname':$('#unmField').val(),
+                    'pass1':$('#passField1').val(),
+                    'idExist':idExist,
+                    'lname':$('#lnameF').val(),
+                    'fname':$('#fnameF').val(),
+                    'mini':$('#miniF').val(),
+                    'office': offID,
+                    'desig':$('#desigF').val(),
+                    'rank':$('#rankF').val(),
+                    
+                  //'acctType' : $('#acctTypeData').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+
+
+                    success:function(response) {
+                      
+                      if (response == 'head') {
+                         window.location.href = "/requisitioner/";
+                      } 
+                      if (response == 'staff') {
+                        window.location.href = "/non_requisitioner/";
+                      }
+                      if (response == 'chan') {
+                        window.location.href = "/approving_officer/";
+                      } 
+
+
+              }
+
+            });
+                
+
+    });
+
+      </script>     
+
+    
+
+  </body>
+</html>

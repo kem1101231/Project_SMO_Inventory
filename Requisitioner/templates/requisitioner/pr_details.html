@@ -1,0 +1,1978 @@
+{% extends 'requisitioner/base.html' %}
+
+
+{% load humanize %}
+
+{% load staticfiles %}
+{% block content %}
+     <style type="text/css">
+        
+        .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px; 
+            margin-bottom:2px;
+         }
+
+        .dataFont3{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px;
+        
+         }
+
+         .dataFont4{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px;
+         }
+        
+        .active-color{
+            color: #f0ad4e;
+        }
+        .done-color{
+            color: #5cb85c;
+        }
+        .pending-color{
+
+        }
+
+    </style>
+    
+
+        
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+                <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;
+                                     padding-bottom: 0px;
+                                     margin-top:55px; 
+                                     display:none;
+                                     ">
+
+                       <form id="dlPDF" action="/requisitioner/generatePRDocument/" method="post" style="padding:0px;">{% csrf_token %}
+                                    
+                                    <div class="modal-header" style="padding:0px;">
+                                        <div>
+                                            <button id="sentNotif" name="reqNumB" value="{{pageData1.0.0}}" type="submit" role="submit" class="btn btn-success">Download Document</button>
+                                        </div>
+                                    </div>
+                                    
+                        </form>      
+
+            </div>
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                    {% if pageData1.0.1 == None %}
+                       <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Request Details</span>
+                    {% else %}
+                       <span style="font-size: 20px;">Purchase Request No. </span><span name="reqNum" id="reqNum" value="{{pageData1.0.0}}" style="font-weight:bold;"> {{pageData1.0.1}}</span>
+                    {% endif %}
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #888!important;">
+             
+                <hr>
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-lg-2 text-center" style="padding:0px;">
+                                <div class="col-lg-4" style="
+                                padding:0px;"></div>
+                                <div class="col-lg-4" style="padding:0px">
+                                 <button class="btn done-color" style="border-radius: 20px; width: 40px; height: 40px;  border: 2px solid; background-color: #fff;"><i class="icon-file"></i></button>
+                             </div>
+                                <div class="col-lg-4 done-color" style="
+                                padding:0px; height: 10px; border-top:2px solid; margin-top: 20px"></div>
+                               
+                                <label style="margin-top:15px;">Create Request</label>
+                            </div>
+
+                            {% if dictData1.status == 'approval' %}    
+                            <div class="col-lg-2 text-center" style="padding:0px;">
+                                <div class="col-lg-4" style="
+                                padding:0px; height: 10px; border-top:2px solid #5cb85c; margin-top: 20px"></div>
+                                <div class="col-lg-4" style="padding:0px"> 
+                                    <button class="btn  btn-primary text-center" style="border-radius: 20px; width: 40px; height: 40px; color: #5cb85c; border: 2px solid #5cb85c; background-color: #fff;"><i class="icon-legal"></i></button>
+                                </div>
+                                <div class="col-lg-4" style="
+                                padding:0px; height: 10px; border-top:2px solid #f0ad4e; margin-top: 20px"></div>
+                               
+                                <label style="margin-top:15px;">Approval</label>
+                            </div>
+                            {% endif %}
+                            <div class="col-lg-2 text-center" style="padding:0px;"> 
+                                <div class="col-lg-4" style="
+                                padding:0px; height: 10px; border-top:2px solid #f0ad4e; margin-top: 20px"></div>
+                                <div class="col-lg-4" style="padding:0px"> <button class="btn  btn-warning" style="border-radius: 20px; width: 40px; height: 40px; border: 2px solid ; background-color: #fff;"><i class="icon-search"></i></button></div>
+                                <div class="col-lg-4" style="
+                                padding:0px; height: 10px; border-top:2px solid #999; margin-top: 20px"></div>
+                               
+                                <label style="margin-top:15px;">Canvass</label>
+                            </div>
+                            <div class="col-lg-2 text-center" style="padding:0px;"> 
+                                <div class="col-lg-4" style="
+                                padding:0px; height: 10px; border-top:2px solid #999; margin-top: 20px"></div>
+                                <div class="col-lg-4" style="padding:0px"> <button class="btn  btn-default" style="border-radius: 20px; width: 40px; height: 40px; color: #999; border: 2px solid #999; background-color: #fff;"><i class="icon-ok"></i></button></div>
+                                <div class="col-lg-4" style="
+                                padding:0px; height: 10px; border-top:2px solid #999; margin-top: 20px"></div>
+                               
+                                <label style="margin-top:15px;">Procurement</label>
+                            </div><div class="col-lg-2 text-center" style="padding:0px;"> 
+                                <div class="col-lg-4" style="
+                                padding:0px; height: 10px; border-top:2px solid #555; margin-top: 20px"></div>
+                                <div class="col-lg-4" style="padding:0px"> <button class="btn  btn-primary" style="border-radius: 20px; width: 40px; height: 40px;color: #999; border: 2px solid #999; background-color: #fff;"><i class="icon-truck"></i></button></div>
+                                <div class="col-lg-4" style="
+                                padding:0px; height: 10px; border-top:2px solid #555; margin-top: 20px"></div>
+                               
+                                <label style="margin-top:15px;">Delivery</label>
+                            </div><div class="col-lg-2 text-center" style="padding:0px;"> 
+                                <div class="col-lg-4" style="
+                                padding:0px; height: 10px; border-top:2px solid #555; margin-top: 20px"></div>
+                                <div class="col-lg-4" style="padding:0px"> <button class="btn  btn-primary" style="border-radius: 20px; width: 40px; height: 40px; color: #999; border: 2px solid #999; background-color: #fff; "><i class="icon-pencil"></i></button></div>
+                                <div class="col-lg-4" style="
+                                padding:0px;"></div>
+                               
+                                <label style="margin-top:15px;">Transfer</label>
+                            </div>
+                            <div class="col-lg-12 text-center" style="margin-top: 25px; padding-top: 10px; padding-bottom: 0px; border-top:1px solid #bbb;"> 
+                            <div  class="col-lg-1" style="padding:0px; padding-top: 17px;">
+                                <button class="btn btn-sm btn-info" style="border-radius: 15px; outline: none"><i class="icon-arrow-left" ></i></button>
+                            </div>
+                            <div  class="col-lg-10" style="padding:0px;">
+                                <label>Status Message Sentence</label>
+                                <div id="ceLabel">
+                                    <p style="margin-bottom: 2px; font-size: 12px;"><label>Canvass Extension No.1</label></p>
+                                    <p style="margin-top:0px;"><label>Status Message</label></p>
+                                </div>
+                            </div>
+                            <div  class="col-lg-1" style="padding:0px; padding-top: 17px;">
+                                <button class="btn btn-sm btn-info" style="border-radius: 15px; outline: none"><i class="icon-arrow-right" ></i></button>
+                            </div>     
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+                 <div class="col-lg-12" style="display:none">
+                     <div class="panel panel-default">
+                         <div class="panel-body">
+                             <p>{{pageData5}}</p> 
+                              <p>{{pageData1}}</p> 
+                         </div>
+                     </div>
+                 </div>
+                <div class="col-lg-12" style="">
+                         <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="padding:0px;padding-top:20px;padding-bottom:10px;">
+                                
+
+                        <div class="panel-default" > 
+               <form id="statusBar" action="" method="post">{% csrf_token %}
+                   <div class="container">
+                   <ul class="progressbar2">
+
+                   {% if dictData1.status == 'approval' %}
+                    <li class="active">Create Request</li>
+                    <li class="pending" id="appr">Approval</li>
+                    <li id="canv">Canvass</li>
+                    <li id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Transfer</li>
+                    {% endif %}
+                   
+                   {% if dictData1.status == 'declinedpr' %}
+                    <li class="active">Create Request</li>
+                    <li class="error" id="appr">Approval</li>
+                    <li id="canv">Canvass</li>
+                    <li id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Transfer</li>
+                    {% endif %}
+                   
+                   {% if dictData1.status == 'quotation' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="pending" id="canv">Canvass</li>
+                    <li id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Transfer</li> 
+                   {% endif %}
+                   
+                   {% if dictData1.status == 'abstract' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="pending" id="canv">Canvass</li>
+                    <li id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Transfer</li>
+                    {% endif %}
+                    
+                    {% if dictData1.status == 'abstract_sel' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="pending" id="canv">Canvass</li>
+                    <li id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Transfer</li>
+                    {% endif %}
+
+                    {% if dictData1.status == 'po_prep' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="pending" id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Transfer</li>
+                    {% endif %}
+                    {% if dictData1.status == 'po_read' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="pending" id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Transfer</li>
+                    {% endif %}
+                    {% if dictData1.status == 'po_deny' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="error" id="proc">Procurement</li>
+                    <li id="deli">Delivery</li>
+                    <li id="itemR">Item Transfer</li>
+                    {% endif %}
+                    {% if dictData1.status == 'po_serve' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="active" id="proc">Procurement</li>
+                    <li class="pending" id="deli">Delivery</li>
+                    <li id="itemR">Item Transfer</li>
+                    {% endif %}
+                    {% if dictData1.status == 'iar_delcomp' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="active" id="proc">Procurement</li>
+                    <li class="active" id="deli">Delivery</li>
+                    <li id="itemR">Item Transfer</li>
+                    {% endif %}
+                    {% if dictData1.status == 'iar_delmiss' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="active" id="proc">Procurement</li>
+                    <li class="pending" id="deli">Delivery</li>
+                    <li id="itemR">Item Transfer</li>
+                    {% endif %}
+                    {% if dictData1.status == 'par_comp' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="active" id="proc">Procurement</li>
+                    <li class="active" id="deli">Delivery</li>
+                    <li class="active" id="itemR">Item Transfer</li>
+                    {% endif %}
+                    {% if dictData1.status == 'par_pend' %}
+                    <li class="active">Create Request</li>
+                    <li class="active" id="appr">Approval</li>
+                    <li class="active" id="canv">Canvass</li>
+                    <li class="active" id="proc">Procurement</li>
+                    <li class="active" id="deli">Delivery</li>
+                    <li class="pending" id="itemR">Item Transfer</li>
+                    {% endif %}
+                   
+                </ul>
+
+               </div>
+
+
+               </form>
+               
+               <div style="margin-top:30px">
+                   <label style="width:100%;" class="text-center">{{dictData1.msg}}</label>
+               </div>
+
+                </div>
+
+                                
+                            </div>
+                        </div>
+                </div>
+
+
+                <div class="col-lg-6" style="">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Request Information</h3>
+                            </div><!-- height:590px;-->
+                            <div class="panel-body" style=" height:165px;  padding-left:20px;">
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date of Request:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {{pageData1.0.5}}
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Request Type:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {{pageData1.0.3}}
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont4 " >
+
+                                    </div>
+                                    <div class="" >
+
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont4 " >
+                                         Purpose:  
+                                    </div>
+                                    <div class="dataFont3" style="text-indent:30px;">
+                                        {{pageData1.0.2}}
+                                    </div>
+                                </div> 
+                            </div>    
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" style=" padding-left:0px;">
+
+                    {% if pagaData1.0.7 != False and pageData1.0.8 != False and pageData5.0.9 == None %}
+
+                    <div class="infoDivs" id="appDivNoFalse">
+                         <div class="col-lg-12" style="padding:0px">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"  style="font-weight:bold;">Approval Status Information</h3>
+                            </div><!-- height:590px;-->
+                            <div class="panel-body" style=" height:165px;  padding-left:20px; padding-top: 10px;">
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Doc. on OVCAF:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                    {% if pageData5.0.1 == None %}
+                                    <label class="label label-warning">Waiting</label>
+                                    {% endif %}
+                                    {% if pageData5.0.1 == True and pageData5.0.3 == None %}
+                                    <label class="label label-success">Received</label> <label style="font-size: 13px">, {{pageData5.0.2}}</label>
+                                    {% endif %}
+                                    {% if pageData5.0.3 == True %}
+                                     <label class="label label-info">Released</label> <label style="font-size: 13px">, {{pageData5.0.4}}</label>
+                                    {% endif %}
+                                        
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        VCAF Decission:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {% if pageData1.0.7 == None %}
+                                    <label class="label label-warning">Pending</label>
+                                    {% endif %}
+                                    {% if pageData1.0.7 == True  %}
+                                    <label class="label label-success">Approved</label>
+                                    {% endif %}
+                                    {% if pageData1.0.7 == False %}
+                                     <label class="label label-danger">Denied</label>
+                                    {% endif %}
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Doc on OC:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                       {% if pageData5.0.5 == None %}
+                                    <label class="label label-warning">Waiting</label>
+                                    {% endif %}
+                                    {% if pageData5.0.5 == True and pageData5.0.7 == None %}
+                                    <label class="label label-success">Received</label> <label style="font-size: 13px">, {{pageData5.0.6}}</label>
+                                    {% endif %}
+                                    {% if pageData5.0.7 == True %}
+                                     <label class="label label-info">Released</label> <label style="font-size: 13px">, {{pageData5.0.8}}</label>
+                                    {% endif %}
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Chancellor's Dec.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                    {% if pageData1.0.8 == None %}
+                                    <label class="label label-warning">Pending</label>
+                                    {% endif %}
+                                    {% if pageData1.0.8 == True  %}
+                                    <label class="label label-success">Approved</label>
+                                    {% endif %}
+                                    {% if pageData1.0.8 == False %}
+                                     <label class="label label-danger">Denied</label>
+                                    {% endif %}
+                                    </div>
+                                </div> 
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+
+                    {% endif %}
+
+                    {% if pageData1.0.7 == False %}
+
+                    <div class="infoDivs" id="appDivVACFFalse">
+                          <div class="col-lg-12" style="padding:0px">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Approval Status Information</h3>
+                            </div><!-- height:590px;-->
+                             <div class="panel-body" style=" height:165px;  padding-left:20px; padding-top: 10px;">
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Doc. on OVCAF:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                    
+                                    {% if pageData5.0.1 == True and pageData5.0.3 == None %}
+                                    <label class="label label-success">Still Possession</label>
+                                    {% endif %}
+                                    {% if pageData5.0.3 == True %}
+                                     <label class="label label-info">Released</label> <label style="font-size: 13px">, {{pageData5.0.4}}</label>
+                                    {% endif %}
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        VCAF Decission:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        <label class="label label-danger">Denied</label>
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Reason:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {{pageData1.0.9}}
+                                    </div>
+                                </div> 
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+
+
+                    {% endif %}
+                    {% if pageData1.0.8 == False %}
+                    <div class="infoDivs" id="appDivOCFalse">
+                           
+                    <div class="col-lg-12" style="padding:0px">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Approval Status Information</h3>
+                            </div><!-- height:590px;-->
+                            <div class="panel-body" style=" height:165px;  padding-left:20px; padding-top: 10px;">
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Doc. on OC:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {% if pageData5.0.5 == True and pageData5.0.7 == None %}
+                                    <label class="label label-success">Still Possession</label>
+                                    {% endif %}
+                                    {% if pageData5.0.7 == True %}
+                                     <label class="label label-info">Released</label> <label style="font-size: 13px">, {{pageData5.0.8}}</label>
+                                    {% endif %}
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Chancellor's Decission:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        <label class="label label-danger">Denied</label>
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Reason:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {{pageData1.0.9}}
+                                </div> 
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                   </div>
+                    </div>
+                    {% endif %}
+                    {% if pageData5.0.9 == True and pageData5.1.3 == None %}
+                    <div class="infoDivs" id="canvProcPR">
+                          <div class="col-lg-12" style="padding:0px">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Canvass Information</h3>
+                            </div><!-- height:590px;-->
+                             <div class="panel-body" style=" height:165px;  padding-left:20px; padding-top: 10px;">
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Doc. on Proc. Office:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                    
+                                    {% if pageData5.0.7 == True and pageData5.0.9 == None %}
+                                    <label class="label label-warning">Waiting</label>
+                                    {% endif %}
+                                    {% if pageData5.0.9 == True %}
+                                     <label class="label label-success">Received</label>
+                                    {% endif %}
+                                        
+                                        
+                                        
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Received During:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {% if pageData5.0.7 == True and pageData5.0.9 == None %}
+                                         <label class="label label-warning">Not yet Received</label>
+                                        {% endif %}
+                                        {% if pageData5.0.9 == True %}
+                                         {{pageData5.0.10}}
+                                        {% endif %}
+                                         
+                                    </div>
+                                </div> 
+                            </div>
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                       
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                      
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Given P.R. No.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6"  >
+                                        {% if pageData5.0.7 == True and pageData5.0.9 == None %}
+                                         <label class="label label-warning">Pending</label>
+                                        {% endif %}
+                                        {% if pageData5.0.9 == True %}
+                                         <span style="font-size: 18px">{{pageData5.1.1}}</span> 
+                                        {% endif %}
+                                        
+                                        
+                                        
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                              
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+                    {% endif %}
+                    {% if pageData5.1.3 != None and pageData5.1.8 == None %}
+                    <div class="infoDivs" class="canvProcRQ">
+                          <div class="col-lg-12" style="padding:0px">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"  style="font-weight:bold;">Canvass Information</h3>
+                            </div><!-- height:590px;-->
+                           
+                                        <div class="panel-body" style=" height:165px;  padding-left:20px; padding-top: 10px;">
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Quotation No.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                    {% if pageData5.1.3 == None %}
+                                        <label class="label label-warning">Quotation is being prepared</label>
+                                        {% else %}
+                                        {{pageData5.1.3}}
+                                        {% endif %}
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date Prepared:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                    {% if pageData5.1.4 == None %}
+                                    <label class="label label-warning">Quotation is being prepared</label>
+                                    {% else %}
+                                    {{pageData5.1.4}}
+                                    {% endif %}
+                                     
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Canvass Start:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                    {% if pageData5.1.5 == None %}
+                                    <label class="label label-warning">Quotation hasn't prepared yet</label>
+                                    {% else %}
+                                    {{pageData5.1.5}}
+                                    {% endif %}
+                                    
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Canvass End:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {% if pageData5.1.5 == None %}
+                                        <label class="label label-warning">Canvass hasn't started yet</label>
+                                        {% endif %}
+                                        {% if pageData5.1.5 != None and pageData5.1.6 == None %}
+                                        <label class="label label-success">On Going</label>
+                                        {% endif %}
+                                        {% if pageData5.1.6 != None %}
+                                        {{pageData5.1.6}}
+                                        {% endif %}
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                            </div>
+                           
+                        </div>
+
+                    </div>
+                    </div>
+                    {% endif %}
+                    {% if pageData5.1.8 != None and pageData5.1.12 == None %}
+                    <div class="infoDivs" id="canvProcAC">
+                         <div class="col-lg-12" style="padding:0px">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Bids Selection Information</h3>
+                            </div><!-- height:590px;-->
+                              <div class="panel-body" style=" height:165px;  padding-left:20px; padding-top: 10px;">
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Abstract No.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {% if pageData5.1.8 == None %}
+                                        <label class="label label-warning">Abstract being prepared</label>
+                                        {% else %}
+                                        {{pageData5.1.8}}
+                                        {% endif %}
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Doc. Location:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {% if pageData5.1.9 == None %}
+                                        <label class="label label-warning">Proc. Office</label>
+                                        {% endif %}
+                                        {% if pageData5.1.9 != None and pageData5.1.11 == None %}
+                                        <label class="label label-success">Requisitioner</label>
+                                        {% endif %}
+                                        {% if pageData5.1.11 != None %}
+                                        <label class="label label-success">Proc. Office</label>
+                                        {% endif %}
+                                          
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Bids Selection:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {% if pageData5.1.11 == None %}
+                                            <label class="label label-warning">Pending</label> 
+                                        {% else %}
+                                        <label class="label label-success">Done</label> 
+                                        {% endif %}
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+                    {% endif %}
+                    {% if pageData5.1.12 != None and pageData5.1.18 == None %}
+                    <div class="infoDivs" id="poPrepProc">
+                        
+                   
+                    <div class="col-lg-12" style="padding:0px">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"  style="font-weight:bold;">Purchase Order Prep. Information</h3>
+                            </div><!-- height:590px;-->
+                            
+                                        <div class="panel-body" style=" height:165px;  padding-left:20px; padding-top: 10px;">
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        P.O. No.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                       {{pageData5.1.12}}
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Released for Signing:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {% if pageData5.1.13 == None %}
+                                         <label class="label label-warning">Pending</label> 
+                                        {% else %}
+                                         <label class="label label-success">Yes</label>
+                                        {% endif %}
+                                      
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date Released:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                         {% if pageData5.1.13 == None %}
+                                         <label class="label label-warning">Pending</label> 
+                                        {% else %}
+                                         {{pageData5.1.14}}
+                                        {% endif %}
+                                      
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        P.O. Approval:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                    {% if pageData5.1.15 == None %}
+                                    <label class="label label-warning">Pending</label>
+                                    {% endif %}
+                                    {% if pageData5.1.15 == True %}
+                                      <label class="label label-success">Approved</label>
+                                    {% endif %}
+                                    {% if pageData5.1.15 == False %}
+                                    <label class="label label-danger">Denied</label>
+                                    {% endif %}
+                                
+                                         
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+                    {% endif %}
+                    {% if pageData5.1.18 != None and pageData5.2.1 == None%}
+                    <div class="infoDivs" id="pos">
+                         <div class="col-lg-12" style="padding:0px">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">P.O. Service Information</h3>
+                            </div><!-- height:590px;-->
+                            <div class="panel-body" style=" height:165px;  padding-left:20px; padding-top: 10px;">
+                                    <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        P.O. No.:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {{pageData5.1.12}}
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Service Status:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                    {% if pageData5.1.18 == None %}
+                                    <label class="label label-warning">Pending</label>
+                                    {% else %}
+                                         <label class="label label-success">Served</label> <label style="font-size: 13px">, {{pageData5.1.19}}</label>
+                                    {% endif %}
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                              <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Receiving Supplier:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {{pageData5.1.18}}
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Expected Delivery By:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                       {% if pageData5.1.20 == None %}
+                                        <label class="label label-warning">Pending</label>
+                                        {% else %}
+                                       {{pageData5.1.20}}
+                                        {% endif %}
+                                            
+                                    </div>
+                                </div> 
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    </div>
+                    {% endif %}
+
+                 
+                    {% if pageData5.2.1 != None and pageData5.3.3 == False %}
+                     <div class="col-lg-12" style="padding:0px;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Item Delivery Information</h3>
+                            </div><!-- height:590px;-->
+                            <div class="panel-body" style=" height:165px;  padding-left:20px;">
+
+                            {% if pageData5.2.0 == True %}
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date Delivered:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {{pageData5.2.1}}
+                                    </div>
+                                </div> 
+                            </div>  
+                            {% else %}
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date of Latest Delivery:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {{pageData5.2.1}}
+                                    </div>
+                                </div> 
+                            </div>
+                            {% endif%}
+
+
+                             
+                                
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Delivery Remarks:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                   
+                                        {% if pageData5.2.2 == True %}
+                                        <label class="label label-success">Complete</label>
+                                        {% else %}
+                                         <label class="label label-danger">Incomplete</label>
+                                        {% endif %}
+                                        
+                                        
+                                    </div>
+                                </div> 
+                            </div> 
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Ready for Transfer:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {% if pageData5.2.3 == True %}
+                                         <label class="label label-success">Ready</label>
+                                            {% if pageData1.0.3 == 'Supply' %}
+
+                                                <label   style=" font-size: 12px;">A new RIS was created for this items</label>
+                                                <p><button class="btn btn-xs btn-success"  style=" margin-top:10px; border-radius: 10px;">View R.I.S. <i class="icon-arrow-right"></i></button></p>
+                                            {% endif %}
+                                        
+                                        {% else %}
+                                             <label class="label label-warning">Pending</label>
+                                        {% endif %}
+                                     
+                                    </div>
+                                </div> 
+                            </div>      
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endif %}
+                    
+
+                    {% if pageData5.3.3 == True %}
+                         <div class="col-lg-12" style="padding:0px;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Transfer of Items to Accounts</h3>
+                            </div><!-- height:590px;-->
+                            <div class="panel-body" style=" height:165px;  padding-left:20px;">
+                                        <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Delivery Remarks:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                       {% if pageData5.2.2 == True %}
+                                        <label class="label label-success">Complete</label>
+                                        {% else %}
+                                         <label class="label label-danger">Incomplete</label>
+                                        {% endif %}
+                                    </div>
+                                </div> 
+                            </div>   
+                                <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Transfer Status:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {% if pageData5.3.0 == True %}
+                                         <label class="label label-success">Complete</label>
+                                        {% else %}
+                                        <label class="label label-warning">On Going</label>
+                                        {% endif %}
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Quantity to Transfer:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                        {{pageData5.3.1|floatformat|intcomma}}
+                                    </div>
+                                </div> 
+                            </div> 
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Quantity Transfered:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-6" >
+                                       {{pageData5.3.2|floatformat|intcomma}}
+                                    </div>
+                                </div> 
+                            </div>      
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+                   
+                       
+
+                    </div>
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Items on Request</h3>
+                            </div>
+                          
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                         
+                                 <div class="panel-body" style="
+                                 padding:0px;
+                                 ">
+
+                            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel panel-default">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 100px;">Item No.</th>
+                                            <th>Description</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center">Unit Cost</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in pageData2 %}
+
+                                
+                                                            <tr>
+                                                                <td class="text-center">{{x.1}}</td>
+                                                                <td>{{x.2}}</td>
+                                                                <td class="text-center">{{x.3}}</td>
+                                                                <td class="text-center">
+                                                                    {% if x.4 != ''%}
+                                                                    ₱ 
+                                                                    {% endif %}
+
+                                                                {{x.4|floatformat|intcomma}}</td>
+                                                                <td class="text-center">{{x.5|floatformat}}</td>
+                                                                <td class="text-center">
+
+                                                                    {% if x.6 != ''%}
+                                                                    ₱ 
+                                                                    {% endif %}
+
+                                                                {{x.6|floatformat|intcomma}}</td>
+                                                            </tr>
+                                                        
+                                      
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                                
+                            </div>
+                           
+
+                    </div> 
+     
+                        </div>
+                        </div>
+                            </div>
+
+
+                 <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                           
+                            <div class="panel-body">
+                           
+
+                   <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px; padding-top:10px; padding-bottom:10px;">
+                                                                
+                                                                <div style="display: inline; font-weight: bold;  font-size: 14px;">
+                                                                    Estimated Total Cost: 
+                                                                </div>
+                                                                
+                                                                <div class="panel panel-default" style="display: inline; font-size: 18px;  font-weight: 400; padding:10px;">
+                                                                    ₱ {{pageData3.0.0|floatformat|intcomma}}
+                                                                </div>
+                                                            </div> 
+
+               </div> 
+                           
+                        </div>
+                        </div>
+                            </div>            
+
+                    
+                    <!-- -->
+
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+            </div>
+
+
+
+            <!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="errorDL" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Request Status is still pending.</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">You can only download the document if request has been approved</p>
+                                        <p style="margin-bottom:10px;">You will be notified as soon as this request has been approved or denied</p>   
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+            <!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="errorDLApp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Request was declined.</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">Document is not available to download due to your request was declined by either the VCAF or the Chancellor</p>
+                                         
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+           
+           
+            $('#prTop').attr('class', 'active-menu-top theAsTop');
+            $('#prUL').attr('class', 'nav nav-second-level theUL collapse in');
+            $('#pr').attr('class', 'active-menu-requi theAs');  
+       
+        })
+       
+        
+    </script>
+    <script type="text/javascript">
+       
+
+
+        $('#sentNotif').click(function (argument) {
+           
+             if ('{{pageData1.0.1}}' != 'None' && '{{pageData1.0.7}}' != 'False'&& '{{pageData1.0.8}}' != 'False') {
+                 
+                $('#sentNotif').html('Downloading File, Please Wait');
+                $('#sentNotif').attr('class', 'btn btn-default');
+                 //$('#sentNotif').attr('disabled', '');
+                 
+                 document.getElementById('dlPDF').submit();
+
+                 return true;
+
+            }
+
+            else{
+
+                if ('{{pageData1.0.7}}' == 'False' || '{{pageData1.0.8}}' == 'False') {
+                   $('#errorDLApp').modal('toggle');
+                    return false;
+                } else {
+                     $('#errorDL').modal('toggle');
+                    return false;
+                }
+
+               
+            }
+
+        });
+
+
+        $(document).ready(function(e) {
+
+            var dataRef = '{{dictData1.status}}';
+
+            if (dataRef == 'declinedpr'|| dataRef == 'approval') {
+                getApprovalDetais();
+            }
+            if (dataRef == 'quotation'|| dataRef == 'abstract'||dataRef == 'abstract_sel') {
+                if (dataRef == 'quotation') {
+                    getApprovalDetais();
+                } else {
+                    getCanvassInfo();
+                }
+            }
+            if (dataRef == 'po_prep'|| dataRef == 'po_read'||dataRef == 'po_deny') {
+                if (dataRef == 'po_prep') {
+                    getCanvassInfo();
+                } else {
+                    getProcurementDetails();
+                }    
+            }
+            if (dataRef == 'iar_delmiss'|| dataRef == 'iar_delcomp'||dataRef == 'po_serve') {
+                getDeliveryStatusInfo();
+            }
+            if (dataRef == 'par_pend'||dataRef == 'par_comp') {
+                getItemreceivedStatus();
+            }    
+        })
+
+    </script>
+    <script type="text/javascript">
+        $('#appr').hover(function () {
+            $('#appr').attr('style', 'cursor:pointer')
+        });
+        $('#canv').hover(function () {
+            $('#canv').attr('style', 'cursor:pointer')
+        });
+        $('#proc').hover(function () {
+            $('#proc').attr('style', 'cursor:pointer')
+        });
+        $('#deli').hover(function () {
+            $('#deli').attr('style', 'cursor:pointer')
+        });
+        $('#itemR').hover(function () {
+            $('#itemR').attr('style', 'cursor:pointer')
+        });
+
+
+    </script>
+    <script type="text/javascript">
+            
+            $('#appr').click(function (e) {
+            getApprovalDetais();
+          }); 
+            $('#canv').click(function (e) {
+            getCanvassInfo();
+          }); 
+            $('#proc').click(function (e) {
+            getProcurementDetails();
+          }); 
+
+            $('#deli').click(function (e) {
+            getDeliveryStatusInfo();
+          }); 
+             
+             $('#itemR').click(function (e) {
+            getItemreceivedStatus();
+          }); 
+
+
+
+
+    </script>
+    <script type="text/javascript">
+        
+
+    function getApprovalDetais(e) {
+            
+            $.ajax({
+                type: 'POST',
+                url:'/requisitioner/approvalInfo/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                            $('#statusTitle').html('Approval Status Information');
+
+                            if (response['initappStatus'] == false) {
+                                
+                                var htmlvalue =  '<div style="margin-left:15px;">';
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'VCAF Approval:';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  '<label class="label label-danger">Declined</label>';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px;  width:100%;">';
+                                    htmlvalue +=  ' <div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  '    Reason:  ';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' <div class="col-lg-6" style=" font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  ''+response['declineReason']+'';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+
+                                $('#statusInfo').html(htmlvalue);
+
+                                //document.getElementById('statusInfo').innerHTML = htmlvalue;
+                        
+                        } else {
+                            
+                            if (response['appStatus' ] == false) {
+
+                                var htmlvalue =  '<div style="margin-left:15px;">';
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'Chancellor Approval:';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  '<label class="label label-danger">Declined</label>';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px;  width:100%;">';
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'Reason:  ';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' <div class="col-lg-6" style=" font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  ''+response['declineReason']+'';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+
+                                $('#statusInfo').html(htmlvalue);
+
+                            } else {
+
+                                var htmlvalue =  '<div style="margin-left:15px;">';
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'VCAF Approval:';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+
+                                    if (response['initappStatus' ] == true) {
+                                        htmlvalue +=  '<label class="label label-success">Approved</label>';
+                                    } else {
+                                        htmlvalue +=  '<label class="label label-warning">Pending</label>';
+                                    }
+                                    
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'Chancellor Approval:';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+
+                                    if (response['appStatus' ] == true) {
+                                        htmlvalue +=  '<label class="label label-success">Approved</label>';
+                                        htmlvalue +=  '</div>';
+                                        htmlvalue +=  ' </div> ';
+                                        htmlvalue +=  '</div>';
+                                        htmlvalue +=  '<div class="form-group">';
+                                        htmlvalue +=  '<div style="padding-left: 2px;  width:100%;">';
+                                        htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                        htmlvalue +=  'Date of Approval:  ';
+                                        htmlvalue +=  ' </div>';
+                                        htmlvalue +=  ' <div class="col-lg-6" style=" font-size: 17px;  font-weight: 580; padding:7px;">';
+                                        htmlvalue +=  ''+response['appDate']+'';
+                                        htmlvalue +=  ' </div>';
+                                        htmlvalue +=  ' </div> ';
+                                        htmlvalue +=  ' </div> ';
+
+                                    } else {
+                                        htmlvalue +=  '<label class="label label-warning">Pending</label>';
+                                        htmlvalue +=  '</div>';
+                                        htmlvalue +=  ' </div> ';
+                                        htmlvalue +=  '</div>';
+                                    }
+                                    
+                                    htmlvalue +=  '</div>';
+
+                                $('#statusInfo').html(htmlvalue);
+
+
+                            }
+
+                        }
+                    }
+
+            });
+    }
+
+    function getCanvassInfo(e) {
+           
+         $.ajax({
+                type: 'POST',
+                url:'/requisitioner/canvassInfo/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                            $('#statusTitle').html('Canvass Status Information');
+
+                            if (response['rqNum'] == null) {
+                                $('#statusInfo').html("Request for Quotation and Abstract of Bids status information is currently unavailable at the moment. It may be because the Purchase Request is not yet approved or was declined or the quotation is currently being prepared.");
+                            } else {
+
+                                var htmlvalue =  '<div style="margin-left:15px;">';
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'Quotation No.:';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-3" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  ''+response['rqNum']+'';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-3" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  '<button class="btn btn-xs btn-primary">Details</button>';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'Abstract No.:';
+                                    htmlvalue +=  '</div>';
+                                    
+                                    if (response['abcNum'] == '') {
+                                      
+                                        htmlvalue += '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">'; 
+                                        htmlvalue += 'Not yet available';
+                                        htmlvalue +=  '</div>';
+                                        htmlvalue +=  ' </div> ';
+                                        htmlvalue +=  '</div>';
+
+
+                                    } else {
+                                        
+                                        htmlvalue += '<div class="col-lg-3" style="font-size: 17px;  font-weight: 580; padding:7px;">'; 
+                                        htmlvalue +=  ''+response['abcNum']+'';
+                                        htmlvalue +=  '</div>';
+                                        htmlvalue +=  '<div class="col-lg-3" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                        htmlvalue +=  '<button class="btn btn-xs btn-primary">Details</button>';
+                                        htmlvalue +=  '</div>';
+                                        htmlvalue +=  ' </div> ';
+                                        htmlvalue +=  '</div>';
+
+                                        htmlvalue +=  '<div class="form-group">';
+                                        htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                        htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                        htmlvalue +=  'Selection Status:';
+                                        htmlvalue +=  '</div>';
+                                        htmlvalue +=  '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+
+                                        if (response['abcStat'] == false) {
+                                            htmlvalue +=  '<label class="label label-warning">Pending</label>';
+                                        } else {
+                                            htmlvalue +=  '<label class="label label-success">Done Selection</label>';
+                                        }
+                                        htmlvalue +=  '</div>';
+                                        htmlvalue +=  ' </div> ';
+                                        htmlvalue +=  '</div>';
+
+                                    }
+
+                                    htmlvalue +=  '</div>';
+
+                                $('#statusInfo').html(htmlvalue);
+
+                            }
+                        
+                    }
+
+            });
+    }
+
+    function getProcurementDetails(e) {
+         
+         $.ajax({
+                type: 'POST',
+                url:'/requisitioner/procInfo/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+
+                            $('#statusTitle').html('Procurement Status Information');
+                            if (response['poNum'] == null) {
+                                $('#statusInfo').html("Purchase Order status information is currently unavailable at the moment. It may be because the request hasn't arrived yet or finished on the Canvass phase or the Purchase Order is currently being prepared.");
+                            } else {
+
+                                
+                                var htmlvalue =  '<div style="margin-left:15px;">';
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'Approval Status.:';
+                                    htmlvalue +=  '</div>';
+
+                                    if (response['appDate']+'' == 'None' && response['poStat'] == true) {
+                                      
+                                        htmlvalue += '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">'; 
+                                        htmlvalue += '<label class="label label-warning">Pending</label>';
+                                        htmlvalue +=  '</div>';
+                                        htmlvalue +=  ' </div> ';
+                                        htmlvalue +=  '</div>';
+
+
+                                    } else {
+                                        
+                                        htmlvalue += '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">'; 
+                                        htmlvalue +=  '<label class="label label-success">Approved</label>';
+                                        htmlvalue +=  '</div>';;
+                                        htmlvalue +=  ' </div> ';
+                                        htmlvalue +=  '</div>';
+
+                                    }
+
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'PO Number:';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-3" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  ''+response['poNum']+'';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-3" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  '<button class="btn btn-xs btn-primary">Details</button>';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'Cost:';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  ''+response['total']+'';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+
+                                    htmlvalue +=  '</div>';
+
+                                $('#statusInfo').html(htmlvalue);
+
+                            }
+                        
+                    }
+
+            });
+    }
+
+    function getDeliveryStatusInfo(e) {
+         $.ajax({
+                type: 'POST',
+                url:'/requisitioner/delInfo/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+
+                        $('#statusTitle').html('Delivery Status Information');
+                            
+                            if (response['iarNum'] == null) {
+                                
+                                var htmlvalue =  '<div style="margin-left:15px;">';
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'Delivery Date:';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  ''+delDateCalc(response['serveDate'])+'';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px;  width:100%;">';
+                                    htmlvalue +=  ' <div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  '  Delivery Status:  ';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' <div class="col-lg-6" style=" font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  ' Information not yet available';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  ' </div> ';
+
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px;  width:100%;">';
+                                    htmlvalue +=  ' <div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  ' Item Status:  ';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' <div class="col-lg-6" style=" font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  'Information not yet available';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  ' </div> ';
+
+                                    htmlvalue +=  '</div>';
+
+                                $('#statusInfo').html(htmlvalue);
+
+                            } else {
+
+                                var htmlvalue =  '<div style="margin-left:15px;">';
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'Date Delivered:';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  ''+delDateCalc(response['serveDate'])+'';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px;  width:100%;">';
+                                    htmlvalue +=  ' <div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  '  Delivery Status:  ';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' <div class="col-lg-6" style=" font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  ' <label class="label label-success">Complete</label>';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  ' </div> ';
+
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px;  width:100%;">';
+                                    htmlvalue +=  ' <div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  ' Item Status:  ';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' <div class="col-lg-6" style=" font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  '<label class="label label-success">Good Condition</label>';
+                                    htmlvalue +=  ' </div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  ' </div> ';
+
+                                    htmlvalue +=  '</div>';
+
+
+                                $('#statusInfo').html(htmlvalue);
+
+                            }
+                        
+                    }
+
+            });
+    }
+
+    function getItemreceivedStatus(argument) {
+        $.ajax({
+                type: 'POST',
+                url:'/requisitioner/receiveInfo/',
+                data:{
+                    
+                    'reqnum': $('#reqNum').attr('value'),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+
+                            $('#statusTitle').html('Item Received Status Information');
+                            
+                            if (''+response+'' == 'True') {
+                                
+                                var htmlvalue =  '<div style="margin-left:15px;">';
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'Tranfer Status:';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  '<label class="label label-success">Complete</label>';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+
+                                    htmlvalue +=  '</div>';
+
+                                $('#statusInfo').html(htmlvalue);
+
+                            } else {
+
+                                
+                                var htmlvalue =  '<div style="margin-left:15px;">';
+                                    htmlvalue +=  '<div class="form-group">';
+                                    htmlvalue +=  '<div style="padding-left: 2px; width:100%;">'
+                                    htmlvalue +=  '<div class="col-lg-6" style=" font-weight: 450;  font-size: 15px; padding:7px;">';
+                                    htmlvalue +=  'Tranfer Status:';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  '<div class="col-lg-6" style="font-size: 17px;  font-weight: 580; padding:7px;">';
+                                    htmlvalue +=  '<label class="label label-warning">On going</label>';
+                                    htmlvalue +=  '</div>';
+                                    htmlvalue +=  ' </div> ';
+                                    htmlvalue +=  '</div>';
+
+                                    htmlvalue +=  '</div>';
+
+                                $('#statusInfo').html(htmlvalue);
+
+                            }
+                        
+                    }
+
+            });
+    }
+
+
+    </script>
+    <script type="text/javascript">
+        
+
+        function delDateCalc(input) {
+            
+                var someDate = new Date(input);
+                var numberOfDaysToAdd = 15;
+
+                
+                someDate.setDate(someDate.getDate() + numberOfDaysToAdd);
+
+                var dateToDisplay = someDate.getFullYear()+ '-' + 
+                                    setSingleDigitToDouble(someDate.getMonth()+1)+ '-' + 
+                                    setSingleDigitToDouble(someDate.getDate());
+
+                return dateToDisplay
+        }
+        
+         function setSingleDigitToDouble(input) {
+            
+            
+            var outputData = "" + input;
+            
+            
+            if (outputData.length === 1) {
+                outputData = "0"+input;
+            }
+
+            return outputData;
+
+         }
+
+    </script>
+
+
+{% endblock %}

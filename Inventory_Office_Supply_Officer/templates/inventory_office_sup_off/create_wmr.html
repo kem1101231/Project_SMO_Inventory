@@ -1,0 +1,665 @@
+{% extends 'inventory_office/base.html' %}
+
+{% load staticfiles %}
+{% block content %}
+
+        <!-- /. NAV SIDE  -->
+            <style type="text/css">
+        
+        .test25{
+            width: 100%;
+            height: 100%;
+        
+        }
+         
+
+        .test25 img{
+             
+             
+             max-height: 150px;
+             
+         }
+         .dataFont1{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px; 
+            margin-bottom:2px;
+        
+         }
+
+         .dataFont2{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px; 
+            margin-bottom:2px;
+         }
+
+        .dataFont3{
+            
+            font-size: 15px; 
+            font-weight: bold; 
+            padding:7px;
+        
+         }
+
+         .dataFont4{
+            
+            font-weight: 450;  
+            font-size: 15px;
+            padding:7px;
+         }
+        
+
+    </style>
+    
+
+         <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                   
+                       <span style="font-size: 21px;">Create a Waste Material for Inspection Request</span>
+                    
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                
+
+                  <div class="col-lg-12" >
+                                     <div class="panel panel-default">
+                                        
+                                         <div class="panel-body">
+                                            <form class="form-horizontal" action="" method="POST">{% csrf_token %}
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Requesting Officer: </label>
+                                
+                                                    <div class="col-lg-6">
+                                                        <input type="text" id="insofficer" list="insOffList" class="form-control ui1" >
+                                                        <datalist id="insOffList">
+                                                        </datalist>
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="form-group text-right" style="padding-top: 20px; display: none">
+                                    <label for="autosize" class="control-label col-lg-4" >Items Condition:</label>
+
+                                    <div class="col-lg-6" >
+                                        <textarea id="autosize" placeholder="Indicate the Item/s' current condition to why these items are being reported for waste" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 100px;"></textarea>
+                                               
+                                            
+                                    </div>
+
+                                </div>
+
+                                 <div class="form-group">
+                                                    <label for="text1 " class="control-label col-lg-4 text-right" style="padding-top: 8px;">Ref. P.A.R.: </label>
+                                
+                                                    <div class="col-lg-6">
+                                                        <input type="text" id="refPARNum" class="form-control ui1" >
+                                                    
+                                                    </div>
+                                                </div>
+
+                                                 <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Inspecting Officer: </label>
+                                
+                                                    <div class="col-lg-6">
+                                                        <input type="text" id="insofficer2" list="insOffList2" class="form-control ui1" >
+                                                        <datalist id="insOffList2">
+                                                        </datalist>
+                                                    </div>
+                                                </div>
+                                    
+                                           
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="font-weight:bold;">Items to Report for Waste</h3>
+                            </div>
+                            <div class="panel-body">
+                            <div class="panel">
+                            
+
+                            <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                         
+                                 <div class="panel-body" style="
+                                 padding:0px;
+                                 ">
+                                    
+                            <div class="table-responsive">
+                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                    
+                        <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel panel-default">
+
+                            <div class="table-responsive">
+                                 <table id="theIncludedItems" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width:90px;">Inv. No.</th>
+                                            <th>Description</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Total</th>
+                                            <th style="width:120px;" class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="thePARItemsTableData">
+                                   
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            
+
+                    </div>
+
+
+                    </div>
+                                
+                            </div>
+                           
+                        </div>
+
+                        </div>
+
+                    
+
+                    </div> 
+     
+                        </div>
+                        </div>
+                            </div>
+
+
+                          
+                        <div class="col-lg-12">
+                    
+                       <div class="panel panel-default">
+                           <div class="panel-body text-right">
+                             <button id="sendReq" class="btn btn-success" type="button" role="button">Create WMI Request</button>
+                           
+                      
+                        </div>
+                       </div>
+                            
+                            </div>             
+
+
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+        
+
+        <!-- -->
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+
+        <!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="itemsTable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-danger btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-exclamation"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Indicate Items to Report to Waste</strong>
+                                        </h5>
+                                        <hr>
+                                        <div class="table-responsive">
+                                                 <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center" style="width:90px;background-color: #99d6b6">Inv. No.</th>
+                                                            <th>Description</th>
+                                                            <th style="width:120px;" class="text-center">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="theTableData">
+                                                    {% for x in pageData2 %}
+                                                        <tr>
+                                                            <td class="text-center">{{x.0}}</td>
+                                                            <td>{{x.2}}</td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-danger btn-xs"><i class="icon-trash"></i></button>
+                                                                <button class="btn btn-primary btn-xs"><i class="icon-remove"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>     
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="addReq" data-dismiss="modal" type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="transComp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Request for Waste Material Inspection Created and Saved.</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">The newly downloaded document will be the document for this task.</p>
+                                        <p style="margin-bottom:10px;">Please print it and serve to signatories for signing.</p>   
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="sentNotif" data-dismiss="modal" type="submit" class="btn btn-info">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="docGenModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-warning btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-spinner"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Generating Waste Material Inspection Document.</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">Currently requesting for the generated document for this task.</p>
+                                        <p style="margin-bottom:10px;">Please do not close this modal until the dowload has started.</p>   
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="closeGenModal" data-dismiss="modal" type="submit" class="btn btn-danger">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+       <script type="text/javascript">
+           
+            var theArrayOfItemsToReport = {}
+            var insOffID = ''
+            var insOffID2 = ''
+
+           $('#theIncludedItems').on('click','button', function () {
+               
+               var value = this.value
+               
+               var arr = value.split('_')
+               
+               console.log(arr)
+
+               var invn = arr[0]
+               var qty = arr[1]
+               var des = arr[2]
+
+               
+               var theIntValue = parseInt(invn)
+               var theIntQTY = parseInt(qty)
+
+               console.log(des+' = '+theIntValue+' = '+theIntQTY )
+
+
+               var t = ''
+
+
+               document.getElementById('theTableData').html = ''
+               
+               for (var i = 0 ; i < theIntQTY; i++) {
+                   
+                   var tr = '<tr>'
+                       tr+=     '<td id="'+(theIntValue+i)+'_td" class="text-center" style="background-color:#c3f1d9;">'+(theIntValue+i)+'</td>'
+                         tr+=     '<td>'+des+'</td>'
+                          tr+=     '<td class="text-center">'
+                          tr+=     '<button id="'+(theIntValue+i)+'_add" value="'+(theIntValue+i)+'" class="btn btn-danger btn-xs" style="margin-right:5px;"><i class="icon-trash"></i></button>'
+                         tr+=     '<button id="'+(theIntValue+i)+'_exclude" class="btn btn-primary btn-xs"><i class="icon-remove"></i></button>'
+                           tr+=   '</td>'
+                           tr+=   '</tr>'
+
+                     t += tr      
+               
+               }
+               
+               document.getElementById('theTableData').innerHTML = t
+               
+               $('#itemsTable').modal('toggle')
+           
+           });
+
+
+           $('#theTableData').on('click', 'button', function () {
+               var id = this.id
+               var arr = id.split('_')
+
+
+               if (arr[1] == 'add') {
+                    
+                    theArrayOfItemsToReport[arr[0]] = {'invenNum':arr[0]}
+
+                    $('#'+arr[0]+'_exclude').attr('class','btn btn-default btn-xs')
+                    $('#'+arr[0]+'_td').attr('style','background-color:#f7c3c7')
+                    $(this).attr('class','btn btn-danger btn-xs')
+               
+
+
+               } else {
+
+
+                    $('#'+arr[0]+'_add').attr('class','btn btn-default btn-xs')
+                    $(this).attr('class','btn btn-primary btn-xs')
+                    $('#'+arr[0]+'_td').attr('style','background-color:#c3f1d9')
+
+                    delete theArrayOfItemsToReport[arr[0]];
+               }
+                console.log(theArrayOfItemsToReport)
+           })
+       
+
+       $('#addReq').click(function () {
+           $('#theDisplayRemoveBTN').removeAttr('style')
+           $('#repToWasteBTN').attr('style','display:none')
+           $('#createPRBtn').attr('class','btn btn-default btn-xs');
+       });
+
+        $('#insofficer').keyup(function(e){
+        e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getEmployeeData/',
+                data:{
+                    
+                    'inputName': document.getElementById("insofficer").value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("insOffList").innerHTML = ""
+                        
+                        for(var key in response) {
+                           
+                            var value = response[key];
+                            document.getElementById("insOffList").innerHTML += '<option id="'+key+'" value ="'+value['name']+'"/>'
+
+                        }
+
+                    }
+
+            });
+    });
+
+    $("#insofficer").on('input', function () {
+       
+        var val = this.value;
+        var id = $('#insOffList option[value="' + val +'"]').attr('id');
+        
+        insOffID = id
+
+      }); 
+
+    $('#insofficer2').keyup(function(e){
+        e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url:'/procurement_office/getEmployeeData/',
+                data:{
+                    
+                    'inputName': document.getElementById("insofficer2").value,
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+
+                        document.getElementById("insOffList2").innerHTML = ""
+                        
+                        for(var key in response) {
+                           
+                            var value = response[key];
+                            document.getElementById("insOffList2").innerHTML += '<option id="'+key+'" value ="'+value['name']+'"/>'
+
+                        }
+
+                    }
+
+            });
+    });
+
+    $("#insofficer2").on('input', function () {
+       
+        var val = this.value;
+        var id = $('#insOffList2 option[value="' + val +'"]').attr('id');
+        
+        insOffID2 = id
+
+      }); 
+
+
+
+    $('#refPARNum').keyup(function () {
+
+
+        if (document.getElementById("refPARNum").value.length == 6) {
+
+           $.ajax({
+                    type: 'POST',
+                    url:'/inventory_office/getPARItems/',
+                    data:{
+                        'parNum':$('#refPARNum').val(),
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                    },
+
+                    success:function(response) {
+
+                        document.getElementById('thePARItemsTableData').innerHTML = ""
+
+                        var t = ''
+
+                        for (var key in response) {
+                          
+                          var data = response[key]
+                          
+                          var tr = '<tr>'
+                               tr += '<td class="text-center">{{x.0}} '+data['invNum']+'</td>'
+                                tr += '<td>'+data['descrip']+'</td>'
+                                   tr += '<td class="text-center">'+data['unit']+'</td>'
+                                   tr += '<td class="text-center">'+data['quantity']+'</td>'
+                                    tr += '<td class="text-center">'+data['total']+'</td>'
+                                      tr += '<td class="text-center">'
+                                       tr += '<button id="createPRBtn"  class="btn btn-success btn-xs" role= "button" aria-disabled="true" value="'+data['invNum']+'_'+data['quantity']+'_'+data['descrip']+'" style="margin-right:3px;"><i class="icon-edit"></i></button>'
+                                       tr += '<button id="reportWasteBtn" class="btn btn-xs btn-danger" role= "button" aria-disabled="true" value="'+data['invNum']+'_'+data['quantity']+'_'+data['descrip']+'"><i class="icon-trash"></i></button>'
+                                       tr += '</td>'
+                                     tr += '</tr>'
+
+                            t += tr         
+
+                        }
+
+                        document.getElementById('thePARItemsTableData').innerHTML = t
+                                         
+                    }
+
+                
+                });
+
+
+        }
+         
+    })
+$('#closeGenModal').click(function (argument) {
+    $('#transComp').modal('toggle')
+})
+$('#sentNotif').click(function (argument) {
+    
+    document.body.scrollTop = 0; // For Chrome, Safari and Opera 
+    document.documentElement.scrollTop = 0; 
+    location.reload();
+})
+
+$('#sendReq'). click(function () {
+         
+ 
+
+          $.ajax({
+                    type: 'POST',
+                    url:'/inventory_office/addNewWMI/',
+                    data:{
+                        
+                        'parNum':$('#refPARNum').val(),
+                        'insOff': insOffID,
+                        'insOff2': insOffID2,
+                        'theItems': JSON.stringify(theArrayOfItemsToReport),
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                    },
+
+                    success:function(response) {
+                        $('#docGenModal').modal('toggle')
+                        window.location.href = '/inventory_office/generateWMRDocument/'+fixURL(response)+'/';
+                        
+                    }
+
+                
+                });
+
+    })
+
+        function fixURL(input) {
+            return input.replace('-','_')
+        }
+
+       </script> 
+<!-- ============================================================================================================================================ -->        
+        
+        <script type="text/javascript">
+       
+            $(document).ready(function () {
+                
+
+            $('#wmr').attr('class','active-menu-inven')
+            $('#acctTop').attr('class', 'active-menu-top')
+            $('#theAcctUL').attr('class','nav nav-second-level collapse in')
+            $('#title').html('Create WMI')
+
+            })
+           
+            
+        </script>
+
+
+{% endblock %}

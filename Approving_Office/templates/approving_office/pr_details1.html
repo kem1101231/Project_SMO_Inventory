@@ -1,0 +1,1792 @@
+{% extends baseSource %}
+{% load staticfiles %}
+{% load humanize %}
+{% block content %}
+        
+        <!-- /. NAV SIDE  -->
+         <div id="page-wrapper">
+      
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                 <span name="reqNum" id="reqNum" value="{{pageData1.0.0}}">Purchase Request Details</span>
+                 
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #555!important;">
+             
+                <hr>
+                 
+                <div class="col-lg-7" style="">
+                         <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Basic Information</h3>
+                            </div><!-- -->
+                            <div class="panel-body" style="height: 250px;  padding-left:20px;">
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date of Request:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {{pageData1.0.5}} 
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Date Approved:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        Month dd, YYYY
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                          
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                           
+
+                            
+                             <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Requesting Personnel:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >{{pageData1.2.6}} {{pageData1.2.1}} {{pageData1.2.7}} {{pageData1.2.2}} {{pageData1.2.8}}
+                                    </div>
+                                </div> 
+                            </div>
+                           
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Office:  
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >{{pageData1.3.1}}    
+                                    </div>
+                                </div> 
+
+                            </div>
+                            
+                            <div class="form-group">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" >
+                                        Purpose:
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+                                        {{pageData1.0.2}} 
+                                    </div>
+                                </div> 
+                            </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5" style=" padding-left:0px;">
+                         <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Update Information</h3>
+                            </div>
+                            <div class="panel-body" style="height: 250px;  padding-left:20px;">
+                            
+                             <div class="form-group" style="padding-bottom: 47px; padding-top: 23px;">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" style="padding-top: 13px;">
+                                       Receive Status:
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+
+                                    {% if pageData1.4.0 == 'vcaf' %}
+                                         {% if pageData1.1.1 == None %}
+                                            <button class="btn btn-sm" style="border-color: #d58512; color: #d58512; background: white;" disabled="">No Document Yet</button>
+                                        {% else %}
+                                            <button class="btn btn-sm " style="width: 90px; border-color: #449d44; color: #449d44; background: white;" disabled=""><i class="icon-ok"></i> Received</button>
+                                        {% endif %}
+                                    {% else %}
+                                         {% if pageData1.1.5 == None %}
+                                            <button class="btn btn-sm" style="border-color: #d58512; color: #d58512; background: white;" disabled="">No Document Yet</button>
+                                        {% else %}
+                                            <button class="btn btn-sm " style="width: 90px; border-color: #449d44; color: #449d44; background: white;" disabled=""><i class="icon-ok"></i> Received</button>
+                                        {% endif %}
+                                    {% endif %}
+
+                                   
+                                       
+                                    
+                                    </div>
+                                </div> 
+                            </div>
+                                
+                                <div class="form-group" style="padding-bottom: 47px;">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" style="padding-top: 13px;">
+                                        Approval Decission:
+                                    </div>
+                                    <div class="dataFont1 col-lg-7" >
+
+                                    {% if pageData1.4.0 == 'vcaf' %}
+                                        
+                                        {% if pageData1.1.1 == None %}
+                                                 
+                                                 <button class="btn btn-sm btn-default" style="width: 90px; border-radius: 13px;" disabled=""><i class="icon-ok"></i> Approve</button> 
+                                                 <button class="btn btn-sm btn-default" style="width: 90px; border-radius: 13px;" disabled=""><i class="icon-remove"></i> Deny</button>
+                                            
+                                            {% else %}
+                                                 
+                                                 {% if pageData1.0.7 == None %}
+                                                     
+                                                     <button class="btn btn-sm btn-success" style="width: 90px; border-radius: 13px;" id="apprvBTN"><i class="icon-ok"></i> Approve</button> 
+                                                     <button class="btn btn-sm btn-danger" style="width: 90px; border-radius: 13px;" id="declBTN" data-toggle="modal"  data-target="#newReg"><i class="icon-remove"></i> Deniy</button>
+                                                 
+                                                 {% else %}
+                                                     {% if pageData1.1.3 != None %}
+                                                            {% if pageData1.0.7 == True %}
+                                                                <button class="btn btn-sm" style="border-color: #398439; color: #398439; background: white; width: 90px;" disabled=""><i class="icon-ok"></i> Approved</button>
+                                                                
+                                                            {% else %}
+                                                                 
+                                                               <button class="btn btn-sm " style="border-color: #d43f3a; color: #d43f3a; background: white; width: 90px;" disabled=""><i class="icon-remove"></i> Denied</button>
+
+                                                            {% endif %}
+                                                    
+                                                    {% else %}
+                                                            {% if pageData1.0.7 == True %}
+                                                                <button class="btn btn-sm btn-success" style="width: 90px; border-radius: 13px;" id="apprvBTN"><i class="icon-ok"></i> Approved</button> 
+                                                                <button class="btn btn-sm btn-danger" style="border-color: #d43f3a; color: #d43f3a; background: white; border-radius:13px; width: 90px;" id="declBTN" data-toggle="modal"  data-target="#newReg"><i class="icon-remove"></i> Denied</button>
+                                                            {% else %}
+                                                                <button class="btn btn-sm btn-success" style="border-color: #398439; color: #398439; background: white; border-radius:13px; width: 90px;" id="apprvBTN"><i class="icon-ok"></i> Approve</button> 
+                                                                <button class="btn btn-sm btn-danger" style="width: 90px; border-radius: 13px;" id="declBTN" data-toggle="modal"  data-target="#newReg"><i class="icon-remove"></i> Deny</button>
+
+                                                            {% endif %}
+                                                    {% endif %}
+
+                                                 {% endif %}
+
+                                                 
+
+                                            {% endif %}
+                                    
+                                    {% else %}
+                                        
+                                        {% if pageData1.1.5 == None %}
+                                                 
+                                                 <button class="btn btn-sm btn-default" style="width: 90px; border-radius: 13px;" disabled=""><i class="icon-ok"></i> Approve</button> 
+                                                 <button class="btn btn-sm btn-default" style="width: 90px; border-radius: 13px;" disabled=""><i class="icon-remove"></i> Deny</button>
+                                            
+                                        {% else %}
+                                              
+                                                {% if pageData1.0.8 == None %}
+                                                     
+                                                     <button class="btn btn-sm btn-success" style="width: 90px; border-radius: 13px;" id="apprvBTN"><i class="icon-ok"></i> Approve</button> 
+                                                     <button class="btn btn-sm btn-danger" style="width: 90px; border-radius: 13px;" id="declBTN" data-toggle="modal"  data-target="#newReg"><i class="icon-remove"></i> Deny</button>
+                                                 
+                                                 {% else %}
+                                                    {% if pageData1.1.7 != None %}
+                                                            {% if pageData1.0.8 == True %}
+                                                                <button class="btn btn-sm" style="border-color: #398439; color: #398439; background: white; width: 90px;" disabled=""><i class="icon-ok"></i> Approved</button>
+                                                                
+                                                            {% else %}
+                                                                 
+                                                               <button class="btn btn-sm " style="border-color: #d43f3a; color: #d43f3a; background: white; width: 90px;" disabled=""><i class="icon-remove"></i> Denied</button>
+
+                                                            {% endif %}
+                                                    
+                                                    {% else %}
+                                                            {% if pageData1.0.8 == True %}
+                                                                <button class="btn btn-sm btn-success" style="width: 90px; border-radius: 13px;" id="apprvBTN"><i class="icon-ok"></i> Approved</button> 
+                                                                <button class="btn btn-sm btn-danger" style="border-color: #d43f3a; color: #d43f3a; background: white; border-radius:13px; width: 90px;" id="declBTN" data-toggle="modal"  data-target="#newReg"><i class="icon-remove"></i> Denied</button>
+                                                            {% else %}
+                                                                <button class="btn btn-sm btn-success" style="border-color: #398439; color: #398439; background: white; border-radius:13px; width: 90px;" id="apprvBTN"><i class="icon-ok"></i> Approved</button> 
+                                                                <button class="btn btn-sm btn-danger" style="width: 90px; border-radius: 13px;" id="declBTN" data-toggle="modal"  data-target="#newReg"><i class="icon-remove"></i> Denied</button>
+
+                                                            {% endif %}
+                                                    {% endif %}
+
+                                                   
+
+                                                {% endif %}
+
+                                        {% endif %}
+                                    
+                                    {% endif %}
+
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+                                
+                                <div class="form-group" style="padding-bottom: 47px;">
+                                <div style="padding-left: 2px; width:100%; ">
+                                    <div class=" dataFont2 col-lg-5" style="padding-top: 13px;">
+                                       Release Status:
+                                    </div>
+                                    <div class="dataFont1 col-lg-7">
+                                    
+                                    {% if pageData1.4.0 == 'vcaf' %}
+                                         
+                                         {% if pageData1.1.1 == None %}
+                                                 
+                                                <button class="btn btn-sm btn-default" style="width: 90px; border-radius: 13px; display: none" disabled=""><i class="icon-ok"></i> Release </button>
+                                                <button class="btn btn-sm" style="border-color: #d58512; color: #d58512; background: white;" disabled="">No Document Yet</button>
+                                            
+                                            {% else %}
+                                                {% if pageData1.1.3 == None %}
+                                                    <button class="btn btn-sm btn-success" style="border-color: #398439; color: #398439; background: white;" id="apprvBTN"><i class="icon-ok"></i> Document still on Office</button> 
+                                                {% else %}
+                                                    <button class="btn btn-sm btn-primary" style="width: 90px; border-color: #285e8e; color: #285e8e; background: white;" disabled=""><i class="icon-ok"></i> Released</button>
+                                                {% endif %}
+
+                                            {% endif %}
+                                    
+                                    {% else %}
+
+                                         {% if pageData1.1.5 == None %}
+                                                 
+                                                <button class="btn btn-sm btn-default" style="width: 90px; border-radius: 13px; display: none" disabled=""><i class="icon-ok"></i> Release </button>
+                                                <button class="btn btn-sm" style="border-color: #d58512; color: #d58512; background: white;" disabled="">No Document Yet</button>
+                                            
+                                            {% else %}
+                                                {% if pageData1.1.7 == None %}
+                                                   <button class="btn btn-sm btn-success" disabled="" style="border-color: #398439; color: #398439; background: white;" id="apprvBTN"><i class="icon-ok"></i> Document still on Office</button> 
+                                                {% else %}
+                                                    <button class="btn btn-sm btn-primary" style="width: 90px; border-color: #285e8e; color: #285e8e; background: white;" disabled=""><i class="icon-ok"></i> Released</button>
+                                                {% endif %}
+
+                                            {% endif %}
+                                    
+                                    {% endif %}
+                                       
+                                        
+                                    </div>
+                                </div> 
+                            </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                {% if pageData1.4.0 == 'vcaf' %}
+                
+
+                {% if pageData1.0.7 != None or pageData1.1.1 == None %}
+                
+                <div class="col-lg-12" style="display: inline;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Purchase Request Items </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead >
+                                        <tr>
+                                            <th class="text-center" style="width:90px;">Item No.</th>
+                                            <th>Requested Item Description</th>
+                                            <th class="text-right">Quantity</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-right">Unit Cost</th>
+                                            <th class="text-right">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in pageData2 %}
+                                    
+                                    <tr>
+                                       <td class="text-center">{{x.1}}</td> 
+                                       <td>{{x.2}}</td>
+                                       <td class="text-right">{{x.5|floatformat|intcomma}}</td>    
+                                       <td class="text-center">{{x.3}}</td>
+                                       <td class="text-right">{{x.4|floatformat|intcomma}}</td>
+                                       <td class="text-right">{{x.6|floatformat|intcomma}}</td>
+                                       
+                                    </tr>
+                                   
+                                    {% endfor %}
+
+
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                                
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                    <div class="panel-body">
+
+                    <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                       <div class="form-group">
+                  <div class="header-right" style="padding-top:0px;">
+                                                                
+                      <div style="display: inline; font-weight: 400;  font-size: 14px;">
+                           Estimated Total Cost: 
+                    </div>
+                                                                
+                        <div class="panel panel-default" style="display: inline; font-size: 18px;  font-weight: 400; padding:10px;">
+                             {{pageData1.4.1|floatformat|intcomma}}
+                        </div>
+                    
+                    </div> 
+
+               </div>
+
+                 </div></div>
+                        
+                    </div>
+                </div>
+
+                {% else %}
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        
+                        <div class="panel-heading">
+                            Purchase Request Items
+                        </div>
+                        <div class="panel-body">
+                            <div class="panel-body">
+                                <p>• You may alter this request items information but be informed, any changes done in the table below after approving the request will render irreversable. </p> 
+                                <p>• If you manage to conduct a mistake during editing (eg. removing an item off the list), just refresh the page to reset the data.</p>
+
+
+                            </div>
+
+
+                             <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel panel-default">
+                            <div class="table-responsive">
+                          <table id="myTable" class="table table-hover">
+                                    <thead style="background-color: #777; color: #fff">
+                                        <tr>
+                                            <th class="text-center" style="width: 80px;">Item No.</th>
+                                            <th>Description</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center">Unit Cost</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Total</th>
+                                            <th class="text-center">Actions</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table">
+                                        
+                                        
+                                    </tbody>
+                                </table>
+                              
+                                
+                            </div>
+
+
+                        </div>
+                        <div class="header-right">
+                            
+                        <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px;">
+                                                                
+                        <div style="display: inline; font-weight: 400;  font-size: 14px;">
+                             Estimated Total Cost: 
+                        </div>
+                                                                
+                        <div id="total" value="0" class="panel panel-default" style="display: inline; font-size: 18px;  font-weight: 400; padding:10px;">₱ 0
+                         </div>
+                     </div> 
+
+               </div>  
+
+
+                        </div>
+                            
+
+                    </div>
+                        </div>
+                    </div>
+
+                </div>
+                {% endif %}
+
+
+                {% else %}
+
+                    {% if pageData1.0.8 == None and pageData1.1.5 != None %}
+                     <div class="col-lg-12">
+                    <div class="panel panel-info">
+                        
+                        <div class="panel-heading">
+                            Purchase Request Items
+                        </div>
+                        <div class="panel-body">
+                            <div class="panel-body">
+                                <p>• You may alter this request's items information but be informed, any changes done in the table below after approving the request will render irreversable. </p> 
+                                <p>• If you manage to conduct a mistake during editing (eg. removing an item off the list), just refresh the page to reset the data.</p>
+
+
+                            </div>
+
+
+                             <div class="col-md-12" style="
+                                    padding-left: 0px;
+                                    padding-right: 0px;
+                                    ">
+                                <div class="panel panel-default">
+                            <div class="table-responsive">
+                          <table id="myTable" class="table table-hover">
+                                    <thead style="background-color: #777; color: #fff">
+                                        <tr>
+                                            <th class="text-center" style="width: 80px;">Item No.</th>
+                                            <th>Description</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-center">Unit Cost</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Total</th>
+                                            <th class="text-center">Actions</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table">
+                                        
+                                        
+                                    </tbody>
+                                </table>
+                              
+                                
+                            </div>
+
+
+                        </div>
+                        <div class="header-right">
+                            
+                        <div class="form-group">
+                  <div class="header-right" style="padding-right: 40px;">
+                                                                
+                        <div style="display: inline; font-weight: 400;  font-size: 14px;">
+                             Estimated Total Cost: 
+                        </div>
+                                                                
+                        <div id="total" value="0" class="panel panel-default" style="display: inline; font-size: 18px;  font-weight: 400; padding:10px;">₱ 0
+                         </div>
+                     </div> 
+
+               </div>  
+
+
+                        </div>
+                            
+
+                    </div>
+                        </div>
+                    </div>
+
+                </div>
+              
+
+                {% else %}
+                 <div class="col-lg-12" style="display: inline;">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Purchase Request Items </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="theTable">
+                                    <thead >
+                                        <tr>
+                                            <th class="text-center" style="width:90px;">Item No.</th>
+                                            <th>Requested Item Description</th>
+                                            <th class="text-right">Quantity</th>
+                                            <th class="text-center">Unit</th>
+                                            <th class="text-right">Unit Cost</th>
+                                            <th class="text-right">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for x in pageData2 %}
+                                    
+                                    <tr>
+                                       <td class="text-center">{{x.1}}</td> 
+                                       <td>{{x.2}}</td>
+                                       <td class="text-right">{{x.5|floatformat|intcomma}}</td>    
+                                       <td class="text-center">{{x.3}}</td>
+                                       <td class="text-right">{{x.4|floatformat|intcomma}}</td>
+                                       <td class="text-right">{{x.6|floatformat|intcomma}}</td>
+                                       
+                                    </tr>
+                                   
+                                    {% endfor %}
+
+
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                                
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-info">
+                    <div class="panel-body">
+
+                    <div style="   
+                                     display:inline;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                       <div class="form-group">
+                  <div class="header-right" style="padding-top:0px;">
+                                                                
+                      <div style="display: inline; font-weight: 400;  font-size: 14px;">
+                           Estimated Total Cost: 
+                    </div>
+                                                                
+                        <div class="panel panel-default" style="display: inline; font-size: 18px;  font-weight: 400; padding:10px;">
+                             {{pageData1.4.1|floatformat|intcomma}}
+                        </div>
+                    
+                    </div> 
+
+               </div>
+
+                 </div></div>
+                        
+                    </div>
+                </div>
+                {% endif %}
+
+                {% endif %}    
+                  
+                
+                      
+                
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="decideComp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                   
+                                    
+                                    <div class="modal-body ">
+
+                                        <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                            <span class="pull-left" >
+                                                <div class="btn btn-success btn-lg btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                                    <i class="icon-ok"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading" style="margin-top:10px;">
+                                            <strong>Saving information update</strong>
+                                        </h5>
+                                        <hr>
+                                        
+                                        <p style="margin-bottom:10px;">• The request apporval is now updated to your selected information.</p>
+                                        <p style="margin-bottom:10px;">• You can change it anytime, on sudden changes on decission of the approving officer, as long your office is still on possession of the P.R. document</p> 
+                                         
+                                    </div>
+                                    
+
+                                </div>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                            <button id="desNotif" type="submit" class="btn btn-info" data-dismiss="modal">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  --><!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="newReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <form action="" method="POST">{% csrf_token %} 
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="H4"> Enter reason of denial</h4>
+                                    </div>
+                                   
+                                    
+                                    <div class="modal-body">
+
+                                            <div class="checkbox" >
+                                                        <label>
+                                                            <div class="checker hover"><span><input checked id="chck1" class="uniform" type="checkbox" value="option1"></span></div>Select a Reason
+                                                        </label>
+                                             </div>
+                                             
+                                             <div>
+                                                <select id="selReason" class="form-control">
+                                                <option>On tight budget</option>
+                                                <option>Unreasonable request</option>
+                                                <option>Date interval of last the account is too near</option>
+                                            </select>
+
+                                             </div>
+                                             
+
+                                             <div class="checkbox">
+                                                        <label>
+                                                            <div class="checker hover"><span><input id="chck2" class="uniform" type="checkbox" value="option2"></span></div>Specify Reason
+                                                        </label>
+                                             </div>
+                                                    
+                                                    <div>
+                                                        <textarea id="reasonIn" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 100px;" disabled></textarea>
+                                                    </div>
+                                                
+                                      
+                                    </div>
+                                   
+                                      
+                                          <div class="modal-footer">
+                                            <button id="submitDecline" data-dismiss="modal" type="button" role="button" class="btn btn-success">Submit</button>
+                                    </div>
+
+                                        
+                                       
+                                     
+                                     
+                                    
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+<!-- ===================================================   Modal ==================================================================================  -->
+           
+                       <div class="modal fade" id="newReg2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button id="newRegClose2" type="submit" style="float: right; color: #d43f3a; border-color: #d43f3a; background: white; border-radius: 20px;" class="btn btn-sm btn-danger" ><i class="icon-remove"></i></button>
+                                      
+                                            <h4 class="modal-title" id="H4"><span id="headID">New</span> Item Information</h4>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="panel panel-body" style="padding-top:0px; margin:0px;">
+                                            <form class="form-horizontal">
+
+                                                <div id="descripDiv" class="form-group" style="margin-bottom: 5px;">
+                                                        <label for="text1" class="control-label col-lg-4">Description: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="descrip" list="descripList" class="form-control" autofocus>
+                                                        <datalist id="descripList" style="margin-bottom: 10px;">
+                                                        </datalist>
+                                                        <span for="descrip" id="errorde" ></span>
+                                                    </div>
+
+                                                </div>
+                                                <div id="theDescDiv">
+                                               
+                                                </div>
+                                                <div id="" class="form-group">
+                                                        <label for="text1" class="control-label col-lg-4"></label>
+                                            
+                                                    <div class="col-lg-8" id="">
+                                                         <button type="button" id="addSub" class="btn btn-success btn-xs">Add Sub-description</button>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                        <label for="text1" class="control-label col-lg-4">Unit: </label>
+                                                        
+                                                    <div class="col-lg-8">
+                                                        <input id="unit" class="form-control" list="compSeacrhList" />
+                                                        <datalist id="compSeacrhList">
+                                                        <option>Unit</option>
+                                                        <option>Piece</option>
+                                                        <option>Bundle</option>
+                                                        <option>Strip</option>
+                                                        <option>Pair</option>
+                                                        <option>Gram</option>
+                                                        <option>Kilogram</option>
+                                                        <option>Ounce</option>
+                                                        <option>Meter</option>
+                                                        <option>Inch</option>
+                                                        <option>Foot</option>
+                                                        <option>Brd. Feet</option>
+                                                        <option>Cu. Feet</option>
+                                                        <option>Cu. Meter</option>
+                                                        <option>Litre</option>
+                                                        <option>Load</option>
+                                                        <option>Bottle</option>
+                                                        <option>Case</option>
+                                                        <option>Vial</option>
+                                                        <option>Sheet</option>
+                                                        <option>Ream</option>
+                                                        </datalist>
+                                                        <span id="errorun"></span>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Unit Price: </label>
+                                            
+                                                    <div class="col-lg-8">
+                                                        <input id="price" class="form-control" />
+                                                        <span id="errorpr"></span>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="form-group" style="margin-bottom:10px;">
+                                                    <label for="text1" class="control-label col-lg-4">Quantity: </label>
+                                            
+                                                    <div class="col-lg-8" >
+                                                        <input id="quantity" class="form-control" />
+                                                        <span id="errorqu"></span>
+                                                    </div>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                           
+                                            <button id="addList" type="submit" class="btn btn-success" >Add to List</button>
+                                            
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- ===================================================   Modal ==================================================================================  -->
+
+
+                </div>    
+
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'procurement/assets/js/custom.js' %}"></script>
+    
+   <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#pr').attr('class', 'active-menu-approv')
+        $('#proTop').attr('class', 'active-menu-top')
+        $('#proUL').attr('class','nav nav-second-level collapse in')
+    })
+
+    </script>
+    
+    <script type="text/javascript">
+
+            var decision = '';
+            var reasonRef = 'select';
+            var reason = '';
+
+
+    $('#chck1').click(function(e) {
+        reasonRef = 'select';
+       $('#chck2').removeAttr('checked')
+       $('#reasonIn').attr('disabled', '')
+       $('#selReason').removeAttr('disabled')
+    });
+
+
+
+    $('#chck2').click(function(e) {
+        reasonRef = 'define';
+       $('#chck1').removeAttr('checked')
+       $('#selReason').attr('disabled', '')
+       $('#reasonIn').removeAttr('disabled')
+    });
+            
+    $('desNotif').click(function (e) {
+        $('#decideComp').modal('toggle');
+        location.reload();
+    })
+
+    
+
+            $('#apprvBTN').click(function (e) {
+                alert(isEdit)
+
+                e.preventDefault();
+                    
+                    $.ajax({
+                        type: 'POST',
+                        url:'/approving_officer/decidePR/',
+                        data:{
+                            
+                            'decision': 'approve',
+                            'isEdit': isEdit,
+                            'theMatrix': JSON.stringify(editedArry),
+                            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                        },
+
+                            success:function() {
+                                $('#decideComp').modal('toggle');
+                                $('#declBTN').attr('style', 'border-color: #d43f3a; color: #d43f3a; background: white; border-radius:13px; width: 90px;')
+                                $('#apprvBTN').attr('class', 'btn btn-success btn-sm')
+                                $('#apprvBTN').attr('style', 'border-radius:13px; width: 90px;')
+                                
+
+
+
+                        }
+
+                    });
+            })
+
+
+            $('#submitDecline').click(function (e) {
+                    
+                    if (reasonRef === 'select') {
+                        reason = $('#selReason').val();
+                    }else{
+                        reason = $('#reasonIn').val();
+                    }
+                    
+                    $.ajax({
+                        type: 'POST',
+                        url:'/approving_officer/declinePR/',
+                        data:{
+                            
+                            'reason': reason,
+                            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                        },
+
+                            success:function() {
+
+                                $('#decideComp').modal('toggle');
+                                $('#apprvBTN').attr('style', 'border-color: #398439; color: #398439; background: white; border-radius:13px; width: 90px;')
+                                $('#declBTN').attr('class', 'btn btn-sm btn-danger')
+                                $('#declBTN').attr('style', 'border-radius:13px; width: 90px;')
+
+
+
+                            }
+                            
+
+                    });
+
+            });
+
+            $('#recBTN').click(function (e) {
+                 e.preventDefault();
+                    
+                    $.ajax({
+                            type: 'POST',
+                            url:'/approving_officer/update_location/',
+                            data:{
+                                
+                                'prRef': $('#reqNum').attr('value'),
+                                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                        },
+
+                                success:function(response) {
+                                    $('#recBTN').attr('class', 'btn btn-sm')
+                                    $('#recBTN').attr('disabled', '')
+                                    $('#recBTN').attr('style', 'border-color: #449d44; color: #449d44; background: white;')
+                                    location.reload()
+
+                                   
+                            } 
+
+                    });
+            })
+
+            $('#relBTN').click(function (e) {
+                 e.preventDefault();
+            
+                 
+                    $.ajax({
+                            type: 'POST',
+                            url:'/approving_officer/update_location/',
+                            data:{
+                                
+                                'prRef': $('#reqNum').attr('value'),
+                                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                        },
+
+                                success:function(response) {
+                                    $('#relBTN').attr('class', 'btn btn-sm')
+                                    $('#relBTN').attr('disabled', '')
+                                    $('#relBTN').attr('style', 'border-color: #285e8e; color: #285e8e; background: white;')
+                                    location.reload()
+
+                                   
+                            } 
+
+                    });
+            });
+
+    </script>
+    <script type="text/javascript">
+        
+        var total = 0
+       var theArray = {}
+       var theArrayIndex = 0       
+       var prevTotal = 0;
+
+        var editedArry = {}
+    
+       var reqClass = '';
+       var tempReqClass = '';
+
+       var forRISCheck = false;
+
+        var numOfDesc = 1
+
+        var editCheck = false;
+        var editIndex;
+        var beforeEditTotal;
+
+        var isEdit = false;
+
+        var theDescDivHTML = $('#theDescDiv').html()
+
+      document.getElementById("addList").onclick = function() {
+
+
+
+            if (numOfDesc == 1) {
+                var descrip = document.getElementById("descrip").value;
+
+            } 
+            else {
+
+             
+                var descrip = document.getElementById("descrip").value;
+                var descripCopy = document.getElementById("descrip").value+';';
+                
+                for (var i = 1; i < numOfDesc; i++) {
+                    
+                    if ($('#descrip2_'+i.toString()).val() != null) {
+                        descrip += '$'
+                        descrip += $('#descrip2_'+i.toString()).val();
+                        //descrip += '$'
+
+                        descripCopy += $('#descrip2_'+i.toString()).val();
+                        descripCopy += ';'
+                    } 
+                    
+
+                    
+                }
+            }
+            
+            var unit = document.getElementById("unit").value;
+                if (unit == '') {
+                    unit = " "
+                }
+            var price = document.getElementById("price").value;
+            var quantity = document.getElementById("quantity").value;
+            var itemTotal = document.getElementById("price").value * document.getElementById("quantity").value;
+            var itemTotalToString = "" + itemTotal;
+            var itemClass = ''
+
+            if ($('#classifDiv').attr('style') != 'display:none') {
+                itemClass = $('#class').val();
+            }
+
+            setErrorMsgToEmpty()
+
+            if (descrip == ""||unit == ""||price == ""||quantity == "") {
+
+                if (forRISCheck) {
+                    
+                    document.getElementById("descrip").value = "";
+                    document.getElementById("unit").value = "";
+                    document.getElementById("price").value = "";
+                    document.getElementById("quantity").value = "";
+
+                    $('#classifDiv').attr('style', 'display:none');
+                    $('#class').val('');
+
+                    $('#unit').removeAttr('disabled')
+                    $('#price').removeAttr('disabled') 
+                    $('#quantity').removeAttr('disabled') 
+                    $('#addList').attr('class', 'btn btn-success')
+                    $('#addList').html('Add to List')
+
+                    forRISCheck = false
+
+                    $('#newReg').modal('toggle');
+                
+                } else {
+
+                       if (descrip == "") {
+                            
+                            $('#descrip').attr('autofocus', '')
+                            $('#quantity').removeAttr('autofocus', '')
+                            $('#price').removeAttr('autofocus', '')
+                            $('#unit').removeAttr('autofocus', '')
+
+                            document.getElementById("errorde").innerHTML = "Don't leave this blank"
+                            return false;
+
+                        }
+                    
+                        if (price == "") {
+                            
+                            $('#descrip').removeAttr('autofocus', '')
+                            $('#quantity').removeAttr('autofocus', '')
+                            $('#price').attr('autofocus', '')
+                            $('#unit').removeAttr('autofocus', '')
+                            document.getElementById("errorpr").innerHTML = "Don't leave this blank" 
+                            return false;
+
+                        }
+                        if (quantity == "") {
+                            
+                            $('#descrip').removeAttr('autofocus', '')
+                            $('#quantity').attr('autofocus','');
+                            $('#price').removeAttr('autofocus', '')
+                            $('#unit').removeAttr('autofocus', '')
+                            
+                            document.getElementById("errorqu").innerHTML = "Don't leave this blank" 
+                            return false;
+
+                        }
+                    }
+            
+
+            } else {
+
+
+                if (editCheck) {
+                    
+                    var t = ''
+                    var tr = '<td class="text-center">'+(editIndex)+'</td>';
+                            
+                            var descripString = []
+
+                            if (numOfDesc == 1) {
+                                tr += '<td>'+descrip+'</td>';
+                            } else {
+
+                                
+                                descripString = descripCopy.split(';')
+                                tr += '<td>'
+                                    for (var i = 0; i < descripString.length-1; i++) {
+                                         tr += '<p>'+descripString[i]+'</p>';
+                                    }
+                                tr +='</td>';
+                            }
+
+                             
+                             tr += '<td class="text-center">'+unit+'</td>';
+                             tr += '<td class="text-center">₱ '+comaSegregator(price)+'</td>';
+                             tr += '<td class="text-center">'+comaSegregator(quantity)+'</td>';
+                             tr += '<td class="text-center">₱ '+comaSegregator(itemTotalToString)+'</td>';
+                             tr += '<td class="text-center">';
+                             tr += '<button style="border-radius:15px; outline:none;" id = "'+editIndex+'_editRow" value="'+editIndex+'" class="btn btn-sm btn-success" role= "button" aria-disabled="true"><i class="icon-edit"></i></button>';
+                             tr += ' <button style="border-radius:15px; outline:none;" id = "'+editIndex+'_removeRow" value="'+editIndex+'" class="btn btn-sm btn-danger" role= "submit" aria-disabled="true"><i class="icon-remove"></i></button>';
+                             tr +='</td>';
+                             
+                             
+
+                             t += tr;
+                    
+                    total = total - beforeEditTotal;
+
+                    total = total + itemTotal;
+                    
+                    var totalToString = ""+total;
+                    document.getElementById(editIndex+"_tr").innerHTML = tr;
+                    //document.getElementById(editIndex+"_div").innerHTML = "";
+                    document.getElementById("total").innerHTML = "₱ "+comaSegregator(totalToString)
+
+                    editedArry[editIndex] = {'1':descrip, '2':unit, '3':price, '4':quantity, '5':itemClass,'6':editIndex};
+                    
+                } else {
+                    
+                    
+                    var t = ''
+                    
+                    var tr = '';
+                         tr += '<tr id = "'+theArrayIndex+'_tr">';
+                            
+                            tr += '<td class="text-center">'+(theArrayIndex+1)+'</td>';
+                            
+                            var descripString = []
+
+                                if (numOfDesc == 1) {
+                                    tr += '<td>'+descrip+'</td>';
+                                } else {
+
+                                    
+                                    descripString = descripCopy.split(';')
+                                    tr += '<td>'
+
+                                    for (var i = 0; i < descripString.length-1; i++) {
+                                         tr += '<p>'+descripString[i]+'</p>';
+                                    }
+
+                                    tr+='</td>';
+                                }
+
+                             
+                             tr += '<td class="text-center">'+unit+'</td>';
+                             tr += '<td class="text-center">₱ '+comaSegregator(price)+'</td>';
+                             tr += '<td class="text-center">'+comaSegregator(quantity)+'</td>';
+                             tr += '<td class="text-center">₱ '+comaSegregator(itemTotalToString)+'</td>';
+                             tr += '<td class="text-center">';
+                             tr += '<button style="border-radius:15px; outline:none;" id = "'+theArrayIndex+'_editRow" value="'+theArrayIndex+'" class="btn btn-sm btn-success" role= "button" aria-disabled="true"><i class="icon-edit"></i></button>';
+                             tr += ' <button style="border-radius:15px; outline:none;" id = "'+theArrayIndex+'_removeRow" value="'+theArrayIndex+'" class="btn btn-sm btn-danger" role= "submit" aria-disabled="true"><i class="icon-remove"></i></button>';
+                             tr +='</td>';
+                             tr += '</tr>';
+                             
+                           
+                    total = total + itemTotal;
+                    
+                    var totalToString = ""+total;
+
+
+                    //$('#table').html(tr)
+                    document.getElementById("table").innerHTML += tr;
+                    document.getElementById("total").innerHTML = "₱ "+comaSegregator(totalToString)
+
+                    theArray[theArrayIndex] = {'1':descrip, '2':unit, '3':price, '4':quantity, '5':itemClass};
+                    
+                    theArrayIndex = theArrayIndex + 1;
+                }
+            
+            //console.log($('#table').html())    
+            //console.log(theArray)
+
+            document.getElementById("descrip").value = "";
+            document.getElementById("unit").value = "";
+            document.getElementById("price").value = "";
+            document.getElementById("quantity").value = "";
+
+            $('#theDescDiv').html(theDescDivHTML)
+            numOfDesc = 1
+
+            $('#classifDiv').attr('style', 'display:none');
+            $('#class').val('');
+
+            $('#unit').removeAttr('disabled')
+            $('#price').removeAttr('disabled') 
+            $('#quantity').removeAttr('disabled') 
+            $('#addList').attr('class', 'btn btn-success')
+            $('#addList').html('Add to List')
+            $('#headID').html('New')
+
+            editIndex = 0;
+            beforeEditTotal = 0;
+            editCheck = false
+
+            isEdit = true;
+
+            //console.log(editCheck)
+
+            $('#newReg2').modal('toggle');
+
+            if (reqClass == '') {
+             reqClass = tempReqClass;
+        
+            }
+
+        }
+        
+        
+                          
+            
+    };
+
+       $('#descrip').keyup(function(e) {
+
+            e.preventDefault();
+
+            
+            $.ajax({
+                type: 'POST',
+                url:'/requisitioner/findItems/',
+                data:{
+                    
+                    'descripData': $('#descrip').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                        
+                        document.getElementById("descripList").innerHTML = "";
+
+                    
+                            
+                            $('#classifDiv').attr('style', 'display:none')
+                            for(var key in response) {
+                               
+                                var value = response[key];
+                                document.getElementById("descripList").innerHTML += '<option id="'+key+'_'+value['name']+'" value ="'+correckString(value['name'])+'"/>'
+
+                        }    
+                        
+                     
+                    }
+
+            });
+       })
+
+    $('#theDescDiv').on('click', 'button', function (e) {
+        var id = this.id
+        var idArr = id.split('_')
+
+        $('#descripDiv_'+idArr[1]).remove()
+    })   
+    $('#newRegClose').click(function(e) {
+         document.getElementById("descrip").value = "";
+            document.getElementById("unit").value = "";
+            document.getElementById("price").value = "";
+            document.getElementById("quantity").value = "";
+
+            $('#theDescDiv').html(theDescDivHTML)
+            numOfDesc = 1
+
+            $('#classifDiv').attr('style', 'display:none');
+            $('#class').val('');
+
+            $('#unit').removeAttr('disabled')
+            $('#price').removeAttr('disabled') 
+            $('#quantity').removeAttr('disabled') 
+            $('#addList').attr('class', 'btn btn-success')
+            $('#addList').html('Add to List')
+
+            $('#newReg2').modal('toggle');
+    })
+
+     $('#newRegClose2').click(function(e) {
+            document.getElementById("descrip").value = "";
+            document.getElementById("unit").value = "";
+            document.getElementById("price").value = "";
+            document.getElementById("quantity").value = "";
+
+            $('#theDescDiv').html(theDescDivHTML)
+            numOfDesc = 1
+
+            $('#classifDiv').attr('style', 'display:none');
+            $('#class').val('');
+
+            $('#unit').removeAttr('disabled')
+            $('#price').removeAttr('disabled') 
+            $('#quantity').removeAttr('disabled') 
+            $('#addList').attr('class', 'btn btn-success')
+            $('#addList').html('Add to List')
+
+            $('#newReg2').modal('toggle');
+    })
+
+    $("#descrip").on('input', function () {
+       
+        var val = this.value;
+        var idComplt = $('#descripList option[value="' + val +'"]').attr('id');
+        var idArr = idComplt.split('_')
+        var id = idArr[0]
+
+          
+            $.ajax({
+                type: 'POST',
+                url:'/requisitioner/getItemDetails/',
+                data:{
+                    
+                    'inputItemId': id,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+
+                    success:function(response) {
+                      
+                        fResponse = response;
+                        if (reqClass == '') {
+
+                        tempReqClass = fResponse['class']
+                            
+                            if (response['class'] == 'Supply') {
+                                    
+                                    
+                                    $.ajax({
+                                            type: 'POST',
+                                            url:'/requisitioner/getSupplyAvailability/',
+                                            data:{
+                                                
+                                                'suppItemID': id,
+                                                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+
+                                            },
+
+                                                success:function(response2) {
+                                                        
+                                                        if (response2['quantity'] == 0 || response2['quantity'] == '0') {
+
+
+                                                            $('#errorde').html('')
+
+
+                                                            $('#unit').removeAttr('disabled')
+                                                            $('#price').removeAttr('disabled') 
+                                                            $('#quantity').removeAttr('disabled') 
+                                                            $('#addList').attr('class', 'btn btn-success')
+                                                            $('#addList').html('Add to List')
+
+                                                            forRISCheck = false
+                                                            
+                                                            $('#unit').val(fResponse['unit'])
+                                                            $('#price').val(fResponse['unitprice']) 
+                                                        
+                                                        }
+                                                        else{
+
+                                                            $('#unit').val('')
+                                                            $('#price').val('') 
+                                                            $('#quantity').val( '')
+
+                                                            $('#errorde').html('SMO has this item on stock and are available for RIS')
+                                                            $('#unit').attr('disabled', '')
+                                                            $('#price').attr('disabled', '') 
+                                                            $('#quantity').attr('disabled', '') 
+                                                            $('#addList').attr('class', 'btn btn-primary')
+                                                            $('#addList').html('OK');
+                                                            
+                                                            forRISCheck = true;
+                                                            
+                                                        }
+                                                }
+
+                                        });
+
+
+
+                                } else {
+                                   
+                                  
+                                    
+                                    $('#errorde').html('')
+
+
+                                    $('#unit').removeAttr('disabled')
+                                    $('#price').removeAttr('disabled') 
+                                    $('#quantity').removeAttr('disabled') 
+                                    $('#addList').attr('class', 'btn btn-success')
+                                    $('#addList').html('Add to List')
+
+                                    forRISCheck = false
+
+                                    var itemDes = idArr[1]
+                                    var itemDesArr = itemDes.split('$')
+                                    $('#theDescDiv').html(theDescDivHTML)
+                                    $('#descrip').val(itemDesArr[0])
+
+                                    for (var i =  1; i < itemDesArr.length; i++) {
+                                        
+                                        console.log(itemDesArr[i])
+                                        displayAddSub(itemDesArr[i])
+                                    
+                                    }
+
+
+                                    $('#unit').val(fResponse['unit'])
+                                    $('#price').val(fResponse['unitprice']) 
+                                
+                                }
+
+                        }
+
+                        else{
+                           
+                            
+                            if (reqClass != fResponse['class']) {
+                                $('#errorde').html('invalid input, the latest input was not a ' + reqClass)
+                                $("#descrip").val('')
+                            
+                            }
+                            else{
+
+                               /* if (fResponse['class'] == 'Supply') {
+                                    //$('#errorde').html('input was a '+fResponse['class'])
+                                    
+                                    var itemDes = idArr[1]
+                                    var itemDesArr = itemDes.split('$')
+
+                                    $('#descrip').val(itemDesArr[0])
+
+                                    for (var i =  1; i < itemDesArr; i++) {
+                                        displayAddSub(itemDesArr[i])
+                                    }
+
+                                    $('#unit').val(fResponse['unit'])
+                                    $('#price').val(fResponse['unitprice']) 
+                                
+
+                                } else {*/
+
+                                   
+                                    var itemDes2 = idArr[1];
+                                    var itemDesArr2 = itemDes2.split('$');
+
+                                    $('#theDescDiv').html(theDescDivHTML)
+                                    $('#descrip').val(itemDesArr2[0])
+
+                                    for (var j =  1; j < itemDesArr2.length; j++) {
+                                        
+                                        displayAddSub(itemDesArr2[j])
+                                    }
+
+                                    $('#unit').val(fResponse['unit'])
+                                    $('#price').val(fResponse['unitprice']) 
+                                
+                                //}
+                                  
+
+                            }
+                        }
+                     
+                    }
+
+            });
+      }); 
+
+    
+
+        $('#addSub').click(function (){
+            
+            displayAddSub('')
+        
+        })
+
+        
+        function displayAddSub(input) {
+            
+            var descrip2Val = {}
+
+            for (var i = 0 ; i < numOfDesc - 1; i++) {
+                var ii = i + 1;
+                var theVal = $('#descrip2_'+ii.toString()).val()
+                descrip2Val[i] = theVal
+            }
+
+            for (var x in descrip2Val) {
+               
+                var theArrayVal = descrip2Val[x]
+                var indx = parseInt(x) + 1
+                $('#descrip2_'+indx.toString()).attr('value', theArrayVal)
+                
+            }
+
+            var theHTML = $('#theDescDiv').html()
+            
+            /*
+            <div class="form-group input-group"  style="padding:0px; padding-top:10px; margin:0px;">
+                          <input style="margin-top:8px;" value="'+input+'" id="descrip2_'+numOfDesc.toString()+'" value="" class="form-control" >
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-primary" type="submit" name="search_button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+
+
+            */
+
+
+            //console.log(theHTML)
+
+            var theHTMLToAdd = '<div id="descripDiv_'+numOfDesc.toString()+'" class="form-group" style="margin-bottom: 5px;">'
+                theHTMLToAdd += '<label for="text1" class="control-label col-lg-4"></label>'
+                theHTMLToAdd += '<div class="col-lg-8" >'
+                theHTMLToAdd += '<div class="form-group input-group"  style="padding:0px; margin:0px;">'
+                theHTMLToAdd += '<input style="margin-top:8px;" value="'+input+'" id="descrip2_'+numOfDesc.toString()+'" value="" class="form-control" >'
+                theHTMLToAdd += ' <span   class="input-group-btn">'
+                theHTMLToAdd += '    <button style="margin-top:8px; color:#a94442; background-color:white; border:1px solid #ccc; border-raduis:10px;" class="btn" type="submit" name="search_button"  id="removeAddSubBTN_'+numOfDesc.toString()+'">'
+                theHTMLToAdd += '        <i class="icon-remove"></i>'
+                theHTMLToAdd += '    </button>'
+                theHTMLToAdd += '   </span>'
+                theHTMLToAdd += '     </div>'
+                //theHTMLToAdd += '<datalist id="descripList" style="margin-bottom: 10px;">'
+                //theHTMLToAdd += '</datalist>'
+                theHTMLToAdd += '<span for="descrip" id="errorde" ></span>'
+                theHTMLToAdd += '</div>'
+                theHTMLToAdd += '</div>'
+
+
+            numOfDesc = numOfDesc + 1;
+            
+
+           
+            
+            document.getElementById('theDescDiv').innerHTML = theHTML + theHTMLToAdd;
+        }
+
+
+       // $('#table').on('click', 'tr', function (argument) {
+        //    alert(this.id)
+       // })
+
+   $('#myTable').on('click','button', function (e) {
+        
+        var id = this.id;
+        var arr = id.split('_')
+
+        alert(id)
+        
+        var value = document.getElementById(id).value
+        var theArrayData = theArray[value - 1]
+
+        //console.log(theArrayData)
+        
+        prevTotal = theArrayData['3']*theArrayData['4'];
+        
+        if (id === value+'_removeRow') {
+            
+            
+            total = total - prevTotal;
+            var totalToString = ""+total;
+        
+        
+            document.getElementById("total").innerHTML = "₱ "+comaSegregator(totalToString)
+            
+            //$(this).closest('tr').remove ();
+            //$(this).remove(value+'_tr');  
+
+            var arrRef = theArrayData['1']
+            var arrData = arrRef.split('$')
+
+            for (var i = 0; i < arrData.length;  i++) {
+               $('#'+arr[0]+'_tr').remove()
+            }
+
+          
+              //input = document.getElementById("searchInput");
+              //filter = input.value.toUpperCase();
+            
+
+            delete theArray[value-1];
+
+        } else {
+
+            var descripStringTemp = theArrayData['1']
+            var descripStringTempArr = descripStringTemp.split('$')
+
+            if (descripStringTempArr.length == 1) {
+                $('#descrip').val(theArrayData['1'])
+            } else {
+                numOfDesc = descripStringTempArr.length
+                $('#descrip').val(descripStringTempArr[0])
+                
+                for (var i = 1; i < descripStringTempArr.length; i++) {
+                    displayAddSub(descripStringTempArr[i])
+                }
+               
+            }
+            
+            $('#unit').val(theArrayData['2'])
+            $('#price').val(theArrayData['3'])
+            $('#quantity').val(theArrayData['4'])
+
+            editCheck = true
+            editIndex = parseInt(value)
+            beforeEditTotal = prevTotal
+            $('#headID').html('Edit')
+            $('#addList').html('Update')
+
+            //$('#addList2').val(value);
+
+            $('#newReg2').modal('toggle')
+        
+        }
+
+    });
+    $(document).ready(function (o) {
+      
+            
+            theArrayIndex = parseInt('{{pageData3.0.0}}')
+            total = parseInt('{{pageData1.4.1}}')
+            reqClass = '{{pageData1.0.3}}'
+            
+            //console.log('{{pageData3.0.0}}')
+
+            //{% if pageData1.0 != None %}
+                 document.getElementById("total").innerHTML = "₱ "+comaSegregator(''+total);
+            //{% endif %}
+                var tableTR = ''
+            //{% for x in pageData3.0.0 %}
+                
+                console.log('{{x}}')
+                
+                var theArrayIndexData = parseInt('{{x.1}}') - 1
+                theArray[''+theArrayIndexData] = {'1':'{{x.2}}', '2':'{{x.3}}', '3':{{x.4|floatformat}}, '4':{{x.5|floatformat}}};
+                
+                var descripStringRef = '{{x.2}}';
+                console.log('{{x.2}}')
+
+                var descripStringRefArr = descripStringRef.split('$');
+                    
+                
+                        var trString = '<tr id = "{{x.1}}_tr">'
+                            trString += '<td class="text-center">{{x.1}}</td>'
+                            trString += '<td>'
+                            
+
+                                if (descripStringRefArr.length == 1) {
+                                       trString += '{{x.2}}'
+                                }else{
+                                        
+                                    for (var i = 0; i < descripStringRefArr.length; i++) {
+                                            trString += '<p>'+descripStringRefArr[i]+'</p>'
+
+                                            
+                                    }
+                                }
+
+                                                
+
+                            trString += '</td>'
+                            trString += '<td class="text-center">{{x.3}}</td>'
+                            trString += '<td class="text-center">₱ {{x.4|floatformat|intcomma}}</td>'
+                            trString += '<td class="text-center">{{x.5|floatformat}}</td>'
+                            trString += '<td class="text-center">₱ {{x.6|floatformat|intcomma}}</td>'
+                            
+                            
+                                trString += '<td class="text-center">'
+                                trString += '<button style="border-radius:15px; outline:none; margin-right:3px;" id = "{{x.1}}_editRow" value="{{x.1}}" class="btn btn-sm btn-success" role= "button" aria-disabled="true"><i class="icon-edit"></i></button>'
+                                trString += '<button style="border-radius:15px; outline:none;" id = "{{x.1}}_removeRow" value="{{x.1}}" class="btn btn-sm btn-danger" role= "submit" aria-disabled="true"><i class="icon-remove"></i></button>'
+                                trString += '</td>'
+                            
+
+
+                            
+                            trString += '</tr>'
+
+                            tableTR += trString;
+                
+            //{% endfor %}
+
+            document.getElementById('table').innerHTML = tableTR
+       
+        
+
+
+    })
+
+    function correckString(input) {
+        console.log('===========================================================')
+        console.log(input)
+        console.log(input.replace('$' , ", "))
+        var output =  input.replace(/[$]/g, ', ')
+
+        return output
+    }
+      function comaSegregator(input){
+
+        var output = ""
+        var indexCheck = 1
+        for (var i = input.length - 1; i >= 0; i--) {
+            
+            if (indexCheck%3 == 0) {
+
+                if (i == 0) {
+                     output = input[i] + output;
+                    indexCheck = indexCheck + 1;
+
+                } else {
+                     output = ", " + input[i] + output;
+                    indexCheck = indexCheck + 1;
+                }
+                   
+            } else {
+                output = input[i] + output;
+                indexCheck = indexCheck + 1;
+            }
+        }
+
+        return(output)
+    }
+
+
+    function setErrorMsgToEmpty() {
+        
+        document.getElementById("errorde").innerHTML = "";
+        document.getElementById("errorpr").innerHTML = "";
+        document.getElementById("errorun").innerHTML = "";
+        document.getElementById("errorqu").innerHTML = "";
+    }
+
+    </script>
+
+{% endblock %}

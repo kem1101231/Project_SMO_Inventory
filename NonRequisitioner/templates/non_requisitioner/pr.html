@@ -1,0 +1,289 @@
+{% extends 'non_requisitioner/base.html' %}
+
+
+{% load humanize %}
+
+{% load staticfiles %}
+{% block content %}
+        <div id="page-wrapper">
+
+
+            <!--  ========================================================   -->
+
+         
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:50px; 
+
+                ">
+                <div>
+                    
+                     Purchase Requests
+                </div>
+                 
+               </div>
+               </form>
+            <div id="page-inner" style="margin-top:0px; background-color: #888!important;">
+            
+                <hr>
+                 
+
+                        <div class="col-lg-3" style=" padding-right:10px;">
+                             <div class="panel panel-primary ">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #428bca; color:white; height: 39px; padding-left: 10px; padding-top: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #428bca; border-color: #428bca; background-color: white;">  <i class="icon-shopping-cart"></i></button> Total Requests</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.0 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.0|floatformat|intcomma}}
+                                        {% endif %}</p>
+                                    
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#d9534f;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                <div class="col-lg-3" style="padding-left:0px; padding-right:10px;">
+                             <div class="panel panel-success" style="border-color: #5cb85c;">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #5cb85c; color:white; height: 39px; padding-left: 10px; padding-top: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #5cb85c; border-color: #5cb85c; background-color: white;">  <i class="icon-ok"></i></button> Approved</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.1 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.1|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+                                  
+
+                                    </div>
+                                    <div style="display: none;"  class="panel-footer"><span style="color:#428bca;  display: none;"><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                <div class="col-lg-3" style="padding-left:0px; padding-right:10px;">
+                             <div class="panel panel-warning" style="border-color: #bf964e">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #bf964e; color:white; height: 39px; padding-left: 10px; padding-top: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #bf964e; border-color: #bf964e; background-color: white;">  <i class="icon-spinner"></i></button>  Pending</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.2 == None %}
+                                        0
+                                        {% else %}
+                                         {{pageData2.0.2|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+                                    
+
+                                    </div>
+                                    <div style="display: none;" class="panel-footer"><span style="color:#5cb85c; "><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+                  <div class="col-lg-3" style="padding-left:0px;">
+                             <div class="panel panel-warning" style="border-color: #a94442">
+                                    <div class="panel-heading"  style="font-size:15px; background-color: #a94442; color:white; height: 39px; padding-left: 10px; padding-top: 10px;"><button class="btn btn-lg btn-primar btn-circle" style="color: #a94442; border-color: #a94442; background-color: white;">  <i class="icon-remove"></i></button> Denied</div>
+                                    <div class="panel-body" style="padding-bottom: 5px;">
+                                    <p class="text-right" style="font-size:22px; padding-top:5px;">
+                                        {% if pageData2.0.3 == None %}
+                                         0
+                                        {% else %}
+                                         {{pageData2.0.3|floatformat|intcomma}}
+                                        {% endif %}
+                                    </p>
+
+                                    </div>
+                                    <div style="display: none;" class="panel-footer"><span style="color:#5cb85c; "><i class="icon-arrow-down"></i> 000.00%</span></div>
+                            </div>
+                </div>
+
+    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body">
+                            <div class="panel">
+                            <div class="panel-body col-lg-3 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                            <div class="form-group input-group" style="padding:0px;margin:0px;">
+                       
+                                        <input type="text" class="form-control input-sm" placeholder="Search for Information" >
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default btn-sm " type="button">
+                                                    <i class="fa fa-search "></i>
+                                                </button>
+                                            </span>
+                                        </div> 
+
+
+                            </div>
+                          
+
+                            <div class="panel-default" style="padding: 2px; padding-top:0px;">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered" id="dataTables-example">
+                                    <thead style="background-color: #555; color: white;">
+                                        <tr >
+                                            <th>Date Created</th>
+                                            <th style="width:380px;">Purpose</th>
+                                            <th class="text-right">Total Cost</th>
+                                            <th class="text-right">Acceptance</th>
+                                            <th class="text-right">Status</th>
+                                            <th class="text-center">PR Number</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for x in pageData1 %}
+                                        <tr class="odd gradeX">
+                                            
+                                            
+                                            <td>{{x.0.14}}</td>
+                                            <td>{{x.0.2}}</td>
+                                            <td class="text-right">₱ 
+                                            {{x.3.0|floatformat|intcomma}}
+                                            </td>
+                                            <td class="text-right">
+                                            {% if x.0.12 == None %}
+                                                <label class="label label-warning">Pending</label>
+                                            {% endif %}
+                                            {% if x.0.12 == True %}
+                                                <label class="label label-success">Approved</label>
+                                            {% endif %}
+                                            {% if x.0.12 == False %}
+                                                <label class="label label-danger">Declined</label>
+                                            {% endif %}
+                                            </td>
+
+                                            <td class="text-right">
+                                            {% if x.0.8 == None and x.0.7 != False %}
+                                                <label class="label label-warning">Pending</label>
+                                            {% endif %}
+                                            {% if x.0.8 == True %}
+                                                <label class="label label-success">Approved</label>
+                                            {% endif %}
+                                            {% if x.0.7 == False %}
+                                                <label class="label label-danger">Declined</label>
+                                            {% endif %}
+                                            {% if x.0.8 == False %}
+                                                <label class="label label-danger">Declined</label>
+                                            {% endif %}
+                                            </td>
+                                            <td class="text-center">
+                                            {% if x.0.1 == None %}
+                                                ---
+                                                
+                                            {% endif %}    
+                                            {% if x.0.1 != None %}
+                                                {{x.0.1}}
+                                            {% endif %}
+                                            </td>
+                                            <td class="text-center">
+                                                {% if x.0.7 == None %}
+                                                 <form style="display:inline;" action="/requisitioner/cancelPR/" method="POST">{% csrf_token %}
+                                                <div style="display:inline;">
+                                                <a class="btn btn-sm btn-danger" role= "submit" aria-disabled="true" style="border-radius: 15px;outline: none"><i class="icon-remove" ></i></a>
+                                                </div>
+                                                </form>
+                                                {% endif %}
+                                                {% if x.0.7 != None %}
+                                                <form style="display:inline;" action="/requisitioner/createPRFromRef/" method="POST">{% csrf_token %}
+                                                <div style="display:inline;">
+                                                <button name="detailsButton" class="btn btn-sm btn-success" role= "submit" aria-disabled="true" value="{{x.0.0}}" style="border-radius: 15px;outline: none"><i class="icon-edit"></i></button>
+                                                </div>
+                                                </form>
+                                                {% endif %}
+                                                 
+                                                   <a href="/non_requisitioner/pr/{{x.4.0}}/details">  <button name="detailsButton" class="btn btn-sm btn-primary" role= "submit" aria-disabled="true" style="border-radius: 15px; outline: none"><i class="icon-reorder"></i></button>
+                                      
+                                                </a>
+                                                  
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - General Santos City
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    
+    <script src="{% static 'requisitioner/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/custom.js' %}"></script>
+    
+    <script type="text/javascript">
+        
+        function commaSeparator(input) {
+             return input.toLocaleString();
+        }
+        
+    </script>
+       <script type="text/javascript">
+
+        $(document).ready(function () {
+           
+           
+            $('#prTop').attr('class', 'active-menu-top theAsTop');
+            $('#prUL').attr('class', 'nav nav-second-level theUL collapse in');
+            $('#pr').attr('class', 'active-menu-nonrequi');  
+       
+        })
+       
+        
+    </script>
+
+{% endblock %}

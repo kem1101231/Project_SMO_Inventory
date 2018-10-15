@@ -1,0 +1,353 @@
+{% extends 'inventory_office_sup_off/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <div id="page-wrapper">
+           
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 2px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:20px; 
+                 
+
+                ">
+               </div>
+             
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                
+                <div class="col-lg-8">
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Supply Inventory Item Status
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                              <div class="table-responsive">
+                          <table id="myTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Quantity</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table">
+                                                <tr id = "{{x.1}}_tr">
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center"><label class="label label-success">On Stock</label></td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                                <tr id = "{{x.1}}_tr">
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center"><label class="label label-success">On Stock</label></td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                               
+                                               <tr id = "{{x.1}}_tr">
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center"><label class="label label-success">On Stock</label></td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                               <tr id = "{{x.1}}_tr">
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center"><label class="label label-success">On Stock</label></td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                               
+
+
+                                               
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Supply Inventory <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Most Included Items on P.R. and R.I.S.
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                                <div class="table-responsive">
+                          <table id="myTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Description</th>
+                                            <th class="text-center">Hits</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table">
+                                                <tr id = "{{x.1}}_tr">
+                                                    <td>00</td>
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                                    <tr id = "{{x.1}}_tr">
+                                                    <td>00</td>
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                                    <tr id = "{{x.1}}_tr">
+                                                    <td>00</td>
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                                    <tr id = "{{x.1}}_tr">
+                                                    <td>00</td>
+                                                    <td>The Items Complete Name</td>
+                                                    <td class="text-center">100</td>
+                                                   
+                                                </tr>
+                                               
+
+                                               
+                                               
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Item List <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Up-coming Deliveries to Receive
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                            
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Complete List of RIS <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Up-coming Deliveries to Receive
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                            
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Complete List of RIS <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+
+                    
+                </div>
+                
+                <div class="col-lg-4" style="padding-left: 0px;">
+                    <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">
+                            
+                            <div class="header-right" style="display:inline;">
+                                <span id="theNumBadge" class="badge badge-danger" style="font-size:15px; ">00</span>
+                            </div>
+                            <div style="font-size:16px; font-weight: bold;">
+                               <i class="icon-spinner"></i> Pending Req. & Iss. Slips
+                            </div>
+                             
+                         </div> 
+
+                            <div class="panel-body" style="height:532px;">
+                                   <div class="table-responsive tablescroll" >
+                          <table class="table table-hover">
+                                   <tbody id="pendingPRTable" >
+                                        
+                                       
+                                               <tr id="'+value['reqnum']+'_tr">
+                                            <td id="gg" style="padding:0px; margin:0px;">
+                                                <div class="panel panel-success" style="padding:0px; margin:0px;  margin-bottom:15px; ">
+                                                    <div class="panel-heading" style="padding:8px;">
+                                                      
+                                                        <div class="text-center" style="font-weight:bold;">Requesting Office Complete Name and Everything else that make it very long</div>
+                                                        </div>
+                                                        <div class="panel-body" style="padding-left:0px; padding-right:0px">
+                                                        <div class="col-lg-12" style="margin-bottom: 10px;">
+                                                        <div class="col-lg-6" style="font-size: 13px;">Date Created:</div>
+                                                        <div class="col-lg-5" style="font-weight:bold;">00-00-0000</div>
+                                                     </div>
+                                                     <div class="col-lg-12" style="margin-bottom: 10px;">
+                                                        <div class="col-lg-6" style="font-size: 13px;">Paticular Items:</div>
+                                                        <div class="col-lg-5" style="font-weight:bold;">00</div>
+                                                     </div>
+                                                     <div class="col-lg-12" style="padding-top:10px;">
+                                                        <div class="col-lg-4" style="font-size: 13px;">Purpose:</div>
+                                                        <div class="col-lg-8" style="font-weight:bold;">Purpose of the Request Paragrraph</div>
+                                                     </div>
+                                                   
+
+                                                   </div>
+                                                  <div class="panel-footer text-right" style="right:0">
+                                                       <button id="'+value['reqnum']+'_details" value="'+value['reqnum']+'" class="btn btn-xs btn-primary" role="button" type="button"><i class="icon-reorder"></i> View Details</button>
+                                                 </div>
+
+
+                                             </div>
+                                                  
+                                             </td>
+                                             </tr>
+                                             <tr>
+                                             <td>
+                                                  <div class="col-lg-12 text-center" style="font-weight: bold;">
+                                                     **** End of List ****
+
+                                                 </div>
+                                             </td>
+                                                
+
+                                             </tr>
+                                        
+
+                                   </tbody>
+                                </table>
+                            </div>
+                            </div>
+                            
+                                <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Complete List of RIS <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                            
+                        </div>
+
+                    </div>
+                      <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Up-coming Deliveries to Receive
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                            
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Complete List of RIS <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+                      <div class="col-lg-12" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Up-coming Deliveries to Receive
+                        </div>
+                        <div class="panel-body" style="height:220px;">   
+                            
+                        </div>
+                        <div class="panel-footer" style="padding-top: 3px; padding-bottom: 3px; padding-right: 3px;">
+                                    <a href="/inventory_office/inventory/">
+                                    <button class="pull-right btn btn-sm btn-primary" style="padding-top: 2px;padding-bottom: 2px;">View Complete List of RIS <i class="fa fa-arrow-circle-right"></i></button>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                </div>
+                    </div>
+
+                    </div>
+                    
+                </div>
+              
+                        
+                    
+
+
+                <!-- /. ROW  -->
+                
+                  
+
+                <div class="panel-body"  style="padding:0px;">
+                    
+
+               </div>
+
+
+                </div>    
+
+                </div>
+        <!-- /. NAV SIDE  -->
+        
+
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+<div id="footer-sec">
+       &copy; Mindanao State University - General Santos City  
+    </div>
+
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    <!-- WIZARD SCRIPTS -->
+
+    <script type="text/javascript">
+        
+     $(document).ready(function () {
+         $('#home').attr('class','active-menu-inven')
+     })
+
+    </script>
+
+{% endblock %}
+
+
+
+   
+

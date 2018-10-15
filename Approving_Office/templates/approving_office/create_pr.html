@@ -1,0 +1,750 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    {%load staticfiles%}
+    <title>Requisitioner - Purchase Request</title>
+
+   <link href="{% static 'approving_office/assets/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'approving_office/assets/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'approving_office/assets/css/basic.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'approving_office/assets/css/custom.css' %}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    
+    <link rel="stylesheet" href="{% static 'approving_office/assets/plugins/Font-Awesome/css/font-awesome.css' %}" />
+
+    <!--WIZARD STYLES-->
+    
+    <link href="{% static 'approving_office/assets/css/wizard/jquery.steps.css' %}" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="wrapper">
+        <!-- /. NAV TOP  -->
+         <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-cls-top" role="navigation" style="margin-bottom: 0">
+           
+           <div  class="navbar-header navbar-brand">Requisitioner</div>
+
+           <ul class="nav navbar-right top-nav" 
+                        style="
+                        margin-right: 50px;
+                        ">
+
+                        <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="label label-danger">2</span> 
+                    <i class="icon-file-text"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        
+                        <li class="message-preview">
+                            
+                            <a style="padding-bottom:5px; height: 35px; padding-top: 10px;">
+                                
+                                <div class="media">
+                                    
+                                          
+                                    <div class="media-body " style="margin-left:10px;">
+                                        <h5 class="media-heading">
+                                            <strong>Pending Purchase Requests</strong>
+                                        </h5>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        <li class="message-preview">
+                            
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn  btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong></strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;"></p>      
+                                        <p></p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="GGut">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        <li class="message-preview">
+                            
+                            <a>
+                                
+                                <div class="media">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn  btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong></strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;"></p>      
+                                        <p></p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="GGut">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        <li class="message-footer">
+                            <a href="/requisitioner/pr">View all Pending Purchase Request</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="label label-danger">1</span> 
+                    <i class="icon-file-text"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn  btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong></strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;"></p>      
+                                        <p></p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="GGut">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                        <li class="message-footer">
+                            <a href="/requisitioner/pr">View all Purchase Request</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        
+                        {% if taskNum.0.0 != 0 %}
+                            <span class="label label-danger">{{taskNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-tasks"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                    
+                    {% if taskNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No task to process at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}    
+                    
+                    {% for x in taskDetails %}
+                        
+                        <li class="message-preview">
+                            
+
+                            <a>
+                                
+                                <div class="media" role="submit" name="notif1" id="notif1" value="GGWP">
+                                    
+                                        <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">It was for the request with:</p> 
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+
+                                </div>
+                                
+                            </a>
+                        </li>
+
+                     {% endfor %}   
+
+                        <li class="message-footer">
+                            <a href="#">View all Processed Tasks</a>
+                        </li>
+
+                    </ul>
+                </li>    
+                
+                <li class="dropdown">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        {% if notifNum.0.0 != 0 %}
+                            <span class="label label-danger">{{notifNum.0.0}}</span> 
+                        {% endif %}
+                    
+                    <i class="icon-bell"></i><b class="caret"></b></a>
+                    
+                    <ul class="dropdown-menu message-dropdown">
+                        
+                        {% if notifNum.0.0 == 0 %}
+
+                        <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-info btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="icon-info"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>No unread notification at the moment</strong>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+
+                    {% endif %}
+
+                       {% for x in notifDetails %}
+
+                       <li class="message-preview" >
+                            
+                                <a>
+                                <div class="media" >
+                                    <span class="pull-left" >
+                                        <div class="btn btn-{{x.2}} btn-circle" role="button" aria-disabled="true" disabled = "disabled">
+                                        <i class="{{x.1}}"></i></div>
+                                    </span>  
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>{{x.5}}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p style="margin-bottom:5px;">{{x.3}}</p>      
+                                        <p>{{x.4}}</p>
+                                    </div>
+                                    <form action="/requisitioner/notifs/" method="post">{% csrf_token %}
+                                    <div class="media-body" style="float: right;">
+                                        <button class="btn btn-xs btn-info" type="submit" name="d" value="{{x.0}}">View Details</button>    
+                                    </div>
+                                    </form>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                       {% endfor %}
+                        
+                         
+                        <li class="message-footer">
+                            <a href="#">View all Notifications</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><i class="icon-user"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/requisitioner/profile/"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="/requisitioner/pr/"><i class="fa fa-fw fa-shopping-cart"></i> My Requests</a>
+                        </li>
+                        <li>
+                            <a href="/requisitioner/accounts/"><i class="fa fa-fw fa-th-list"></i> My Acct. Items</a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/login"><i class="fa-fw icon-signout"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+             <div class="navbar-default navbar-side" style="margin-top: 50px;" role="navigation">
+              <div class="sidebar-collapse"> 
+                <ul class="nav" id="main-menu">
+                    <li style="
+                         height: 140px;
+                        ">
+                        {%load staticfiles%}
+                        <div class="user-img-div">
+
+                            <a href="/requisitioner/profile/"><img src="{% static 'requisitioner/assets/img/user.jpeg' %}" class="img-circle" /></a>
+
+                            <div class="inner-text">
+              <p></p>
+                                <a href="/requisitioner/profile/" class = "inner-text">{{lname}}, {{fname}}</a>
+                            <br />
+                                <small>{{designation}}</small>
+                
+                              
+              </div>
+                        </div>
+
+                    </li>
+
+                   
+                    <li>
+                        <a href="/approving_officer"><i class="fa fa-home "></i>Home</a>
+                    </li>
+          <li>
+                        <a  href="/approving_officer/profile"><i class="fa fa-user "></i>Profile </a>
+                        
+                    </li>
+                     <li>
+                        <a  href="#"><i class="icon-briefcase"></i>Purchase Requests<span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level collapse in">
+                         <li>
+                        <a  href="#"><i class="fa fa-shopping-cart "></i>My Requests<span class="fa arrow"></span></a>
+                         <ul class="nav nav-third-level collapse in">
+                            <li>
+                                <a class="active-menu" href="/approving_officer/create_pr"><i class="icon-edit"></i>Create Req.</a>
+                            </li>
+                            <li>
+                                <a href="/approving_officer/pr"><i class="fa fa-reorder "></i>Manage Req.</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                            
+                            <li>
+                                <a  href="/approving_officer/pending_request"><i class="icon-tasks"></i>Pending Req.</a>
+                            </li>
+                            <li>
+                                <a   href="/approving_officer/all_request"><i class="icon-list-alt"></i>All Requests</a>
+                            </li> 
+                        </ul>
+                    </li>
+                   
+                     <li>
+                        <a href="/approving_officer/account"><i class="fa fa-th-list "></i>Items on Account</a>
+                    </li>
+          
+                </ul>
+            </div>
+
+</div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            
+            <div id="page-inner" style="
+            margin-bottom: 0px;
+            ">
+              <div class="panel panel-default new-panel-ds"
+                        style="
+                        margin-bottom: 0px;
+                             ">
+        
+            <div class="col-md-12" 
+                style="
+                padding-right: 0px;
+                padding-left: 0px;
+                ">                     
+                <div class="panel panel-default">
+                       
+                        <div class="panel-body" style="
+                            padding-right: 0px;
+                            padding-top: 5px;
+                            padding-left: 0px;
+                            padding-bottom: 0px;
+                            border-top-width: 5px;
+                            height:625px;
+                            --background-color: #D3D3D3;
+                            ">
+
+                                <div id="wizard" style="
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                                ">
+                                    
+                                    <h2>Enter Request Details</h2>
+                                        <section>
+                                            
+                                            <div class="panel new-panel-ds"
+                                                    style="
+                                                        margin-bottom: 0px;
+                                                    ">
+                                            <div style="padding: 20px; padding-top: 50px; background-color: #eee;">
+            <form class="form-horizontal">
+
+                
+                <div class="form-group">
+                    <label for="text1" class="control-label col-lg-4">Section</label>
+
+                    <div class="col-lg-6">
+                        <input type="text" id="text1"  class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-4">Purpose</label>
+
+                        <div class="col-lg-6">
+                            <select class="form-control">
+                                <option>For Teaching Reference</option>
+                                <option>For Facility Renovation and Beautification</option>
+                                <option>For Equipment Maintenance</option>
+                            </select>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="autosize" class="control-label col-lg-4">Purpose Details (Optional)</label>
+
+                    <div class="col-lg-6">
+                        <textarea id="autosize" placeholder="Enter a short paragraph about the details of your purpose of creating this request" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 230px;"></textarea>
+                    </div>
+                </div>
+
+
+               
+
+            </form>
+
+
+
+                                            </div>
+                                                   
+                                            </div>
+
+                                        </section>
+
+                                    <h2>Add Items to Request</h2>
+                                        <section>
+                                             <div class="panel new-panel-ds"
+                                                    style="
+                                                        margin-bottom: 0px;
+                                                    ">
+                
+                                                    <div id="wrap" style="position:relative;">
+                                                        
+                                                        <div id="left" class ="panel panel-default "
+                                                            style="
+                                                            margin-right:499px;
+                                                            min-width: 499px;
+                                                            height: 510px;
+                                                            background-color: #eee;
+                                                            ">
+                                 
+                                                            <div class = "panel panel-heading" style="background-color: #fff; font-weight:600;">
+                                                                   Add Item Information
+                                                            </div>
+                                                           
+                                                            <div>
+                                                               
+
+                                                                <div style="   
+                                                                     
+                                                                     display:inline;
+                                                                     float:right; 
+                                                                     right:0; 
+                                                                     padding-top:0px;
+                                                                     width: 381px;
+                                                                     padding-bottom: 2px;
+                                                                     padding-right:20px;
+                                                                     margin-bottom: 0px;
+                                                                     background-color: #eee;
+                                                                     ">
+
+                                                                    <div class="form-group input-group ">
+                                                           
+                                                                        <input type="text"  class="form-control input-sm " placeholder="Enter item descrip. or type to find (e.g Computer)">
+                                                                            
+                                                                            <span class="input-group-btn">
+                                                                                
+                                                                                <button class="btn btn-default btn-sm btn-primary" type="button">
+                                                                                        <i class="fa fa-search "></i>
+                                                                                </button>
+                                                                            </span>
+                                                                    </div>
+
+                                                                </div>
+
+               
+                                                                <div class="panel panel-body" style="
+                                                                     margin-bottom: 0px;
+                                                                     padding-left: 15px;
+                                                                     font-size: 14px;
+                                                                     padding-top: 0px;
+                                                                     padding-bottom: 2px;
+                                                                     font-weight: 600;
+                                                                     background-color: #eee;
+                                                                    ">
+                                                                        <div>
+                                                                            Search from records
+                                                                        </div>
+                                                                </div>
+
+                                                           </div>
+
+                                                            <div style="padding: 10px; padding-right: 20px; padding-top:50px;">
+                                                                
+                                                                    <form class="form-horizontal">
+
+                                                                        <div class="form-group">
+                                                                            <label for="text1" class="control-label col-lg-4">Item Description</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <input type="text" id="text1" class="form-control">
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="form-group">
+                                                                            <label for="text1" class="control-label col-lg-4">Stock No.</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <input type="text" value="" id="text1" class="form-control">
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="form-group">
+                                                                            <label for="text1" class="control-label col-lg-4">Unit of Issue</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <input type="text" value="" id="text1" class="form-control">
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="form-group">
+                                                                            <label for="text1" class="control-label col-lg-4">Est. Unit Cost</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <input type="text" value="" id="text1" class="form-control">
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="form-group">
+                                                                            <label for="text1" class="control-label col-lg-4">Quantity</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <input type="text" id="text1" value="" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                    </form>
+
+
+                                                            </div>
+
+                                                            <div class="header-right" style="padding-top: 30px; padding-right: 20px;">
+                                                                 <a href="#" class="btn btn-success" role="button" aria-disabled="true">Add to list
+                                                                  <i class="icon-caret-right"></i></a>
+
+                                                            </div>
+                                                            
+                                                        
+                                                        </div>
+    
+                                                        <div id="right" class ="panel panel-default "
+                                                            style="
+                                                            position:absolute;
+                                                            width:499px;
+                                                            right:0;
+                                                            top: 0;
+                                                            height: 510px;
+                                                            background-color: #eee;
+                                                            ">
+                                                                
+                                                            <div class = "panel panel-heading" style="background-color: #fff; font-weight:600;">
+                                                                    Included Items of the Request
+                                                            </div>
+
+                                                            <div class="table-responsive" style="padding-left: 20px; padding-right: 20px; max-height: 300px; min-height: 300px;">
+                                                                         <table class="table table-hover">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Item Description</th>
+                                                                                    <th>Cost/Unit</th>
+                                                                                    <th>Quantity</th>
+
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>Asus EEE PC 1025c Netbook PC</td>
+                                                                                    <td >20000</td>
+                                                                                    <td >3</td>
+                                                                                    <td style="float:right;"><a class="btn-xs btn-success" role= "button" aria-disabled="true"><i class="icon-pencil"></i></a><a class="btn-xs btn-danger" role ="button" aria-disabled="true"><i class="icon-remove"></i></a></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Standard Electric Fan</td>
+                                                                                    <td>3000</td>
+                                                                                    <td>5</td>
+                                                                                    <td style="float:right;"><a class="btn-xs btn-success" role= "button" aria-disabled="true"><i class="icon-pencil"></i></a><a class="btn-xs btn-danger" role ="button" aria-disabled="true"><i class="icon-remove"></i></a></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Epson E-956 Printer</td>
+                                                                                    <td >10000</td>
+                                                                                    <td >2</td>
+                                                                                    <td style="float:right;"><a class="btn-xs btn-success" role= "button" aria-disabled="true"><i class="icon-pencil"></i></a><a class="btn-xs btn-danger" role ="button" aria-disabled="true"><i class="icon-remove"></i></a></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Canon 743 Camera</td>
+                                                                                    <td>25000</td>
+                                                                                    <td >1</td>
+                                                                                    <td style="float:right;"><a class="btn-xs btn-success" role= "button" aria-disabled="true"><i class="icon-pencil"></i></a><a class="btn-xs btn-danger" role ="button" aria-disabled="true"><i class="icon-remove"></i></a></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                            </div>
+
+                                                            <div class="header-right" style="padding-right: 20px; padding-top: 90px;">
+                                                                
+                                                                <div style="display: inline; font-weight: 600;">
+                                                                    Estimested Overall Total Cost: 
+                                                                </div>
+                                                                
+                                                                <div class="panel panel-default" style="display: inline; font-size: 25px;  font-weight: 600; padding:10px;">
+                                                                    P 1,000,120,000
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+
+                                            </div> 
+                                        
+                                        </section>
+
+                                    <h2>Review and Send Request</h2>
+                                        <section>
+                    
+                                        </section>
+
+                                </div>
+                             
+                        </div>
+                    
+                    </div>
+                
+            </div>
+
+        </div>
+
+                </div>
+                    
+            </div>
+                 
+                
+                </div>
+
+
+                    </div> 
+                    </div>
+                        
+               </div>
+                    </div>
+                
+                </div>
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - Supply and Equipement Inventory
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- WIZARD SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/wizard/modernizr-2.6.2.min.js' %}"></script>
+    <script src="{% static 'requisitioner/assets/js/wizard/jquery.cookie-1.3.1.js' %}"></script>
+    <script src="{% static 'requisitioner/assets/js/wizard/jquery.steps.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/custom.js' %}"></script> 
+
+
+</body>
+</html>

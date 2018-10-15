@@ -1,0 +1,246 @@
+﻿{% extends 'procurement/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+        
+        <!-- /. NAV SIDE  -->  <div id="page-wrapper">
+
+
+
+            <!--  ========================================================   -->
+            <!--  ========================================================  
+
+              <div style="   
+                                     display:inline;
+                                     padding: 0px;
+                                     margin: 0px;
+                                     margin-top: 51px;
+                                     float:right; 
+                                     right:0; 
+                                     padding-right:20px;">
+
+                        
+                        <div class="btn-group">
+                                        <a data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><i class="icon-bar-chart"></i> Generates Inventory Reports<span style="margin-left:5px;" class="caret"></span></a>
+                                        <ul class="dropdown-menu message-dropdown" style="right:0;">
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#" ><i class="icon-list-alt" style="margin-left:4px;margin-right:6px;"></i> Physical Count of Property</a>
+                                            </li>
+                                            <li style="padding-bottom:5px; padding-top:5px;">
+                                                <a href="#"><i class="icon-trash" style="margin-left:4px;margin-right:10px;"></i> Waste Material Report</a>
+                                            </li>
+
+
+                                        </ul>
+                         </div>
+                </div> -->
+
+            <form id="theReqData" action="" method="POST">{% csrf_token %}
+            <div class="panel-body" style="
+                 margin-bottom: 0px;
+                 padding-left: 15px;
+                 font-size: 25px;
+                 padding-top: 10px;
+                 padding-bottom: 0px;
+                 margin-top:48px; 
+
+                ">
+                <div>
+                    
+                    Abstract of Canvasses
+                </div>
+                 
+               </div>
+               </form>
+
+
+
+            <div id="page-inner" style="margin-top:0px; background-color: #ddd!important;">
+             
+                <hr>
+                    
+                <div class="col-lg-12">
+                    
+                       
+
+                        <!--  -->
+                        
+                        <div class="panel panel-default">
+                            
+                            <div class="panel-body" style="padding-bottom:0px;">  
+                            <div class="panel-body col-lg-4 header-right" style="margin:0px; padding:0px;  padding-bottom:15px;">
+                                  
+                                <div class="form-group input-group" style="padding:0px;margin:0px;">
+                           
+                                            <input type="text" class="form-control input-sm" placeholder="Find Abstract" >
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default btn-sm " type="button">
+                                                        <i class="fa fa-search "></i>
+                                                    </button>
+                                                </span>
+                                            </div> 
+
+
+                                </div>
+                            </div>
+                            <div class="panel-body" style=" padding-right: 0px; padding-top:10px;">
+                            
+
+                            <div class="panel">
+                            <!-- 
+                          
+ -->
+                               <div class="panel-body" style="padding: 2px; padding-top:0px;">
+                           
+                              <div class="table-responsive">
+                                <table class="table table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" >Abstract No.</th>
+                                            <th class="text-center" >Quot. Ref. No.</th>
+                                            <th class="text-center" >PR No. Ref.</th>
+                                            <th class="text-center">Selection Status</th>
+                                            <th class="text-center" >Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for x in pageData1 %}
+                                             <tr class="odd gradeX">
+                                                
+                                                <td class="text-center" >{{x.0}}</td>
+                                                <td class="text-center">{{x.6}}</td>
+                                                <td class="text-center">{{x.7}}</td>
+
+                                                {% if x.5 == True %}
+                                                 <td class="text-center"><label class="label label-success">Processed</label></td>
+                                                {% else %}
+                                                 <td class="text-center"><label class="label label-warning">Pending</label></td>
+                                                {% endif %}
+
+                                               
+                                                <td class="text-center">
+                                                <a href="/procurement_office/abstract/{{x.8}}/details">
+                                                    <button class=" btn btn-xs btn-primary" role= "submit" aria-disabled="true">Details <i class="icon-arrow-right"></i></button>
+                                               </a>
+                                                     </td>
+                                            </tr>
+                                        {% endfor %}
+                                     
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+
+                        </div>
+                        </div>
+                            </div>
+                        </div>
+                    
+                    <!-- -->
+
+                </div>
+                
+                <div
+
+
+                <!-- /. ROW  -->
+
+                <div class="panel-body"  style="padding:0px;">
+                   
+               </div>
+
+
+                </div>    
+
+                
+
+
+
+               <!--  ========================================================   -->
+
+
+
+                    </div>
+        
+    
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <div id="footer-sec">
+        &copy; Mindanao State University - Supply and Equipement Inventory
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+<script src="{% static 'requisitioner/assets/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'requisitioner/assets/js/custom.js' %}"></script>
+    <script type="text/javascript">
+
+    var chosenBid = {}
+    var itemData = [('uy','yu'),('re','vf')]
+        
+   $('#itemTable').on('click','button', function (e) {
+        
+        var id = this.id;
+        var value = document.getElementById(id).value
+        var trID = $(this).closest('tr').attr('id');
+
+
+        $('#'+trID+' button').each(function(){
+            $(this).attr('class', 'btn btn-default');
+    
+        })
+
+        chosenBid[trID] = value;
+        $("#"+id).attr('class', 'btn btn-success');
+        
+    });
+
+
+
+   $(document).on('submit', '#addForm', function(e){
+
+       e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url:'/requisitioner/updateAbstract/',
+                data:{
+                    
+                    'chosenBid': JSON.stringify(chosenBid),
+                    'canvnum': $('#reqNum').attr('value'),
+                     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                   
+                },
+
+                    success: function(response) {
+                        alert("Transaction Complete");
+                        window.location.href = "/requisitioner/pr/";
+                    }
+
+            });
+   })
+    </script>
+
+
+   <script type="text/javascript">
+            
+    $(document).ready(function () {
+        $('#ac').attr('class', 'active-menu-proc')
+        $('#rqacTop').attr('class', 'active-menu-top')
+        $('#rqacUL').attr('class','nav nav-second-level collapse in')
+    })
+
+    </script>
+
+{% endblock %}
