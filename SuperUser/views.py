@@ -31,7 +31,7 @@ from .models import Photo
 
 
 dirreq = dirname(dirname(abspath(__file__)))
-sys.path.append('{}\Project_SMO_Inventory\static\src'.format(dirreq))
+sys.path.append('{}/Project_SMO_Inventory/static/src'.format(dirreq))
 
 from functions import Functions
 from user import User
