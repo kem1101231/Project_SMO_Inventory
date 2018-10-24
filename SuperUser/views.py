@@ -27,6 +27,15 @@ from datetime import datetime
 from django.http import JsonResponse
 
 from .forms import PhotoForm
+from .models import Photo
+
+
+dirreq = dirname(dirname(abspath(__file__)))
+
+#configure python file path for Windows machines
+sys.path.append('{}/Project_SMO_Inventory/static/src'.format(dirreq))
+# config python file path for Ubuntu machines
+sys.path.append('{}\Project_SMO_Inventory\static\src'.format(dirreq))
 
 from functions import Functions
 from user import User
