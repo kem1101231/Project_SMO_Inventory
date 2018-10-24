@@ -111,7 +111,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'project_smo_inventory',
         'USER': 'odoo',
-        'PASSWORD': '',
+        'PASSWORD': 'odoo',
         'HOST': 'localhost',
         'PORT': '',
     }

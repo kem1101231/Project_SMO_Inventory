@@ -1,28 +1,5 @@
+MSU PMIIS
+
 Requirements
-The ff. applications must be present or installed on the computer for the application to run.
-1. Python 3
-2. Postgre SQL
 
-required python packages
-
-1. psycopg2
-2. django
-3. weasyprint
-
-
-To start the application,
-    1. open the terminal or command prompt on this files directory
-    2. type "python manage.py migrate"
-
-        ! - if errors were found run "python manage.py makemigrations" then "python manage.py migrate"
-
-    3. then type "python manage.py runserver 0.0.0.0:8000" to start the server
-
-manually after the application was successfully initialized, add offices to the database using the office.sql file.
-
-information
-    application will create its database together with its tables
-    on the first run of the application, you will be prompted to create an admin user.
-
-
-the application is only 70% to complition, and still being developed
+python 3

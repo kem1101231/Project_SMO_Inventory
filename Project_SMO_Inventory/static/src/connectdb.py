@@ -17,8 +17,8 @@ class ConnectDB:
 	# ===================================
 	# Update the following Data to set the Database
 
-	uname = 'postgres'
-	password = 'heathcliff'
+	uname = 'odoo'
+	password = 'odoo'
 	host = 'localhost'
 	dbname = 'project_smo_inventory'
 
