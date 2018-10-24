@@ -74,6 +74,20 @@ locate
 After configuring the db connectios
 
     you may now start the django server
+    to start the server
+        "python3" for ubuntu "python" for windows
+
+        open the terminal or command prompt on this file's directory
+        run the following commands:
+
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8000 (the port number may differ depending on your desired port number)
+
+You may access the app on address 127.0.0.1:8000 (or what port number you have set)
+You may access the app on address 127.0.0.1:8000 (or what port number you have set)
+
+
 
 
 
