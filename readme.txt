@@ -25,7 +25,7 @@ for windows installation
 
     > install gtk-runtime environment
 
-        Note: installation of gtk-runtime environment many differ depending the archetecture of the server computer, 32-bit computer has an available executeble installer while
+        Note: installation of gtk-runtime environment many differ depending on the archetecture of the server computer, 32-bit computer has an available executeble installer while
         for 64-bit computers, installation is though MSYS
 
 for ubuntu installation
@@ -35,11 +35,17 @@ for ubuntu installation
 for installation of python packages
     : to install package use "pip" for windows and "pip3" for python
 
-    Django:
+    open the terminal or command promt and type the following command to install packages
+
+    for Django:
         pip install django
-    PostgreSQL python connector
+
+    for PostgreSQL python connector
+
         pip install psycopg2
-    Weasyprint
+
+    for Weasyprint
+
         pip install weasyprint
 
         Note: before installing weasyprint, there are some things that must be done. please refer to
