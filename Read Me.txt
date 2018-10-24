@@ -1,5 +1,0 @@
-MSU PMIIS
-
-Requirements
-
-python 3

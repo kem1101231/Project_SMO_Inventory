@@ -104,6 +104,7 @@ WSGI_APPLICATION = 'Project_SMO_Inventory.wsgi.application'
 
 
 # Database
+# Configure database connection here
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
