@@ -1,50 +1,20 @@
 Requirements
 The ff. applications must be present or installed on the computer for the application to run.
-1. Python 3.5.1
+1. Python 3
 2. Postgre SQL
-3. psycopg2 for python 3.5
-4. django 1.10
 
-Start the application
-1. Open (Double Click) Server.bat file. A cmd window will appear, wait until a message "Quit the Server with CTRL-BREAK" apprears.	
-2. Go to 127.0.0.1:8000 on your web browser.
-3. Choose one from the ff. usernames and passwords to login (these are dummy accounts, for UI viewing purposes only)
-	
-	1.     uname: requi
-	       pass : pass
-	   acct type: requisistioner
-	
-	2.     uname: smoadmin
-	       pass : pass
-	   acct type: SMO Admin
-	
-	3.     uname: smorecei
-	       pass : pass
-	   acct type: SMO Receiving Officer
-	
-	4.     uname: smoinven
-	       pass : pass
-	   acct type: SMO Inventory Clerk
-	
-	5.     uname: smoacct
-	       pass : pass
-	   acct type: SMO Accountability Manager
-	
-	6.     uname: apprvcaf
-	       pass : pass
-	   acct type: VCAF
+required python packages
 
-	7.     uname: apprchan
-	       pass : pass
-	   acct type: Chancellor
+1. psycopg2
+2. django
+3. weasyprint
 
-	8.     uname: procadmin	
-	       pass : pass
-	   acct type: Procurement Office Admin
-	 
-	9.     uname: procclerk
-	       pass : pass
-	   acct type: Procurement Office Officer
 
-Stop server:
-	Press CTRL+C to stop server
+To start the application,
+    1. open the terminal or command prompt on this files directory
+    2. type "python manage.py migrate"
+
+        ! - if errors were found run "python manage.py makemigrations" then "python manage.py migrate"
+
+    3. then type "python manage.py runserver 0.0.0.0:8000" to start the server
+
