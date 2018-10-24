@@ -65,7 +65,7 @@ locate
                 host = 'your db server ip address'
                 dbname = 'your db name'
 
-                for the database name, the database will be created is it doesnt curently exist
+                for the database name, the database will be created if it doesnt curently exist
 
       App_directory/Project_SMO_Inventory/Project_SMO_Inventory/settings.py
       find the commented line "Configure database connection here"
