@@ -52,6 +52,11 @@ for installation of python packages
         --- ( weasyprint.readthedocs.io/en/stable/install.html ) ----
         for complete instructions regarding on installation of weasyprint
 
+Setup the Database:
+  using the command prompt/termeinal, run the setupdb.py
+  use "python" on Windows and "python3" on Linux
+
+
 After all this requirements were installed, you can now comfigure the app to start
 
 first step in configuring the app is thought the following files
