@@ -96,6 +96,7 @@ After configuring the db connectios
         python manage.py runserver 0.0.0.0:8000 (the port number may differ depending on your desired port number)
 
 You may access the app on address 127.0.0.1:8000 (or what port number you have set)
+Add ip addresses on the settings.py file
 
 
 
